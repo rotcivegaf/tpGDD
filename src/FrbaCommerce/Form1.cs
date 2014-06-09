@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using FrbaCommerce.Login;
+using FrbaCommerce.ABM_Rol;
 
 namespace FrbaCommerce
 {
@@ -25,6 +26,13 @@ namespace FrbaCommerce
         private void btnLogin_Click(object sender, EventArgs e)
         {
             formLogin frame = new formLogin();
+
+            frame.ShowDialog();
+        }
+
+        private void btnABM_Rol_Click(object sender, EventArgs e)
+        {
+            ABM_Rol_Form frame = new ABM_Rol_Form();
 
             frame.ShowDialog();
         }

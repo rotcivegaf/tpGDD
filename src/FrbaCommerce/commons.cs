@@ -60,5 +60,21 @@ namespace FrbaCommerce
 
             return vacio;
         }
+
+        public static bool algunoVacio(params ListBox[] campos)
+        {
+            bool vacio = false;
+
+            for (int i = 0; i < campos.Count(); i++)
+                if (campos[i].SelectedIndex == -1)
+                {
+                    vacio = true;
+                    campos[i].BackColor = Color.LightPink;
+                }
+                else
+                    campos[i].BackColor = Color.White;
+
+            return vacio;
+        }
     }
 }
