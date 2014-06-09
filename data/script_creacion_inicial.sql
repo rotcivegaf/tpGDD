@@ -102,7 +102,7 @@ CREATE TABLE LOL.tl_Publicaciones (
 	Estado             NVARCHAR(255) NOT NULL,
 	Permite_Preguntas  BIT DEFAULT(1) NOT NULL,
 
- 	PRIMARY KEY(Codigo)
+	PRIMARY KEY(Codigo)
 )
 GO
 
@@ -115,7 +115,7 @@ CREATE TABLE LOL.tl_Preguntas (
 	Fecha_Respuesta    DATE NULL,
 	Respuesta          NVARCHAR(255) NULL,
 
- 	PRIMARY KEY(ID)
+	PRIMARY KEY(ID)
 )
 GO
 
@@ -124,7 +124,7 @@ CREATE TABLE LOL.tl_Publicaciones_Rubros (
 	Publicacion_Codigo NUMERIC(18, 0) NOT NULL,
 	Rubro_ID           NUMERIC(18, 0) NOT NULL,
 
- 	PRIMARY KEY(Publicacion_Codigo, Rubro_ID)
+	PRIMARY KEY(Publicacion_Codigo, Rubro_ID)
 )
 GO
 
@@ -350,6 +350,7 @@ GO
 CREATE PROCEDURE LOL.sp_InicializarFuncionalidades
 AS
 BEGIN
+
 	SET IDENTITY_INSERT LOL.tl_Funcionalidades ON;
 
 	INSERT INTO LOL.tl_Funcionalidades (ID,Nombre)
@@ -378,6 +379,7 @@ BEGIN
 		VALUES (12,'Facturar Publicaciones')
 	INSERT INTO LOL.tl_Funcionalidades (ID,Nombre)
 		VALUES (13,'Listado Estadistico')
+
 END
 GO
 
@@ -385,7 +387,7 @@ GO
 CREATE PROCEDURE LOL.sp_InicializarRoles
 AS
 BEGIN
-
+	
 	SET IDENTITY_INSERT LOL.tl_Roles ON
 
 	DECLARE @Administrativo_ID INT = 1
@@ -421,6 +423,7 @@ BEGIN
 	INSERT INTO LOL.tl_Roles_Funcionalidades VALUES (@Empresa_ID,10)
 	INSERT INTO LOL.tl_Roles_Funcionalidades VALUES (@Empresa_ID,12)
 	INSERT INTO LOL.tl_Roles_Funcionalidades VALUES (@Empresa_ID,13)
+	
 END
 GO
 
@@ -435,12 +438,13 @@ BEGIN
 	DECLARE @Administrativo_ID INT = 1
 
 	-- Crear el Usuario: admin
-    INSERT INTO LOL.tl_Usuarios (ID,Username,Password)
-    	VALUES (@Usuario_ID,'admin','w23e')
+	INSERT INTO LOL.tl_Usuarios (ID,Username,Password)
+		VALUES (@Usuario_ID,'admin','w23e')
 
 	-- Asocio el Usuario admin con el Rol Administrativo
-    INSERT INTO LOL.tl_Usuarios_Roles (Usuario_ID,Rol_ID)
-    	VALUES (@Usuario_ID,@Administrativo_ID)
+	INSERT INTO LOL.tl_Usuarios_Roles (Usuario_ID,Rol_ID)
+		VALUES (@Usuario_ID,@Administrativo_ID)
+
 END
 GO
 
@@ -454,7 +458,7 @@ BEGIN
 
 	DECLARE @max INT
 
-    INSERT INTO LOL.tl_Visibilidades
+	INSERT INTO LOL.tl_Visibilidades
 		(Codigo,Descripcion,Precio,Porcentaje)
 		SELECT DISTINCT
 			Publicacion_Visibilidad_Cod,
@@ -465,6 +469,7 @@ BEGIN
 			gd_esquema.Maestra
 		WHERE
 			Publicacion_Visibilidad_Cod IS NOT NULL
+
 END
 GO
 
@@ -483,6 +488,7 @@ BEGIN
 			gd_esquema.Maestra
 		WHERE
 			Maestra.Publicacion_Rubro_Descripcion IS NOT NULL
+
 END
 GO
 
@@ -494,7 +500,7 @@ BEGIN
 	SET NOCOUNT ON;
 	DECLARE @RolEmpresa_ID INT = 3
 
-    INSERT INTO LOL.tl_Empresas
+	INSERT INTO LOL.tl_Empresas
 		SELECT DISTINCT
 			Publ_Empresa_Razon_Social,
 			Publ_Empresa_Cuit,
@@ -530,6 +536,7 @@ BEGIN
 			LOL.tl_Empresas
 				JOIN LOL.tl_Usuarios
 				ON tl_Empresas.CUIT = LOL.tl_Usuarios.Username
+
 END
 GO
 
@@ -599,6 +606,7 @@ BEGIN
 					JOIN LOL.tl_Usuarios
 					ON CAST(tl_Clientes.Nro_Documento AS NVARCHAR(50)) =
 						LOL.tl_Usuarios.Username
+
 END
 GO
 
@@ -610,7 +618,7 @@ BEGIN
 	SET NOCOUNT ON;
 	SET IDENTITY_INSERT LOL.tl_Publicaciones ON;
 
-    INSERT INTO LOL.tl_Publicaciones
+	INSERT INTO LOL.tl_Publicaciones
 		(Codigo,Cliente_ID,Empresa_ID,Descripcion,Stock,Fecha,
 			Fecha_Vencimiento,Precio,Tipo,Visibilidad_Codigo,Estado,
 			Permite_Preguntas)
@@ -656,7 +664,8 @@ BEGIN
 				LEFT JOIN LOL.tl_Empresas E
 				ON (M.Publ_Empresa_Cuit = E.CUIT)
 		WHERE
-			Publicacion_Cod IS NOT NULL AND Publ_Empresa_Cuit IS NOT NULL
+			Publicacion_Cod IS NOT NULL AND
+			Publ_Empresa_Cuit IS NOT NULL
 
 	INSERT INTO LOL.tl_Publicaciones_Rubros
 		SELECT DISTINCT
@@ -668,6 +677,7 @@ BEGIN
 				ON (M.Publicacion_Rubro_Descripcion = R.Descripcion)
 		WHERE
 			Publicacion_Cod IS NOT NULL
+
 END
 GO
 
@@ -678,8 +688,8 @@ BEGIN
 
 	SET NOCOUNT ON;
 
--- Aclaracion: Suponemos que todas las compras están Calificadas
-    INSERT INTO LOL.tl_Compras
+	-- Aclaracion: Suponemos que todas las compras están Calificadas
+	INSERT INTO LOL.tl_Compras
 		SELECT
 			Publicacion_Cod,
 			C.ID,
@@ -697,6 +707,7 @@ BEGIN
 		WHERE
 			Compra_Cantidad IS NOT NULL AND
 			Calificacion_Codigo IS NOT NULL
+
 END
 GO
 
@@ -708,7 +719,7 @@ BEGIN
 	SET NOCOUNT ON;
 	SET IDENTITY_INSERT LOL.tl_Facturas ON;
 
-    INSERT INTO LOL.tl_Facturas
+	INSERT INTO LOL.tl_Facturas
 		(Nro,Fecha,Publicacion_Cod, Pago_Descripcion)
 		SELECT DISTINCT
 			--Aclaracion: El total de la factura hay que calcularlo o es null?
@@ -726,6 +737,7 @@ BEGIN
 			gd_esquema.Maestra
 		WHERE
 			Item_Factura_Cantidad IS NOT NULL
+
 END
 GO
 
@@ -736,7 +748,7 @@ BEGIN
 
 	SET NOCOUNT ON;
 
-    INSERT INTO LOL.tl_Ofertas
+	INSERT INTO LOL.tl_Ofertas
 		SELECT
 			Publicacion_Cod,
 			C.ID,
@@ -748,6 +760,7 @@ BEGIN
 			ON (M.Cli_Dni = C.Nro_Documento)
 		WHERE
 			Oferta_Monto IS NOT NULL
+
 END
 GO
 
