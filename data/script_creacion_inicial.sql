@@ -799,7 +799,7 @@ BEGIN
 	WHERE tl_Usuarios_Roles.Rol_ID = @rol;
 
 	DELETE FROM LOL.tl_Roles
-	WHERE tl_Roles.Rol_ID = @rol;
+	WHERE tl_Roles.ID = @rol;
 
 END
 GO
