@@ -62,6 +62,10 @@ namespace FrbaCommerce.ABM_Rol
                 }
                 else
                 {
+                    if (!Habilitado.Checked)
+                    {
+                        this.tl_Usuarios_RolesTableAdapter1.BorrarPorRol(this.selectedRol);
+                    }
                     this.tl_RolesTableAdapter.Update(inputNombre.Text, Habilitado.Checked, this.selectedRol, this.rolName, this.habilitado);
                     this.tl_Roles_FuncionalidadesTableAdapter1.BorrarPorRol(this.selectedRol);
                     foreach (DataRowView li in listFuncionalidades.SelectedItems)

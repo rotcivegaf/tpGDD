@@ -41,6 +41,7 @@
             this.tl_RolesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RolesTableAdapter();
             this.tl_Roles_FuncionalidadesTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Roles_FuncionalidadesTableAdapter();
             this.Habilitado = new System.Windows.Forms.CheckBox();
+            this.tl_Usuarios_RolesTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Usuarios_RolesTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.tlFuncionalidadesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlRolesBindingSource)).BeginInit();
@@ -131,6 +132,10 @@
             this.Habilitado.Text = "Habilitado";
             this.Habilitado.UseVisualStyleBackColor = true;
             // 
+            // tl_Usuarios_RolesTableAdapter1
+            // 
+            this.tl_Usuarios_RolesTableAdapter1.ClearBeforeFill = true;
+            // 
             // Edit_Rol_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -167,5 +172,6 @@
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RolesTableAdapter tl_RolesTableAdapter;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Roles_FuncionalidadesTableAdapter tl_Roles_FuncionalidadesTableAdapter1;
         private System.Windows.Forms.CheckBox Habilitado;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Usuarios_RolesTableAdapter tl_Usuarios_RolesTableAdapter1;
     }
 }
