@@ -778,6 +778,8 @@ EXEC LOL.sp_ImportarCompras
 EXEC LOL.sp_ImportarFacturas
 EXEC LOL.sp_ImportarOfertas
 
+GO
+
 --FIN MIGRACION----------------------------------------------------------------
 
 --Stored procedures de la nueva aplicacion-------------------------------------
