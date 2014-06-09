@@ -2,6 +2,7 @@ USE GD1C2014
 GO
 
 --Creacion del esquema LOL-----------------------------------------------------
+
 CREATE SCHEMA LOL AUTHORIZATION gd
 GO
 
@@ -377,7 +378,6 @@ BEGIN
 		VALUES (12,'Facturar Publicaciones')
 	INSERT INTO LOL.tl_Funcionalidades (ID,Nombre)
 		VALUES (13,'Listado Estadistico')
-
 END
 GO
 
@@ -421,7 +421,6 @@ BEGIN
 	INSERT INTO LOL.tl_Roles_Funcionalidades VALUES (@Empresa_ID,10)
 	INSERT INTO LOL.tl_Roles_Funcionalidades VALUES (@Empresa_ID,12)
 	INSERT INTO LOL.tl_Roles_Funcionalidades VALUES (@Empresa_ID,13)
-
 END
 GO
 
@@ -753,6 +752,7 @@ END
 GO
 
 --Ejecucion de Stored Procedures-----------------------------------------------
+
 EXEC LOL.sp_InicializarFuncionalidades
 EXEC LOL.sp_InicializarRoles
 EXEC LOL.sp_InicializarUsuarioAdmin
