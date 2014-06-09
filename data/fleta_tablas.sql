@@ -20,7 +20,7 @@ DROP TABLE LOL.tl_visibilidades
 DROP TABLE LOL.tl_empresas
 DROP TABLE LOL.tl_clientes
 
---Eliminar Procedimientos
+--Eliminar Procedimientos de migracion
 DROP PROCEDURE LOL.sp_ImportarClientes
 DROP PROCEDURE LOL.sp_ImportarEmpresas
 DROP PROCEDURE LOL.sp_ImportarFacturas
@@ -32,6 +32,9 @@ DROP PROCEDURE LOL.sp_InicializarRoles
 DROP PROCEDURE LOL.sp_InicializarUsuarioAdmin
 DROP PROCEDURE LOL.sp_ImportarCompras
 DROP PROCEDURE LOL.sp_ImportarOfertas
+
+--Eliminar Procedimientos de aplicacion
+DROP PROCEDURE LOL.sp_EliminarRol
 
 --Eliminar esquema
 DROP SCHEMA LOL
