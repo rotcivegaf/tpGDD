@@ -32,13 +32,13 @@
             this.Roles = new System.Windows.Forms.DataGridView();
             this.NuevoRol = new System.Windows.Forms.Button();
             this.EditarRol = new System.Windows.Forms.Button();
+            this.EliminarRol = new System.Windows.Forms.Button();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.habilitadoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tlRolesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
             this.tl_RolesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RolesTableAdapter();
-            this.EliminarRol = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Roles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlRolesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
@@ -83,6 +83,16 @@
             this.EditarRol.UseVisualStyleBackColor = true;
             this.EditarRol.Click += new System.EventHandler(this.EditarRol_Click);
             // 
+            // EliminarRol
+            // 
+            this.EliminarRol.Location = new System.Drawing.Point(263, 24);
+            this.EliminarRol.Name = "EliminarRol";
+            this.EliminarRol.Size = new System.Drawing.Size(109, 23);
+            this.EliminarRol.TabIndex = 3;
+            this.EliminarRol.Text = "Eliminar";
+            this.EliminarRol.UseVisualStyleBackColor = true;
+            this.EliminarRol.Click += new System.EventHandler(this.EliminarRol_Click);
+            // 
             // iDDataGridViewTextBoxColumn
             // 
             this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
@@ -118,16 +128,6 @@
             // 
             this.tl_RolesTableAdapter.ClearBeforeFill = true;
             // 
-            // EliminarRol
-            // 
-            this.EliminarRol.Location = new System.Drawing.Point(263, 24);
-            this.EliminarRol.Name = "EliminarRol";
-            this.EliminarRol.Size = new System.Drawing.Size(109, 23);
-            this.EliminarRol.TabIndex = 3;
-            this.EliminarRol.Text = "Eliminar";
-            this.EliminarRol.UseVisualStyleBackColor = true;
-            this.EliminarRol.Click += new System.EventHandler(this.EliminarRol_Click);
-            // 
             // ABM_Rol_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -138,6 +138,7 @@
             this.Controls.Add(this.EditarRol);
             this.Controls.Add(this.NuevoRol);
             this.Controls.Add(this.Roles);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "ABM_Rol_Form";
             this.Text = "ABM Rol";
             this.Load += new System.EventHandler(this.ABM_Rol_Form_Load);
