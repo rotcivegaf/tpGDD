@@ -387,7 +387,7 @@ GO
 CREATE PROCEDURE LOL.sp_InicializarRoles
 AS
 BEGIN
-	
+
 	SET IDENTITY_INSERT LOL.tl_Roles ON
 
 	DECLARE @Administrativo_ID INT = 1
@@ -423,7 +423,7 @@ BEGIN
 	INSERT INTO LOL.tl_Roles_Funcionalidades VALUES (@Empresa_ID,10)
 	INSERT INTO LOL.tl_Roles_Funcionalidades VALUES (@Empresa_ID,12)
 	INSERT INTO LOL.tl_Roles_Funcionalidades VALUES (@Empresa_ID,13)
-	
+
 END
 GO
 
@@ -777,3 +777,27 @@ EXEC LOL.sp_ImportarPublicaciones
 EXEC LOL.sp_ImportarCompras
 EXEC LOL.sp_ImportarFacturas
 EXEC LOL.sp_ImportarOfertas
+
+--FIN MIGRACION----------------------------------------------------------------
+
+--Stored procedures de la nueva aplicacion-------------------------------------
+
+/* Stored Procedure EliminarRol
+ * Elimina un rol, primero eliminando las referencias con las funcionalidades,
+ * segundo con los usuarios, y por último elimina el propio rol
+ * SE PUEDE HACER DELETE CASCADE PERO LO HAGO PARA PROBAR COMO LLAMAR UN SP */
+CREATE PROCEDURE LOL.sp_EliminarRol @rol int
+AS
+BEGIN
+
+	DELETE FROM LOL.tl_Roles_Funcionalidades
+	WHERE tl_Roles_Funcionalidades.Rol_ID = @rol;
+
+	DELETE FROM LOL.tl_Usuarios_Roles
+	WHERE tl_Usuarios_Roles.Rol_ID = @rol;
+
+	DELETE FROM LOL.tl_Roles
+	WHERE tl_Roles.Rol_ID = @rol;
+
+END
+GO
