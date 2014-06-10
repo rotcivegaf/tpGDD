@@ -72,7 +72,7 @@
             this.listFuncionalidades.Location = new System.Drawing.Point(38, 123);
             this.listFuncionalidades.Name = "listFuncionalidades";
             this.listFuncionalidades.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listFuncionalidades.Size = new System.Drawing.Size(170, 186);
+            this.listFuncionalidades.Size = new System.Drawing.Size(170, 173);
             this.listFuncionalidades.TabIndex = 1;
             this.listFuncionalidades.ValueMember = "ID";
             // 
@@ -101,7 +101,7 @@
             // 
             // GuardarRol
             // 
-            this.GuardarRol.Location = new System.Drawing.Point(38, 375);
+            this.GuardarRol.Location = new System.Drawing.Point(38, 361);
             this.GuardarRol.Name = "GuardarRol";
             this.GuardarRol.Size = new System.Drawing.Size(170, 23);
             this.GuardarRol.TabIndex = 4;
@@ -125,7 +125,7 @@
             // Habilitado
             // 
             this.Habilitado.AutoSize = true;
-            this.Habilitado.Location = new System.Drawing.Point(38, 335);
+            this.Habilitado.Location = new System.Drawing.Point(38, 321);
             this.Habilitado.Name = "Habilitado";
             this.Habilitado.Size = new System.Drawing.Size(73, 17);
             this.Habilitado.TabIndex = 5;
@@ -140,13 +140,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(246, 420);
+            this.ClientSize = new System.Drawing.Size(246, 411);
             this.Controls.Add(this.Habilitado);
             this.Controls.Add(this.GuardarRol);
             this.Controls.Add(this.lbFuncionalidades);
             this.Controls.Add(this.listFuncionalidades);
             this.Controls.Add(this.lbNombre);
             this.Controls.Add(this.inputNombre);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Edit_Rol_Form";
             this.Text = "Crear/Editar Rol";
             this.Load += new System.EventHandler(this.Edit_Rol_Form_Load);
