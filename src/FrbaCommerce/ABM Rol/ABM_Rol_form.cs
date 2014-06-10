@@ -19,14 +19,25 @@ namespace FrbaCommerce.ABM_Rol
 
         private void ABM_Rol_Form_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'gD1C2014DataSet.tl_Roles' table. You can move, or remove it, as needed.
+            /* Llenamos el tableAdapter de los Roles, que es source del
+             * DataGridView Roles. */
             this.tl_RolesTableAdapter.Fill(this.gD1C2014DataSet.tl_Roles);
         }
 
         private void NuevoRol_Click(object sender, EventArgs e)
         {
+            /* Cuando se clickea el boton "Nuevo", lo que hacemos es instanciar
+             * el formulario de edicion, (se reusa tanto para creacion como edicion.
+             * Al pasarle -1 como parametro id, le decimos que actue como form de creacion. 
+             */
             Edit_Rol_Form editForm = new Edit_Rol_Form(-1, "-1", false);
+            
+            /* Añadimos un handler al evento close, y lo que hacemos en este handler
+             * es volver a hacer el fill del tableAdapter de los Roles, para visualizar
+             * el nuevo Rol en caso que haya sido creado. */
             editForm.FormClosed += new FormClosedEventHandler(editForm_FormClosed);
+            
+            //Mostramos el formulario.
             editForm.ShowDialog(); 
         }
 
@@ -37,13 +48,19 @@ namespace FrbaCommerce.ABM_Rol
 
         private void EditarRol_Click(object sender, EventArgs e)
         {
-            Edit_Rol_Form editForm = new Edit_Rol_Form(Convert.ToInt32(Roles.SelectedRows[0].Cells[0].Value), Roles.SelectedRows[0].Cells[1].Value.ToString(), Convert.ToBoolean(Roles.SelectedRows[0].Cells[2].Value));
+            //Instaciamos el form con los datos del Rol a editar.
+            Edit_Rol_Form editForm = new Edit_Rol_Form(Convert.ToInt32(Roles.SelectedRows[0].Cells[0].Value),
+                Roles.SelectedRows[0].Cells[1].Value.ToString(), 
+                Convert.ToBoolean(Roles.SelectedRows[0].Cells[2].Value));
+            
+            //Suscribimos al evento closed por la misma razon de antes.
             editForm.FormClosed += new FormClosedEventHandler(editForm_FormClosed);
             editForm.ShowDialog();
         }
 
         private void EliminarRol_Click(object sender, EventArgs e)
         {
+            //Llamamos un stored procedure que elimina correctamente el Rol de todas las tablas necesarias.
             this.tl_RolesTableAdapter.sp_EliminarRol(Convert.ToInt32(Roles.SelectedRows[0].Cells[0].Value));
             this.tl_RolesTableAdapter.Fill(this.gD1C2014DataSet.tl_Roles);
         }
