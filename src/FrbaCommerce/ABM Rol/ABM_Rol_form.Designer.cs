@@ -30,9 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.Roles = new System.Windows.Forms.DataGridView();
+            this.seleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.NuevoRol = new System.Windows.Forms.Button();
-            this.EditarRol = new System.Windows.Forms.Button();
-            this.EliminarRol = new System.Windows.Forms.Button();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.habilitadoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -53,15 +52,25 @@
             this.Roles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDDataGridViewTextBoxColumn,
             this.nombreDataGridViewTextBoxColumn,
-            this.habilitadoDataGridViewCheckBoxColumn});
+            this.habilitadoDataGridViewCheckBoxColumn,
+            this.seleccionar});
             this.Roles.DataSource = this.tlRolesBindingSource;
             this.Roles.Location = new System.Drawing.Point(12, 70);
             this.Roles.MultiSelect = false;
             this.Roles.Name = "Roles";
             this.Roles.ReadOnly = true;
             this.Roles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Roles.Size = new System.Drawing.Size(360, 247);
+            this.Roles.Size = new System.Drawing.Size(462, 247);
             this.Roles.TabIndex = 0;
+            this.Roles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Roles_CellClick);
+            // 
+            // seleccionar
+            // 
+            this.seleccionar.HeaderText = "Seleccionar";
+            this.seleccionar.Name = "seleccionar";
+            this.seleccionar.ReadOnly = true;
+            this.seleccionar.Text = "\"Seleccionar\"";
+            this.seleccionar.ToolTipText = "\"Seleccionar\"";
             // 
             // NuevoRol
             // 
@@ -72,26 +81,6 @@
             this.NuevoRol.Text = "Nuevo";
             this.NuevoRol.UseVisualStyleBackColor = true;
             this.NuevoRol.Click += new System.EventHandler(this.NuevoRol_Click);
-            // 
-            // EditarRol
-            // 
-            this.EditarRol.Location = new System.Drawing.Point(138, 24);
-            this.EditarRol.Name = "EditarRol";
-            this.EditarRol.Size = new System.Drawing.Size(108, 23);
-            this.EditarRol.TabIndex = 2;
-            this.EditarRol.Text = "Editar";
-            this.EditarRol.UseVisualStyleBackColor = true;
-            this.EditarRol.Click += new System.EventHandler(this.EditarRol_Click);
-            // 
-            // EliminarRol
-            // 
-            this.EliminarRol.Location = new System.Drawing.Point(263, 24);
-            this.EliminarRol.Name = "EliminarRol";
-            this.EliminarRol.Size = new System.Drawing.Size(109, 23);
-            this.EliminarRol.TabIndex = 3;
-            this.EliminarRol.Text = "Eliminar";
-            this.EliminarRol.UseVisualStyleBackColor = true;
-            this.EliminarRol.Click += new System.EventHandler(this.EliminarRol_Click);
             // 
             // iDDataGridViewTextBoxColumn
             // 
@@ -133,9 +122,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(384, 329);
-            this.Controls.Add(this.EliminarRol);
-            this.Controls.Add(this.EditarRol);
+            this.ClientSize = new System.Drawing.Size(486, 329);
             this.Controls.Add(this.NuevoRol);
             this.Controls.Add(this.Roles);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -155,11 +142,10 @@
         private GD1C2014DataSet gD1C2014DataSet;
         private System.Windows.Forms.BindingSource tlRolesBindingSource;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RolesTableAdapter tl_RolesTableAdapter;
+        private System.Windows.Forms.Button NuevoRol;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn habilitadoDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.Button NuevoRol;
-        private System.Windows.Forms.Button EditarRol;
-        private System.Windows.Forms.Button EliminarRol;
+        private System.Windows.Forms.DataGridViewButtonColumn seleccionar;
     }
 }

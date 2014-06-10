@@ -58,7 +58,7 @@ GO
 
 --Tabla Visibilidades
 CREATE TABLE LOL.tl_Visibilidades (
-	Codigo      NUMERIC(18, 0) IDENTITY(1,1) NOT NULL,
+	Codigo      NUMERIC(18, 0) NOT NULL,
 	Descripcion NVARCHAR(255) NOT NULL,
 	Precio      MONEY NOT NULL,
 	Porcentaje  NUMERIC(18, 2) NOT NULL,
@@ -454,7 +454,6 @@ AS
 BEGIN
 
 	SET NOCOUNT ON;
-	SET IDENTITY_INSERT LOL.tl_Visibilidades ON;
 
 	DECLARE @max INT
 
@@ -784,22 +783,41 @@ GO
 
 --Stored procedures de la nueva aplicacion-------------------------------------
 
-/* Stored Procedure EliminarRol
- * Elimina un rol, primero eliminando las referencias con las funcionalidades,
- * segundo con los usuarios, y por último elimina el propio rol
- * SE PUEDE HACER DELETE CASCADE PERO LO HAGO PARA PROBAR COMO LLAMAR UN SP */
-CREATE PROCEDURE LOL.sp_EliminarRol @rol int
+/* Stored Procedure NuevaVisibilidad */
+CREATE PROCEDURE LOL.sp_NuevaVisibilidad @codigo INT,
+										 @descripcion NVARCHAR(255),
+										 @precio MONEY,
+										 @porcentaje NUMERIC(18, 2)
 AS
 BEGIN
 
-	DELETE FROM LOL.tl_Roles_Funcionalidades
-	WHERE tl_Roles_Funcionalidades.Rol_ID = @rol;
+	DECLARE @error NVARCHAR(50)
 
-	DELETE FROM LOL.tl_Usuarios_Roles
-	WHERE tl_Usuarios_Roles.Rol_ID = @rol;
+	IF EXISTS (SELECT *
+			   FROM LOL.tl_Visibilidades
+			   WHERE tl_Visibilidades.Codigo = @codigo)
+	BEGIN
+		SET @error = 'Codigo existente.'
+    	RAISERROR (@error, 11,1)
+    	RETURN -1
+    END
 
-	DELETE FROM LOL.tl_Roles
-	WHERE tl_Roles.ID = @rol;
-
+    IF (@porcentaje NOT BETWEEN 0 AND 100)
+    BEGIN
+    	SET @error = 'Porcentaje incorrecto.'
+    	RAISERROR (@error, 11,1)
+    	RETURN -1
+    END
+    
+    IF (@precio < 0)
+    BEGIN
+		SET @error = 'Precio Incorrecto.'
+		RAISERROR (@error, 11,1)
+		RETURN -1
+	END
+	
+	INSERT INTO LOL.tl_Visibilidades (Codigo, Descripcion, Precio, Porcentaje)
+		VALUES(@codigo, @descripcion, @precio, @porcentaje)
+    
 END
 GO

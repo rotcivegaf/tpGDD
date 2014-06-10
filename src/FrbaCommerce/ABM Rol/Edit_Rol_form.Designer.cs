@@ -42,6 +42,7 @@
             this.tl_Roles_FuncionalidadesTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Roles_FuncionalidadesTableAdapter();
             this.Habilitado = new System.Windows.Forms.CheckBox();
             this.tl_Usuarios_RolesTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Usuarios_RolesTableAdapter();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tlFuncionalidadesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlRolesBindingSource)).BeginInit();
@@ -101,9 +102,9 @@
             // 
             // GuardarRol
             // 
-            this.GuardarRol.Location = new System.Drawing.Point(38, 361);
+            this.GuardarRol.Location = new System.Drawing.Point(127, 359);
             this.GuardarRol.Name = "GuardarRol";
-            this.GuardarRol.Size = new System.Drawing.Size(170, 23);
+            this.GuardarRol.Size = new System.Drawing.Size(81, 23);
             this.GuardarRol.TabIndex = 4;
             this.GuardarRol.Text = "Guardar";
             this.GuardarRol.UseVisualStyleBackColor = true;
@@ -136,11 +137,22 @@
             // 
             this.tl_Usuarios_RolesTableAdapter1.ClearBeforeFill = true;
             // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(38, 359);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(81, 23);
+            this.btnLimpiar.TabIndex = 6;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
             // Edit_Rol_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(246, 411);
+            this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.Habilitado);
             this.Controls.Add(this.GuardarRol);
             this.Controls.Add(this.lbFuncionalidades);
@@ -174,5 +186,6 @@
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Roles_FuncionalidadesTableAdapter tl_Roles_FuncionalidadesTableAdapter1;
         private System.Windows.Forms.CheckBox Habilitado;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Usuarios_RolesTableAdapter tl_Usuarios_RolesTableAdapter1;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }

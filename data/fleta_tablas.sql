@@ -34,7 +34,7 @@ DROP PROCEDURE LOL.sp_ImportarCompras
 DROP PROCEDURE LOL.sp_ImportarOfertas
 
 --Eliminar Procedimientos de aplicacion
-DROP PROCEDURE LOL.sp_EliminarRol
+DROP PROCEDURE LOL.sp_NuevaVisibilidad
 
 --Eliminar esquema
 DROP SCHEMA LOL

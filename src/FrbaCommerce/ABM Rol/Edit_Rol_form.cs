@@ -17,6 +17,8 @@ namespace FrbaCommerce.ABM_Rol
         private int selectedRol;
         private string rolName;
         private bool habilitado;
+        //Mensaje que mostraremos al usuario
+        private string msg;
 
         public Edit_Rol_Form(int selected, string selectedName, bool hab)
         {
@@ -30,6 +32,9 @@ namespace FrbaCommerce.ABM_Rol
         {
             //Cargamos el tableAdapter funcionalidades
             this.tl_FuncionalidadesTableAdapter.Fill(this.gD1C2014DataSet.tl_Funcionalidades);
+
+            //Deseleccionamos la opcion que siempre viene activada por defecto.
+            listFuncionalidades.SetSelected(0, false);
             
             //Si selectedRol no es -1 significa que estamos editando un Rol existente.
             if (this.selectedRol != -1)
@@ -42,9 +47,6 @@ namespace FrbaCommerce.ABM_Rol
                  * las funcionalidades que tiene actualmente el rol */
                 GD1C2014DataSet.tl_FuncionalidadesDataTable funcionalidadesDeUnRol;
                 funcionalidadesDeUnRol = tl_FuncionalidadesTableAdapter.FuncionalidadesPorRol(this.selectedRol);
-
-                //Deseleccionamos la opcion que siempre viene activada por defecto.
-                listFuncionalidades.SetSelected(0, false);
                 
                 /* Iteramos sobre las funcionalidades que buscamos en el paso anterior,
                  * y por cada una la buscamos en el ListBox y le cambiamos el estado a
@@ -85,12 +87,14 @@ namespace FrbaCommerce.ABM_Rol
                         this.tl_Roles_FuncionalidadesTableAdapter1.Insert(newRolId, Convert.ToInt32(li["ID"].ToString()));
                     }
 
+                    this.msg = "Alta exitosa.";
+
                 }
                 //Si estamos guardando un rol existente...
                 else
                 {
                     
-                    //Si se deshabilito el rol, se lo quitamos a los usuarios que lo tenian.
+                    //Si se deshabilito el rol, se lo quitamos a los usuarios que lo tenian. Baja lógica.
                     if (!Habilitado.Checked)
                     {
                         this.tl_Usuarios_RolesTableAdapter1.BorrarPorRol(this.selectedRol);
@@ -106,10 +110,21 @@ namespace FrbaCommerce.ABM_Rol
                     {
                         this.tl_Roles_FuncionalidadesTableAdapter1.Insert(this.selectedRol, Convert.ToInt32(li["ID"].ToString()));
                     }
+
+                    this.msg = "Edicion exitosa.";
                 }
             }
-            
+
+            MessageBox.Show(this.msg);
             this.Close();
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            //Limpiar formulario
+            this.inputNombre.Clear();
+            this.listFuncionalidades.ClearSelected();
+            this.Habilitado.Checked = false;
         }
     }
 }

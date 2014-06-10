@@ -46,23 +46,19 @@ namespace FrbaCommerce.ABM_Rol
             this.tl_RolesTableAdapter.Fill(this.gD1C2014DataSet.tl_Roles);
         }
 
-        private void EditarRol_Click(object sender, EventArgs e)
+        //Cuando se clickea un boton seleccionar pasamos los datos al formulario de edicion.
+        private void Roles_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //Instaciamos el form con los datos del Rol a editar.
-            Edit_Rol_Form editForm = new Edit_Rol_Form(Convert.ToInt32(Roles.SelectedRows[0].Cells[0].Value),
-                Roles.SelectedRows[0].Cells[1].Value.ToString(), 
-                Convert.ToBoolean(Roles.SelectedRows[0].Cells[2].Value));
-            
-            //Suscribimos al evento closed por la misma razon de antes.
-            editForm.FormClosed += new FormClosedEventHandler(editForm_FormClosed);
-            editForm.ShowDialog();
-        }
-
-        private void EliminarRol_Click(object sender, EventArgs e)
-        {
-            //Llamamos un stored procedure que elimina correctamente el Rol de todas las tablas necesarias.
-            this.tl_RolesTableAdapter.sp_EliminarRol(Convert.ToInt32(Roles.SelectedRows[0].Cells[0].Value));
-            this.tl_RolesTableAdapter.Fill(this.gD1C2014DataSet.tl_Roles);
+            if (e.ColumnIndex == 3)
+            {
+                Edit_Rol_Form editForm = new Edit_Rol_Form(Convert.ToInt32(Roles.Rows[e.RowIndex].Cells[0].Value),
+                Roles.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                Convert.ToBoolean(Roles.Rows[e.RowIndex].Cells[2].Value));
+                
+                //Suscribimos al evento closed por la misma razon de antes.
+                editForm.FormClosed += new FormClosedEventHandler(editForm_FormClosed);
+                editForm.ShowDialog();
+            }
         }
 
     }
