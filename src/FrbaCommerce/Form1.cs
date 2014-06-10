@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using FrbaCommerce.Login;
 using FrbaCommerce.ABM_Rol;
+using FrbaCommerce.ABM_Visibilidad;
 
 namespace FrbaCommerce
 {
@@ -33,7 +34,12 @@ namespace FrbaCommerce
         private void btnABM_Rol_Click(object sender, EventArgs e)
         {
             ABM_Rol_Form frame = new ABM_Rol_Form();
+            frame.ShowDialog();
+        }
 
+        private void btnABM_Visibilidades_Click(object sender, EventArgs e)
+        {
+            ABM_Visibilidad_Form frame = new ABM_Visibilidad_Form();
             frame.ShowDialog();
         }
     }

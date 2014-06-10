@@ -31,6 +31,7 @@ namespace FrbaCommerce
             this.button1 = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnABM_Rol = new System.Windows.Forms.Button();
+            this.btnABM_Visibilidades = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -63,11 +64,22 @@ namespace FrbaCommerce
             this.btnABM_Rol.UseVisualStyleBackColor = true;
             this.btnABM_Rol.Click += new System.EventHandler(this.btnABM_Rol_Click);
             // 
+            // btnABM_Visibilidades
+            // 
+            this.btnABM_Visibilidades.Location = new System.Drawing.Point(157, 12);
+            this.btnABM_Visibilidades.Name = "btnABM_Visibilidades";
+            this.btnABM_Visibilidades.Size = new System.Drawing.Size(112, 27);
+            this.btnABM_Visibilidades.TabIndex = 3;
+            this.btnABM_Visibilidades.Text = "ABM Visibilidades";
+            this.btnABM_Visibilidades.UseVisualStyleBackColor = true;
+            this.btnABM_Visibilidades.Click += new System.EventHandler(this.btnABM_Visibilidades_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 266);
+            this.Controls.Add(this.btnABM_Visibilidades);
             this.Controls.Add(this.btnABM_Rol);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.button1);
@@ -82,6 +94,7 @@ namespace FrbaCommerce
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnABM_Rol;
+        private System.Windows.Forms.Button btnABM_Visibilidades;
     }
 }
 
