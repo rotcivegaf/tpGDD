@@ -42,6 +42,9 @@ namespace FrbaCommerce.ABM_Rol
                  * las funcionalidades que tiene actualmente el rol */
                 GD1C2014DataSet.tl_FuncionalidadesDataTable funcionalidadesDeUnRol;
                 funcionalidadesDeUnRol = tl_FuncionalidadesTableAdapter.FuncionalidadesPorRol(this.selectedRol);
+
+                //Deseleccionamos la opcion que siempre viene activada por defecto.
+                listFuncionalidades.SetSelected(0, false);
                 
                 /* Iteramos sobre las funcionalidades que buscamos en el paso anterior,
                  * y por cada una la buscamos en el ListBox y le cambiamos el estado a
