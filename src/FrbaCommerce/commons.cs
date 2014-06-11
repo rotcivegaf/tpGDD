@@ -76,5 +76,17 @@ namespace FrbaCommerce
 
             return vacio;
         }
+
+        public static void bloquearCampos(params TextBox[] campos)
+        {
+            foreach (TextBox campo in campos)
+                campo.Enabled = false;
+        }
+
+        public static void bloquearCampos(params Button[] botones)
+        {
+            foreach (Button boton in botones)
+                boton.Enabled=  false;
+        }
     }
 }

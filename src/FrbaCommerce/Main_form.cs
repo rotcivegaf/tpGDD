@@ -27,8 +27,9 @@ namespace FrbaCommerce
         private void btnLogin_Click(object sender, EventArgs e)
         {
             formLogin frame = new formLogin();
-
             frame.ShowDialog();
+            MessageBox.Show("User:" + frame.getUsuarioLogueadoID() + "\n" +
+                            "Rol:" + frame.getRolID());
         }
 
         private void btnABM_Rol_Click(object sender, EventArgs e)

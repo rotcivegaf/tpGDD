@@ -36,7 +36,11 @@ namespace FrbaCommerce.Login
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.lblRol = new System.Windows.Forms.Label();
             this.cmbRoles = new System.Windows.Forms.ComboBox();
-            this.btn = new System.Windows.Forms.Button();
+            this.btnContinuar = new System.Windows.Forms.Button();
+            this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
+            this.tl_UsuariosTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_UsuariosTableAdapter();
+            this.tl_RolesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RolesTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // txtUsername
@@ -90,6 +94,7 @@ namespace FrbaCommerce.Login
             this.btnRegistrar.TabIndex = 5;
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.UseVisualStyleBackColor = true;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // lblRol
             // 
@@ -108,21 +113,36 @@ namespace FrbaCommerce.Login
             this.cmbRoles.Size = new System.Drawing.Size(154, 21);
             this.cmbRoles.TabIndex = 7;
             // 
-            // btn
+            // btnContinuar
             // 
-            this.btn.Location = new System.Drawing.Point(188, 154);
-            this.btn.Name = "btn";
-            this.btn.Size = new System.Drawing.Size(92, 23);
-            this.btn.TabIndex = 8;
-            this.btn.Text = "button1";
-            this.btn.UseVisualStyleBackColor = true;
+            this.btnContinuar.Enabled = false;
+            this.btnContinuar.Location = new System.Drawing.Point(188, 154);
+            this.btnContinuar.Name = "btnContinuar";
+            this.btnContinuar.Size = new System.Drawing.Size(92, 23);
+            this.btnContinuar.TabIndex = 8;
+            this.btnContinuar.Text = "Continuar";
+            this.btnContinuar.UseVisualStyleBackColor = true;
+            this.btnContinuar.Click += new System.EventHandler(this.btnContinuar_Click);
+            // 
+            // gD1C2014DataSet
+            // 
+            this.gD1C2014DataSet.DataSetName = "GD1C2014DataSet";
+            this.gD1C2014DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tl_UsuariosTableAdapter
+            // 
+            this.tl_UsuariosTableAdapter.ClearBeforeFill = true;
+            // 
+            // tl_RolesTableAdapter
+            // 
+            this.tl_RolesTableAdapter.ClearBeforeFill = true;
             // 
             // formLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 266);
-            this.Controls.Add(this.btn);
+            this.ClientSize = new System.Drawing.Size(299, 200);
+            this.Controls.Add(this.btnContinuar);
             this.Controls.Add(this.cmbRoles);
             this.Controls.Add(this.lblRol);
             this.Controls.Add(this.btnRegistrar);
@@ -132,7 +152,8 @@ namespace FrbaCommerce.Login
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUsername);
             this.Name = "formLogin";
-            this.Text = "Form1";
+            this.Text = "Login";
+            ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -148,6 +169,9 @@ namespace FrbaCommerce.Login
         private System.Windows.Forms.Button btnRegistrar;
         private System.Windows.Forms.Label lblRol;
         private System.Windows.Forms.ComboBox cmbRoles;
-        private System.Windows.Forms.Button btn;
+        private System.Windows.Forms.Button btnContinuar;
+        private GD1C2014DataSet gD1C2014DataSet;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_UsuariosTableAdapter tl_UsuariosTableAdapter;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RolesTableAdapter tl_RolesTableAdapter;
     }
 }
