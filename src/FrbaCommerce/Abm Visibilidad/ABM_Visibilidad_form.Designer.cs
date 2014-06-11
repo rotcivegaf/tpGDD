@@ -38,8 +38,7 @@
             this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
             this.tl_VisibilidadesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_VisibilidadesTableAdapter();
             this.btnNueva = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
+            this.seleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.Visibilidades)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlVisibilidadesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
@@ -55,14 +54,15 @@
             this.codigoDataGridViewTextBoxColumn,
             this.descripcionDataGridViewTextBoxColumn,
             this.precioDataGridViewTextBoxColumn,
-            this.porcentajeDataGridViewTextBoxColumn});
+            this.porcentajeDataGridViewTextBoxColumn,
+            this.seleccionar});
             this.Visibilidades.DataSource = this.tlVisibilidadesBindingSource;
             this.Visibilidades.Location = new System.Drawing.Point(12, 68);
             this.Visibilidades.MultiSelect = false;
             this.Visibilidades.Name = "Visibilidades";
             this.Visibilidades.ReadOnly = true;
             this.Visibilidades.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Visibilidades.Size = new System.Drawing.Size(458, 186);
+            this.Visibilidades.Size = new System.Drawing.Size(558, 186);
             this.Visibilidades.TabIndex = 0;
             // 
             // codigoDataGridViewTextBoxColumn
@@ -117,31 +117,17 @@
             this.btnNueva.UseVisualStyleBackColor = true;
             this.btnNueva.Click += new System.EventHandler(this.btnNueva_Click);
             // 
-            // btnEditar
+            // seleccionar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(173, 21);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(137, 23);
-            this.btnEditar.TabIndex = 2;
-            this.btnEditar.Text = "Editar";
-            this.btnEditar.UseVisualStyleBackColor = true;
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.Location = new System.Drawing.Point(333, 21);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(137, 23);
-            this.btnEliminar.TabIndex = 3;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.seleccionar.HeaderText = "Seleccionar";
+            this.seleccionar.Name = "seleccionar";
+            this.seleccionar.ReadOnly = true;
             // 
             // ABM_Visibilidad_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(482, 266);
-            this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.btnEditar);
+            this.ClientSize = new System.Drawing.Size(582, 266);
             this.Controls.Add(this.btnNueva);
             this.Controls.Add(this.Visibilidades);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -166,7 +152,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn precioDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn porcentajeDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button btnNueva;
-        private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.DataGridViewButtonColumn seleccionar;
     }
 }

@@ -38,6 +38,7 @@
             this.lbDescripcion = new System.Windows.Forms.Label();
             this.lbPrecio = new System.Windows.Forms.Label();
             this.lbPorcentaje = new System.Windows.Forms.Label();
+            this.Limpiar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // inputCodigo
@@ -49,9 +50,9 @@
             // 
             // Guardar
             // 
-            this.Guardar.Location = new System.Drawing.Point(12, 230);
+            this.Guardar.Location = new System.Drawing.Point(138, 227);
             this.Guardar.Name = "Guardar";
-            this.Guardar.Size = new System.Drawing.Size(228, 23);
+            this.Guardar.Size = new System.Drawing.Size(104, 23);
             this.Guardar.TabIndex = 1;
             this.Guardar.Text = "Guardar";
             this.Guardar.UseVisualStyleBackColor = true;
@@ -119,11 +120,22 @@
             this.lbPorcentaje.TabIndex = 9;
             this.lbPorcentaje.Text = "Porcentaje";
             // 
+            // Limpiar
+            // 
+            this.Limpiar.Location = new System.Drawing.Point(12, 227);
+            this.Limpiar.Name = "Limpiar";
+            this.Limpiar.Size = new System.Drawing.Size(104, 23);
+            this.Limpiar.TabIndex = 10;
+            this.Limpiar.Text = "Limpiar";
+            this.Limpiar.UseVisualStyleBackColor = true;
+            this.Limpiar.Click += new System.EventHandler(this.Limpiar_Click);
+            // 
             // Edit_Visibilidad_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(252, 278);
+            this.Controls.Add(this.Limpiar);
             this.Controls.Add(this.lbPorcentaje);
             this.Controls.Add(this.lbPrecio);
             this.Controls.Add(this.lbDescripcion);
@@ -153,5 +165,6 @@
         private System.Windows.Forms.Label lbDescripcion;
         private System.Windows.Forms.Label lbPrecio;
         private System.Windows.Forms.Label lbPorcentaje;
+        private System.Windows.Forms.Button Limpiar;
     }
 }

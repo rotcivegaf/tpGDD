@@ -23,13 +23,43 @@ namespace FrbaCommerce.ABM_Visibilidad
             if (!commons.algunoVacio(inputCodigo, inputPorcentaje, inputPrecio, inputDescripcion))
             {
                 bool ok = true;
+                Decimal porcentaje;
+                int codigo;
+                string descripcion = inputDescripcion.Text;
+                string precio = inputPrecio.Text;
+
+                //Validaciones
                 try
                 {
-                    
-                    int codigo = Convert.ToInt32(inputCodigo.Text);
-                    string descripcion = inputDescripcion.Text;
-                    string precio = inputPrecio.Text;
-                    Decimal porcentaje = Convert.ToDecimal(inputPorcentaje.Text);
+                    porcentaje = Convert.ToDecimal(inputPorcentaje.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("El porcentaje debe ser numerico");
+                    return;
+                }
+                try 
+                {
+                    codigo = Convert.ToInt32(inputCodigo.Text);
+                }
+                catch 
+                {
+                    MessageBox.Show("El codigo debe ser numerico");
+                    return;
+                }
+                try 
+                {
+                    Convert.ToDecimal(inputPrecio.Text);
+                }
+                catch 
+                {
+                    MessageBox.Show("El precio debe ser numerico");
+                    return;
+                }
+                 
+                //Ejecutamos stored procedure para dar de alta visibilidad, checkeamos si hubo error.
+                try
+                {
                     this.tl_VisibilidadesTableAdapter1.sp_NuevaVisibilidad(codigo, descripcion, precio, porcentaje);
                 }
                 catch (SqlException sqEx)
@@ -43,6 +73,14 @@ namespace FrbaCommerce.ABM_Visibilidad
                 }
                 
             }
+        }
+
+        private void Limpiar_Click(object sender, EventArgs e)
+        {
+            this.inputDescripcion.Clear();
+            this.inputCodigo.Clear();
+            this.inputPorcentaje.Clear();
+            this.inputPrecio.Clear();
         }
     }
 }

@@ -1,6 +1,6 @@
 namespace FrbaCommerce
 {
-    partial class Form1
+    partial class Main_form
     {
         /// <summary>
         /// Required designer variable.
@@ -84,7 +84,7 @@ namespace FrbaCommerce
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "TP GDD";
             this.ResumeLayout(false);
 
         }

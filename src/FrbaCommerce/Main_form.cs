@@ -12,9 +12,9 @@ using FrbaCommerce.ABM_Visibilidad;
 
 namespace FrbaCommerce
 {
-    public partial class Form1 : Form
+    public partial class Main_form : Form
     {
-        public Form1()
+        public Main_form()
         {
             InitializeComponent();
         }
