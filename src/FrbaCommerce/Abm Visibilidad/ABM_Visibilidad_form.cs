@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace FrbaCommerce.ABM_Visibilidad
 {
@@ -34,6 +35,33 @@ namespace FrbaCommerce.ABM_Visibilidad
         private void editForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.tl_VisibilidadesTableAdapter.Fill(this.gD1C2014DataSet.tl_Visibilidades);
+        }
+
+        private void Visibilidades_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //Se presiono el boton eliminar
+            if (e.ColumnIndex == 5)
+            {
+                //Intentamos borrarla.
+                try
+                {
+                    this.tl_VisibilidadesTableAdapter.sp_BorrarVisibilidad(Convert.ToInt32(Visibilidades.Rows[e.RowIndex].Cells[0].Value));
+                }
+                catch (SqlException sqEx)
+                {
+                    MessageBox.Show(sqEx.Message);
+                    return;
+                }
+                
+                //Si se pudo eliminar, refrescamos el grid.
+                this.tl_VisibilidadesTableAdapter.Fill(this.gD1C2014DataSet.tl_Visibilidades);
+            }
+            
+            //Se presiono el boton seleccionar
+            if (e.ColumnIndex == 4)
+            {
+               
+            }
         }
 
     }

@@ -22,7 +22,6 @@ namespace FrbaCommerce.ABM_Visibilidad
         {
             if (!commons.algunoVacio(inputCodigo, inputPorcentaje, inputPrecio, inputDescripcion))
             {
-                bool ok = true;
                 Decimal porcentaje;
                 int codigo;
                 string descripcion = inputDescripcion.Text;
@@ -64,13 +63,11 @@ namespace FrbaCommerce.ABM_Visibilidad
                 }
                 catch (SqlException sqEx)
                 {
-                    ok = false;
                     MessageBox.Show(sqEx.Message);
+                    return;
                 }
-                if (ok)
-                {
-                    this.Close();
-                }
+                
+                this.Close();
                 
             }
         }

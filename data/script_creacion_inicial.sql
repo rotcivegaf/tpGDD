@@ -791,7 +791,7 @@ CREATE PROCEDURE LOL.sp_NuevaVisibilidad @codigo INT,
 AS
 BEGIN
 
-	DECLARE @error NVARCHAR(50)
+	DECLARE @error NVARCHAR(255)
 
 	IF EXISTS (SELECT *
 			   FROM LOL.tl_Visibilidades
@@ -804,20 +804,42 @@ BEGIN
 
     IF (@porcentaje NOT BETWEEN 0 AND 100)
     BEGIN
-    	SET @error = 'Porcentaje incorrecto.'
+    	SET @error = 'Porcentaje incorrecto. Ingrese uno entre 0 y 100.'
     	RAISERROR (@error, 11,1)
     	RETURN -1
     END
     
     IF (@precio < 0)
     BEGIN
-		SET @error = 'Precio Incorrecto.'
+		SET @error = 'Precio Incorrecto. Debe ser mayor a cero.'
 		RAISERROR (@error, 11,1)
 		RETURN -1
 	END
 	
 	INSERT INTO LOL.tl_Visibilidades (Codigo, Descripcion, Precio, Porcentaje)
 		VALUES(@codigo, @descripcion, @precio, @porcentaje)
+    
+END
+GO
+
+/* Stored Procedure BorrarVisibilidad */
+CREATE PROCEDURE LOL.sp_BorrarVisibilidad @codigo INT
+AS
+BEGIN
+
+	DECLARE @error NVARCHAR(255)
+
+	IF EXISTS (SELECT *
+			   FROM LOL.tl_Publicaciones
+			   WHERE tl_Publicaciones.Visibilidad_Codigo = @codigo)
+	BEGIN
+		SET @error = N'No se puede eliminar visibilidad. Hay publicaciones que la referencian.'
+    	RAISERROR (@error, 11,1)
+    	RETURN -1
+    END
+	
+	DELETE FROM LOL.tl_Visibilidades 
+		WHERE tl_Visibilidades.Codigo = @codigo
     
 END
 GO
