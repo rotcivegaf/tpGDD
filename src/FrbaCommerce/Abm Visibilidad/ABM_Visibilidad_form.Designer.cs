@@ -30,16 +30,16 @@
         {
             this.components = new System.ComponentModel.Container();
             this.Visibilidades = new System.Windows.Forms.DataGridView();
-            this.tlVisibilidadesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
-            this.tl_VisibilidadesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_VisibilidadesTableAdapter();
-            this.btnNueva = new System.Windows.Forms.Button();
             this.codigoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.porcentajeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.seleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.tlVisibilidadesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
+            this.tl_VisibilidadesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_VisibilidadesTableAdapter();
+            this.btnNueva = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Visibilidades)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlVisibilidadesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
@@ -67,30 +67,6 @@
             this.Visibilidades.Size = new System.Drawing.Size(663, 186);
             this.Visibilidades.TabIndex = 0;
             this.Visibilidades.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Visibilidades_CellClick);
-            // 
-            // tlVisibilidadesBindingSource
-            // 
-            this.tlVisibilidadesBindingSource.DataMember = "tl_Visibilidades";
-            this.tlVisibilidadesBindingSource.DataSource = this.gD1C2014DataSet;
-            // 
-            // gD1C2014DataSet
-            // 
-            this.gD1C2014DataSet.DataSetName = "GD1C2014DataSet";
-            this.gD1C2014DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tl_VisibilidadesTableAdapter
-            // 
-            this.tl_VisibilidadesTableAdapter.ClearBeforeFill = true;
-            // 
-            // btnNueva
-            // 
-            this.btnNueva.Location = new System.Drawing.Point(12, 21);
-            this.btnNueva.Name = "btnNueva";
-            this.btnNueva.Size = new System.Drawing.Size(137, 23);
-            this.btnNueva.TabIndex = 1;
-            this.btnNueva.Text = "Nueva";
-            this.btnNueva.UseVisualStyleBackColor = true;
-            this.btnNueva.Click += new System.EventHandler(this.btnNueva_Click);
             // 
             // codigoDataGridViewTextBoxColumn
             // 
@@ -132,11 +108,35 @@
             this.Eliminar.Name = "Eliminar";
             this.Eliminar.ReadOnly = true;
             // 
+            // tlVisibilidadesBindingSource
+            // 
+            this.tlVisibilidadesBindingSource.DataMember = "tl_Visibilidades";
+            this.tlVisibilidadesBindingSource.DataSource = this.gD1C2014DataSet;
+            // 
+            // gD1C2014DataSet
+            // 
+            this.gD1C2014DataSet.DataSetName = "GD1C2014DataSet";
+            this.gD1C2014DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tl_VisibilidadesTableAdapter
+            // 
+            this.tl_VisibilidadesTableAdapter.ClearBeforeFill = true;
+            // 
+            // btnNueva
+            // 
+            this.btnNueva.Location = new System.Drawing.Point(12, 21);
+            this.btnNueva.Name = "btnNueva";
+            this.btnNueva.Size = new System.Drawing.Size(137, 23);
+            this.btnNueva.TabIndex = 1;
+            this.btnNueva.Text = "Nueva";
+            this.btnNueva.UseVisualStyleBackColor = true;
+            this.btnNueva.Click += new System.EventHandler(this.btnNueva_Click);
+            // 
             // ABM_Visibilidad_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(691, 266);
+            this.ClientSize = new System.Drawing.Size(689, 266);
             this.Controls.Add(this.btnNueva);
             this.Controls.Add(this.Visibilidades);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;

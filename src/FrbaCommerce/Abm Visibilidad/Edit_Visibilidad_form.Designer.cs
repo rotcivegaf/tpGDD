@@ -145,6 +145,7 @@
             this.Controls.Add(this.inputDescripcion);
             this.Controls.Add(this.Guardar);
             this.Controls.Add(this.inputCodigo);
+            this.Load += new System.EventHandler(this.Edit_Visibilidad_Form_Load);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Edit_Visibilidad_Form";
             this.Text = "Crear/Editar Visibilidad";

@@ -25,7 +25,8 @@ namespace FrbaCommerce.ABM_Visibilidad
 
         private void btnNueva_Click(object sender, EventArgs e)
         {
-            Edit_Visibilidad_Form editForm = new Edit_Visibilidad_Form();
+            //Pasamos como parametro -1 porque estamos creando una visibilidad.
+            Edit_Visibilidad_Form editForm = new Edit_Visibilidad_Form(-1);
             editForm.FormClosed += new FormClosedEventHandler(editForm_FormClosed);
             
             //Mostramos el formulario.
@@ -60,6 +61,12 @@ namespace FrbaCommerce.ABM_Visibilidad
             //Se presiono el boton seleccionar
             if (e.ColumnIndex == 4)
             {
+                //Pasamos como parametro el codigo de visibiiad a editar.
+                Edit_Visibilidad_Form editForm = new Edit_Visibilidad_Form(Convert.ToInt32(Visibilidades.Rows[e.RowIndex].Cells[0].Value));
+                editForm.FormClosed += new FormClosedEventHandler(editForm_FormClosed);
+
+                //Mostramos el formulario.
+                editForm.ShowDialog(); 
                
             }
         }

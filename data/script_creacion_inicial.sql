@@ -843,3 +843,34 @@ BEGIN
     
 END
 GO
+
+/* Stored Procedure EditarVisibilidad */
+CREATE PROCEDURE LOL.sp_EditarVisibilidad @codigo INT,
+									      @descripcion NVARCHAR(255),
+										  @precio MONEY,
+										  @porcentaje NUMERIC(18, 2)
+AS
+BEGIN
+
+	DECLARE @error NVARCHAR(255)
+
+	IF (@porcentaje NOT BETWEEN 0 AND 100)
+    BEGIN
+    	SET @error = 'Porcentaje incorrecto. Ingrese uno entre 0 y 100.'
+    	RAISERROR (@error, 11,1)
+    	RETURN -1
+    END
+    
+    IF (@precio < 0)
+    BEGIN
+		SET @error = 'Precio Incorrecto. Debe ser mayor a cero.'
+		RAISERROR (@error, 11,1)
+		RETURN -1
+	END
+	
+	UPDATE LOL.tl_Visibilidades
+		SET Descripcion=@descripcion, Porcentaje=@porcentaje, Precio=@precio
+		WHERE Codigo=@codigo
+    
+END
+GO

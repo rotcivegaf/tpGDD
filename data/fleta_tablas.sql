@@ -35,6 +35,7 @@ DROP PROCEDURE LOL.sp_ImportarOfertas
 
 --Eliminar Procedimientos de aplicacion
 DROP PROCEDURE LOL.sp_NuevaVisibilidad
+DROP PROCEDURE LOL.sp_EditarVisibilidad
 DROP PROCEDURE LOL.sp_BorrarVisibilidad
 
 --Eliminar esquema
