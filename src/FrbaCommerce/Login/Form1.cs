@@ -17,11 +17,12 @@ namespace FrbaCommerce.Login
             InitializeComponent();
         }
 
+        //Hay que hacerlo con el dataset.
         private void btnLogin_Click(object sender, EventArgs e)
         {
             if (!commons.algunoVacio(txtUsername, txtPassword))
             {
-                SqlParameter par1 = new SqlParameter("@user", txtUsername.Text);
+                /*SqlParameter par1 = new SqlParameter("@user", txtUsername.Text);
                 SqlParameter par2 = new SqlParameter("@pass", txtPassword.Text);
                 SqlParameter output = new SqlParameter("@ID", SqlDbType.Int);
                 output.Direction = ParameterDirection.Output;
@@ -32,7 +33,7 @@ namespace FrbaCommerce.Login
                 lista.Add(output);
 
                 db.runFunction("TryLogin", lista);
-                MessageBox.Show("id: " + (int)output.Value);
+                MessageBox.Show("id: " + (int)output.Value);*/
             }
         }
     }
