@@ -10,7 +10,7 @@ GO
 
 --Tabla Clientes
 CREATE TABLE LOL.tl_Clientes (
-	ID             NUMERIC(18, 0) NOT NULL,
+	ID             NUMERIC(18, 0) IDENTITY(1,1) NOT NULL,
 	Tipo_Documento NVARCHAR(10) NOT NULL,
 	Nro_Documento  NUMERIC(18, 0) NOT NULL,
 	Apellido       NVARCHAR(255) NOT NULL,
@@ -32,7 +32,7 @@ GO
 
 --Tabla Empresas
 CREATE TABLE LOL.tl_Empresas (
-	ID             NUMERIC(18, 0) NOT NULL,
+	ID             NUMERIC(18, 0) IDENTITY(1,1) NOT NULL,
 	Razon_Social   NVARCHAR(255) NOT NULL,
 	CUIT           NVARCHAR(50) NOT NULL,
 	Fecha_Creacion DATETIME NOT NULL,
@@ -142,7 +142,7 @@ GO
 CREATE TABLE LOL.tl_Usuarios (
 	ID              NUMERIC(18, 0) IDENTITY(1,1) NOT NULL,
 	Username        NVARCHAR(50) NOT NULL,
-	Password        NVARCHAR(50) NOT NULL,
+	Password        NVARCHAR(255) NOT NULL,
 	Logins_Fallidos TINYINT DEFAULT(0) NOT NULL,
 	Habilitado      BIT DEFAULT(1) NOT NULL,
 	Activo          BIT DEFAULT(1) NOT NULL,
@@ -459,7 +459,7 @@ BEGIN
 	DECLARE @max INT
 
 	INSERT INTO LOL.tl_Visibilidades
-		(Codigo,Descripcion,Precio,Porcentaje)
+		(Codigo,Descripcion,Precio,Porcentaje,Duracion)
 		SELECT DISTINCT
 			Publicacion_Visibilidad_Cod,
 			Publicacion_Visibilidad_Desc,
@@ -876,21 +876,48 @@ BEGIN
     
 END
 GO
-
-/* Stored Procedure sp_TryLogin */
-CREATE PROCEDURE [LOL].[sp_TryLogin]
-	@user varchar(50),
-	@pass varchar(50),
-	@ID int OUT
+/* Stored Procedure sp_LoginFallido */
+CREATE PROCEDURE LOL.sp_LoginFallido @user VARCHAR(50)
 
 AS
 BEGIN
-	DECLARE @tl_pass varchar(50);
-	DECLARE @tl_ID int;
-	DECLARE @tl_Habilitado int;
+	SET NOCOUNT ON;
+
+	DECLARE @MAX INT = 3
+	DECLARE @loginsFallidos INT
+
+    SELECT @loginsFallidos = Logins_Fallidos FROM LOL.tl_Usuarios WHERE Username = @user
+    if (@loginsFallidos = (@MAX - 1))
+		UPDATE LOL.tl_Usuarios SET Logins_Fallidos = @MAX , Habilitado = 0 WHERE Username = @user
+	ELSE
+		UPDATE LOL.tl_Usuarios SET Logins_Fallidos = Logins_Fallidos + 1 WHERE Username = @user
+END
+GO
+
+/* Stored Procedure sp_LoginEitoso */
+CREATE PROCEDURE LOL.sp_LoginExitoso @user VARCHAR(50)
+	
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	UPDATE LOL.tl_Usuarios SET Logins_Fallidos = 0 WHERE Username = @user
+END
+GO
+
+/* Stored Procedure sp_TryLogin */
+CREATE PROCEDURE LOL.sp_TryLogin @user varchar(50),
+                                 @pass varchar(50),
+	                             @ID int OUT
+
+AS
+BEGIN
+	DECLARE @tl_pass VARCHAR(50);
+	DECLARE @tl_ID INT;
+	DECLARE @tl_Habilitado INT;
 	DECLARE @error NVARCHAR(255);
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
+
 	SET NOCOUNT ON;
 
 	SELECT @tl_pass = U.Password,@tl_ID = U.ID, @tl_Habilitado = U.Habilitado FROM LOL.tl_Usuarios U WHERE Username = @user
@@ -929,61 +956,31 @@ BEGIN
     				RETURN -1
 				END
 END
+GO
 
-/* Stored Procedure sp_LoginFallido */
-CREATE PROCEDURE [LOL].[sp_LoginFallido]
-	@user varchar(50)
-AS
-BEGIN
-	SET NOCOUNT ON;
-
-	DECLARE @MAX INT = 3
-	DECLARE @loginsFallidos INT
-
-    SELECT @loginsFallidos = Logins_Fallidos FROM LOL.tl_Usuarios WHERE Username = @user
-    if (@loginsFallidos = (@MAX - 1))
-		UPDATE LOL.tl_Usuarios SET Logins_Fallidos = @MAX , Habilitado = 0 WHERE Username = @user
-	ELSE
-		UPDATE LOL.tl_Usuarios SET Logins_Fallidos = Logins_Fallidos + 1 WHERE Username = @user
-END
-
-/* Stored Procedure sp_LoginEitoso */
-CREATE PROCEDURE [LOL].[sp_LoginExitoso]
-	@user varchar(50)
-	
-AS
-BEGIN
-
-	SET NOCOUNT ON;
-
-	UPDATE LOL.tl_Usuarios SET Logins_Fallidos = 0 WHERE Username = @user
-END
-
-/* Stored Procedure crearPublicacion*/
-CREATE PROCEDURE LOL.sp_crearPublicacion  
-
-@descripcion nvarchar(255),
-@fecha datetime,
-@stock numeric(18, 0),
-@fecha_vencimiento datetime,
-@precio money,
-@tipo nvarchar(255),
-@visibilidad_Codigo numeric(18, 0),
-@estado nvarchar(255),
-@permite_Preguntas bit,
-@ID int OUT
+/* Stored Procedure CrearPublicacion*/
+CREATE PROCEDURE LOL.sp_CrearPublicacion @descripcion nvarchar(255),
+                                         @fecha datetime,
+                                         @stock numeric(18, 0),
+                                         @fecha_vencimiento datetime,
+                                         @precio money,
+                                         @tipo nvarchar(255),
+                                         @visibilidad_Codigo numeric(18, 0),
+                                         @estado nvarchar(255),
+                                         @permite_Preguntas bit,
+                                         @ID int OUT
 
 AS
 BEGIN
 
-insert into LOL.tl_Publicaciones 
-(Descripcion, Fecha, Stock,Fecha_Vencimiento, Precio,
-Tipo, Visibilidad_Codigo, Estado, Permite_Preguntas) 
-values
-(@descripcion,@fecha,@stock,@fecha_vencimiento,@precio,@tipo,@visibilidad_Codigo,
-@estado,@permite_preguntas)
+INSERT INTO LOL.tl_Publicaciones 
+	(Descripcion, Fecha, Stock,Fecha_Vencimiento, Precio,
+	 Tipo, Visibilidad_Codigo, Estado, Permite_Preguntas) 
+	VALUES
+		(@descripcion,@fecha,@stock,@fecha_vencimiento,@precio,@tipo,@visibilidad_Codigo,
+		 @estado,@permite_preguntas)
  
-select @ID = @@IDENTITY
+SELECT @ID = @@IDENTITY
     
 END
 GO

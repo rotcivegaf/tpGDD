@@ -31,11 +31,15 @@ namespace FrbaCommerce
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnABM_Rol = new System.Windows.Forms.Button();
             this.btnABM_Visibilidades = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(12, 12);
+            this.btnLogin.Location = new System.Drawing.Point(578, 23);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(58, 27);
             this.btnLogin.TabIndex = 1;
@@ -45,7 +49,7 @@ namespace FrbaCommerce
             // 
             // btnABM_Rol
             // 
-            this.btnABM_Rol.Location = new System.Drawing.Point(76, 12);
+            this.btnABM_Rol.Location = new System.Drawing.Point(37, 38);
             this.btnABM_Rol.Name = "btnABM_Rol";
             this.btnABM_Rol.Size = new System.Drawing.Size(75, 27);
             this.btnABM_Rol.TabIndex = 2;
@@ -55,7 +59,7 @@ namespace FrbaCommerce
             // 
             // btnABM_Visibilidades
             // 
-            this.btnABM_Visibilidades.Location = new System.Drawing.Point(157, 12);
+            this.btnABM_Visibilidades.Location = new System.Drawing.Point(136, 38);
             this.btnABM_Visibilidades.Name = "btnABM_Visibilidades";
             this.btnABM_Visibilidades.Size = new System.Drawing.Size(112, 27);
             this.btnABM_Visibilidades.TabIndex = 3;
@@ -63,17 +67,52 @@ namespace FrbaCommerce
             this.btnABM_Visibilidades.UseVisualStyleBackColor = true;
             this.btnABM_Visibilidades.Click += new System.EventHandler(this.btnABM_Visibilidades_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btnABM_Rol);
+            this.groupBox1.Controls.Add(this.btnABM_Visibilidades);
+            this.groupBox1.Location = new System.Drawing.Point(12, 70);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(624, 184);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Funcionaliades";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(35, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(102, 20);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Bienvenido!";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(274, 38);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(122, 27);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Generar Publicacion";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Main_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 266);
-            this.Controls.Add(this.btnABM_Visibilidades);
-            this.Controls.Add(this.btnABM_Rol);
+            this.ClientSize = new System.Drawing.Size(648, 266);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnLogin);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Main_form";
             this.Text = "TP GDD";
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -82,6 +121,9 @@ namespace FrbaCommerce
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnABM_Rol;
         private System.Windows.Forms.Button btnABM_Visibilidades;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

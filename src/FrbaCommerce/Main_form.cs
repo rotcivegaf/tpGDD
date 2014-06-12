@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using FrbaCommerce.Login;
 using FrbaCommerce.ABM_Rol;
 using FrbaCommerce.ABM_Visibilidad;
+using FrbaCommerce.Generar_Publicacion;
 
 namespace FrbaCommerce
 {
@@ -36,6 +37,12 @@ namespace FrbaCommerce
         private void btnABM_Visibilidades_Click(object sender, EventArgs e)
         {
             ABM_Visibilidad_Form frame = new ABM_Visibilidad_Form();
+            frame.ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Generar_Publicacion_form frame = new Generar_Publicacion_form();
             frame.ShowDialog();
         }
     }
