@@ -30,11 +30,12 @@ namespace FrbaCommerce.Login
                 int? id = 0;
                 try
                 {
-                    this.tl_UsuariosTableAdapter.sp_TryLogin(txtUsername.Text, txtPassword.Text, ref id);
+                    this.tl_UsuariosTableAdapter.sp_TryLogin(txtUsername.Text, commons.hash(txtPassword.Text), ref id);
                 }
                 catch (SqlException sqlE)
                     {
                         MessageBox.Show(sqlE.Message);
+                        return;
                     }
                 usuario_ID = (int)id;
                 commons.bloquearCampos(txtUsername, txtPassword);

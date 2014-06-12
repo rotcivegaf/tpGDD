@@ -9,11 +9,21 @@ using System.Windows.Forms;
 
 namespace FrbaCommerce.Abm_Cliente
 {
-    public partial class Form1 : Form
+    public partial class Cliente : Form
     {
-        public Form1()
+        int ID;
+
+        public Cliente()
         {
             InitializeComponent();
         }
+
+        public void nuevo(int usuario_ID)
+        {
+            this.ShowDialog();
+        }
+
+        public int getClienteID()
+        { return ID; }
     }
 }

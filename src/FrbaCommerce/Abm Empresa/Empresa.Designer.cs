@@ -1,6 +1,6 @@
 ﻿namespace FrbaCommerce.Abm_Empresa
 {
-    partial class Form1
+    partial class Empresa
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // Empresa
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(292, 273);
+            this.Name = "Empresa";
+            this.Text = "Empresa";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

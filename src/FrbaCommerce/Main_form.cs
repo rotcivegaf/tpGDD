@@ -19,11 +19,6 @@ namespace FrbaCommerce
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(commons.hash("w23e"));
-        }
-
         private void btnLogin_Click(object sender, EventArgs e)
         {
             formLogin frame = new formLogin();

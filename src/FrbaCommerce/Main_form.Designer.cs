@@ -28,21 +28,10 @@ namespace FrbaCommerce
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnABM_Rol = new System.Windows.Forms.Button();
             this.btnABM_Visibilidades = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(65, 97);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(83, 34);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "PRUEBA HASH";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnLogin
             // 
@@ -74,7 +63,7 @@ namespace FrbaCommerce
             this.btnABM_Visibilidades.UseVisualStyleBackColor = true;
             this.btnABM_Visibilidades.Click += new System.EventHandler(this.btnABM_Visibilidades_Click);
             // 
-            // Form1
+            // Main_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -82,8 +71,7 @@ namespace FrbaCommerce
             this.Controls.Add(this.btnABM_Visibilidades);
             this.Controls.Add(this.btnABM_Rol);
             this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.button1);
-            this.Name = "Form1";
+            this.Name = "Main_form";
             this.Text = "TP GDD";
             this.ResumeLayout(false);
 
@@ -91,7 +79,6 @@ namespace FrbaCommerce
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnABM_Rol;
         private System.Windows.Forms.Button btnABM_Visibilidades;
