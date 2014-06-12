@@ -958,3 +958,32 @@ BEGIN
 
 	UPDATE LOL.tl_Usuarios SET Logins_Fallidos = 0 WHERE Username = @user
 END
+
+/* Stored Procedure crearPublicacion*/
+CREATE PROCEDURE LOL.sp_crearPublicacion  
+
+@descripcion nvarchar(255),
+@fecha datetime,
+@stock numeric(18, 0),
+@fecha_vencimiento datetime,
+@precio money,
+@tipo nvarchar(255),
+@visibilidad_Codigo numeric(18, 0),
+@estado nvarchar(255),
+@permite_Preguntas bit,
+@ID int OUT
+
+AS
+BEGIN
+
+insert into LOL.tl_Publicaciones 
+(Descripcion, Fecha, Stock,Fecha_Vencimiento, Precio,
+Tipo, Visibilidad_Codigo, Estado, Permite_Preguntas) 
+values
+(@descripcion,@fecha,@stock,@fecha_vencimiento,@precio,@tipo,@visibilidad_Codigo,
+@estado,@permite_preguntas)
+ 
+select @ID = @@IDENTITY
+    
+END
+GO
