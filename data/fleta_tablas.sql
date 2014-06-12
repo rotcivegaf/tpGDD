@@ -40,5 +40,6 @@ DROP PROCEDURE LOL.sp_BorrarVisibilidad
 DROP PROCEDURE LOL.sp_TryLogin
 DROP PROCEDURE LOL.sp_LoginFallido
 DROP PROCEDURE LOL.sp_LoginExitoso
+DROP PROCEDURE LOL.sp_crearPublicacion
 --Eliminar esquema
 DROP SCHEMA LOL
