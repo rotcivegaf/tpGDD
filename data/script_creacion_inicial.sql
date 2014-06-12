@@ -10,7 +10,7 @@ GO
 
 --Tabla Clientes
 CREATE TABLE LOL.tl_Clientes (
-	ID             NUMERIC(18, 0) IDENTITY(1,1) NOT NULL,
+	ID             NUMERIC(18, 0) NOT NULL,
 	Tipo_Documento NVARCHAR(10) NOT NULL,
 	Nro_Documento  NUMERIC(18, 0) NOT NULL,
 	Apellido       NVARCHAR(255) NOT NULL,
@@ -32,7 +32,7 @@ GO
 
 --Tabla Empresas
 CREATE TABLE LOL.tl_Empresas (
-	ID             NUMERIC(18, 0) IDENTITY(1,1) NOT NULL,
+	ID             NUMERIC(18, 0) NOT NULL,
 	Razon_Social   NVARCHAR(255) NOT NULL,
 	CUIT           NVARCHAR(50) NOT NULL,
 	Fecha_Creacion DATETIME NOT NULL,
@@ -62,6 +62,7 @@ CREATE TABLE LOL.tl_Visibilidades (
 	Descripcion NVARCHAR(255) NOT NULL,
 	Precio      MONEY NOT NULL,
 	Porcentaje  NUMERIC(18, 2) NOT NULL,
+	Duracion    INT NOT NULL,
 
 	PRIMARY KEY(Codigo)
 )
@@ -439,7 +440,7 @@ BEGIN
 
 	-- Crear el Usuario: admin
 	INSERT INTO LOL.tl_Usuarios (ID,Username,Password)
-		VALUES (@Usuario_ID,'admin','w23e')
+		VALUES (@Usuario_ID,'admin','e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7')
 
 	-- Asocio el Usuario admin con el Rol Administrativo
 	INSERT INTO LOL.tl_Usuarios_Roles (Usuario_ID,Rol_ID)
@@ -463,7 +464,8 @@ BEGIN
 			Publicacion_Visibilidad_Cod,
 			Publicacion_Visibilidad_Desc,
 			Publicacion_Visibilidad_Precio,
-			Publicacion_Visibilidad_Porcentaje
+			Publicacion_Visibilidad_Porcentaje,
+			DATEDIFF(d,Publicacion_Fecha,Publicacion_Fecha_Venc)
 		FROM
 			gd_esquema.Maestra
 		WHERE
@@ -874,3 +876,85 @@ BEGIN
     
 END
 GO
+
+/* Stored Procedure sp_TryLogin */
+CREATE PROCEDURE [LOL].[sp_TryLogin]
+	@user varchar(50),
+	@pass varchar(50),
+	@ID int OUT
+
+AS
+BEGIN
+	DECLARE @tl_pass varchar(50);
+	DECLARE @tl_ID int;
+	DECLARE @tl_Habilitado int;
+	DECLARE @error NVARCHAR(255);
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	SELECT @tl_pass = U.Password,@tl_ID = U.ID, @tl_Habilitado = U.Habilitado FROM LOL.tl_Usuarios U WHERE Username = @user
+
+	
+	IF (@tl_pass IS NULL)
+		 -- NO EXISTE EL USUARIO
+		BEGIN
+			SET @ID = -3;
+			SET @error = 'Usuario inexistente.'
+    		RAISERROR (@error, 11,1)
+    		RETURN -1
+    	END
+	ELSE
+		IF (@tl_Habilitado = 0)
+			BEGIN
+				SET @ID = -2; -- EL USUARIO ESTA INHABILITADO
+				SET @error = 'Usuario inhabilitado.'
+    			RAISERROR (@error, 11,1)
+    			RETURN -1
+    		END	
+		ELSE
+			IF(@pass = @tl_pass)
+				-- CONTRASENIA CORRECTA
+				BEGIN
+					EXEC LOL.sp_LoginExitoso @user;
+					SET @ID = @tl_ID;
+				END
+			ELSE
+				-- CONTRASENIA INCORRECTA
+				BEGIN
+					EXEC LOL.sp_LoginFallido @user;
+					SET @ID = -1;
+					SET @error = 'Contrasenia incorrecta.'
+    				RAISERROR (@error, 11,1)
+    				RETURN -1
+				END
+END
+
+/* Stored Procedure sp_LoginFallido */
+CREATE PROCEDURE [LOL].[sp_LoginFallido]
+	@user varchar(50)
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	DECLARE @MAX INT = 3
+	DECLARE @loginsFallidos INT
+
+    SELECT @loginsFallidos = Logins_Fallidos FROM LOL.tl_Usuarios WHERE Username = @user
+    if (@loginsFallidos = (@MAX - 1))
+		UPDATE LOL.tl_Usuarios SET Logins_Fallidos = @MAX , Habilitado = 0 WHERE Username = @user
+	ELSE
+		UPDATE LOL.tl_Usuarios SET Logins_Fallidos = Logins_Fallidos + 1 WHERE Username = @user
+END
+
+/* Stored Procedure sp_LoginEitoso */
+CREATE PROCEDURE [LOL].[sp_LoginExitoso]
+	@user varchar(50)
+	
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	UPDATE LOL.tl_Usuarios SET Logins_Fallidos = 0 WHERE Username = @user
+END

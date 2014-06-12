@@ -37,6 +37,8 @@ DROP PROCEDURE LOL.sp_ImportarOfertas
 DROP PROCEDURE LOL.sp_NuevaVisibilidad
 DROP PROCEDURE LOL.sp_EditarVisibilidad
 DROP PROCEDURE LOL.sp_BorrarVisibilidad
-
+DROP PROCEDURE LOL.sp_TryLogin
+DROP PROCEDURE LOL.sp_LoginFallido
+DROP PROCEDURE LOL.sp_LoginExitoso
 --Eliminar esquema
 DROP SCHEMA LOL
