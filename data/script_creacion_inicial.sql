@@ -440,7 +440,7 @@ BEGIN
 
 	-- Crear el Usuario: admin
 	INSERT INTO LOL.tl_Usuarios (ID,Username,Password)
-		VALUES (@Usuario_ID,'admin','w23e')
+		VALUES (@Usuario_ID,'admin','e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7')
 
 	-- Asocio el Usuario admin con el Rol Administrativo
 	INSERT INTO LOL.tl_Usuarios_Roles (Usuario_ID,Rol_ID)
