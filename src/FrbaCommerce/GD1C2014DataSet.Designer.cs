@@ -8815,12 +8815,19 @@ SELECT ID, Tipo_Documento, Nro_Documento, Apellido, Nombre, Fecha_Nac, Mail, Dom
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ID, Tipo_Documento, Nro_Documento, Apellido, Nombre, Fecha_Nac, Mail, Dom_" +
                 "Calle, Nro_Calle, Piso, Depto, Cod_Postal, Telefono FROM LOL.tl_Clientes";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT ID, Tipo_Documento, Nro_Documento, Apellido, Nombre, Fecha_Nac, Mail, Dom_" +
+                "Calle, Nro_Calle, Piso, Depto, Cod_Postal, Telefono \r\nFROM LOL.tl_Clientes\r\nWHER" +
+                "E (ID = @Cliente_ID)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Cliente_ID", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8840,6 +8847,17 @@ SELECT ID, Tipo_Documento, Nro_Documento, Apellido, Nombre, Fecha_Nac, Mail, Dom
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual GD1C2014DataSet.tl_ClientesDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            GD1C2014DataSet.tl_ClientesDataTable dataTable = new GD1C2014DataSet.tl_ClientesDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual GD1C2014DataSet.tl_ClientesDataTable getByID(decimal Cliente_ID) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(Cliente_ID));
             GD1C2014DataSet.tl_ClientesDataTable dataTable = new GD1C2014DataSet.tl_ClientesDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
