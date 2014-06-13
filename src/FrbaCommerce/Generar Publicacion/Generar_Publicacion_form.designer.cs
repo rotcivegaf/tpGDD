@@ -58,6 +58,9 @@
             this.listBoxRubro = new System.Windows.Forms.ListBox();
             this.tlRubrosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tl_RubrosTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RubrosTableAdapter();
+            this.tl_Publicaciones_RubrosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tl_Publicaciones_RubrosTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Publicaciones_RubrosTableAdapter();
+            this.tableAdapterManager = new FrbaCommerce.GD1C2014DataSetTableAdapters.TableAdapterManager();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlVisibilidadesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
@@ -65,6 +68,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tl_VisibilidadesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownStock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlRubrosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tl_Publicaciones_RubrosBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // inputDescripcion
@@ -315,11 +319,42 @@
             // 
             this.tl_RubrosTableAdapter.ClearBeforeFill = true;
             // 
-            // Publicacion
+            // tl_Publicaciones_RubrosBindingSource
+            // 
+            this.tl_Publicaciones_RubrosBindingSource.DataMember = "tl_Publicaciones_Rubros";
+            this.tl_Publicaciones_RubrosBindingSource.DataSource = this.gD1C2014DataSet;
+            // 
+            // tl_Publicaciones_RubrosTableAdapter
+            // 
+            this.tl_Publicaciones_RubrosTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.tl_ClientesTableAdapter = null;
+            this.tableAdapterManager.tl_ComprasTableAdapter = null;
+            this.tableAdapterManager.tl_EmpresasTableAdapter = null;
+            this.tableAdapterManager.tl_Facturas_ItemsTableAdapter = null;
+            this.tableAdapterManager.tl_FacturasTableAdapter = null;
+            this.tableAdapterManager.tl_FuncionalidadesTableAdapter = null;
+            this.tableAdapterManager.tl_OfertasTableAdapter = null;
+            this.tableAdapterManager.tl_PendientesTableAdapter = null;
+            this.tableAdapterManager.tl_PreguntasTableAdapter = null;
+            this.tableAdapterManager.tl_Publicaciones_RubrosTableAdapter = this.tl_Publicaciones_RubrosTableAdapter;
+            this.tableAdapterManager.tl_PublicacionesTableAdapter = this.tl_PublicacionesTableAdapter;
+            this.tableAdapterManager.tl_Roles_FuncionalidadesTableAdapter = null;
+            this.tableAdapterManager.tl_RolesTableAdapter = null;
+            this.tableAdapterManager.tl_RubrosTableAdapter = this.tl_RubrosTableAdapter;
+            this.tableAdapterManager.tl_Usuarios_RolesTableAdapter = null;
+            this.tableAdapterManager.tl_UsuariosTableAdapter = null;
+            this.tableAdapterManager.tl_VisibilidadesTableAdapter = this.tl_VisibilidadesTableAdapter;
+            this.tableAdapterManager.UpdateOrder = FrbaCommerce.GD1C2014DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // Generar_Publicacion_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(730, 470);
+            this.ClientSize = new System.Drawing.Size(738, 470);
             this.Controls.Add(this.listBoxRubro);
             this.Controls.Add(this.dateTimePickerFechaVencimiento);
             this.Controls.Add(this.checkBoxAceptaPreguntas);
@@ -341,7 +376,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.inputDescripcion);
-            this.Name = "Publicacion";
+            this.Name = "Generar_Publicacion_form";
             this.Text = "Seleccionar";
             this.Load += new System.EventHandler(this.Publicacion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPrecio)).EndInit();
@@ -351,6 +386,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tl_VisibilidadesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownStock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlRubrosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tl_Publicaciones_RubrosBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -387,5 +423,8 @@
         private System.Windows.Forms.ListBox listBoxRubro;
         private System.Windows.Forms.BindingSource tlRubrosBindingSource;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RubrosTableAdapter tl_RubrosTableAdapter;
+        private System.Windows.Forms.BindingSource tl_Publicaciones_RubrosBindingSource;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Publicaciones_RubrosTableAdapter tl_Publicaciones_RubrosTableAdapter;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.TableAdapterManager tableAdapterManager;
     }
 }

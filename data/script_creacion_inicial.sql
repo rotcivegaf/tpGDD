@@ -979,8 +979,25 @@ INSERT INTO LOL.tl_Publicaciones
 	VALUES
 		(@descripcion,@fecha,@stock,@fecha_vencimiento,@precio,@tipo,@visibilidad_Codigo,
 		 @estado,@permite_preguntas)
- 
+		 
+ -- Esto devuelve el valor de ID de publicación creado en este caso
 SELECT @ID = @@IDENTITY
+    
+END
+GO
+
+CREATE PROCEDURE LOL.sp_InsertPublicacionRubro 
+                                         @Publicacion_Codigo numeric(18, 0),
+										 @Rubro_ID numeric (18,0)
+
+AS
+BEGIN
+
+INSERT INTO LOL.tl_Publicaciones_Rubros 
+	(Publicacion_Codigo, Rubro_ID) 
+	VALUES
+		(@Publicacion_Codigo, @Rubro_ID)
+
     
 END
 GO
