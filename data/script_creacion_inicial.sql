@@ -1001,3 +1001,66 @@ INSERT INTO LOL.tl_Publicaciones_Rubros
     
 END
 GO
+
+/* Stored Procedure InsertarCliente*/
+CREATE PROCEDURE [LOL].[sp_InsertarCliente] 
+	@ID INT,
+	@TipoDocumento NVARCHAR(10),
+	@Nro_Documento INT,
+	@CUIL NVARCHAR(15),
+	@Apellido NVARCHAR(255),
+	@Nombre NVARCHAR(255),
+	@FechaNacimiento DATE = NULL,
+	@Mail NVARCHAR(255) = NULL,
+	@DomCalle NVARCHAR(255) = NULL,
+	@NroCalle INT = NULL,
+	@Piso INT = NULL,
+	@Depto NVARCHAR(50) = NULL,
+	@CodPostal NVARCHAR(50) = NULL,
+	@Celular INT
+AS
+BEGIN
+	DECLARE @existe INT;
+	DECLARE @error NVARCHAR(255);
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	IF EXISTS(SELECT * FROM LOL.tl_Clientes WHERE Tipo_Documento = @TipoDocumento AND Nro_Documento = @Nro_Documento)
+		BEGIN
+			SET @error = 'Cliente Existente';
+			RAISERROR (@error, 11,1)
+    		RETURN -1
+		END
+	IF EXISTS(SELECT * FROM LOL.tl_Clientes WHERE CUIL = @CUIL)
+		BEGIN
+			SET @error = 'CUIL Existente';
+			RAISERROR (@error, 11,1)
+    		RETURN -1
+		END
+    IF(@Celular IS NOT NULL)
+		IF(LOL.fx_ExisteCelular(@Celular) = 1)
+			BEGIN
+				SET @error = 'Celular Existente';
+				RAISERROR (@error, 11,1)
+    			RETURN -1
+			END
+
+	-- Todo OK
+	INSERT INTO LOL.tl_Clientes VALUES(
+		@ID,
+		@TipoDocumento,
+		@Nro_Documento,
+		@CUIL,
+		@Apellido,
+		@Nombre,
+		@FechaNacimiento,
+		@Mail,
+		@DomCalle,
+		@NroCalle,
+		@Piso,
+		@Depto,
+		@CodPostal,
+		@Celular)
+
+END
