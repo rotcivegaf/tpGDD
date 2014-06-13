@@ -1023,7 +1023,6 @@ CREATE PROCEDURE [LOL].[sp_InsertarCliente]
 	@Celular INT
 AS
 BEGIN
-	DECLARE @existe INT;
 	DECLARE @error NVARCHAR(255);
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
@@ -1033,20 +1032,20 @@ BEGIN
 		BEGIN
 			SET @error = 'Cliente Existente';
 			RAISERROR (@error, 11,1)
-    		RETURN -1
+    			RETURN -1
 		END
 	IF EXISTS(SELECT * FROM LOL.tl_Clientes WHERE CUIL = @CUIL)
 		BEGIN
 			SET @error = 'CUIL Existente';
 			RAISERROR (@error, 11,1)
-    		RETURN -1
+    			RETURN -1
 		END
-    IF(@Celular IS NOT NULL)
-		IF(LOL.fx_ExisteCelular(@Celular) = 1)
+	IF(@Celular IS NOT NULL)
+		IF EXISTS(SELECT * FROM LOL.tl_Clientes WHERE Telefono = @Celular)
 			BEGIN
 				SET @error = 'Celular Existente';
 				RAISERROR (@error, 11,1)
-    			RETURN -1
+    				RETURN -1
 			END
 
 	-- Todo OK
