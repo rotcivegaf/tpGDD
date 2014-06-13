@@ -6,15 +6,25 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+
 using FrbaCommerce.Login;
 using FrbaCommerce.ABM_Rol;
 using FrbaCommerce.ABM_Visibilidad;
 using FrbaCommerce.Generar_Publicacion;
 
+
+/////////////////////////////////////////////
+using FrbaCommerce.Abm_Cliente;
+/////////////////////////////////////////////
+
+
 namespace FrbaCommerce
 {
     public partial class Main_form : Form
     {
+        int usuario_ID;
+        int rol_ID;
+
         public Main_form()
         {
             InitializeComponent();
@@ -24,8 +34,8 @@ namespace FrbaCommerce
         {
             formLogin frame = new formLogin();
             frame.ShowDialog();
-            MessageBox.Show("User:" + frame.getUsuarioLogueadoID() + "\n" +
-                            "Rol:" + frame.getRolID());
+            usuario_ID = frame.getUsuarioLogueadoID() ;
+            rol_ID = frame.getRolID();
         }
 
         private void btnABM_Rol_Click(object sender, EventArgs e)
@@ -44,6 +54,12 @@ namespace FrbaCommerce
         {
             Generar_Publicacion_form frame = new Generar_Publicacion_form();
             frame.ShowDialog();
+        }
+
+        private void btnPruebaEditarCliente_Click(object sender, EventArgs e)
+        {
+            Cliente frame = new Cliente();
+            frame.editar(1);
         }
     }
 }
