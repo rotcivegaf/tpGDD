@@ -10,7 +10,7 @@ GO
 
 --Tabla Clientes
 CREATE TABLE LOL.tl_Clientes (
-	ID             NUMERIC(18, 0) IDENTITY(1,1) NOT NULL,
+	ID             NUMERIC(18, 0) NOT NULL,
 	Tipo_Documento NVARCHAR(10) NOT NULL,
 	Nro_Documento  NUMERIC(18, 0) NOT NULL,
 	Apellido       NVARCHAR(255) NOT NULL,
@@ -25,15 +25,13 @@ CREATE TABLE LOL.tl_Clientes (
 	Cod_Postal     NVARCHAR(50) NULL,
 	Telefono       NUMERIC(18, 0) NULL,
 
-	--Aclaracion: Falla este unique en la importacion?
-	--UNIQUE (Telefono),
 	PRIMARY KEY (ID)
 )
 GO
 
 --Tabla Empresas
 CREATE TABLE LOL.tl_Empresas (
-	ID             NUMERIC(18, 0) IDENTITY(1,1) NOT NULL,
+	ID             NUMERIC(18, 0) NOT NULL,
 	Razon_Social   NVARCHAR(255) NOT NULL,
 	CUIT           NVARCHAR(50) NOT NULL,
 	Fecha_Creacion DATETIME NOT NULL,
@@ -502,8 +500,22 @@ BEGIN
 	SET NOCOUNT ON;
 	DECLARE @RolEmpresa_ID INT = 3
 
+	INSERT INTO LOL.tl_Usuarios
+		SELECT DISTINCT
+			Publ_Empresa_Cuit,
+			Publ_Empresa_Cuit,
+			0,
+			1,
+			1,
+			1
+		FROM
+			gd_esquema.Maestra
+		WHERE
+			Publ_Empresa_Cuit IS NOT NULL
+
 	INSERT INTO LOL.tl_Empresas
 		SELECT DISTINCT
+			U.ID,
 			Publ_Empresa_Razon_Social,
 			Publ_Empresa_Cuit,
 			Publ_Empresa_Fecha_Creacion,
@@ -514,20 +526,7 @@ BEGIN
 			Publ_Empresa_Depto,
 			Publ_Empresa_Cod_Postal
 		FROM
-			gd_esquema.Maestra
-		WHERE
-			Publ_Empresa_Cuit IS NOT NULL
-
-	INSERT INTO LOL.tl_Usuarios
-			SELECT
-				CUIT,
-				CUIT,
-				0,
-				1,
-				1,
-				1
-			FROM
-				LOL.tl_Empresas
+			LOL.tl_Usuarios U JOIN gd_esquema.Maestra M ON (U.Username = M.Publ_Empresa_Cuit)
 
 	INSERT INTO LOL.tl_Usuarios_Roles
 		SELECT
@@ -535,28 +534,52 @@ BEGIN
 			@RolEmpresa_ID,
 			1
 		FROM
-			LOL.tl_Empresas
-				JOIN LOL.tl_Usuarios
-				ON tl_Empresas.CUIT = LOL.tl_Usuarios.Username
+			LOL.tl_Empresas JOIN LOL.tl_Usuarios ON (tl_Empresas.CUIT = LOL.tl_Usuarios.Username)
 
 END
 GO
 
 --Stored Procedure ImportarClientes
-CREATE PROCEDURE [LOL].[sp_ImportarClientes]
+CREATE PROCEDURE LOL.sp_ImportarClientes
 AS
 BEGIN
 
 	SET NOCOUNT ON;
 	DECLARE @RolCliente_ID INT = 2
 
+	INSERT INTO LOL.tl_Usuarios
+		SELECT DISTINCT
+			Cli_Dni,
+			Cli_Dni,
+			0,
+			1,
+			1,
+			1
+		FROM
+			gd_esquema.Maestra
+		WHERE
+			Cli_Dni IS NOT NULL
+		UNION
+		SELECT DISTINCT
+			Publ_Cli_Dni,
+			Publ_Cli_Dni,
+			0,
+			1,
+			1,
+			1
+		FROM
+			gd_esquema.Maestra
+		WHERE
+			Publ_Cli_Dni IS NOT NULL
+
 	INSERT INTO LOL.tl_Clientes
 		SELECT DISTINCT
+			U.ID,
 			'DNI',
 			Cli_Dni,
 			Cli_Apeliido,
 			Cli_Nombre,
-			Cli_Dni,
+			Cli_Dni, --CUIL
 			Cli_Fecha_Nac,
 			Cli_Mail,
 			Cli_Dom_Calle,
@@ -564,52 +587,17 @@ BEGIN
 			Cli_Piso,
 			Cli_Depto,
 			Cli_Cod_Postal,
-			NULL
+			NULL -- TELEFONO
 		FROM
-			gd_esquema.Maestra
-		WHERE
-			Cli_Dni IS NOT NULL
-		UNION
-		SELECT DISTINCT
-			'DNI',
-			Publ_Cli_Dni,
-			Publ_Cli_Apeliido,
-			Publ_Cli_Nombre,
-			Publ_Cli_Dni,
-			Publ_Cli_Fecha_Nac,
-			Publ_Cli_Mail,
-			Publ_Cli_Dom_Calle,
-			Publ_Cli_Nro_Calle,
-			Publ_Cli_Piso,
-			Publ_Cli_Depto,
-			Publ_Cli_Cod_Postal,
-			NULL
+			LOL.tl_Usuarios U JOIN gd_esquema.Maestra M ON (U.Username = CAST(M.Cli_Dni AS NVARCHAR(50)))
+
+	INSERT INTO LOL.tl_Usuarios_Roles
+		SELECT
+			tl_Usuarios.ID,
+			@RolCliente_ID,
+			1
 		FROM
-			gd_esquema.Maestra
-		WHERE
-			Publ_Cli_Dni IS NOT NULL
-
-		INSERT INTO LOL.tl_Usuarios
-			SELECT
-				Nro_Documento,
-				Nro_Documento,
-				0,
-				1,
-				1,
-				1
-			FROM
-				LOL.tl_Clientes
-
-		INSERT INTO LOL.tl_Usuarios_Roles
-			SELECT
-				tl_Usuarios.ID,
-				@RolCliente_ID,
-				1
-			FROM
-				LOL.tl_Clientes
-					JOIN LOL.tl_Usuarios
-					ON CAST(tl_Clientes.Nro_Documento AS NVARCHAR(50)) =
-						LOL.tl_Usuarios.Username
+			LOL.tl_Clientes C JOIN LOL.tl_Usuarios U ON (U.Username = CAST(C.Nro_Documento AS NVARCHAR(50)))					
 
 END
 GO
