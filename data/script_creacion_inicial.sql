@@ -593,7 +593,7 @@ BEGIN
 
 	INSERT INTO LOL.tl_Usuarios_Roles
 		SELECT
-			tl_Usuarios.ID,
+			U.ID,
 			@RolCliente_ID,
 			1
 		FROM
