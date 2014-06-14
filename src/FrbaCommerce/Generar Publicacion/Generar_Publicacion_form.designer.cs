@@ -114,7 +114,7 @@
             // 
             this.dateTimePickerFechaInicio.Location = new System.Drawing.Point(133, 103);
             this.dateTimePickerFechaInicio.Name = "dateTimePickerFechaInicio";
-            this.dateTimePickerFechaInicio.Size = new System.Drawing.Size(195, 20);
+            this.dateTimePickerFechaInicio.Size = new System.Drawing.Size(205, 20);
             this.dateTimePickerFechaInicio.TabIndex = 8;
             this.dateTimePickerFechaInicio.ValueChanged += new System.EventHandler(this.dateTimePickerFechaInicio_ValueChanged);
             // 
@@ -291,7 +291,7 @@
             this.dateTimePickerFechaVencimiento.Enabled = false;
             this.dateTimePickerFechaVencimiento.Location = new System.Drawing.Point(133, 137);
             this.dateTimePickerFechaVencimiento.Name = "dateTimePickerFechaVencimiento";
-            this.dateTimePickerFechaVencimiento.Size = new System.Drawing.Size(195, 20);
+            this.dateTimePickerFechaVencimiento.Size = new System.Drawing.Size(205, 20);
             this.dateTimePickerFechaVencimiento.TabIndex = 26;
             // 
             // listBoxRubro
@@ -315,7 +315,7 @@
             // 
             this.tl_RubrosTableAdapter.ClearBeforeFill = true;
             // 
-            // Publicacion
+            // Generar_Publicacion_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -341,7 +341,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.inputDescripcion);
-            this.Name = "Publicacion";
+            this.Name = "Generar_Publicacion_form";
             this.Text = "Seleccionar";
             this.Load += new System.EventHandler(this.Publicacion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPrecio)).EndInit();

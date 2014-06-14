@@ -39,6 +39,9 @@
             this.lbPrecio = new System.Windows.Forms.Label();
             this.lbPorcentaje = new System.Windows.Forms.Label();
             this.Limpiar = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.inputDuracion = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.inputDuracion)).BeginInit();
             this.SuspendLayout();
             // 
             // inputCodigo
@@ -50,7 +53,7 @@
             // 
             // Guardar
             // 
-            this.Guardar.Location = new System.Drawing.Point(138, 227);
+            this.Guardar.Location = new System.Drawing.Point(136, 284);
             this.Guardar.Name = "Guardar";
             this.Guardar.Size = new System.Drawing.Size(104, 23);
             this.Guardar.TabIndex = 1;
@@ -122,7 +125,7 @@
             // 
             // Limpiar
             // 
-            this.Limpiar.Location = new System.Drawing.Point(12, 227);
+            this.Limpiar.Location = new System.Drawing.Point(12, 284);
             this.Limpiar.Name = "Limpiar";
             this.Limpiar.Size = new System.Drawing.Size(104, 23);
             this.Limpiar.TabIndex = 10;
@@ -130,11 +133,44 @@
             this.Limpiar.UseVisualStyleBackColor = true;
             this.Limpiar.Click += new System.EventHandler(this.Limpiar_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(11, 228);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(93, 13);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Duracion (en dias)";
+            // 
+            // inputDuracion
+            // 
+            this.inputDuracion.Location = new System.Drawing.Point(12, 244);
+            this.inputDuracion.Maximum = new decimal(new int[] {
+            32762,
+            0,
+            0,
+            0});
+            this.inputDuracion.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.inputDuracion.Name = "inputDuracion";
+            this.inputDuracion.Size = new System.Drawing.Size(228, 20);
+            this.inputDuracion.TabIndex = 13;
+            this.inputDuracion.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // Edit_Visibilidad_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(252, 278);
+            this.ClientSize = new System.Drawing.Size(252, 324);
+            this.Controls.Add(this.inputDuracion);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.Limpiar);
             this.Controls.Add(this.lbPorcentaje);
             this.Controls.Add(this.lbPrecio);
@@ -145,10 +181,11 @@
             this.Controls.Add(this.inputDescripcion);
             this.Controls.Add(this.Guardar);
             this.Controls.Add(this.inputCodigo);
-            this.Load += new System.EventHandler(this.Edit_Visibilidad_Form_Load);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Edit_Visibilidad_Form";
             this.Text = "Crear/Editar Visibilidad";
+            this.Load += new System.EventHandler(this.Edit_Visibilidad_Form_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.inputDuracion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -167,5 +204,7 @@
         private System.Windows.Forms.Label lbPrecio;
         private System.Windows.Forms.Label lbPorcentaje;
         private System.Windows.Forms.Button Limpiar;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown inputDuracion;
     }
 }

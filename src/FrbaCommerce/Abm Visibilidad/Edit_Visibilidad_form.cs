@@ -16,7 +16,8 @@ namespace FrbaCommerce.ABM_Visibilidad
         private int Codigo;
         private Decimal Porcentaje;
         private string Descripcion;
-        private string Precio;
+        private Decimal Precio;
+        private int Duracion;
         private GD1C2014DataSet.tl_VisibilidadesDataTable visibilidadAEditar;
         
         public Edit_Visibilidad_Form(int codigo)
@@ -39,6 +40,7 @@ namespace FrbaCommerce.ABM_Visibilidad
                 this.inputDescripcion.Text = this.visibilidadAEditar.Rows[0]["Descripcion"].ToString();
                 this.inputPrecio.Text = this.visibilidadAEditar.Rows[0]["Precio"].ToString();
                 this.inputPorcentaje.Text = this.visibilidadAEditar.Rows[0]["Porcentaje"].ToString();
+                this.inputDuracion.Text = this.visibilidadAEditar.Rows[0]["Duracion"].ToString();
             }
         }
 
@@ -48,7 +50,7 @@ namespace FrbaCommerce.ABM_Visibilidad
             {
                 
                 this.Descripcion = inputDescripcion.Text;
-                this.Precio = inputPrecio.Text;
+                this.Duracion = Convert.ToInt32(inputDuracion.Value);
 
                 //Validaciones
                 try
@@ -71,8 +73,7 @@ namespace FrbaCommerce.ABM_Visibilidad
                 }
                 try
                 {
-                    Convert.ToDecimal(inputPrecio.Text);
-                    this.Precio = this.Precio.Replace(',', '.');
+                    this.Precio = Convert.ToDecimal(inputPrecio.Text);
                 }
                 catch
                 {
@@ -102,12 +103,12 @@ namespace FrbaCommerce.ABM_Visibilidad
                 //Si el input codigo esta habilitado significa que el form se esta uando para altas.
                 if (this.inputCodigo.Enabled) 
                 {
-                    this.tl_VisibilidadesTableAdapter1.sp_NuevaVisibilidad(this.Codigo, this.Descripcion, this.Precio, this.Porcentaje);
+                    this.tl_VisibilidadesTableAdapter1.sp_NuevaVisibilidad(this.Codigo, this.Descripcion, this.Precio, this.Porcentaje, this.Duracion);
                     MessageBox.Show("Creacion exitosa");
                 }
                 else 
                 {
-                    this.tl_VisibilidadesTableAdapter1.sp_EditarVisibilidad(this.Codigo, this.Descripcion, Convert.ToDecimal(inputPrecio.Text), this.Porcentaje);
+                    this.tl_VisibilidadesTableAdapter1.sp_EditarVisibilidad(this.Codigo, this.Descripcion, Convert.ToDecimal(inputPrecio.Text), this.Porcentaje, this.Duracion);
                     MessageBox.Show("Modificacion exitosa");
                 }
             }

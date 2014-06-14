@@ -789,7 +789,8 @@ GO
 CREATE PROCEDURE LOL.sp_NuevaVisibilidad @codigo INT,
 										 @descripcion NVARCHAR(255),
 										 @precio MONEY,
-										 @porcentaje NUMERIC(18, 2)
+										 @porcentaje NUMERIC(18, 2),
+										 @duracion INT
 AS
 BEGIN
 
@@ -818,8 +819,8 @@ BEGIN
 		RETURN -1
 	END
 	
-	INSERT INTO LOL.tl_Visibilidades (Codigo, Descripcion, Precio, Porcentaje)
-		VALUES(@codigo, @descripcion, @precio, @porcentaje)
+	INSERT INTO LOL.tl_Visibilidades (Codigo, Descripcion, Precio, Porcentaje, Duracion)
+		VALUES(@codigo, @descripcion, @precio, @porcentaje, @duracion)
     
 END
 GO
@@ -850,7 +851,8 @@ GO
 CREATE PROCEDURE LOL.sp_EditarVisibilidad @codigo INT,
 									      @descripcion NVARCHAR(255),
 										  @precio MONEY,
-										  @porcentaje NUMERIC(18, 2)
+										  @porcentaje NUMERIC(18, 2),
+										  @duracion INT
 AS
 BEGIN
 
@@ -871,7 +873,7 @@ BEGIN
 	END
 	
 	UPDATE LOL.tl_Visibilidades
-		SET Descripcion=@descripcion, Porcentaje=@porcentaje, Precio=@precio
+		SET Descripcion=@descripcion, Porcentaje=@porcentaje, Precio=@precio, Duracion=@duracion
 		WHERE Codigo=@codigo
     
 END

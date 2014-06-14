@@ -41,7 +41,7 @@ namespace FrbaCommerce.ABM_Visibilidad
         private void Visibilidades_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //Se presiono el boton eliminar
-            if (e.ColumnIndex == 5)
+            if (e.ColumnIndex == 6)
             {
                 //Intentamos borrarla.
                 try
@@ -59,7 +59,7 @@ namespace FrbaCommerce.ABM_Visibilidad
             }
             
             //Se presiono el boton seleccionar
-            if (e.ColumnIndex == 4)
+            if (e.ColumnIndex == 5)
             {
                 //Pasamos como parametro el codigo de visibiiad a editar.
                 Edit_Visibilidad_Form editForm = new Edit_Visibilidad_Form(Convert.ToInt32(Visibilidades.Rows[e.RowIndex].Cells[0].Value));
