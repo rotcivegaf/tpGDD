@@ -63,18 +63,15 @@ namespace FrbaCommerce.Generar_Publicacion
                 int index;
                 string item;
                 GD1C2014DataSet.tl_RubrosDataTable rubro;
-                foreach (int i in listBoxRubro.SelectedIndices)
+                /*foreach (int i in listBoxRubro.SelectedIndices)
                 {
                    index = listBoxRubro.SelectedIndex;
                    item = listBoxRubro.Items[i].ToString();
-                   /*
-                   //PORQUE MIERDA ESTO NO FUNCIONA A VER PORQUE?
-                   
+                    PORQUE MIERDA ESTO NO FUNCIONA A VER PORQUE?
                    rubro = this.tl_RubrosTableAdapter.getRubro(item);
                    
                    this.tl_Publicaciones_RubrosTableAdapter.sp_InsertPublicacionRubro(nuevaPublicacionID, codigo);
-                   */
-                }
+                }*/
 
             }
 
