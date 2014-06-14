@@ -67,10 +67,13 @@ namespace FrbaCommerce.Generar_Publicacion
                 {
                    index = listBoxRubro.SelectedIndex;
                    item = listBoxRubro.Items[i].ToString();
-                    //PORQUE MIERDA ESTO NO FUNCIONA A VER PORQUE?
+                   /*
+                   //PORQUE MIERDA ESTO NO FUNCIONA A VER PORQUE?
+                   
                    rubro = this.tl_RubrosTableAdapter.getRubro(item);
                    
                    this.tl_Publicaciones_RubrosTableAdapter.sp_InsertPublicacionRubro(nuevaPublicacionID, codigo);
+                   */
                 }
 
             }

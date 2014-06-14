@@ -24,22 +24,22 @@ namespace FrbaCommerce.Abm_Cliente
         {
             GD1C2014DataSet.tl_ClientesDataTable clienteDataTable = new GD1C2014DataSet.tl_ClientesDataTable();
             clienteDataTable = this.tl_ClientesTableAdapter.getByID(ID);
+            DataRow cliente = clienteDataTable.Rows[0];
 
-            foreach (DataRow cliente in clienteDataTable.Rows)
-            {
-                txtTipoDocumento.Text = cliente["Tipo_Documento"].ToString();
-                txtNroDocumento.Text = cliente["Nro_Documento"].ToString();
-                txtApellido.Text = cliente["Apellido"].ToString();
-                txtNombre.Text = cliente["Nombre"].ToString();
+            txtTipoDocumento.Text = cliente["Tipo_Documento"].ToString();
+            txtNroDocumento.Text = cliente["Nro_Documento"].ToString();
+            txtApellido.Text = cliente["Apellido"].ToString();
+            txtNombre.Text = cliente["Nombre"].ToString();
+            txtCUIL.Text = cliente["CUIL"].ToString();
+            
+            dateFechaNacimiento.Value = Convert.ToDateTime(cliente["Fecha_Nac"].ToString());//,new System.Globalization.CultureInfo("es-AR", true));
+            txtMail.Text = cliente["Mail"].ToString();
+            txtCalle.Text = cliente["Dom_Calle"].ToString();
 
-                txtMail.Text = cliente["Mail"].ToString();
-                txtCalle.Text = cliente["Dom_Calle"].ToString();
 
-
-                txtDepto.Text = cliente["Depto"].ToString();
-                txtCodigoPostal.Text = cliente["Cod_Postal"].ToString();
-                txtCelular.Text = cliente["Telefono"].ToString();
-            }
+            txtDepto.Text = cliente["Depto"].ToString();
+            txtCodigoPostal.Text = cliente["Cod_Postal"].ToString();
+            txtCelular.Text = cliente["Telefono"].ToString();
         }
 
         public void nuevo(int user_ID)
