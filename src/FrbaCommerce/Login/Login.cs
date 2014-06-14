@@ -47,10 +47,17 @@ namespace FrbaCommerce.Login
                 cmbRoles.DataSource = new BindingSource(roles, null);
                 cmbRoles.DisplayMember = "Nombre";
                 cmbRoles.ValueMember = "ID";
+                if (cmbRoles.Items.Count == 1)
+                    getRubroIDAndClose();
             }
         }
 
         private void btnContinuar_Click(object sender, EventArgs e)
+        {
+            getRubroIDAndClose();
+        }
+
+        private void getRubroIDAndClose()
         {
             rol_ID = Convert.ToInt32(cmbRoles.SelectedValue.ToString());
             this.Close();

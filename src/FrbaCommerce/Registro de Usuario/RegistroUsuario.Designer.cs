@@ -37,8 +37,8 @@
             this.optEmpresa = new System.Windows.Forms.RadioButton();
             this.tl_UsuariosTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_UsuariosTableAdapter();
             this.tl_Usuarios_RolesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Usuarios_RolesTableAdapter();
-            this.grp = new System.Windows.Forms.GroupBox();
-            this.grp.SuspendLayout();
+            this.grpRol = new System.Windows.Forms.GroupBox();
+            this.grpRol.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblUsername
@@ -114,23 +114,23 @@
             // 
             this.tl_Usuarios_RolesTableAdapter.ClearBeforeFill = true;
             // 
-            // grp
+            // grpRol
             // 
-            this.grp.Controls.Add(this.optEmpresa);
-            this.grp.Controls.Add(this.optCliente);
-            this.grp.Location = new System.Drawing.Point(16, 69);
-            this.grp.Name = "grp";
-            this.grp.Size = new System.Drawing.Size(159, 78);
-            this.grp.TabIndex = 8;
-            this.grp.TabStop = false;
-            this.grp.Text = "Rol";
+            this.grpRol.Controls.Add(this.optEmpresa);
+            this.grpRol.Controls.Add(this.optCliente);
+            this.grpRol.Location = new System.Drawing.Point(16, 69);
+            this.grpRol.Name = "grpRol";
+            this.grpRol.Size = new System.Drawing.Size(159, 78);
+            this.grpRol.TabIndex = 8;
+            this.grpRol.TabStop = false;
+            this.grpRol.Text = "Rol";
             // 
             // RegistroUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(185, 192);
-            this.Controls.Add(this.grp);
+            this.Controls.Add(this.grpRol);
             this.Controls.Add(this.btnCrear);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.lblPassword);
@@ -139,8 +139,8 @@
             this.Name = "RegistroUsuario";
             this.Text = "Registro de Usuarios";
             this.Load += new System.EventHandler(this.RegistroUsuario_Load);
-            this.grp.ResumeLayout(false);
-            this.grp.PerformLayout();
+            this.grpRol.ResumeLayout(false);
+            this.grpRol.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -157,6 +157,6 @@
         private System.Windows.Forms.RadioButton optEmpresa;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_UsuariosTableAdapter tl_UsuariosTableAdapter;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Usuarios_RolesTableAdapter tl_Usuarios_RolesTableAdapter;
-        private System.Windows.Forms.GroupBox grp;
+        private System.Windows.Forms.GroupBox grpRol;
     }
 }
