@@ -21,10 +21,14 @@ namespace FrbaCommerce.Generar_Publicacion
 
         private void Publicacion_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'gD1C2014DataSet.tl_Publicaciones_Rubros' table. You can move, or remove it, as needed.
+            this.tl_Publicaciones_RubrosTableAdapter.Fill(this.gD1C2014DataSet.tl_Publicaciones_Rubros);
            
             //Cargo rubros y visibilidades
             this.tl_RubrosTableAdapter.Fill(this.gD1C2014DataSet.tl_Rubros);
             this.tl_VisibilidadesTableAdapter.Fill(this.gD1C2014DataSet.tl_Visibilidades);
+            this.tl_Publicaciones_RubrosTableAdapter.Fill(this.gD1C2014DataSet.tl_Publicaciones_Rubros);
+
 
             //Selecciono por default
             comboBoxEstadoDeLaPublicacion.SelectedIndex = 0;
@@ -53,7 +57,21 @@ namespace FrbaCommerce.Generar_Publicacion
                     comboBoxEstadoDeLaPublicacion.SelectedItem.ToString(),
                     checkBoxAceptaPreguntas.Checked, ref nuevaPublicacionID);
 
-                //Con el ref tengo el parámetro que me devuelve el SP
+                //Con el ref tengo el parámetro que me devuelve el SP, en este caso el ID de publicación que voy a usar
+                //en la tabla rubros_publicaciones
+
+                int index;
+                string item;
+                GD1C2014DataSet.tl_RubrosDataTable rubro;
+                /*foreach (int i in listBoxRubro.SelectedIndices)
+                {
+                   index = listBoxRubro.SelectedIndex;
+                   item = listBoxRubro.Items[i].ToString();
+                    PORQUE MIERDA ESTO NO FUNCIONA A VER PORQUE?
+                   rubro = this.tl_RubrosTableAdapter.getRubro(item);
+                   
+                   this.tl_Publicaciones_RubrosTableAdapter.sp_InsertPublicacionRubro(nuevaPublicacionID, codigo);
+                }*/
 
             }
 
@@ -67,12 +85,14 @@ namespace FrbaCommerce.Generar_Publicacion
 
         private void setFechaVencimiento()
         {
+            
             //Creo un DataSet que es la representación de la tabla
             GD1C2014DataSet.tl_VisibilidadesDataTable visibilidad;
             //A esa tabla le ejecuto una consulta que está en un table adapter
             visibilidad = this.tl_VisibilidadesTableAdapter.GetPorCodigo(Convert.ToDecimal(comboBoxVisiblidad.SelectedValue));
             //A la table que la consulta me devuelve tengo que llamarla como una matriz de la forma tabla[registro][campo]
             int duracion = Convert.ToInt32(visibilidad.Rows[0]["Duracion"]);
+            //sumo utilizando una funcion de fechas de C#
             dateTimePickerFechaVencimiento.Value = dateTimePickerFechaInicio.Value.AddDays(duracion);
         }
 

@@ -47,6 +47,8 @@ namespace FrbaCommerce.Login
                 cmbRoles.DataSource = new BindingSource(roles, null);
                 cmbRoles.DisplayMember = "Nombre";
                 cmbRoles.ValueMember = "ID";
+                if (cmbRoles.Items.Count == 1)
+                    btnContinuar_Click(null, null);
             }
         }
 
