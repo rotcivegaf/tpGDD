@@ -1012,7 +1012,7 @@ CREATE PROCEDURE [LOL].[sp_GuardarCliente]
 	@Piso INT = NULL,
 	@Depto NVARCHAR(50) = NULL,
 	@CodPostal NVARCHAR(50) = NULL,
-	@Telefono INT
+	@Telefono INT = NULL
 AS
 BEGIN
 	DECLARE @error NVARCHAR(255);
