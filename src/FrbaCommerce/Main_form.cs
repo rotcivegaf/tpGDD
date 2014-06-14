@@ -45,5 +45,11 @@ namespace FrbaCommerce
             Generar_Publicacion_form frame = new Generar_Publicacion_form();
             frame.ShowDialog();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Comprar_Ofertar.Comprar_Ofertar frame = new Comprar_Ofertar.Comprar_Ofertar();
+            frame.ShowDialog();
+        }
     }
 }

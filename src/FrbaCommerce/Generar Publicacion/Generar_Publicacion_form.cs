@@ -60,22 +60,12 @@ namespace FrbaCommerce.Generar_Publicacion
                 //Con el ref tengo el parámetro que me devuelve el SP, en este caso el ID de publicación que voy a usar
                 //en la tabla rubros_publicaciones
 
-                int index;
-                string item;
-                GD1C2014DataSet.tl_RubrosDataTable rubro;
-                foreach (int i in listBoxRubro.SelectedIndices)
+                //Recorro el listBox y por cada item de tipo DataRowView hago un insert
+                foreach (DataRowView item in listBoxRubro.SelectedItems)
                 {
-                   index = listBoxRubro.SelectedIndex;
-                   item = listBoxRubro.Items[i].ToString();
-                    //PORQUE MIERDA ESTO NO FUNCIONA A VER PORQUE?
-                   rubro = this.tl_RubrosTableAdapter.getRubro(item);
-                   
-                   this.tl_Publicaciones_RubrosTableAdapter.sp_InsertPublicacionRubro(nuevaPublicacionID, codigo);
-                }
-
+                    this.tl_Publicaciones_RubrosTableAdapter.Insert(Convert.ToInt32(nuevaPublicacionID), Convert.ToInt32(item["ID"].ToString()));
+                }  
             }
-
-            
         }
 
         private void comboBoxVisiblidad_SelectedIndexChanged(object sender, EventArgs e)
