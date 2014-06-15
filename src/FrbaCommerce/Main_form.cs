@@ -11,6 +11,7 @@ using FrbaCommerce.Login;
 using FrbaCommerce.ABM_Rol;
 using FrbaCommerce.ABM_Visibilidad;
 using FrbaCommerce.Generar_Publicacion;
+using FrbaCommerce.Listado_Estadistico;
 
 
 /////////////////////////////////////////////
@@ -60,6 +61,12 @@ namespace FrbaCommerce
         {
             Cliente frame = new Cliente();
             frame.editar(1);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Listado_Estadistico_form frame = new Listado_Estadistico_form();
+            frame.ShowDialog();
         }
     }
 }
