@@ -1083,3 +1083,67 @@ BEGIN
 	COMMIT
 
 END
+
+/* Stored Procedure GuardarEmpresa*/
+CREATE PROCEDURE [LOL].[sp_GuardarEmpresa]
+	@isNew BIT,
+	@UserPassword NVARCHAR(255) = '',
+	@ID INT,
+	@Razon_Social NVARCHAR(255),
+	@CUIT NVARCHAR(50),
+	@FechaCreacion DATE = NULL,
+	@Mail NVARCHAR(255) = NULL,
+	@DomCalle NVARCHAR(255) = NULL,
+	@NroCalle INT = NULL,
+	@Piso INT = NULL,
+	@Depto NVARCHAR(50) = NULL,
+	@CodPostal NVARCHAR(50) = NULL
+AS
+BEGIN
+	DECLARE @error NVARCHAR(255);
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	IF EXISTS(SELECT 0 FROM LOL.tl_Empresas WHERE CUIT = @CUIT)
+		BEGIN
+			SET @error = 'CUIT Existente';
+			RAISERROR (@error, 11,1)
+    			RETURN -1
+		END
+
+	BEGIN TRAN
+	-- Todo OK
+	IF (@UserPassword <> '')
+		BEGIN
+			INSERT INTO LOL.tl_Usuarios(Username,Password,Change_Password) VALUES (@CUIT,@UserPassword,1)
+			SELECT @ID = @@IDENTITY
+		END
+	IF (@isNew = 1)
+		INSERT INTO LOL.tl_Empresas VALUES(
+			@ID,
+			@Razon_Social,
+			@CUIT,
+			@FechaCreacion,
+			@Mail,
+			@DomCalle,
+			@NroCalle,
+			@Piso,
+			@Depto,
+			@CodPostal)
+	ELSE
+		UPDATE LOL.tl_Empresas SET
+			Razon_Social = @Razon_Social,
+			CUIT = @CUIT,
+			Fecha_Creacion = @FechaCreacion,
+			Mail = @Mail,
+			Dom_Calle = @DomCalle,
+			Nro_Calle = @NroCalle,
+			Piso = @Piso,
+			Depto = @Depto,
+			Cod_Postal = @CodPostal
+		WHERE
+			ID = @ID
+	COMMIT
+
+END
