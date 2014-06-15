@@ -15,6 +15,8 @@ namespace FrbaCommerce.Comprar_Ofertar
         private int UserID;
         int offset = 0;
         int LIMITE = 20;
+        GD1C2014DataSet.tl_PublicacionesDataTable tablaTemporal = new GD1C2014DataSet.tl_PublicacionesDataTable();
+
 
         public Comprar_Ofertar()
         {
@@ -36,9 +38,10 @@ namespace FrbaCommerce.Comprar_Ofertar
 
         private void Comprar_Ofertar_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'gD1C2014DataSet.tl_Rubros' table. You can move, or remove it, as needed.
+            //Cargo las tablas necesarias en los dataTable correspondientes, por motivos de performance
+            //la tabla de publicaciones solo se cargará al momento de buscar una publicación
             this.tl_RubrosTableAdapter.Fill(this.gD1C2014DataSet.tl_Rubros);
-            
+            this.tl_Publicaciones_RubrosTableAdapter.Fill(this.gD1C2014DataSet.tl_Publicaciones_Rubros);
         }
 
         private bool validar()
@@ -50,27 +53,21 @@ namespace FrbaCommerce.Comprar_Ofertar
 
         private void buttonBuscarPublicacion_Click(object sender, EventArgs e)
         {
-            this.tl_Publicaciones_RubrosTableAdapter.Fill(this.gD1C2014DataSet.tl_Publicaciones_Rubros);
-
-            //FALTA VER LO DE LAS CONDICIONES QUE SE FILTRE POR UNA O POR OTRA
-            String condicion = "";
+            //Si pasa la validación, es decir si el campo descripción no está vacio
             if (this.validar())
             {
-                condicion += "Descripcion LIKE '%" + textBoxDescripcion.Text + "%'";
-                if (comboBoxRubros.SelectedText != "")
-                    condicion += " AND Rubro_ID = " + comboBoxRubros.SelectedValue;
-                
-                llenarTabla();
+                //Aplica los filtros de descripción, rubro.
+                //No muestra las publicaciones en estado borrador y finalizada
+                //Aplica el criterio de visibilidad
+                this.tl_PublicacionesTableAdapter.FillByFilter(tablaTemporal, armarLike(textBoxDescripcion.Text), Convert.ToInt32(comboBoxRubros.SelectedValue));
+                //Una vez que tengo la tabla filtrada llamo al método paginar
+                paginar(tablaTemporal);
             }
         }
-
-        private void llenarTabla()
+        private void paginar(GD1C2014DataSet.tl_PublicacionesDataTable unaTabla )
         {
-            //Lleno el Data Table con la información filtrada
-            this.tl_PublicacionesTableAdapter.FillByDescripcionYRubro(this.gD1C2014DataSet.tl_Publicaciones, armarLike(textBoxDescripcion.Text), Convert.ToInt32(comboBoxRubros.SelectedValue));
-            //Cambio el source del data grid al DataTable paginado
-            dataGridViewPublicaciones.DataSource = this.tl_PublicacionesTableAdapter.GetDataByPaginador(offset, LIMITE, this.gD1C2014DataSet.tl_Publicaciones);
-            
+            //Pagino la tabla
+            dataGridViewPublicaciones.DataSource = this.tl_PublicacionesTableAdapter.GetDataByPaginador(offset, LIMITE, unaTabla);            
         }
 
         private string armarLike(string descripcion)
@@ -78,7 +75,6 @@ namespace FrbaCommerce.Comprar_Ofertar
             //La consulta del where es LIKE %Descripcion%
             return "%"+textBoxDescripcion.Text.ToString()+"%";
         }
-
         private void dataGridViewPublicaciones_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //Si quiero hacer una pregunta
@@ -86,7 +82,7 @@ namespace FrbaCommerce.Comprar_Ofertar
             {
                 //Cargo en una fila (DataGridViewRow) el registro deseado
                 DataGridViewRow fila = dataGridViewPublicaciones.Rows[e.RowIndex];
-                //Pregunto si puede preguntar && valido que no sea una auto-pregunta
+                //Si la publicación acepta preguntas && valido que no sea una auto-pregunta
                 if (Convert.ToBoolean(fila.Cells[7].Value) &&  ( !mismoCliente(fila) ))
                 {
                     //Creo un formulario de nueva pregunta y le mando el ID de la publicación para cargarlo en la tabla
@@ -103,15 +99,23 @@ namespace FrbaCommerce.Comprar_Ofertar
                 //Verifico que no me quiera auto-comprar
                 if (!mismoCliente(fila))
                 {
-
-                    //ACA SE EJECUTA EL PROCESO DE COMPRA
+                    if (fila.Cells[5].Value.ToString().Equals("Subasta"))
+                        MessageBox.Show("Es Subasta");
+                    else
+                    {
+                        NuevaCompra frame = new NuevaCompra();
+                        frame.sendData(this.UserID, Convert.ToInt32(fila.Cells[0].Value),Convert.ToInt32(fila.Cells[2].Value));
+                        frame.ShowDialog();
+                    }
                 }
             }
         }
         private bool mismoCliente(DataGridViewRow registro)
         {
-            if (registro.Cells[10].Value.ToString() == string.Empty)
+            if ((Convert.ToInt32(registro.Cells[10].Value.ToString().Length)) == 0)
+            {
                 return (Convert.ToInt32(registro.Cells[11].Value) == this.UserID);
+            }
             else
                 return (Convert.ToInt32(registro.Cells[10].Value) == this.UserID);
             
@@ -120,25 +124,25 @@ namespace FrbaCommerce.Comprar_Ofertar
         private void button1_Click(object sender, EventArgs e)
         {
             offset = 0;
-            llenarTabla();
+            paginar(tablaTemporal);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             offset -= LIMITE;
-            llenarTabla();
+            paginar(tablaTemporal);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             offset += LIMITE;
-            llenarTabla();
+            paginar(tablaTemporal);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            offset = Convert.ToInt32(this.gD1C2014DataSet.tl_Publicaciones.Count) - LIMITE;
-            llenarTabla();
+            offset = Convert.ToInt32(tablaTemporal.Count) - LIMITE;
+            paginar(tablaTemporal);
         }
     }
 }

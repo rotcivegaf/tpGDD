@@ -35,19 +35,19 @@
             this.dataGridViewPublicaciones = new System.Windows.Forms.DataGridView();
             this.tl_PublicacionesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
-            this.tl_PublicacionesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_PublicacionesTableAdapter();
-            this.tableAdapterManager = new FrbaCommerce.GD1C2014DataSetTableAdapters.TableAdapterManager();
-            this.tlRubrosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tl_RubrosTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RubrosTableAdapter();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxRubros = new System.Windows.Forms.ComboBox();
-            this.tlRubrosBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.tl_Publicaciones_RubrosTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Publicaciones_RubrosTableAdapter();
-            this.tl_ComprasTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ComprasTableAdapter();
+            this.tlRubrosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.tl_PublicacionesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_PublicacionesTableAdapter();
+            this.tableAdapterManager = new FrbaCommerce.GD1C2014DataSetTableAdapters.TableAdapterManager();
+            this.tl_RubrosTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RubrosTableAdapter();
+            this.tlRubrosBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.tl_Publicaciones_RubrosTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Publicaciones_RubrosTableAdapter();
+            this.tl_ComprasTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ComprasTableAdapter();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stockDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,6 +60,7 @@
             this.Comprar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Cliente_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Empresa_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Visibilidad_Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPublicaciones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tl_PublicacionesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
@@ -111,9 +112,10 @@
             this.Preguntar,
             this.Comprar,
             this.Cliente_ID,
-            this.Empresa_ID});
+            this.Empresa_ID,
+            this.Visibilidad_Codigo});
             this.dataGridViewPublicaciones.DataSource = this.tl_PublicacionesBindingSource;
-            this.dataGridViewPublicaciones.Location = new System.Drawing.Point(12, 189);
+            this.dataGridViewPublicaciones.Location = new System.Drawing.Point(12, 197);
             this.dataGridViewPublicaciones.Name = "dataGridViewPublicaciones";
             this.dataGridViewPublicaciones.ReadOnly = true;
             this.dataGridViewPublicaciones.Size = new System.Drawing.Size(949, 221);
@@ -129,41 +131,6 @@
             // 
             this.gD1C2014DataSet.DataSetName = "GD1C2014DataSet";
             this.gD1C2014DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tl_PublicacionesTableAdapter
-            // 
-            this.tl_PublicacionesTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.tl_ClientesTableAdapter = null;
-            this.tableAdapterManager.tl_ComprasTableAdapter = null;
-            this.tableAdapterManager.tl_EmpresasTableAdapter = null;
-            this.tableAdapterManager.tl_Facturas_ItemsTableAdapter = null;
-            this.tableAdapterManager.tl_FacturasTableAdapter = null;
-            this.tableAdapterManager.tl_FuncionalidadesTableAdapter = null;
-            this.tableAdapterManager.tl_OfertasTableAdapter = null;
-            this.tableAdapterManager.tl_PendientesTableAdapter = null;
-            this.tableAdapterManager.tl_PreguntasTableAdapter = null;
-            this.tableAdapterManager.tl_Publicaciones_RubrosTableAdapter = null;
-            this.tableAdapterManager.tl_PublicacionesTableAdapter = this.tl_PublicacionesTableAdapter;
-            this.tableAdapterManager.tl_Roles_FuncionalidadesTableAdapter = null;
-            this.tableAdapterManager.tl_RolesTableAdapter = null;
-            this.tableAdapterManager.tl_RubrosTableAdapter = null;
-            this.tableAdapterManager.tl_Usuarios_RolesTableAdapter = null;
-            this.tableAdapterManager.tl_UsuariosTableAdapter = null;
-            this.tableAdapterManager.tl_VisibilidadesTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = FrbaCommerce.GD1C2014DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // tlRubrosBindingSource
-            // 
-            this.tlRubrosBindingSource.DataMember = "tl_Rubros";
-            this.tlRubrosBindingSource.DataSource = this.gD1C2014DataSet;
-            // 
-            // tl_RubrosTableAdapter
-            // 
-            this.tl_RubrosTableAdapter.ClearBeforeFill = true;
             // 
             // label1
             // 
@@ -185,18 +152,10 @@
             this.comboBoxRubros.TabIndex = 6;
             this.comboBoxRubros.ValueMember = "ID";
             // 
-            // tlRubrosBindingSource1
+            // tlRubrosBindingSource
             // 
-            this.tlRubrosBindingSource1.DataMember = "tl_Rubros";
-            this.tlRubrosBindingSource1.DataSource = this.gD1C2014DataSet;
-            // 
-            // tl_Publicaciones_RubrosTableAdapter
-            // 
-            this.tl_Publicaciones_RubrosTableAdapter.ClearBeforeFill = true;
-            // 
-            // tl_ComprasTableAdapter1
-            // 
-            this.tl_ComprasTableAdapter1.ClearBeforeFill = true;
+            this.tlRubrosBindingSource.DataMember = "tl_Rubros";
+            this.tlRubrosBindingSource.DataSource = this.gD1C2014DataSet;
             // 
             // button1
             // 
@@ -237,6 +196,49 @@
             this.button4.Text = ">>";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // tl_PublicacionesTableAdapter
+            // 
+            this.tl_PublicacionesTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.tl_ClientesTableAdapter = null;
+            this.tableAdapterManager.tl_ComprasTableAdapter = null;
+            this.tableAdapterManager.tl_EmpresasTableAdapter = null;
+            this.tableAdapterManager.tl_Facturas_ItemsTableAdapter = null;
+            this.tableAdapterManager.tl_FacturasTableAdapter = null;
+            this.tableAdapterManager.tl_FuncionalidadesTableAdapter = null;
+            this.tableAdapterManager.tl_OfertasTableAdapter = null;
+            this.tableAdapterManager.tl_PendientesTableAdapter = null;
+            this.tableAdapterManager.tl_PreguntasTableAdapter = null;
+            this.tableAdapterManager.tl_Publicaciones_RubrosTableAdapter = null;
+            this.tableAdapterManager.tl_PublicacionesTableAdapter = this.tl_PublicacionesTableAdapter;
+            this.tableAdapterManager.tl_Roles_FuncionalidadesTableAdapter = null;
+            this.tableAdapterManager.tl_RolesTableAdapter = null;
+            this.tableAdapterManager.tl_RubrosTableAdapter = null;
+            this.tableAdapterManager.tl_Usuarios_RolesTableAdapter = null;
+            this.tableAdapterManager.tl_UsuariosTableAdapter = null;
+            this.tableAdapterManager.tl_VisibilidadesTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = FrbaCommerce.GD1C2014DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // tl_RubrosTableAdapter
+            // 
+            this.tl_RubrosTableAdapter.ClearBeforeFill = true;
+            // 
+            // tlRubrosBindingSource1
+            // 
+            this.tlRubrosBindingSource1.DataMember = "tl_Rubros";
+            this.tlRubrosBindingSource1.DataSource = this.gD1C2014DataSet;
+            // 
+            // tl_Publicaciones_RubrosTableAdapter
+            // 
+            this.tl_Publicaciones_RubrosTableAdapter.ClearBeforeFill = true;
+            // 
+            // tl_ComprasTableAdapter1
+            // 
+            this.tl_ComprasTableAdapter1.ClearBeforeFill = true;
             // 
             // Column1
             // 
@@ -312,7 +314,6 @@
             this.Cliente_ID.HeaderText = "Cliente_ID";
             this.Cliente_ID.Name = "Cliente_ID";
             this.Cliente_ID.ReadOnly = true;
-            this.Cliente_ID.Visible = false;
             // 
             // Empresa_ID
             // 
@@ -320,7 +321,14 @@
             this.Empresa_ID.HeaderText = "Empresa_ID";
             this.Empresa_ID.Name = "Empresa_ID";
             this.Empresa_ID.ReadOnly = true;
-            this.Empresa_ID.Visible = false;
+            // 
+            // Visibilidad_Codigo
+            // 
+            this.Visibilidad_Codigo.DataPropertyName = "Visibilidad_Codigo";
+            this.Visibilidad_Codigo.HeaderText = "Visibilidad_Codigo";
+            this.Visibilidad_Codigo.Name = "Visibilidad_Codigo";
+            this.Visibilidad_Codigo.ReadOnly = true;
+            this.Visibilidad_Codigo.Visible = false;
             // 
             // Comprar_Ofertar
             // 
@@ -385,5 +393,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn Comprar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cliente_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Empresa_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Visibilidad_Codigo;
     }
 }

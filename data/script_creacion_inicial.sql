@@ -21,7 +21,8 @@ CREATE TYPE [LOL].dataTable AS TABLE
     Tipo nvarchar (255),
     Visibilidad_Codigo numeric (18,0),
     Estado nvarchar (255),
-    Permite_Preguntas bit
+    Permite_Preguntas bit,
+	PrecioVisibilidad money
 )
 
 --Creacion de Tablas-----------------------------------------------------------
@@ -1138,8 +1139,9 @@ Tipo,
 Visibilidad_Codigo, 
 Estado, 
 Permite_Preguntas,
+PrecioVisibilidad,
 
-ROW_NUMBER() OVER (ORDER BY Codigo) AS RowNum
+ROW_NUMBER() OVER (ORDER BY PrecioVisibilidad desc) AS RowNum
 
 FROM @Table
 
