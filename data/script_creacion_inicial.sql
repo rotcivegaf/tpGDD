@@ -6,6 +6,24 @@ GO
 CREATE SCHEMA LOL AUTHORIZATION gd
 GO
 
+--Creacion tipos de datos de usuario-------------------------------------------
+
+CREATE TYPE [LOL].dataTable AS TABLE 
+(
+    Codigo numeric(18,0), 
+    Cliente_ID numeric (18,0),
+    Empresa_ID numeric (18,0),
+    Descripcion nvarchar (255),
+    Fecha datetime,
+    Stock numeric (18,0),
+    Fecha_Vencimiento datetime,
+    Precio money,
+    Tipo nvarchar (255),
+    Visibilidad_Codigo numeric (18,0),
+    Estado nvarchar (255),
+    Permite_Preguntas bit
+)
+
 --Creacion de Tablas-----------------------------------------------------------
 
 --Tabla Clientes
@@ -344,23 +362,7 @@ ALTER TABLE LOL.tl_Pendientes WITH CHECK ADD
 
 GO
 
---Creación de Tipos de datos de usuario----------------------------------------
 
-CREATE TYPE dataTable AS TABLE 
-(
-    Codigo numeric(18,0), 
-    Cliente_ID numeric (18,0),
-    Empresa_ID numeric (18,0),
-    Descripcion nvarchar (255),
-    Fecha datetime,
-    Stock numeric (18,0),
-    Fecha_Vencimiento datetime,
-    Precio money,
-    Tipo nvarchar (255),
-    Visibilidad_Codigo numeric (18,0),
-    Estado nvarchar (255),
-    Permite_Preguntas bit
-)
 
 --Creacion de Stored Procedures------------------------------------------------
 
@@ -792,6 +794,10 @@ GO
 
 --FIN MIGRACION----------------------------------------------------------------
 
+--Creación de Tipos de datos de usuario----------------------------------------
+
+
+
 --Stored procedures de la nueva aplicacion-------------------------------------
 
 /* Stored Procedure NuevaVisibilidad */
@@ -1101,13 +1107,13 @@ BEGIN
 	COMMIT
 
 END
-
+GO
 
 /* Stored Procedure Paginador*/
 
 
-
 CREATE PROCEDURE [LOL].[sp_Paginador]
+
 	@Offset int,
 	@Limit int,
 	@Table dataTable READONLY
@@ -1133,7 +1139,7 @@ Visibilidad_Codigo,
 Estado, 
 Permite_Preguntas,
 
-ROW_NUMBER() OVER (ORDER BY LOL.tl_Publicaciones.Codigo) AS RowNum
+ROW_NUMBER() OVER (ORDER BY Codigo) AS RowNum
 
 FROM @Table
 

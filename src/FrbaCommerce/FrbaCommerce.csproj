@@ -133,6 +133,12 @@
     <Compile Include="Gestion de Preguntas\Nueva_Pregunta.Designer.cs">
       <DependentUpon>Nueva_Pregunta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Listado Estadistico\Listado_Estadistico_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listado Estadistico\Listado_Estadistico_form.Designer.cs">
+      <DependentUpon>Listado_Estadistico_form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main_form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,12 +164,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Historial Cliente\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Listado Estadistico\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Listado Estadistico\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\Login.cs">
@@ -203,6 +203,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Gestion de Preguntas\Nueva_Pregunta.resx">
       <DependentUpon>Nueva_Pregunta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listado Estadistico\Listado_Estadistico_form.resx">
+      <DependentUpon>Listado_Estadistico_form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

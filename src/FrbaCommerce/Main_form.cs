@@ -63,14 +63,14 @@ namespace FrbaCommerce
             frame.editar(66); // Primer Cliente luego de la importacion
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button3_Click_1(object sender, EventArgs e)
         {
-            Comprar_Ofertar.Comprar_Ofertar frame = new Comprar_Ofertar.Comprar_Ofertar();            
+            Comprar_Ofertar.Comprar_Ofertar frame = new Comprar_Ofertar.Comprar_Ofertar();
             frame.setID(usuario_ID);
             frame.ShowDialog();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click_1(object sender, EventArgs e)
         {
             Listado_Estadistico_form frame = new Listado_Estadistico_form();
             frame.ShowDialog();
