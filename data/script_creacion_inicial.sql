@@ -1083,6 +1083,7 @@ BEGIN
 	COMMIT
 
 END
+GO
 
 /* Stored Procedure GuardarEmpresa*/
 CREATE PROCEDURE [LOL].[sp_GuardarEmpresa]
@@ -1147,3 +1148,4 @@ BEGIN
 	COMMIT
 
 END
+GO
