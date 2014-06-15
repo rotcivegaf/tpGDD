@@ -44,6 +44,7 @@ DROP PROCEDURE LOL.sp_CrearPublicacion
 DROP PROCEDURE LOL.sp_InsertPublicacionRubro 
 DROP PROCEDURE LOL.sp_InsertarCliente
 DROP PROCEDURE LOL.sp_GuardarCliente
+DROP PROCEDURE LOL.sp_GuardarEmpresa
 
 --Eliminar esquema
 DROP SCHEMA LOL
