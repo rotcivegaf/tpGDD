@@ -68,5 +68,11 @@ namespace FrbaCommerce
             frame.setID(usuario_ID);
             frame.ShowDialog();
         }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            Comprar_Ofertar.Comprar_Ofertar frame = new Comprar_Ofertar.Comprar_Ofertar();
+            frame.ShowDialog();
+        }
     }
 }

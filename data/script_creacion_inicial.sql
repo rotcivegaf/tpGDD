@@ -344,6 +344,24 @@ ALTER TABLE LOL.tl_Pendientes WITH CHECK ADD
 
 GO
 
+--Creación de Tipos de datos de usuario----------------------------------------
+
+CREATE TYPE dataTable AS TABLE 
+(
+    Codigo numeric(18,0), 
+    Cliente_ID numeric (18,0),
+    Empresa_ID numeric (18,0),
+    Descripcion nvarchar (255),
+    Fecha datetime,
+    Stock numeric (18,0),
+    Fecha_Vencimiento datetime,
+    Precio money,
+    Tipo nvarchar (255),
+    Visibilidad_Codigo numeric (18,0),
+    Estado nvarchar (255),
+    Permite_Preguntas bit
+)
+
 --Creacion de Stored Procedures------------------------------------------------
 
 --Stored Procedure InicializarFuncionalidades
@@ -1086,31 +1104,38 @@ END
 
 
 /* Stored Procedure Paginador*/
+
+
+
 CREATE PROCEDURE [LOL].[sp_Paginador]
 	@Offset int,
-	@Limit int
+	@Limit int,
+	@Table dataTable READONLY
 AS
+
+
 BEGIN
 
 
 ;WITH Results AS
 
 	(SELECT 
-LOL.tl_Publicaciones.Codigo, 
-LOL.tl_Publicaciones.Cliente_ID, 
-LOL.tl_Publicaciones.Empresa_ID, 
-LOL.tl_Publicaciones.Descripcion, 
-LOL.tl_Publicaciones.Fecha, LOL.tl_Publicaciones.Stock, 
-LOL.tl_Publicaciones.Fecha_Vencimiento, 
-LOL.tl_Publicaciones.Precio, 
-LOL.tl_Publicaciones.Tipo, 
-LOL.tl_Publicaciones.Visibilidad_Codigo, 
-LOL.tl_Publicaciones.Estado, 
-LOL.tl_Publicaciones.Permite_Preguntas,
+Codigo, 
+Cliente_ID, 
+Empresa_ID, 
+Descripcion, 
+Fecha, 
+Stock, 
+Fecha_Vencimiento, 
+Precio, 
+Tipo, 
+Visibilidad_Codigo, 
+Estado, 
+Permite_Preguntas,
 
 ROW_NUMBER() OVER (ORDER BY LOL.tl_Publicaciones.Codigo) AS RowNum
 
-FROM LOL.tl_Publicaciones
+FROM @Table
 
 )
 

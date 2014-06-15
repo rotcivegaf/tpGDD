@@ -51,7 +51,8 @@ namespace FrbaCommerce.Comprar_Ofertar
         private void buttonBuscarPublicacion_Click(object sender, EventArgs e)
         {
             this.tl_Publicaciones_RubrosTableAdapter.Fill(this.gD1C2014DataSet.tl_Publicaciones_Rubros);
-    //FALTA VER LO DE LAS CONDICIONES QUE SE FILTRE POR UNA O POR OTRA
+
+            //FALTA VER LO DE LAS CONDICIONES QUE SE FILTRE POR UNA O POR OTRA
             String condicion = "";
             if (this.validar())
             {
@@ -65,17 +66,11 @@ namespace FrbaCommerce.Comprar_Ofertar
 
         private void llenarTabla()
         {
-
-            GD1C2014DataSetTableAdapters.tl_PublicacionesTableAdapter table = new GD1C2014DataSetTableAdapters.tl_PublicacionesTableAdapter();
-
-            table.FillByDescripcionYRubro(this.gD1C2014DataSet.tl_Publicaciones, armarLike(textBoxDescripcion.Text), Convert.ToInt32(comboBoxRubros.SelectedValue));
+            //Lleno el Data Table con la información filtrada
+            this.tl_PublicacionesTableAdapter.FillByDescripcionYRubro(this.gD1C2014DataSet.tl_Publicaciones, armarLike(textBoxDescripcion.Text), Convert.ToInt32(comboBoxRubros.SelectedValue));
+            //Cambio el source del data grid al DataTable paginado
+            dataGridViewPublicaciones.DataSource = this.tl_PublicacionesTableAdapter.GetDataByPaginador(offset, LIMITE, this.gD1C2014DataSet.tl_Publicaciones);
             
-            table.FillByPaginador(table.GetData(), offset, LIMITE);
-            //this.tl_PublicacionesTableAdapter = table;
-
-            this.tl_PublicacionesTableAdapter.Fill(table.GetData());
-
-            //this.tl_PublicacionesTableAdapter.FillByPaginador(this.gD1C2014DataSet.tl_Publicaciones,offset, LIMITE);
         }
 
         private string armarLike(string descripcion)
@@ -108,20 +103,18 @@ namespace FrbaCommerce.Comprar_Ofertar
                 //Verifico que no me quiera auto-comprar
                 if (!mismoCliente(fila))
                 {
-                    
+
+                    //ACA SE EJECUTA EL PROCESO DE COMPRA
                 }
             }
         }
-
-
-
-
         private bool mismoCliente(DataGridViewRow registro)
-        { 
-            if (registro.Cells[10].Equals(DBNull.Value))
+        {
+            if (registro.Cells[10].Value.ToString() == string.Empty)
                 return (Convert.ToInt32(registro.Cells[11].Value) == this.UserID);
             else
                 return (Convert.ToInt32(registro.Cells[10].Value) == this.UserID);
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -144,7 +137,7 @@ namespace FrbaCommerce.Comprar_Ofertar
 
         private void button4_Click(object sender, EventArgs e)
         {
-            offset = Convert.ToInt32(this.tl_PublicacionesTableAdapter.qtyRegistros()) - LIMITE;
+            offset = Convert.ToInt32(this.gD1C2014DataSet.tl_Publicaciones.Count) - LIMITE;
             llenarTabla();
         }
     }

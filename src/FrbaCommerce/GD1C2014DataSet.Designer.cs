@@ -12887,6 +12887,7 @@ WHERE p.Descripcion like @Descripcion and PR.Rubro_ID=@Rubro";
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Offset", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Limit", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Table", global::System.Data.SqlDbType.Structured, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[5].Connection = this.Connection;
             this._commandCollection[5].CommandText = "SELECT COUNT(*) FROM LOL.tl_Publicaciones";
@@ -12981,8 +12982,8 @@ WHERE p.Descripcion like @Descripcion and PR.Rubro_ID=@Rubro";
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByPaginador(GD1C2014DataSet.tl_PublicacionesDataTable dataTable, global::System.Nullable<int> Offset, global::System.Nullable<int> Limit) {
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual GD1C2014DataSet.tl_PublicacionesDataTable GetDataByPaginador(global::System.Nullable<int> Offset, global::System.Nullable<int> Limit, object Table) {
             this.Adapter.SelectCommand = this.CommandCollection[4];
             if ((Offset.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(Offset.Value));
@@ -12996,11 +12997,15 @@ WHERE p.Descripcion like @Descripcion and PR.Rubro_ID=@Rubro";
             else {
                 this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
+            if ((Table == null)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((object)(Table));
+            }
+            GD1C2014DataSet.tl_PublicacionesDataTable dataTable = new GD1C2014DataSet.tl_PublicacionesDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
