@@ -138,7 +138,6 @@
             this.Controls.Add(this.lblUsername);
             this.Name = "RegistroUsuario";
             this.Text = "Registro de Usuarios";
-            this.Load += new System.EventHandler(this.RegistroUsuario_Load);
             this.grpRol.ResumeLayout(false);
             this.grpRol.PerformLayout();
             this.ResumeLayout(false);

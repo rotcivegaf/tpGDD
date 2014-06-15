@@ -36,8 +36,6 @@ namespace FrbaCommerce
             this.label1 = new System.Windows.Forms.Label();
             this.tl_UsuariosTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_UsuariosTableAdapter();
             this.tl_RolesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RolesTableAdapter();
-            this.btnPruebaEditarCliente = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,7 +71,6 @@ namespace FrbaCommerce
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.btnABM_Rol);
             this.groupBox1.Controls.Add(this.btnABM_Visibilidades);
@@ -112,32 +109,11 @@ namespace FrbaCommerce
             // 
             this.tl_RolesTableAdapter.ClearBeforeFill = true;
             // 
-            // btnPruebaEditarCliente
-            // 
-            this.btnPruebaEditarCliente.Location = new System.Drawing.Point(300, 23);
-            this.btnPruebaEditarCliente.Name = "btnPruebaEditarCliente";
-            this.btnPruebaEditarCliente.Size = new System.Drawing.Size(136, 23);
-            this.btnPruebaEditarCliente.TabIndex = 6;
-            this.btnPruebaEditarCliente.Text = "PRUEBA Editar Cliente";
-            this.btnPruebaEditarCliente.UseVisualStyleBackColor = true;
-            this.btnPruebaEditarCliente.Click += new System.EventHandler(this.btnPruebaEditarCliente_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(429, 38);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(115, 27);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Comprar/Ofertar";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // Main_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(648, 266);
-            this.Controls.Add(this.btnPruebaEditarCliente);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnLogin);
@@ -160,8 +136,6 @@ namespace FrbaCommerce
         private System.Windows.Forms.Button button1;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_UsuariosTableAdapter tl_UsuariosTableAdapter;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RolesTableAdapter tl_RolesTableAdapter;
-        private System.Windows.Forms.Button btnPruebaEditarCliente;
-        private System.Windows.Forms.Button button2;
     }
 }
 
