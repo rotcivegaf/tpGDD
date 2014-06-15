@@ -593,7 +593,7 @@ BEGIN
 
 	INSERT INTO LOL.tl_Usuarios_Roles
 		SELECT
-			tl_Usuarios.ID,
+			U.ID,
 			@RolCliente_ID,
 			1
 		FROM
@@ -995,14 +995,16 @@ INSERT INTO LOL.tl_Publicaciones_Rubros
 END
 GO
 
-/* Stored Procedure InsertarCliente*/
-CREATE PROCEDURE [LOL].[sp_InsertarCliente] 
+/* Stored Procedure GuardarCliente*/
+CREATE PROCEDURE [LOL].[sp_GuardarCliente] 
+	@isNew BIT,
+	@UserPassword NVARCHAR(255) = '',
 	@ID INT,
 	@TipoDocumento NVARCHAR(10),
 	@Nro_Documento INT,
-	@CUIL NVARCHAR(15),
 	@Apellido NVARCHAR(255),
 	@Nombre NVARCHAR(255),
+	@CUIL NVARCHAR(15),
 	@FechaNacimiento DATE = NULL,
 	@Mail NVARCHAR(255) = NULL,
 	@DomCalle NVARCHAR(255) = NULL,
@@ -1010,7 +1012,7 @@ CREATE PROCEDURE [LOL].[sp_InsertarCliente]
 	@Piso INT = NULL,
 	@Depto NVARCHAR(50) = NULL,
 	@CodPostal NVARCHAR(50) = NULL,
-	@Celular INT
+	@Telefono INT = NULL
 AS
 BEGIN
 	DECLARE @error NVARCHAR(255);
@@ -1030,29 +1032,118 @@ BEGIN
 			RAISERROR (@error, 11,1)
     			RETURN -1
 		END
-	IF(@Celular IS NOT NULL)
-		IF EXISTS(SELECT * FROM LOL.tl_Clientes WHERE Telefono = @Celular)
+	IF(@Telefono IS NOT NULL)
+		IF EXISTS(SELECT * FROM LOL.tl_Clientes WHERE Telefono = @Telefono)
 			BEGIN
 				SET @error = 'Celular Existente';
 				RAISERROR (@error, 11,1)
-    				RETURN -1
+    			RETURN -1
 			END
 
+	BEGIN TRAN
 	-- Todo OK
-	INSERT INTO LOL.tl_Clientes VALUES(
-		@ID,
-		@TipoDocumento,
-		@Nro_Documento,
-		@CUIL,
-		@Apellido,
-		@Nombre,
-		@FechaNacimiento,
-		@Mail,
-		@DomCalle,
-		@NroCalle,
-		@Piso,
-		@Depto,
-		@CodPostal,
-		@Celular)
+	IF (@UserPassword <> '')
+		BEGIN
+			INSERT INTO LOL.tl_Usuarios(Username,Password,Change_Password) VALUES (@Nro_Documento,@UserPassword,1)
+			SELECT @ID = @@IDENTITY
+		END
+	IF (@isNew = 1)
+		INSERT INTO LOL.tl_Clientes VALUES(
+			@ID,
+			@TipoDocumento,
+			@Nro_Documento,
+			@Apellido,
+			@Nombre,
+			@CUIL,
+			@FechaNacimiento,
+			@Mail,
+			@DomCalle,
+			@NroCalle,
+			@Piso,
+			@Depto,
+			@CodPostal,
+			@Telefono)
+	ELSE
+		UPDATE LOL.tl_Clientes SET
+			Tipo_Documento = @TipoDocumento,
+			Nro_Documento = @Nro_Documento,
+			Apellido = @Apellido,
+			Nombre = @Nombre,
+			CUIL = @CUIL,
+			Fecha_Nac = @FechaNacimiento,
+			Mail = @Mail,
+			Dom_Calle = @DomCalle,
+			Nro_Calle = @NroCalle,
+			Piso = @Piso,
+			Depto = @Depto,
+			Cod_Postal = @CodPostal,
+			Telefono = @Telefono
+		WHERE
+			ID = @ID
+	COMMIT
+
+END
+
+/* Stored Procedure GuardarEmpresa*/
+CREATE PROCEDURE [LOL].[sp_GuardarEmpresa]
+	@isNew BIT,
+	@UserPassword NVARCHAR(255) = '',
+	@ID INT,
+	@Razon_Social NVARCHAR(255),
+	@CUIT NVARCHAR(50),
+	@FechaCreacion DATE = NULL,
+	@Mail NVARCHAR(255) = NULL,
+	@DomCalle NVARCHAR(255) = NULL,
+	@NroCalle INT = NULL,
+	@Piso INT = NULL,
+	@Depto NVARCHAR(50) = NULL,
+	@CodPostal NVARCHAR(50) = NULL
+AS
+BEGIN
+	DECLARE @error NVARCHAR(255);
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	IF EXISTS(SELECT 0 FROM LOL.tl_Empresas WHERE CUIT = @CUIT)
+		BEGIN
+			SET @error = 'CUIT Existente';
+			RAISERROR (@error, 11,1)
+    			RETURN -1
+		END
+
+	BEGIN TRAN
+	-- Todo OK
+	IF (@UserPassword <> '')
+		BEGIN
+			INSERT INTO LOL.tl_Usuarios(Username,Password,Change_Password) VALUES (@CUIT,@UserPassword,1)
+			SELECT @ID = @@IDENTITY
+		END
+	IF (@isNew = 1)
+		INSERT INTO LOL.tl_Empresas VALUES(
+			@ID,
+			@Razon_Social,
+			@CUIT,
+			@FechaCreacion,
+			@Mail,
+			@DomCalle,
+			@NroCalle,
+			@Piso,
+			@Depto,
+			@CodPostal)
+	ELSE
+		UPDATE LOL.tl_Empresas SET
+			Razon_Social = @Razon_Social,
+			CUIT = @CUIT,
+			Fecha_Creacion = @FechaCreacion,
+			Mail = @Mail,
+			Dom_Calle = @DomCalle,
+			Nro_Calle = @NroCalle,
+			Piso = @Piso,
+			Depto = @Depto,
+			Cod_Postal = @CodPostal
+		WHERE
+			ID = @ID
+	COMMIT
 
 END
