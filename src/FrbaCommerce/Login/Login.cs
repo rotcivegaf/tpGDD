@@ -41,15 +41,20 @@ namespace FrbaCommerce.Login
                 commons.bloquearCampos(txtUsername, txtPassword);
                 commons.bloquearCampos(btnRegistrar, btnLogin);
                 btnContinuar.Enabled = true;
-                
-                GD1C2014DataSet.tl_RolesDataTable roles = new GD1C2014DataSet.tl_RolesDataTable();
-                tl_RolesTableAdapter.getRolesPorUsuarioID(roles,(decimal)id);
-                cmbRoles.DataSource = new BindingSource(roles, null);
-                cmbRoles.DisplayMember = "Nombre";
-                cmbRoles.ValueMember = "ID";
-                if (cmbRoles.Items.Count == 1)
-                    getRubroIDAndClose();
+
+                llenarComboRoles();
             }
+        }
+
+        private void llenarComboRoles()
+        {
+            GD1C2014DataSet.tl_RolesDataTable roles = new GD1C2014DataSet.tl_RolesDataTable();
+            tl_RolesTableAdapter.getRolesPorUsuarioID(roles, (decimal)usuario_ID);
+            cmbRoles.DataSource = new BindingSource(roles, null);
+            cmbRoles.DisplayMember = "Nombre";
+            cmbRoles.ValueMember = "ID";
+            if (cmbRoles.Items.Count == 1)
+                getRubroIDAndClose();
         }
 
         private void btnContinuar_Click(object sender, EventArgs e)
@@ -76,8 +81,9 @@ namespace FrbaCommerce.Login
         {
             if (!commons.algunoVacio(txtUsername,txtPassword))
             {
-                RegistroUsuario frame = new RegistroUsuario(txtUsername.Text,txtPassword.Text);
-                frame.ShowDialog();
+                RegistroUsuario frame = new RegistroUsuario();  
+                usuario_ID = frame.nuevo(txtUsername.Text, txtPassword.Text);
+                llenarComboRoles();
 
             }
         }

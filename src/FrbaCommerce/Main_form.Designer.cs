@@ -36,7 +36,6 @@ namespace FrbaCommerce
             this.label1 = new System.Windows.Forms.Label();
             this.tl_UsuariosTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_UsuariosTableAdapter();
             this.tl_RolesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RolesTableAdapter();
-            this.btnPruebaEditarCliente = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -110,22 +109,11 @@ namespace FrbaCommerce
             // 
             this.tl_RolesTableAdapter.ClearBeforeFill = true;
             // 
-            // btnPruebaEditarCliente
-            // 
-            this.btnPruebaEditarCliente.Location = new System.Drawing.Point(300, 23);
-            this.btnPruebaEditarCliente.Name = "btnPruebaEditarCliente";
-            this.btnPruebaEditarCliente.Size = new System.Drawing.Size(136, 23);
-            this.btnPruebaEditarCliente.TabIndex = 6;
-            this.btnPruebaEditarCliente.Text = "PRUEBA Editar Cliente";
-            this.btnPruebaEditarCliente.UseVisualStyleBackColor = true;
-            this.btnPruebaEditarCliente.Click += new System.EventHandler(this.btnPruebaEditarCliente_Click);
-            // 
             // Main_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(648, 266);
-            this.Controls.Add(this.btnPruebaEditarCliente);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnLogin);
@@ -148,7 +136,6 @@ namespace FrbaCommerce
         private System.Windows.Forms.Button button1;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_UsuariosTableAdapter tl_UsuariosTableAdapter;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RolesTableAdapter tl_RolesTableAdapter;
-        private System.Windows.Forms.Button btnPruebaEditarCliente;
     }
 }
 
