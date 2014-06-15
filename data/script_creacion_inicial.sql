@@ -1,4 +1,4 @@
-USE GD1C2014
+﻿USE GD1C2014
 GO
 
 --Creacion del esquema LOL-----------------------------------------------------
@@ -995,8 +995,10 @@ INSERT INTO LOL.tl_Publicaciones_Rubros
 END
 GO
 
-/* Stored Procedure InsertarCliente*/
-CREATE PROCEDURE [LOL].[sp_InsertarCliente] 
+/* Stored Procedure GuardarCliente*/
+CREATE PROCEDURE [LOL].[sp_GuardarCliente] 
+	@isNew BIT,
+	@UserPassword NVARCHAR(255) = '',
 	@ID INT,
 	@TipoDocumento NVARCHAR(10),
 	@Nro_Documento INT,
@@ -1010,7 +1012,7 @@ CREATE PROCEDURE [LOL].[sp_InsertarCliente]
 	@Piso INT = NULL,
 	@Depto NVARCHAR(50) = NULL,
 	@CodPostal NVARCHAR(50) = NULL,
-	@Celular INT
+	@Telefono INT
 AS
 BEGIN
 	DECLARE @error NVARCHAR(255);
@@ -1030,29 +1032,105 @@ BEGIN
 			RAISERROR (@error, 11,1)
     			RETURN -1
 		END
-	IF(@Celular IS NOT NULL)
-		IF EXISTS(SELECT * FROM LOL.tl_Clientes WHERE Telefono = @Celular)
+	IF(@Telefono IS NOT NULL)
+		IF EXISTS(SELECT * FROM LOL.tl_Clientes WHERE Telefono = @Telefono)
 			BEGIN
 				SET @error = 'Celular Existente';
 				RAISERROR (@error, 11,1)
-    				RETURN -1
+    			RETURN -1
 			END
 
+	BEGIN TRAN
 	-- Todo OK
-	INSERT INTO LOL.tl_Clientes VALUES(
-		@ID,
-		@TipoDocumento,
-		@Nro_Documento,
-		@CUIL,
-		@Apellido,
-		@Nombre,
-		@FechaNacimiento,
-		@Mail,
-		@DomCalle,
-		@NroCalle,
-		@Piso,
-		@Depto,
-		@CodPostal,
-		@Celular)
+	IF (@UserPassword <> '')
+		BEGIN
+			INSERT INTO LOL.tl_Usuarios(Username,Password,Change_Password) VALUES (@Nro_Documento,@UserPassword,1)
+			SELECT @ID = @@IDENTITY
+		END
+	IF (@isNew = 1)
+		INSERT INTO LOL.tl_Clientes VALUES(
+			@ID,
+			@TipoDocumento,
+			@Nro_Documento,
+			@CUIL,
+			@Apellido,
+			@Nombre,
+			@FechaNacimiento,
+			@Mail,
+			@DomCalle,
+			@NroCalle,
+			@Piso,
+			@Depto,
+			@CodPostal,
+			@Telefono)
+	ELSE
+		UPDATE LOL.tl_Clientes SET
+			Tipo_Documento = @TipoDocumento,
+			Nro_Documento = @Nro_Documento,
+			CUIL = @CUIL,
+			Apellido = @Apellido,
+			Nombre = @Nombre,
+			Fecha_Nac = @FechaNacimiento,
+			Mail = @Mail,
+			Dom_Calle = @DomCalle,
+			Nro_Calle = @NroCalle,
+			Piso = @Piso,
+			Depto = @Depto,
+			Cod_Postal = @CodPostal,
+			Telefono = @Telefono
+		WHERE
+			ID = @ID
+	COMMIT
 
 END
+
+
+/* Stored Procedure Paginador*/
+CREATE PROCEDURE [LOL].[sp_Paginador]
+	@Offset int,
+	@Limit int
+AS
+BEGIN
+
+
+;WITH Results AS
+
+	(SELECT 
+LOL.tl_Publicaciones.Codigo, 
+LOL.tl_Publicaciones.Cliente_ID, 
+LOL.tl_Publicaciones.Empresa_ID, 
+LOL.tl_Publicaciones.Descripcion, 
+LOL.tl_Publicaciones.Fecha, LOL.tl_Publicaciones.Stock, 
+LOL.tl_Publicaciones.Fecha_Vencimiento, 
+LOL.tl_Publicaciones.Precio, 
+LOL.tl_Publicaciones.Tipo, 
+LOL.tl_Publicaciones.Visibilidad_Codigo, 
+LOL.tl_Publicaciones.Estado, 
+LOL.tl_Publicaciones.Permite_Preguntas,
+
+ROW_NUMBER() OVER (ORDER BY LOL.tl_Publicaciones.Codigo) AS RowNum
+
+FROM LOL.tl_Publicaciones
+
+)
+
+SELECT 
+Results.Codigo, 
+Results.Cliente_ID, 
+Results.Empresa_ID, 
+Results.Descripcion, 
+Results.Fecha, 
+Results.Stock, 
+Results.Fecha_Vencimiento, 
+Results.Precio, 
+Results.Tipo, 
+Results.Visibilidad_Codigo, 
+Results.Estado, 
+Results.Permite_Preguntas
+
+FROM Results
+WHERE RowNum >= @Offset
+AND RowNum < @Offset + @Limit
+
+END
+GO

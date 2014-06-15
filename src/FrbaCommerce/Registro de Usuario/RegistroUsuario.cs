@@ -16,11 +16,19 @@ namespace FrbaCommerce.Registro_de_Usuario
     {
         int usuario_ID;
 
-        public RegistroUsuario(String username, String password)
+        public int nuevo(String username, String password)
         {
-            InitializeComponent();
             txtUsername.Text = username;
             txtPassword.Text = password;
+
+            this.ShowDialog();
+
+            return usuario_ID;
+        }
+
+        public RegistroUsuario()
+        {
+            InitializeComponent();
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
@@ -37,23 +45,17 @@ namespace FrbaCommerce.Registro_de_Usuario
                 {
                     Cliente frame = new Cliente();
                     frame.nuevo(usuario_ID);
-                    frame.getClienteID();
                     rol_ID = 2;
                 }
                 else
                 {
                     Empresa frame = new Empresa();
                     frame.nuevo(usuario_ID);
-                    rol_ID=frame.getEmpresaID();
                     rol_ID = 3;
                 }
                 this.tl_Usuarios_RolesTableAdapter.Insert(usuario_ID,rol_ID,true);
+                this.Close();
             }
-        }
-
-        private void RegistroUsuario_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

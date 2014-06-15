@@ -6,18 +6,47 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace FrbaCommerce.Abm_Cliente
 {
     public partial class Cliente : Form
     {
         bool nuevoCliente;
+        bool crearUsuario;
         int ID;
-        int usuario_ID;
 
         public Cliente()
         {
             InitializeComponent();
+        }
+
+        public void nuevo(int cliente_ID)
+        {
+            nuevoCliente = true;
+            crearUsuario = false;
+            ID = cliente_ID;
+
+            this.ShowDialog();
+        }
+
+        public void editar(int cliente_ID)
+        {
+            nuevoCliente = false;
+            crearUsuario = false;
+            ID = cliente_ID;
+            cargarDatos();
+
+            this.ShowDialog();
+        }
+
+        public void nuevoByAdmin()
+        {
+            nuevoCliente = true;
+            crearUsuario = true;
+            ID = 0;
+
+            this.ShowDialog();
         }
 
         private void cargarDatos()
@@ -27,48 +56,57 @@ namespace FrbaCommerce.Abm_Cliente
             DataRow cliente = clienteDataTable.Rows[0];
 
             txtTipoDocumento.Text = cliente["Tipo_Documento"].ToString();
-            txtNroDocumento.Text = cliente["Nro_Documento"].ToString();
+            numNroDocumento.Value= Convert.ToInt32(cliente["Nro_Documento"].ToString());
             txtApellido.Text = cliente["Apellido"].ToString();
             txtNombre.Text = cliente["Nombre"].ToString();
             txtCUIL.Text = cliente["CUIL"].ToString();
-            
             dateFechaNacimiento.Value = Convert.ToDateTime(cliente["Fecha_Nac"].ToString());//,new System.Globalization.CultureInfo("es-AR", true));
             txtMail.Text = cliente["Mail"].ToString();
             txtCalle.Text = cliente["Dom_Calle"].ToString();
-
-
+            numNroCalle.Value = Convert.ToInt32(cliente["Nro_Calle"].ToString());
+            numPiso.Value = Convert.ToInt32(cliente["Piso"].ToString());
             txtDepto.Text = cliente["Depto"].ToString();
             txtCodigoPostal.Text = cliente["Cod_Postal"].ToString();
-            txtCelular.Text = cliente["Telefono"].ToString();
+            txtTelefono.Text = cliente["Telefono"].ToString();
         }
 
-        public void nuevo(int user_ID)
+        private bool faltanCampos()
         {
-            nuevoCliente = true;
-            usuario_ID = user_ID; 
-            
-            this.ShowDialog();
+            //FALTA HACER -> VER QUE CHEQUEE TODO DE UNA
+            return commons.algunoVacio(txtTipoDocumento,txtApellido, txtNombre);
         }
-
-        public void editar(int cliente_ID)
-        {
-            nuevoCliente = false;
-            ID = cliente_ID;
-
-            cargarDatos();
-
-            this.ShowDialog();
-        }
-
-        public int getClienteID()
-        { return ID; }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (nuevoCliente)
-            { }
-            else
-            { }
+            if (faltanCampos()) return;
+            try
+            {
+                this.tl_ClientesTableAdapter.sp_GuardarCliente(
+                   nuevoCliente,
+                   crearUsuario ? commons.hash(numNroDocumento.Value.ToString()) : "",
+                   ID,
+                   txtTipoDocumento.Text,
+                   (int)numNroDocumento.Value,
+                   txtApellido.Text,
+                   txtNombre.Text,
+                   txtCUIL.Text,
+                   dateFechaNacimiento.Value,
+                   txtMail.Text,
+                   txtCalle.Text,
+                   Convert.ToInt32(numNroCalle.Value),
+                   Convert.ToInt32(numPiso.Value),
+                   txtDepto.Text,
+                   txtCodigoPostal.Text,
+                   (txtTelefono.Text == "") ? (int?)null : Convert.ToInt32(txtTelefono.Text)
+                   );
+            }
+            catch (SqlException error)
+            {
+                MessageBox.Show(error.Message);
+                return;
+            }
+            MessageBox.Show("Cliente Creado");
+            this.Close();
         }
 
     }

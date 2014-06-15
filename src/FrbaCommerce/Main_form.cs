@@ -60,7 +60,14 @@ namespace FrbaCommerce
         private void btnPruebaEditarCliente_Click(object sender, EventArgs e)
         {
             Cliente frame = new Cliente();
-            frame.editar(1);
+            frame.editar(66); // Primer Cliente luego de la importacion
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Comprar_Ofertar.Comprar_Ofertar frame = new Comprar_Ofertar.Comprar_Ofertar();            
+            frame.setID(usuario_ID);
+            frame.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)
