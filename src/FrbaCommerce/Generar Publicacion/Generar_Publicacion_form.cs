@@ -21,14 +21,11 @@ namespace FrbaCommerce.Generar_Publicacion
 
         private void Publicacion_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'gD1C2014DataSet.tl_Publicaciones_Rubros' table. You can move, or remove it, as needed.
-            this.tl_Publicaciones_RubrosTableAdapter.Fill(this.gD1C2014DataSet.tl_Publicaciones_Rubros);
-           
+            
             //Cargo rubros y visibilidades
             this.tl_RubrosTableAdapter.Fill(this.gD1C2014DataSet.tl_Rubros);
             this.tl_VisibilidadesTableAdapter.Fill(this.gD1C2014DataSet.tl_Visibilidades);
-            this.tl_Publicaciones_RubrosTableAdapter.Fill(this.gD1C2014DataSet.tl_Publicaciones_Rubros);
-
+            
 
             //Selecciono por default
             comboBoxEstadoDeLaPublicacion.SelectedIndex = 0;
@@ -44,6 +41,8 @@ namespace FrbaCommerce.Generar_Publicacion
 
         private void Guardar_Click(object sender, EventArgs e)
         {
+            this.tl_Publicaciones_RubrosTableAdapter.Fill(this.gD1C2014DataSet.tl_Publicaciones_Rubros);
+           
             if (this.validar())
             { 
                 //En este stored procedure hago un INSERT para las publicidades
@@ -90,7 +89,7 @@ namespace FrbaCommerce.Generar_Publicacion
         {
             setFechaVencimiento();
         }
-        
+
 
     }
 }

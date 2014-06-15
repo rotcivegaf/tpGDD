@@ -1,4 +1,4 @@
-USE GD1C2014
+﻿USE GD1C2014
 GO
 
 --Creacion del esquema LOL-----------------------------------------------------
@@ -1083,3 +1083,54 @@ BEGIN
 	COMMIT
 
 END
+
+
+/* Stored Procedure Paginador*/
+CREATE PROCEDURE [LOL].[sp_Paginador]
+	@Offset int,
+	@Limit int
+AS
+BEGIN
+
+
+;WITH Results AS
+
+	(SELECT 
+LOL.tl_Publicaciones.Codigo, 
+LOL.tl_Publicaciones.Cliente_ID, 
+LOL.tl_Publicaciones.Empresa_ID, 
+LOL.tl_Publicaciones.Descripcion, 
+LOL.tl_Publicaciones.Fecha, LOL.tl_Publicaciones.Stock, 
+LOL.tl_Publicaciones.Fecha_Vencimiento, 
+LOL.tl_Publicaciones.Precio, 
+LOL.tl_Publicaciones.Tipo, 
+LOL.tl_Publicaciones.Visibilidad_Codigo, 
+LOL.tl_Publicaciones.Estado, 
+LOL.tl_Publicaciones.Permite_Preguntas,
+
+ROW_NUMBER() OVER (ORDER BY LOL.tl_Publicaciones.Codigo) AS RowNum
+
+FROM LOL.tl_Publicaciones
+
+)
+
+SELECT 
+Results.Codigo, 
+Results.Cliente_ID, 
+Results.Empresa_ID, 
+Results.Descripcion, 
+Results.Fecha, 
+Results.Stock, 
+Results.Fecha_Vencimiento, 
+Results.Precio, 
+Results.Tipo, 
+Results.Visibilidad_Codigo, 
+Results.Estado, 
+Results.Permite_Preguntas
+
+FROM Results
+WHERE RowNum >= @Offset
+AND RowNum < @Offset + @Limit
+
+END
+GO
