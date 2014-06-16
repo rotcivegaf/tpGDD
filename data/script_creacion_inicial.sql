@@ -43,6 +43,8 @@ CREATE TABLE LOL.tl_Clientes (
 	Depto          NVARCHAR(50) NULL,
 	Cod_Postal     NVARCHAR(50) NULL,
 	Telefono       NUMERIC(18, 0) NULL,
+	Suma_Calificaciones NUMERIC(18, 0) NULL,
+	Cantidad_Calificaciones NUMERIC(18, 0) NULL,
 
 	PRIMARY KEY (ID)
 )
@@ -60,6 +62,8 @@ CREATE TABLE LOL.tl_Empresas (
 	Piso           NUMERIC(18, 0) NULL,
 	Depto          NVARCHAR(50) NULL,
 	Cod_Postal     NVARCHAR(50) NULL,
+	Suma_Calificaciones NUMERIC(18, 0) NULL,
+	Cantidad_Calificaciones NUMERIC(18, 0) NULL,
 
 	PRIMARY KEY(ID)
 )
@@ -545,7 +549,9 @@ BEGIN
 			Publ_Empresa_Nro_Calle,
 			Publ_Empresa_Piso,
 			Publ_Empresa_Depto,
-			Publ_Empresa_Cod_Postal
+			Publ_Empresa_Cod_Postal,
+			0, -- SumaCalificaciones
+			0 -- CantidadCalificaciones
 		FROM
 			LOL.tl_Usuarios U JOIN gd_esquema.Maestra M ON (U.Username = M.Publ_Empresa_Cuit)
 
@@ -608,7 +614,9 @@ BEGIN
 			Cli_Piso,
 			Cli_Depto,
 			Cli_Cod_Postal,
-			NULL -- TELEFONO
+			NULL, -- TELEFONO
+			0, -- SumaCalificaciones
+			0 -- CantidadCalificaciones
 		FROM
 			LOL.tl_Usuarios U JOIN gd_esquema.Maestra M ON (U.Username = CAST(M.Cli_Dni AS NVARCHAR(50)))
 
@@ -1228,5 +1236,49 @@ FROM Results
 WHERE RowNum >= @Offset
 AND RowNum < @Offset + @Limit
 
+END
+GO
+
+/* Stored Procedure CalificarVendedor*/
+CREATE PROCEDURE [LOL].[sp_CalificarVendedor]
+	@CompraID INT,
+	@CantidadEstrellas TINYINT,
+	@Descripcion NVARCHAR(255) = NULL
+AS
+BEGIN
+	DECLARE @ClienteID INT;
+	DECLARE @EmpresaID INT;
+	DECLARE @NewCalificacionCodigo INT;
+
+	SET NOCOUNT ON;
+
+	SELECT 
+		@ClienteID = P.Cliente_ID,
+		@EmpresaID = P.Empresa_ID
+	FROM 
+		(SELECT Publicacion_Codigo FROM LOL.tl_Compras WHERE (ID = @CompraID)) C JOIN LOL.tl_Publicaciones P ON (C.Publicacion_Codigo = P.Codigo)
+	
+	SELECT @NewCalificacionCodigo = MAX(Calificacion_Codigo) + 1 FROM LOL.tl_Compras WHERE Calificacion_Codigo IS NOT NULL
+	
+	BEGIN TRANSACTION;
+		UPDATE 
+			LOL.tl_Compras
+		SET
+			Calificacion_Codigo = @NewCalificacionCodigo,
+			Calificacion_Cant_Estrellas = @CantidadEstrellas,
+			Calificacion_Descripcion = @Descripcion
+		WHERE
+			ID = @CompraID;
+
+		IF (@ClienteID IS NOT NULL)
+			UPDATE LOL.tl_Clientes 
+			SET Suma_Calificaciones = Suma_Calificaciones + @CantidadEstrellas, Cantidad_Calificaciones = Cantidad_Calificaciones + 1
+			WHERE ID = @ClienteID;
+		ELSE
+			UPDATE LOL.tl_Empresas
+			SET Suma_Calificaciones = Suma_Calificaciones + @CantidadEstrellas, Cantidad_Calificaciones = Cantidad_Calificaciones + 1
+			WHERE ID = @EmpresaID;
+
+	COMMIT
 END
 GO
