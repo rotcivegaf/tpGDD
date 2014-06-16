@@ -885,7 +885,11 @@ SELECT Codigo, Cliente_ID, Empresa_ID, Descripcion, Fecha, Stock, Fecha_Vencimie
               <Mapping SourceColumn="Permite_Preguntas" DataSetColumn="Permite_Preguntas" />
             </Mappings>
             <Sources>
+<<<<<<< HEAD
+              <DbSource ConnectionRef="GD1C2014ConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByCondition" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByCondition" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByCondition">
+=======
               <DbSource ConnectionRef="GD1C2014ConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByFilter" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy" GeneratorSourceName="FillByFilter" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByFilter">
+>>>>>>> e131e14bf43781a70fcf9355b4d8c41758190260
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT P.Codigo, P.Cliente_ID, P.Empresa_ID, P.Descripcion, P.Fecha, P.Stock, P.Fecha_Vencimiento, P.Precio, P.Tipo, P.Visibilidad_Codigo, P.Estado, P.Permite_Preguntas,V.Precio
@@ -903,7 +907,11 @@ order by V.Precio desc</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
+<<<<<<< HEAD
+              <DbSource ConnectionRef="GD1C2014ConnectionString (Settings)" DbObjectName="GD1C2014.LOL.tl_Publicaciones" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByDescripcion" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy1" GeneratorSourceName="FillByDescripcion" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="FillByDescripcion">
+=======
               <DbSource ConnectionRef="GD1C2014ConnectionString (Settings)" DbObjectName="GD1C2014.LOL.sp_Paginador" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByPaginador" GetMethodModifier="Public" GetMethodName="GetDataByPaginador" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByPaginador" UserSourceName="GetDataByPaginador">
+>>>>>>> e131e14bf43781a70fcf9355b4d8c41758190260
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>LOL.sp_Paginador</CommandText>
@@ -916,7 +924,11 @@ order by V.Precio desc</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
+<<<<<<< HEAD
+              <DbSource ConnectionRef="GD1C2014ConnectionString (Settings)" DbObjectName="GD1C2014.LOL.tl_Publicaciones" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByDescripcionYRubro" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByDescripcionYRubro" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="FillByDescripcionYRubro">
+=======
               <DbSource ConnectionRef="GD1C2014ConnectionString (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="qtyRegistros" Modifier="Public" Name="qtyRegistros" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="qtyRegistros">
+>>>>>>> e131e14bf43781a70fcf9355b4d8c41758190260
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT COUNT(*) FROM LOL.tl_Publicaciones</CommandText>

@@ -75,10 +75,13 @@ namespace FrbaCommerce
             // 
             // groupBox1
             // 
+<<<<<<< HEAD
             this.groupBox1.Controls.Add(this.btnABMEmpresa);
             this.groupBox1.Controls.Add(this.btnABMCliente);
+=======
             this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.button2);
+>>>>>>> e131e14bf43781a70fcf9355b4d8c41758190260
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.btnABM_Rol);
             this.groupBox1.Controls.Add(this.btnABM_Visibilidades);
@@ -183,10 +186,13 @@ namespace FrbaCommerce
         private System.Windows.Forms.Button button1;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_UsuariosTableAdapter tl_UsuariosTableAdapter;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RolesTableAdapter tl_RolesTableAdapter;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+<<<<<<< HEAD
         private System.Windows.Forms.Button btnABMEmpresa;
         private System.Windows.Forms.Button btnABMCliente;
+=======
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+>>>>>>> e131e14bf43781a70fcf9355b4d8c41758190260
     }
 }
 

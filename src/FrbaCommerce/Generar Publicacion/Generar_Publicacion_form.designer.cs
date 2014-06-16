@@ -73,7 +73,7 @@
             // 
             // inputDescripcion
             // 
-            this.inputDescripcion.Location = new System.Drawing.Point(79, 12);
+            this.inputDescripcion.Location = new System.Drawing.Point(136, 28);
             this.inputDescripcion.MaxLength = 255;
             this.inputDescripcion.Name = "inputDescripcion";
             this.inputDescripcion.Size = new System.Drawing.Size(213, 20);
@@ -82,7 +82,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 15);
+            this.label1.Location = new System.Drawing.Point(64, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 13);
             this.label1.TabIndex = 1;
@@ -91,7 +91,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(184, 75);
+            this.label2.Location = new System.Drawing.Point(92, 65);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 3;
@@ -100,7 +100,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(107, 146);
+            this.label3.Location = new System.Drawing.Point(15, 136);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(115, 13);
             this.label3.TabIndex = 5;
@@ -109,7 +109,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(140, 110);
+            this.label4.Location = new System.Drawing.Point(48, 100);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(82, 13);
             this.label4.TabIndex = 6;
@@ -117,7 +117,7 @@
             // 
             // dateTimePickerFechaInicio
             // 
-            this.dateTimePickerFechaInicio.Location = new System.Drawing.Point(228, 106);
+            this.dateTimePickerFechaInicio.Location = new System.Drawing.Point(136, 96);
             this.dateTimePickerFechaInicio.Name = "dateTimePickerFechaInicio";
             this.dateTimePickerFechaInicio.Size = new System.Drawing.Size(195, 20);
             this.dateTimePickerFechaInicio.TabIndex = 8;
@@ -126,7 +126,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(184, 177);
+            this.label5.Location = new System.Drawing.Point(92, 167);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(40, 13);
             this.label5.TabIndex = 10;
@@ -135,7 +135,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(184, 209);
+            this.label6.Location = new System.Drawing.Point(92, 199);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(39, 13);
             this.label6.TabIndex = 11;
@@ -149,15 +149,15 @@
             0,
             0,
             131072});
-            this.numericUpDownPrecio.Location = new System.Drawing.Point(230, 175);
+            this.numericUpDownPrecio.Location = new System.Drawing.Point(138, 165);
             this.numericUpDownPrecio.Name = "numericUpDownPrecio";
-            this.numericUpDownPrecio.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownPrecio.Size = new System.Drawing.Size(123, 20);
             this.numericUpDownPrecio.TabIndex = 13;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(168, 318);
+            this.label7.Location = new System.Drawing.Point(76, 308);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(56, 13);
             this.label7.TabIndex = 14;
@@ -169,7 +169,7 @@
             this.comboBoxVisiblidad.DataSource = this.tlVisibilidadesBindingSource;
             this.comboBoxVisiblidad.DisplayMember = "Descripcion";
             this.comboBoxVisiblidad.FormattingEnabled = true;
-            this.comboBoxVisiblidad.Location = new System.Drawing.Point(232, 318);
+            this.comboBoxVisiblidad.Location = new System.Drawing.Point(140, 308);
             this.comboBoxVisiblidad.Name = "comboBoxVisiblidad";
             this.comboBoxVisiblidad.Size = new System.Drawing.Size(121, 21);
             this.comboBoxVisiblidad.TabIndex = 15;
@@ -190,9 +190,9 @@
             // 
             this.comboBoxTipoDePublicacion.FormattingEnabled = true;
             this.comboBoxTipoDePublicacion.Items.AddRange(new object[] {
-            "Oferta",
+            "Compra Inmediata",
             "Subasta"});
-            this.comboBoxTipoDePublicacion.Location = new System.Drawing.Point(232, 362);
+            this.comboBoxTipoDePublicacion.Location = new System.Drawing.Point(140, 345);
             this.comboBoxTipoDePublicacion.Name = "comboBoxTipoDePublicacion";
             this.comboBoxTipoDePublicacion.Size = new System.Drawing.Size(121, 21);
             this.comboBoxTipoDePublicacion.TabIndex = 17;
@@ -200,7 +200,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(121, 365);
+            this.label8.Location = new System.Drawing.Point(29, 348);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(103, 13);
             this.label8.TabIndex = 16;
@@ -209,7 +209,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(166, 440);
+            this.label9.Location = new System.Drawing.Point(74, 423);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(58, 13);
             this.label9.TabIndex = 18;
@@ -245,7 +245,7 @@
             // 
             // numericUpDownStock
             // 
-            this.numericUpDownStock.Location = new System.Drawing.Point(228, 73);
+            this.numericUpDownStock.Location = new System.Drawing.Point(136, 63);
             this.numericUpDownStock.Minimum = new decimal(new int[] {
             1,
             0,
@@ -266,17 +266,16 @@
             this.comboBoxEstadoDeLaPublicacion.Items.AddRange(new object[] {
             "Borrador",
             "Activa",
-            "Pausada",
-            "Finalizada"});
-            this.comboBoxEstadoDeLaPublicacion.Location = new System.Drawing.Point(230, 400);
+            "Pausada"});
+            this.comboBoxEstadoDeLaPublicacion.Location = new System.Drawing.Point(138, 383);
             this.comboBoxEstadoDeLaPublicacion.Name = "comboBoxEstadoDeLaPublicacion";
-            this.comboBoxEstadoDeLaPublicacion.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxEstadoDeLaPublicacion.Size = new System.Drawing.Size(123, 21);
             this.comboBoxEstadoDeLaPublicacion.TabIndex = 24;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(97, 403);
+            this.label10.Location = new System.Drawing.Point(5, 386);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(127, 13);
             this.label10.TabIndex = 23;
@@ -285,7 +284,7 @@
             // checkBoxAceptaPreguntas
             // 
             this.checkBoxAceptaPreguntas.AutoSize = true;
-            this.checkBoxAceptaPreguntas.Location = new System.Drawing.Point(233, 439);
+            this.checkBoxAceptaPreguntas.Location = new System.Drawing.Point(141, 422);
             this.checkBoxAceptaPreguntas.Name = "checkBoxAceptaPreguntas";
             this.checkBoxAceptaPreguntas.Size = new System.Drawing.Size(15, 14);
             this.checkBoxAceptaPreguntas.TabIndex = 25;
@@ -294,7 +293,7 @@
             // dateTimePickerFechaVencimiento
             // 
             this.dateTimePickerFechaVencimiento.Enabled = false;
-            this.dateTimePickerFechaVencimiento.Location = new System.Drawing.Point(228, 140);
+            this.dateTimePickerFechaVencimiento.Location = new System.Drawing.Point(136, 130);
             this.dateTimePickerFechaVencimiento.Name = "dateTimePickerFechaVencimiento";
             this.dateTimePickerFechaVencimiento.Size = new System.Drawing.Size(195, 20);
             this.dateTimePickerFechaVencimiento.TabIndex = 26;
@@ -304,10 +303,10 @@
             this.listBoxRubro.DataSource = this.tlRubrosBindingSource;
             this.listBoxRubro.DisplayMember = "Descripcion";
             this.listBoxRubro.FormattingEnabled = true;
-            this.listBoxRubro.Location = new System.Drawing.Point(230, 209);
+            this.listBoxRubro.Location = new System.Drawing.Point(138, 199);
             this.listBoxRubro.Name = "listBoxRubro";
             this.listBoxRubro.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBoxRubro.Size = new System.Drawing.Size(120, 95);
+            this.listBoxRubro.Size = new System.Drawing.Size(123, 95);
             this.listBoxRubro.TabIndex = 27;
             this.listBoxRubro.ValueMember = "ID";
             // 

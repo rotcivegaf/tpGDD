@@ -1,10 +1,29 @@
-USE GD1C2014
+﻿USE GD1C2014
 GO
 
 --Creacion del esquema LOL-----------------------------------------------------
 
 CREATE SCHEMA LOL AUTHORIZATION gd
 GO
+
+--Creacion tipos de datos de usuario-------------------------------------------
+
+CREATE TYPE [LOL].dataTable AS TABLE 
+(
+    Codigo numeric(18,0), 
+    Cliente_ID numeric (18,0),
+    Empresa_ID numeric (18,0),
+    Descripcion nvarchar (255),
+    Fecha datetime,
+    Stock numeric (18,0),
+    Fecha_Vencimiento datetime,
+    Precio money,
+    Tipo nvarchar (255),
+    Visibilidad_Codigo numeric (18,0),
+    Estado nvarchar (255),
+    Permite_Preguntas bit,
+	PrecioVisibilidad money
+)
 
 --Creacion de Tablas-----------------------------------------------------------
 
@@ -343,6 +362,8 @@ ALTER TABLE LOL.tl_Pendientes WITH CHECK ADD
 	REFERENCES LOL.tl_Compras (ID)
 
 GO
+
+
 
 --Creacion de Stored Procedures------------------------------------------------
 
@@ -774,6 +795,10 @@ GO
 
 --FIN MIGRACION----------------------------------------------------------------
 
+--Creación de Tipos de datos de usuario----------------------------------------
+
+
+
 --Stored procedures de la nueva aplicacion-------------------------------------
 
 /* Stored Procedure NuevaVisibilidad */
@@ -1002,9 +1027,9 @@ CREATE PROCEDURE [LOL].[sp_GuardarCliente]
 	@ID INT,
 	@TipoDocumento NVARCHAR(10),
 	@Nro_Documento INT,
+	@CUIL NVARCHAR(15),
 	@Apellido NVARCHAR(255),
 	@Nombre NVARCHAR(255),
-	@CUIL NVARCHAR(15),
 	@FechaNacimiento DATE = NULL,
 	@Mail NVARCHAR(255) = NULL,
 	@DomCalle NVARCHAR(255) = NULL,
@@ -1012,7 +1037,7 @@ CREATE PROCEDURE [LOL].[sp_GuardarCliente]
 	@Piso INT = NULL,
 	@Depto NVARCHAR(50) = NULL,
 	@CodPostal NVARCHAR(50) = NULL,
-	@Telefono INT = NULL
+	@Telefono INT
 AS
 BEGIN
 	DECLARE @error NVARCHAR(255);
@@ -1052,9 +1077,9 @@ BEGIN
 			@ID,
 			@TipoDocumento,
 			@Nro_Documento,
+			@CUIL,
 			@Apellido,
 			@Nombre,
-			@CUIL,
 			@FechaNacimiento,
 			@Mail,
 			@DomCalle,
@@ -1067,9 +1092,9 @@ BEGIN
 		UPDATE LOL.tl_Clientes SET
 			Tipo_Documento = @TipoDocumento,
 			Nro_Documento = @Nro_Documento,
+			CUIL = @CUIL,
 			Apellido = @Apellido,
 			Nombre = @Nombre,
-			CUIL = @CUIL,
 			Fecha_Nac = @FechaNacimiento,
 			Mail = @Mail,
 			Dom_Calle = @DomCalle,
@@ -1083,67 +1108,62 @@ BEGIN
 	COMMIT
 
 END
+GO
 
-/* Stored Procedure GuardarEmpresa*/
-CREATE PROCEDURE [LOL].[sp_GuardarEmpresa]
-	@isNew BIT,
-	@UserPassword NVARCHAR(255) = '',
-	@ID INT,
-	@Razon_Social NVARCHAR(255),
-	@CUIT NVARCHAR(50),
-	@FechaCreacion DATE = NULL,
-	@Mail NVARCHAR(255) = NULL,
-	@DomCalle NVARCHAR(255) = NULL,
-	@NroCalle INT = NULL,
-	@Piso INT = NULL,
-	@Depto NVARCHAR(50) = NULL,
-	@CodPostal NVARCHAR(50) = NULL
+/* Stored Procedure Paginador*/
+
+
+CREATE PROCEDURE [LOL].[sp_Paginador]
+
+	@Offset int,
+	@Limit int,
+	@Table dataTable READONLY
 AS
+
+
 BEGIN
-	DECLARE @error NVARCHAR(255);
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
 
-	IF EXISTS(SELECT 0 FROM LOL.tl_Empresas WHERE CUIT = @CUIT)
-		BEGIN
-			SET @error = 'CUIT Existente';
-			RAISERROR (@error, 11,1)
-    			RETURN -1
-		END
 
-	BEGIN TRAN
-	-- Todo OK
-	IF (@UserPassword <> '')
-		BEGIN
-			INSERT INTO LOL.tl_Usuarios(Username,Password,Change_Password) VALUES (@CUIT,@UserPassword,1)
-			SELECT @ID = @@IDENTITY
-		END
-	IF (@isNew = 1)
-		INSERT INTO LOL.tl_Empresas VALUES(
-			@ID,
-			@Razon_Social,
-			@CUIT,
-			@FechaCreacion,
-			@Mail,
-			@DomCalle,
-			@NroCalle,
-			@Piso,
-			@Depto,
-			@CodPostal)
-	ELSE
-		UPDATE LOL.tl_Empresas SET
-			Razon_Social = @Razon_Social,
-			CUIT = @CUIT,
-			Fecha_Creacion = @FechaCreacion,
-			Mail = @Mail,
-			Dom_Calle = @DomCalle,
-			Nro_Calle = @NroCalle,
-			Piso = @Piso,
-			Depto = @Depto,
-			Cod_Postal = @CodPostal
-		WHERE
-			ID = @ID
-	COMMIT
+;WITH Results AS
+
+	(SELECT 
+Codigo, 
+Cliente_ID, 
+Empresa_ID, 
+Descripcion, 
+Fecha, 
+Stock, 
+Fecha_Vencimiento, 
+Precio, 
+Tipo, 
+Visibilidad_Codigo, 
+Estado, 
+Permite_Preguntas,
+PrecioVisibilidad,
+
+ROW_NUMBER() OVER (ORDER BY PrecioVisibilidad desc) AS RowNum
+
+FROM @Table
+
+)
+
+SELECT 
+Results.Codigo, 
+Results.Cliente_ID, 
+Results.Empresa_ID, 
+Results.Descripcion, 
+Results.Fecha, 
+Results.Stock, 
+Results.Fecha_Vencimiento, 
+Results.Precio, 
+Results.Tipo, 
+Results.Visibilidad_Codigo, 
+Results.Estado, 
+Results.Permite_Preguntas
+
+FROM Results
+WHERE RowNum >= @Offset
+AND RowNum < @Offset + @Limit
 
 END
+GO

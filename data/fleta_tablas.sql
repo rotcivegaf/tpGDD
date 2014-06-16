@@ -33,6 +33,7 @@ DROP PROCEDURE LOL.sp_InicializarUsuarioAdmin
 DROP PROCEDURE LOL.sp_ImportarCompras
 DROP PROCEDURE LOL.sp_ImportarOfertas
 
+
 --Eliminar Procedimientos de aplicacion
 DROP PROCEDURE LOL.sp_NuevaVisibilidad
 DROP PROCEDURE LOL.sp_EditarVisibilidad
@@ -42,9 +43,12 @@ DROP PROCEDURE LOL.sp_LoginFallido
 DROP PROCEDURE LOL.sp_LoginExitoso
 DROP PROCEDURE LOL.sp_CrearPublicacion
 DROP PROCEDURE LOL.sp_InsertPublicacionRubro 
-DROP PROCEDURE LOL.sp_InsertarCliente
+--DROP PROCEDURE LOL.sp_InsertarCliente
 DROP PROCEDURE LOL.sp_GuardarCliente
-DROP PROCEDURE LOL.sp_GuardarEmpresa
+DROP PROCEDURE LOL.sp_Paginador
+
+--Eliminar Tipo de dato
+DROP TYPE LOL.dataTable
 
 --Eliminar esquema
 DROP SCHEMA LOL
