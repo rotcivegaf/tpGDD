@@ -45,15 +45,15 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.dgvEmpresas = new System.Windows.Forms.DataGridView();
-            this.tlEmpresasBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
-            this.tl_EmpresasTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_EmpresasTableAdapter();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.razonSocialDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cUITDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaCreacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.tlEmpresasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
+            this.tl_EmpresasTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_EmpresasTableAdapter();
             this.menuStrip.SuspendLayout();
             this.grpBusqueda.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpresas)).BeginInit();
@@ -123,7 +123,7 @@
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(220, 20);
             this.txtMail.TabIndex = 4;
-            this.txtMail.GotFocus +=new System.EventHandler(txtMail_GotFocus);
+            this.txtMail.GotFocus += new System.EventHandler(this.txtMail_GotFocus);
             // 
             // txtCUIT
             // 
@@ -131,7 +131,7 @@
             this.txtCUIT.Name = "txtCUIT";
             this.txtCUIT.Size = new System.Drawing.Size(220, 20);
             this.txtCUIT.TabIndex = 1;
-            this.txtCUIT.GotFocus += new System.EventHandler(txtCUIT_GotFocus);
+            this.txtCUIT.GotFocus += new System.EventHandler(this.txtCUIT_GotFocus);
             // 
             // txtRazonSocial
             // 
@@ -139,7 +139,7 @@
             this.txtRazonSocial.Name = "txtRazonSocial";
             this.txtRazonSocial.Size = new System.Drawing.Size(220, 20);
             this.txtRazonSocial.TabIndex = 0;
-            this.txtRazonSocial.GotFocus +=new System.EventHandler(txtRazonSocial_GotFocus);
+            this.txtRazonSocial.GotFocus += new System.EventHandler(this.txtRazonSocial_GotFocus);
             // 
             // lblMail
             // 
@@ -209,22 +209,8 @@
             this.dgvEmpresas.ReadOnly = true;
             this.dgvEmpresas.Size = new System.Drawing.Size(610, 336);
             this.dgvEmpresas.TabIndex = 10;
-            this.dgvEmpresas.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(dgvEmpresas_CellMouseClick);
+            this.dgvEmpresas.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvEmpresas_CellMouseClick);
             this.dgvEmpresas.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvEmpresas_CellMouseDoubleClick);
-            // 
-            // tlEmpresasBindingSource
-            // 
-            this.tlEmpresasBindingSource.DataMember = "tl_Empresas";
-            this.tlEmpresasBindingSource.DataSource = this.gD1C2014DataSet;
-            // 
-            // gD1C2014DataSet
-            // 
-            this.gD1C2014DataSet.DataSetName = "GD1C2014DataSet";
-            this.gD1C2014DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tl_EmpresasTableAdapter
-            // 
-            this.tl_EmpresasTableAdapter.ClearBeforeFill = true;
             // 
             // iDDataGridViewTextBoxColumn
             // 
@@ -286,6 +272,20 @@
             this.Eliminar.ReadOnly = true;
             this.Eliminar.Text = "";
             this.Eliminar.Width = 49;
+            // 
+            // tlEmpresasBindingSource
+            // 
+            this.tlEmpresasBindingSource.DataMember = "tl_Empresas";
+            this.tlEmpresasBindingSource.DataSource = this.gD1C2014DataSet;
+            // 
+            // gD1C2014DataSet
+            // 
+            this.gD1C2014DataSet.DataSetName = "GD1C2014DataSet";
+            this.gD1C2014DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tl_EmpresasTableAdapter
+            // 
+            this.tl_EmpresasTableAdapter.ClearBeforeFill = true;
             // 
             // Empresas
             // 

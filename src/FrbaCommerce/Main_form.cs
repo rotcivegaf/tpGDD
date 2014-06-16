@@ -12,13 +12,9 @@ using FrbaCommerce.ABM_Rol;
 using FrbaCommerce.ABM_Visibilidad;
 using FrbaCommerce.Generar_Publicacion;
 using FrbaCommerce.Listado_Estadistico;
-
-
-/////////////////////////////////////////////
 using FrbaCommerce.Abm_Cliente;
 using FrbaCommerce.Abm_Empresa;
-/////////////////////////////////////////////
-
+using FrbaCommerce.Calificar_Vendedor;
 
 namespace FrbaCommerce
 {
@@ -81,6 +77,18 @@ namespace FrbaCommerce
         {
             Empresas frmEmpresa = new Empresas();
             frmEmpresa.abrir();
+        }
+
+        private void btnCalificarVendedor_Click(object sender, EventArgs e)
+        {
+            CalificarVendedor frmCalificarVendedor = new CalificarVendedor();
+            frmCalificarVendedor.abrir(usuario_ID);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            CalificarVendedor frmCalificarVendedor = new CalificarVendedor();
+            frmCalificarVendedor.abrir(66);
         }
     }
 }
