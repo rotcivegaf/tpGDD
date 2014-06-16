@@ -36,6 +36,8 @@ namespace FrbaCommerce
             this.label1 = new System.Windows.Forms.Label();
             this.tl_UsuariosTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_UsuariosTableAdapter();
             this.tl_RolesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RolesTableAdapter();
+            this.btnABMCliente = new System.Windows.Forms.Button();
+            this.btnABMEmpresa = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,6 +73,8 @@ namespace FrbaCommerce
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnABMEmpresa);
+            this.groupBox1.Controls.Add(this.btnABMCliente);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.btnABM_Rol);
             this.groupBox1.Controls.Add(this.btnABM_Visibilidades);
@@ -109,6 +113,25 @@ namespace FrbaCommerce
             // 
             this.tl_RolesTableAdapter.ClearBeforeFill = true;
             // 
+            // btnABMCliente
+            // 
+            this.btnABMCliente.Location = new System.Drawing.Point(37, 91);
+            this.btnABMCliente.Name = "btnABMCliente";
+            this.btnABMCliente.Size = new System.Drawing.Size(75, 23);
+            this.btnABMCliente.TabIndex = 5;
+            this.btnABMCliente.Text = "ABM Cliente";
+            this.btnABMCliente.UseVisualStyleBackColor = true;
+            this.btnABMCliente.Click += new System.EventHandler(this.btnABMCliente_Click);
+            // 
+            // btnABMEmpresa
+            // 
+            this.btnABMEmpresa.Location = new System.Drawing.Point(136, 91);
+            this.btnABMEmpresa.Name = "btnABMEmpresa";
+            this.btnABMEmpresa.Size = new System.Drawing.Size(112, 23);
+            this.btnABMEmpresa.TabIndex = 5;
+            this.btnABMEmpresa.Text = "ABM Empresa";
+            this.btnABMEmpresa.UseVisualStyleBackColor = true;
+            // 
             // Main_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -136,6 +159,8 @@ namespace FrbaCommerce
         private System.Windows.Forms.Button button1;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_UsuariosTableAdapter tl_UsuariosTableAdapter;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RolesTableAdapter tl_RolesTableAdapter;
+        private System.Windows.Forms.Button btnABMEmpresa;
+        private System.Windows.Forms.Button btnABMCliente;
     }
 }
 

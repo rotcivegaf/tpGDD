@@ -61,5 +61,11 @@ namespace FrbaCommerce
             Cliente frame = new Cliente();
             frame.editar(66); // Primer Cliente luego de la importacion
         }
+
+        private void btnABMCliente_Click(object sender, EventArgs e)
+        {
+            Clientes clientes = new Clientes();
+            clientes.abrir();
+        }
     }
 }
