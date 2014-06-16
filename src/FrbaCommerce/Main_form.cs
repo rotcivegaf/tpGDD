@@ -16,6 +16,7 @@ using FrbaCommerce.Listado_Estadistico;
 
 /////////////////////////////////////////////
 using FrbaCommerce.Abm_Cliente;
+using FrbaCommerce.Abm_Empresa;
 /////////////////////////////////////////////
 
 
@@ -57,12 +58,6 @@ namespace FrbaCommerce
             frame.ShowDialog();
         }
 
-        private void btnPruebaEditarCliente_Click(object sender, EventArgs e)
-        {
-            Cliente frame = new Cliente();
-            frame.editar(66); // Primer Cliente luego de la importacion
-        }
-
         private void button3_Click_1(object sender, EventArgs e)
         {
             Comprar_Ofertar.Comprar_Ofertar frame = new Comprar_Ofertar.Comprar_Ofertar();
@@ -78,8 +73,14 @@ namespace FrbaCommerce
 
         private void btnABMCliente_Click(object sender, EventArgs e)
         {
-            Clientes clientes = new Clientes();
-            clientes.abrir();
+            Clientes frmClientes = new Clientes();
+            frmClientes.abrir();
+        }
+
+        private void btnABMEmpresa_Click(object sender, EventArgs e)
+        {
+            Empresas frmEmpresa = new Empresas();
+            frmEmpresa.abrir();
         }
     }
 }

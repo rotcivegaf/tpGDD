@@ -44,7 +44,16 @@ namespace FrbaCommerce
 
             return vacio;
         }
-        
+
+        public static void selectAll(NumericUpDown numeric)
+        {
+            numeric.Select(0,numeric.Value.ToString().Length);
+        }
+        public static void selectAll(TextBox texto)
+        {
+            texto.Select(0, texto.Text.Length);
+        }
+
         public static bool algunoVacio(params TextBox[] campos)
         {
             bool vacio = false;
@@ -67,6 +76,22 @@ namespace FrbaCommerce
 
             for (int i = 0; i < campos.Count(); i++)
                 if (campos[i].SelectedIndex == -1)
+                {
+                    vacio = true;
+                    campos[i].BackColor = Color.LightPink;
+                }
+                else
+                    campos[i].BackColor = Color.White;
+
+            return vacio;
+        }
+
+        public static bool algunoVacio(params NumericUpDown[] campos)
+        {
+            bool vacio = false;
+
+            for (int i = 0; i < campos.Count(); i++)
+                if (campos[i].Value == 0)
                 {
                     vacio = true;
                     campos[i].BackColor = Color.LightPink;

@@ -30,7 +30,6 @@
         {
             this.btnGuardar = new System.Windows.Forms.Button();
             this.lblTipoDocumento = new System.Windows.Forms.Label();
-            this.txtTipoDocumento = new System.Windows.Forms.TextBox();
             this.lblNroDocumento = new System.Windows.Forms.Label();
             this.lblApellido = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
@@ -57,6 +56,7 @@
             this.lblCUIL = new System.Windows.Forms.Label();
             this.tl_ClientesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ClientesTableAdapter();
             this.numNroDocumento = new System.Windows.Forms.NumericUpDown();
+            this.cmbTipoDocumento = new System.Windows.Forms.ComboBox();
             this.grpDireccion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPiso)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNroCalle)).BeginInit();
@@ -81,13 +81,6 @@
             this.lblTipoDocumento.Size = new System.Drawing.Size(86, 13);
             this.lblTipoDocumento.TabIndex = 1;
             this.lblTipoDocumento.Text = "Tipo Documento";
-            // 
-            // txtTipoDocumento
-            // 
-            this.txtTipoDocumento.Location = new System.Drawing.Point(104, 9);
-            this.txtTipoDocumento.Name = "txtTipoDocumento";
-            this.txtTipoDocumento.Size = new System.Drawing.Size(201, 20);
-            this.txtTipoDocumento.TabIndex = 0;
             // 
             // lblNroDocumento
             // 
@@ -316,11 +309,24 @@
             this.numNroDocumento.Size = new System.Drawing.Size(201, 20);
             this.numNroDocumento.TabIndex = 1;
             // 
+            // cmbTipoDocumento
+            // 
+            this.cmbTipoDocumento.FormattingEnabled = true;
+            this.cmbTipoDocumento.Items.AddRange(new object[] {
+            "DNI",
+            "PAS",
+            "LE"});
+            this.cmbTipoDocumento.Location = new System.Drawing.Point(104, 9);
+            this.cmbTipoDocumento.Name = "cmbTipoDocumento";
+            this.cmbTipoDocumento.Size = new System.Drawing.Size(201, 21);
+            this.cmbTipoDocumento.TabIndex = 17;
+            // 
             // Cliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(347, 475);
+            this.Controls.Add(this.cmbTipoDocumento);
             this.Controls.Add(this.numNroDocumento);
             this.Controls.Add(this.txtCUIL);
             this.Controls.Add(this.lblCUIL);
@@ -336,7 +342,6 @@
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.lblApellido);
             this.Controls.Add(this.lblNroDocumento);
-            this.Controls.Add(this.txtTipoDocumento);
             this.Controls.Add(this.lblTipoDocumento);
             this.Controls.Add(this.btnGuardar);
             this.Name = "Cliente";
@@ -356,7 +361,6 @@
         private System.Windows.Forms.Button btnGuardar;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ClientesTableAdapter tl_ClientesTableAdapter;
         private System.Windows.Forms.Label lblTipoDocumento;
-        private System.Windows.Forms.TextBox txtTipoDocumento;
         private System.Windows.Forms.Label lblNroDocumento;
         private System.Windows.Forms.Label lblApellido;
         private System.Windows.Forms.Label lblNombre;
@@ -382,5 +386,6 @@
         private System.Windows.Forms.TextBox txtCUIL;
         private System.Windows.Forms.Label lblCUIL;
         private System.Windows.Forms.NumericUpDown numNroDocumento;
+        private System.Windows.Forms.ComboBox cmbTipoDocumento;
     }
 }

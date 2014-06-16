@@ -50,7 +50,7 @@ namespace FrbaCommerce.Registro_de_Usuario
                 else
                 {
                     Empresa frame = new Empresa();
-                    frame.nuevo(usuario_ID);
+                    frame.nueva(usuario_ID);
                     rol_ID = 3;
                 }
                 this.tl_Usuarios_RolesTableAdapter.Insert(usuario_ID,rol_ID,true);

@@ -21,7 +21,7 @@ namespace FrbaCommerce.Abm_Empresa
             InitializeComponent();
         }
 
-        public void nuevo(int empresa_ID)
+        public void nueva(int empresa_ID)
         {
             nuevaEmpresa = true;
             crearUsuario = false;
@@ -68,8 +68,10 @@ namespace FrbaCommerce.Abm_Empresa
 
         private bool faltanCampos()
         {
-            //FALTA HACER -> VER QUE CHEQUEE TODO DE UNA
-            return commons.algunoVacio(txtRazonSocial, txtCUIT);
+            bool algunoVacio = commons.algunoVacio(txtRazonSocial, txtCUIT, txtMail, txtCalle, txtDepto, txtCodigoPostal);
+            algunoVacio |= commons.algunoVacio(numNroCalle, numPiso); 
+
+            return algunoVacio;
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -97,7 +99,7 @@ namespace FrbaCommerce.Abm_Empresa
                 MessageBox.Show(error.Message);
                 return;
             }
-            MessageBox.Show("Empresa Creada");
+            MessageBox.Show("Empresa Guardada");
             this.Close();
         }
     }

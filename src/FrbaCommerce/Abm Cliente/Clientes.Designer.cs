@@ -46,6 +46,11 @@
             this.tlClientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
             this.tl_ClientesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ClientesTableAdapter();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.optMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.optNuevo = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.optSalir = new System.Windows.Forms.ToolStripMenuItem();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tipoDocumentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nroDocumentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,6 +64,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlClientesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
+            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpBusqueda
@@ -74,7 +80,7 @@
             this.grpBusqueda.Controls.Add(this.lblNombre);
             this.grpBusqueda.Controls.Add(this.btnBuscar);
             this.grpBusqueda.Controls.Add(this.btnLimpiar);
-            this.grpBusqueda.Location = new System.Drawing.Point(12, 12);
+            this.grpBusqueda.Location = new System.Drawing.Point(12, 27);
             this.grpBusqueda.Name = "grpBusqueda";
             this.grpBusqueda.Size = new System.Drawing.Size(611, 137);
             this.grpBusqueda.TabIndex = 8;
@@ -92,6 +98,7 @@
             this.numNroDocumento.Name = "numNroDocumento";
             this.numNroDocumento.Size = new System.Drawing.Size(145, 20);
             this.numNroDocumento.TabIndex = 3;
+            this.numNroDocumento.GotFocus += new System.EventHandler(this.numNroDocumento_GotFocus);
             // 
             // txtMail
             // 
@@ -99,6 +106,7 @@
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(220, 20);
             this.txtMail.TabIndex = 4;
+            this.txtMail.GotFocus += new System.EventHandler(this.txtMail_GotFocus);
             // 
             // cmbTipoDocumento
             // 
@@ -120,6 +128,7 @@
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(220, 20);
             this.txtApellido.TabIndex = 1;
+            this.txtApellido.GotFocus += new System.EventHandler(this.txtApellido_GotFocus);
             // 
             // txtNombre
             // 
@@ -127,6 +136,7 @@
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(220, 20);
             this.txtNombre.TabIndex = 0;
+            this.txtNombre.GotFocus += new System.EventHandler(this.txtNombre_GotFocus);
             // 
             // lblMail
             // 
@@ -200,12 +210,12 @@
             this.mailDataGridViewTextBoxColumn,
             this.Eliminar});
             this.dgvClientes.DataSource = this.tlClientesBindingSource;
-            this.dgvClientes.Location = new System.Drawing.Point(12, 157);
+            this.dgvClientes.Location = new System.Drawing.Point(12, 172);
             this.dgvClientes.MultiSelect = false;
             this.dgvClientes.Name = "dgvClientes";
             this.dgvClientes.ReadOnly = true;
             this.dgvClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvClientes.Size = new System.Drawing.Size(611, 310);
+            this.dgvClientes.Size = new System.Drawing.Size(611, 314);
             this.dgvClientes.TabIndex = 7;
             this.dgvClientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellDoubleClick);
             this.dgvClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellContentClick);
@@ -223,6 +233,45 @@
             // tl_ClientesTableAdapter
             // 
             this.tl_ClientesTableAdapter.ClearBeforeFill = true;
+            // 
+            // menuStrip
+            // 
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.optMenu});
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(635, 24);
+            this.menuStrip.TabIndex = 9;
+            this.menuStrip.Text = "Menu";
+            // 
+            // optMenu
+            // 
+            this.optMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.optNuevo,
+            this.toolStripSeparator1,
+            this.optSalir});
+            this.optMenu.Name = "optMenu";
+            this.optMenu.Size = new System.Drawing.Size(45, 20);
+            this.optMenu.Text = "Menu";
+            // 
+            // optNuevo
+            // 
+            this.optNuevo.Name = "optNuevo";
+            this.optNuevo.Size = new System.Drawing.Size(116, 22);
+            this.optNuevo.Text = "Nuevo";
+            this.optNuevo.Click += new System.EventHandler(this.optNuevo_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(113, 6);
+            // 
+            // optSalir
+            // 
+            this.optSalir.Name = "optSalir";
+            this.optSalir.Size = new System.Drawing.Size(116, 22);
+            this.optSalir.Text = "Salir";
+            this.optSalir.Click += new System.EventHandler(this.optSalir_Click);
             // 
             // iDDataGridViewTextBoxColumn
             // 
@@ -290,11 +339,12 @@
             // 
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Red;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.NullValue = "Eliminar";
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.Eliminar.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Eliminar.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.Eliminar.HeaderText = "Eliminar";
             this.Eliminar.Name = "Eliminar";
             this.Eliminar.ReadOnly = true;
@@ -305,9 +355,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(635, 479);
+            this.ClientSize = new System.Drawing.Size(635, 498);
             this.Controls.Add(this.dgvClientes);
             this.Controls.Add(this.grpBusqueda);
+            this.Controls.Add(this.menuStrip);
+            this.MainMenuStrip = this.menuStrip;
             this.Name = "Clientes";
             this.Text = "Clientes";
             this.Load += new System.EventHandler(this.Clientes_Load);
@@ -318,7 +370,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlClientesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).EndInit();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -340,6 +395,11 @@
         private System.Windows.Forms.TextBox txtMail;
         private System.Windows.Forms.ComboBox cmbTipoDocumento;
         private System.Windows.Forms.NumericUpDown numNroDocumento;
+        private System.Windows.Forms.MenuStrip menuStrip;
+        private System.Windows.Forms.ToolStripMenuItem optMenu;
+        private System.Windows.Forms.ToolStripMenuItem optNuevo;
+        private System.Windows.Forms.ToolStripMenuItem optSalir;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipoDocumentoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nroDocumentoDataGridViewTextBoxColumn;

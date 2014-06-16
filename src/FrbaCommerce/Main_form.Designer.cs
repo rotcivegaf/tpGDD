@@ -32,14 +32,14 @@ namespace FrbaCommerce
             this.btnABM_Rol = new System.Windows.Forms.Button();
             this.btnABM_Visibilidades = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnABMEmpresa = new System.Windows.Forms.Button();
+            this.btnABMCliente = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tl_UsuariosTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_UsuariosTableAdapter();
             this.tl_RolesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RolesTableAdapter();
-            this.btnABMCliente = new System.Windows.Forms.Button();
-            this.btnABMEmpresa = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -89,9 +89,29 @@ namespace FrbaCommerce
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Funcionaliades";
             // 
+            // btnABMEmpresa
+            // 
+            this.btnABMEmpresa.Location = new System.Drawing.Point(136, 91);
+            this.btnABMEmpresa.Name = "btnABMEmpresa";
+            this.btnABMEmpresa.Size = new System.Drawing.Size(112, 23);
+            this.btnABMEmpresa.TabIndex = 5;
+            this.btnABMEmpresa.Text = "ABM Empresa";
+            this.btnABMEmpresa.UseVisualStyleBackColor = true;
+            this.btnABMEmpresa.Click += new System.EventHandler(this.btnABMEmpresa_Click);
+            // 
+            // btnABMCliente
+            // 
+            this.btnABMCliente.Location = new System.Drawing.Point(37, 91);
+            this.btnABMCliente.Name = "btnABMCliente";
+            this.btnABMCliente.Size = new System.Drawing.Size(75, 23);
+            this.btnABMCliente.TabIndex = 5;
+            this.btnABMCliente.Text = "ABM Cliente";
+            this.btnABMCliente.UseVisualStyleBackColor = true;
+            this.btnABMCliente.Click += new System.EventHandler(this.btnABMCliente_Click);
+            // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(37, 92);
+            this.button3.Location = new System.Drawing.Point(37, 134);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(99, 32);
             this.button3.TabIndex = 6;
@@ -136,25 +156,6 @@ namespace FrbaCommerce
             // tl_RolesTableAdapter
             // 
             this.tl_RolesTableAdapter.ClearBeforeFill = true;
-            // 
-            // btnABMCliente
-            // 
-            this.btnABMCliente.Location = new System.Drawing.Point(37, 91);
-            this.btnABMCliente.Name = "btnABMCliente";
-            this.btnABMCliente.Size = new System.Drawing.Size(75, 23);
-            this.btnABMCliente.TabIndex = 5;
-            this.btnABMCliente.Text = "ABM Cliente";
-            this.btnABMCliente.UseVisualStyleBackColor = true;
-            this.btnABMCliente.Click += new System.EventHandler(this.btnABMCliente_Click);
-            // 
-            // btnABMEmpresa
-            // 
-            this.btnABMEmpresa.Location = new System.Drawing.Point(136, 91);
-            this.btnABMEmpresa.Name = "btnABMEmpresa";
-            this.btnABMEmpresa.Size = new System.Drawing.Size(112, 23);
-            this.btnABMEmpresa.TabIndex = 5;
-            this.btnABMEmpresa.Text = "ABM Empresa";
-            this.btnABMEmpresa.UseVisualStyleBackColor = true;
             // 
             // Main_form
             // 
