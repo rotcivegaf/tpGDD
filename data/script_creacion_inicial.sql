@@ -733,8 +733,8 @@ BEGIN
 END
 GO
 
---Stored Procedur InicializarCalificacionesClientes
-CREATE PROCEDUR sp_InicializarCalificacionesClientes
+--Stored Procedure InicializarCalificacionesClientes
+CREATE PROCEDURE LOL.sp_InicializarCalificacionesClientes
 AS
 BEGIN
 	UPDATE
@@ -770,7 +770,7 @@ END
 GO
 
 --Stored Procedure InicializarCalificacionesEmpresas
-CREATE PROCEDURE sp_InicializarCalificacionesEmpresas
+CREATE PROCEDURE LOL.sp_InicializarCalificacionesEmpresas
 AS
 BEGIN
 	UPDATE
