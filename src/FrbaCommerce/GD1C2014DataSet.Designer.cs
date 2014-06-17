@@ -13828,11 +13828,35 @@ SELECT ID, Fecha, Monto, Publicacion_Codigo, Compra_ID FROM LOL.tl_Pendientes WH
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ID, Fecha, Monto, Publicacion_Codigo, Compra_ID FROM LOL.tl_Pendientes";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"SELECT 
+    tl_Pendientes.ID, 
+    tl_Pendientes.Fecha, 
+    tl_Pendientes.Monto, 
+    tl_Pendientes.Publicacion_Codigo, 
+    tl_Pendientes.Compra_ID
+FROM 
+    LOL.tl_Publicaciones JOIN LOL.tl_Pendientes ON (tl_Publicaciones.Cliente_ID = @Cliente_ID AND tl_Publicaciones.Codigo = tl_Pendientes.Publicacion_Codigo)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Cliente_ID", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, "Cliente_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = @"SELECT 
+    tl_Pendientes.ID, 
+    tl_Pendientes.Fecha, 
+    tl_Pendientes.Monto, 
+    tl_Pendientes.Publicacion_Codigo, 
+    tl_Pendientes.Compra_ID
+FROM 
+    LOL.tl_Publicaciones JOIN LOL.tl_Pendientes ON (tl_Publicaciones.Empresa_ID = @Empresa_ID AND tl_Publicaciones.Codigo = tl_Pendientes.Publicacion_Codigo)";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Empresa_ID", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, "Empresa_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13852,6 +13876,38 @@ SELECT ID, Fecha, Monto, Publicacion_Codigo, Compra_ID FROM LOL.tl_Pendientes WH
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual GD1C2014DataSet.tl_PendientesDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            GD1C2014DataSet.tl_PendientesDataTable dataTable = new GD1C2014DataSet.tl_PendientesDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual GD1C2014DataSet.tl_PendientesDataTable getByClienteID(global::System.Nullable<decimal> Cliente_ID) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((Cliente_ID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(Cliente_ID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            GD1C2014DataSet.tl_PendientesDataTable dataTable = new GD1C2014DataSet.tl_PendientesDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual GD1C2014DataSet.tl_PendientesDataTable getByEmpresaID(global::System.Nullable<decimal> Empresa_ID) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((Empresa_ID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(Empresa_ID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
             GD1C2014DataSet.tl_PendientesDataTable dataTable = new GD1C2014DataSet.tl_PendientesDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

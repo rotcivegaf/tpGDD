@@ -41,6 +41,7 @@ namespace FrbaCommerce
             this.label1 = new System.Windows.Forms.Label();
             this.tl_UsuariosTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_UsuariosTableAdapter();
             this.tl_RolesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RolesTableAdapter();
+            this.btnFacturarPublicaciones = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,6 +77,7 @@ namespace FrbaCommerce
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnFacturarPublicaciones);
             this.groupBox1.Controls.Add(this.btnCalificarVendedor);
             this.groupBox1.Controls.Add(this.btnABMEmpresa);
             this.groupBox1.Controls.Add(this.btnABMCliente);
@@ -169,6 +171,16 @@ namespace FrbaCommerce
             // 
             this.tl_RolesTableAdapter.ClearBeforeFill = true;
             // 
+            // btnFacturarPublicaciones
+            // 
+            this.btnFacturarPublicaciones.Location = new System.Drawing.Point(37, 128);
+            this.btnFacturarPublicaciones.Name = "btnFacturarPublicaciones";
+            this.btnFacturarPublicaciones.Size = new System.Drawing.Size(88, 39);
+            this.btnFacturarPublicaciones.TabIndex = 8;
+            this.btnFacturarPublicaciones.Text = "Facturar Publicaciones";
+            this.btnFacturarPublicaciones.UseVisualStyleBackColor = true;
+            this.btnFacturarPublicaciones.Click += new System.EventHandler(this.btnFacturarPublicaciones_Click);
+            // 
             // Main_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -201,6 +213,7 @@ namespace FrbaCommerce
         private System.Windows.Forms.Button btnABMEmpresa;
         private System.Windows.Forms.Button btnABMCliente;
         private System.Windows.Forms.Button btnCalificarVendedor;
+        private System.Windows.Forms.Button btnFacturarPublicaciones;
     }
 }
 

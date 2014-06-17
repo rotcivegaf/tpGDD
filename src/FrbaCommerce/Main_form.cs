@@ -15,12 +15,14 @@ using FrbaCommerce.Listado_Estadistico;
 using FrbaCommerce.Abm_Cliente;
 using FrbaCommerce.Abm_Empresa;
 using FrbaCommerce.Calificar_Vendedor;
+using FrbaCommerce.Facturar_Publicaciones;
 
 namespace FrbaCommerce
 {
     public partial class Main_form : Form
     {
         int usuario_ID;
+        int rol_ID;
 
         public Main_form()
         {
@@ -33,7 +35,8 @@ namespace FrbaCommerce
             if (frmLogin.login())
             {
                 usuario_ID = frmLogin.getUsuarioLogueadoID();
-                mostrarFuncionalidades(frmLogin.getRolID());
+                rol_ID = frmLogin.getRolID();
+                mostrarFuncionalidades(rol_ID);
             }
         }
 
@@ -103,6 +106,12 @@ namespace FrbaCommerce
                 MessageBox.Show("Debe Loguearse al Sistema");
                 return false;
             }
+        }
+
+        private void btnFacturarPublicaciones_Click(object sender, EventArgs e)
+        {
+            FacturarPublicaciones frmFacturarPublicaciones = new FacturarPublicaciones();
+            frmFacturarPublicaciones.abrir(usuario_ID, rol_ID);
         }
     }
 }
