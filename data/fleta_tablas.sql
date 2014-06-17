@@ -45,8 +45,10 @@ DROP PROCEDURE LOL.sp_CrearPublicacion
 DROP PROCEDURE LOL.sp_InsertPublicacionRubro 
 --DROP PROCEDURE LOL.sp_InsertarCliente
 DROP PROCEDURE LOL.sp_GuardarCliente
+DROP PROCEDURE LOL.sp_GuardarEmpresa
 DROP PROCEDURE LOL.sp_Paginador
 DROP PROCEDURE LOL.sp_CalificarVendedor
+DROP PROCEDURE LOL.sp_VendedoresConMasStock
 
 --Eliminar Tipo de dato
 DROP TYPE LOL.dataTable

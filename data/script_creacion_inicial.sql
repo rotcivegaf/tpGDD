@@ -727,7 +727,8 @@ BEGIN
 				ON (M.Cli_Dni = C.Nro_Documento)
 		WHERE
 			Compra_Cantidad IS NOT NULL AND
-			Calificacion_Codigo IS NOT NULL
+			--Asi importamos las compras que no estan calificadas, no se si falta algo mas
+			--Calificacion_Codigo IS NOT NULL
 
 END
 GO
@@ -1095,7 +1096,9 @@ BEGIN
 			@Piso,
 			@Depto,
 			@CodPostal,
-			@Telefono)
+			@Telefono,
+			0,
+			0)
 	ELSE
 		UPDATE LOL.tl_Clientes SET
 			Tipo_Documento = @TipoDocumento,
@@ -1119,7 +1122,7 @@ END
 GO
 
 /* Stored Procedure GuardarEmpresa*/
-CREATE ALTER PROCEDURE [LOL].[sp_GuardarEmpresa]
+CREATE PROCEDURE [LOL].[sp_GuardarEmpresa]
 	@isNew BIT,
 	@UserPassword NVARCHAR(255) = '',
 	@ID INT,
@@ -1164,7 +1167,9 @@ BEGIN
 			@NroCalle,
 			@Piso,
 			@Depto,
-			@CodPostal)
+			@CodPostal,
+			0,
+			0)
 	ELSE
 		UPDATE LOL.tl_Empresas SET
 			Razon_Social = @Razon_Social,
@@ -1280,5 +1285,31 @@ BEGIN
 			WHERE ID = @EmpresaID;
 
 	COMMIT
+END
+GO
+
+/* Stored Procedure VendedoresConMasStock*/
+CREATE PROCEDURE LOL.sp_VendedoresConMasStock @anio int,
+											  @trimestre int,
+											  @visibilidad_codigo int,
+											  @mes int
+
+AS
+BEGIN
+
+	SELECT TOP 5
+		ISNULL(tl_Publicaciones.Cliente_ID, tl_Publicaciones.Empresa_ID) AS 'Codigo de usuario',
+		SUM(tl_Publicaciones.Stock) AS 'Productos sin vender'
+	FROM
+		LOL.tl_Publicaciones
+    WHERE
+		YEAR(tl_Publicaciones.Fecha) = @anio AND
+		(MONTH(tl_Publicaciones.Fecha) BETWEEN @trimestre AND (@trimestre+2)) AND
+		(MONTH(tl_Publicaciones.Fecha) = (@trimestre + @mes) OR @mes IS NULL) AND
+		(tl_Publicaciones.Visibilidad_Codigo = @visibilidad_codigo OR @visibilidad_codigo IS NULL)
+	GROUP BY ISNULL(tl_Publicaciones.Cliente_ID, tl_Publicaciones.Empresa_ID)
+	ORDER BY 2 DESC
+	OPTION(RECOMPILE)
+    
 END
 GO
