@@ -110,8 +110,11 @@ namespace FrbaCommerce
 
         private void btnFacturarPublicaciones_Click(object sender, EventArgs e)
         {
-            FacturarPublicaciones frmFacturarPublicaciones = new FacturarPublicaciones();
-            frmFacturarPublicaciones.abrir(usuario_ID, rol_ID);
+            if (logueado())
+            {
+                FacturarPublicaciones frmFacturarPublicaciones = new FacturarPublicaciones();
+                frmFacturarPublicaciones.abrir(usuario_ID, rol_ID);
+            }
         }
     }
 }

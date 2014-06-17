@@ -5,6 +5,7 @@ using System.Text;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 using System.Drawing;
+using System.IO;
 
 namespace FrbaCommerce
 {
@@ -27,6 +28,23 @@ namespace FrbaCommerce
             }
 
             return sBuilder.ToString();
+        }
+
+        public static DateTime getDate()
+        {
+            try
+            {
+                using (StreamReader sr = new StreamReader("..\\config.config"))
+                {
+                    String line = sr.ReadToEnd();
+                    return Convert.ToDateTime(line);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("No se pudo leer el archivo de configuracion.\nSe devolvera la fecha del sistema");
+                return DateTime.Now;
+            }
         }
 
         public static bool algunoVacio(params ComboBox[] campos)
