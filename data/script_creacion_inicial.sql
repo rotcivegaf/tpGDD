@@ -733,6 +733,78 @@ BEGIN
 END
 GO
 
+--Stored Procedur InicializarCalificacionesClientes
+CREATE PROCEDUR sp_InicializarCalificacionesClientes
+AS
+BEGIN
+	UPDATE
+		LOL.tl_Clientes
+	SET
+		Suma_Calificaciones = iii.SumaTotal,
+		Cantidad_Calificaciones = iii.CantidadTotal
+	FROM
+		(SELECT
+			ii.Cliente_ID,
+			SUM(ii.SumaCalificaciones) AS SumaTotal,
+			SUM(ii.CantidadCalificaciones) AS CantidadTotal
+		FROM
+			(SELECT
+				P.Cliente_ID,
+				i.*
+			FROM
+				(SELECT 
+					Publicacion_Codigo,
+					SUM(Calificacion_Cant_Estrellas) AS SumaCalificaciones,
+					COUNT(0) AS CantidadCalificaciones 
+				 FROM
+					LOL.tl_Compras
+				 WHERE
+					Calificacion_Cant_Estrellas IS NOT NULL
+				 GROUP BY
+					Publicacion_Codigo) i JOIN LOL.tl_Publicaciones P ON (i.Publicacion_Codigo = P.Codigo)) ii
+		WHERE
+			ii.Cliente_ID IS NOT NULL
+		GROUP BY
+			ii.Cliente_ID) iii JOIN LOL.tl_Clientes ON (iii.Cliente_ID = ID)
+END
+GO
+
+--Stored Procedure InicializarCalificacionesEmpresas
+CREATE PROCEDURE sp_InicializarCalificacionesEmpresas
+AS
+BEGIN
+	UPDATE
+		LOL.tl_Empresas
+	SET
+		Suma_Calificaciones = iii.SumaTotal,
+		Cantidad_Calificaciones = iii.CantidadTotal
+	FROM
+		(SELECT
+			ii.Empresa_ID,
+			SUM(ii.SumaCalificaciones) AS SumaTotal,
+			SUM(ii.CantidadCalificaciones) AS CantidadTotal
+		FROM
+			(SELECT
+				P.Empresa_ID,
+				i.*
+			FROM
+				(SELECT 
+					Publicacion_Codigo,
+					SUM(Calificacion_Cant_Estrellas) AS SumaCalificaciones,
+					COUNT(0) AS CantidadCalificaciones 
+				 FROM
+					LOL.tl_Compras
+				 WHERE
+					Calificacion_Cant_Estrellas IS NOT NULL
+				 GROUP BY
+					Publicacion_Codigo) i JOIN LOL.tl_Publicaciones P ON (i.Publicacion_Codigo = P.Codigo)) ii
+		WHERE
+			ii.Empresa_ID IS NOT NULL
+		GROUP BY
+			ii.Empresa_ID) iii JOIN LOL.tl_Empresas ON (iii.Empresa_ID = ID)
+END
+GO
+
 --Stored Procedure ImportarFacturas
 CREATE PROCEDURE LOL.sp_ImportarFacturas
 AS
@@ -797,6 +869,8 @@ EXEC LOL.sp_ImportarEmpresas
 EXEC LOL.sp_ImportarClientes
 EXEC LOL.sp_ImportarPublicaciones
 EXEC LOL.sp_ImportarCompras
+EXEC LOL.sp_InicializarCalificacionesClientes
+EXEC LOL.sp_InicializarCalificacionesEmpresas
 EXEC LOL.sp_ImportarFacturas
 EXEC LOL.sp_ImportarOfertas
 
