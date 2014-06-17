@@ -80,8 +80,8 @@ namespace FrbaCommerce.Abm_Cliente
         {
             int ID = getClienteID(e.RowIndex);
             Cliente cliente = new Cliente();
-            cliente.editar(ID);
-            llenarGrid();
+            if (cliente.editar(ID))
+                llenarGrid();
         }
 
         private int getClienteID(int rowIndex)
@@ -104,8 +104,8 @@ namespace FrbaCommerce.Abm_Cliente
         private void optNuevo_Click(object sender, EventArgs e)
         {
             Cliente frmCliente = new Cliente();
-            frmCliente.nuevoByAdmin();
-            llenarGrid();
+            if (frmCliente.nuevoByAdmin())
+                llenarGrid();
         }
 
         private void optSalir_Click(object sender, EventArgs e)

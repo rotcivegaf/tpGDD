@@ -32,7 +32,6 @@ namespace FrbaCommerce
             this.btnABM_Rol = new System.Windows.Forms.Button();
             this.btnABM_Visibilidades = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.btnCalificarVendedor = new System.Windows.Forms.Button();
             this.btnABMEmpresa = new System.Windows.Forms.Button();
             this.btnABMCliente = new System.Windows.Forms.Button();
@@ -77,7 +76,6 @@ namespace FrbaCommerce
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.btnCalificarVendedor);
             this.groupBox1.Controls.Add(this.btnABMEmpresa);
             this.groupBox1.Controls.Add(this.btnABMCliente);
@@ -92,16 +90,6 @@ namespace FrbaCommerce
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Funcionaliades";
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(415, 110);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(149, 19);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "PRUEBA Calificar Vendedor";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // btnCalificarVendedor
             // 
@@ -213,7 +201,6 @@ namespace FrbaCommerce
         private System.Windows.Forms.Button btnABMEmpresa;
         private System.Windows.Forms.Button btnABMCliente;
         private System.Windows.Forms.Button btnCalificarVendedor;
-        private System.Windows.Forms.Button button4;
     }
 }
 

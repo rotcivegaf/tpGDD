@@ -15,6 +15,7 @@ namespace FrbaCommerce.Abm_Cliente
         bool nuevoCliente;
         bool crearUsuario;
         int ID;
+        bool guardado = false;
 
         public Cliente()
         {
@@ -30,23 +31,25 @@ namespace FrbaCommerce.Abm_Cliente
             this.ShowDialog();
         }
 
-        public void editar(int cliente_ID)
+        public bool editar(int cliente_ID)
         {
             nuevoCliente = false;
             crearUsuario = false;
             ID = cliente_ID;
             cargarDatos();
-
             this.ShowDialog();
+
+            return guardado;
         }
 
-        public void nuevoByAdmin()
+        public bool nuevoByAdmin()
         {
             nuevoCliente = true;
             crearUsuario = true;
             ID = 0;
-
             this.ShowDialog();
+
+            return guardado;
         }
 
         private void cargarDatos()
@@ -109,6 +112,7 @@ namespace FrbaCommerce.Abm_Cliente
                 return;
             }
             MessageBox.Show("Cliente Guardado");
+            guardado = true;
             this.Close();
         }
 

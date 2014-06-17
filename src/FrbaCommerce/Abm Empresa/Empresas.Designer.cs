@@ -209,8 +209,8 @@
             this.dgvEmpresas.ReadOnly = true;
             this.dgvEmpresas.Size = new System.Drawing.Size(610, 336);
             this.dgvEmpresas.TabIndex = 10;
-            this.dgvEmpresas.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvEmpresas_CellMouseClick);
             this.dgvEmpresas.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvEmpresas_CellMouseDoubleClick);
+            this.dgvEmpresas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmpresas_CellContentClick);
             // 
             // iDDataGridViewTextBoxColumn
             // 

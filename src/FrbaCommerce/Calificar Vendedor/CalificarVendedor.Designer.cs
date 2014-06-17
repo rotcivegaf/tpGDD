@@ -236,7 +236,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numCantidadEstrellas)).EndInit();
             this.grpCompras.ResumeLayout(false);
             this.ResumeLayout(false);
-
         }
 
         #endregion

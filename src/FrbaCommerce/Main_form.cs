@@ -21,7 +21,6 @@ namespace FrbaCommerce
     public partial class Main_form : Form
     {
         int usuario_ID;
-        int rol_ID;
 
         public Main_form()
         {
@@ -30,10 +29,17 @@ namespace FrbaCommerce
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            formLogin frame = new formLogin();
-            frame.ShowDialog();
-            usuario_ID = frame.getUsuarioLogueadoID() ;
-            rol_ID = frame.getRolID();
+            formLogin frmLogin = new formLogin();
+            if (frmLogin.login())
+            {
+                usuario_ID = frmLogin.getUsuarioLogueadoID();
+                mostrarFuncionalidades(frmLogin.getRolID());
+            }
+        }
+
+        private void mostrarFuncionalidades(int rolID)
+        {
+            MessageBox.Show("FALTA HACER -> Mostrar Funcionalidades");
         }
 
         private void btnABM_Rol_Click(object sender, EventArgs e)
@@ -81,14 +87,22 @@ namespace FrbaCommerce
 
         private void btnCalificarVendedor_Click(object sender, EventArgs e)
         {
-            CalificarVendedor frmCalificarVendedor = new CalificarVendedor();
-            frmCalificarVendedor.abrir(usuario_ID);
+            if (logueado())
+            {
+                CalificarVendedor frmCalificarVendedor = new CalificarVendedor();
+                frmCalificarVendedor.abrir(usuario_ID);
+            }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private bool logueado()
         {
-            CalificarVendedor frmCalificarVendedor = new CalificarVendedor();
-            frmCalificarVendedor.abrir(66);
+            if (usuario_ID != 0)
+                return true;
+            else
+            {
+                MessageBox.Show("Debe Loguearse al Sistema");
+                return false;
+            }
         }
     }
 }

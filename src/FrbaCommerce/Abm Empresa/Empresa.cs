@@ -15,6 +15,7 @@ namespace FrbaCommerce.Abm_Empresa
         bool nuevaEmpresa;
         bool crearUsuario;
         int ID;
+        bool guardada = false;
 
         public Empresa()
         {
@@ -30,23 +31,25 @@ namespace FrbaCommerce.Abm_Empresa
             this.ShowDialog();
         }
 
-        public void editar(int empresa_ID)
+        public bool editar(int empresa_ID)
         {
             nuevaEmpresa = false;
             crearUsuario = false;
             ID = empresa_ID;
             cargarDatos();
-
             this.ShowDialog();
+
+            return guardada;
         }
 
-        public void nuevaByAdmin()
+        public bool nuevaByAdmin()
         {
             nuevaEmpresa = true;
             crearUsuario = true;
             ID = 0;
-
             this.ShowDialog();
+
+            return guardada;
         }
 
         private void cargarDatos()
@@ -100,6 +103,7 @@ namespace FrbaCommerce.Abm_Empresa
                 return;
             }
             MessageBox.Show("Empresa Guardada");
+            guardada = true;
             this.Close();
         }
     }

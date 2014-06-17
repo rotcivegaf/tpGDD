@@ -35,10 +35,7 @@ namespace FrbaCommerce.Registro_de_Usuario
         {
             int rol_ID;
 
-            if (!commons.algunoVacio(txtUsername, txtPassword))
-                if (!optCliente.Checked && !optEmpresa.Checked)
-                    MessageBox.Show("Debe seleccionar el Rol");
-                else
+            if (!faltanCampos())
             {
                 usuario_ID = Convert.ToInt32(this.tl_UsuariosTableAdapter.InsertAndGetID(txtUsername.Text, commons.hash(txtPassword.Text) ).ToString());
                 if (optCliente.Checked)
@@ -56,6 +53,18 @@ namespace FrbaCommerce.Registro_de_Usuario
                 this.tl_Usuarios_RolesTableAdapter.Insert(usuario_ID,rol_ID,true);
                 this.Close();
             }
+        }
+
+        private bool faltanCampos()
+        {
+            bool algunoVacio = commons.algunoVacio(txtUsername, txtPassword);   
+            if (!optCliente.Checked && !optEmpresa.Checked)
+            {    
+                MessageBox.Show("Debe seleccionar el Rol");
+                algunoVacio = true;
+            }
+
+            return algunoVacio;
         }
     }
 }

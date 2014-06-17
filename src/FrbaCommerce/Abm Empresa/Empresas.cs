@@ -32,8 +32,8 @@ namespace FrbaCommerce.Abm_Empresa
         private void opcNueva_Click(object sender, EventArgs e)
         {
             Empresa frmEmpresa = new Empresa();
-            frmEmpresa.nuevaByAdmin();
-            llenarGrid();
+            if (frmEmpresa.nuevaByAdmin())
+                llenarGrid();
         }
 
         private void opcSalir_Click(object sender, EventArgs e)
@@ -77,15 +77,6 @@ namespace FrbaCommerce.Abm_Empresa
         {
             llenarGrid();
         }
-
-        private void dgvEmpresas_CellMouseClick(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
-        {
-            if (e.ColumnIndex == dgvEmpresas.ColumnCount - 1 && e.RowIndex >= 0)
-            {
-                int ID = getEmpresaID(e.RowIndex);
-                //FALTA HACER -> sp_EliminarEmpresa
-            }
-        }
         
         void dgvEmpresas_CellMouseDoubleClick(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
         {
@@ -93,8 +84,8 @@ namespace FrbaCommerce.Abm_Empresa
             {
                 int ID = getEmpresaID(e.RowIndex);
                 Empresa frmEmpresa = new Empresa();
-                frmEmpresa.editar(ID);
-                llenarGrid();
+                if (frmEmpresa.editar(ID))
+                    llenarGrid();
             } 
         }
         
@@ -107,5 +98,14 @@ namespace FrbaCommerce.Abm_Empresa
         private void txtMail_GotFocus(object sender, EventArgs e) { commons.selectAll(txtMail); }
         private void txtCUIT_GotFocus(object sender, EventArgs e) { commons.selectAll(txtCUIT); }
         private void txtRazonSocial_GotFocus(object sender, EventArgs e) { commons.selectAll(txtRazonSocial); }
+
+        private void dgvEmpresas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dgvEmpresas.ColumnCount - 1 && e.RowIndex >= 0)
+            {
+                int ID = getEmpresaID(e.RowIndex);
+                //FALTA HACER -> sp_EliminarEmpresa
+            }
+        }
     }
 }
