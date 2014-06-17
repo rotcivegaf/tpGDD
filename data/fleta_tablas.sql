@@ -51,6 +51,7 @@ DROP PROCEDURE LOL.sp_GuardarEmpresa
 DROP PROCEDURE LOL.sp_Paginador
 DROP PROCEDURE LOL.sp_CalificarVendedor
 DROP PROCEDURE LOL.sp_VendedoresConMasStock
+DROP PROCEDURE LOL.sp_InsertarUsuario
 
 --Eliminar Tipo de dato
 DROP TYPE LOL.dataTable
