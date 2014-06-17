@@ -31,6 +31,8 @@ DROP PROCEDURE LOL.sp_InicializarFuncionalidades
 DROP PROCEDURE LOL.sp_InicializarRoles
 DROP PROCEDURE LOL.sp_InicializarUsuarioAdmin
 DROP PROCEDURE LOL.sp_ImportarCompras
+DROP PROCEDURE LOL.sp_InicializarCalificacionesClientes
+DROP PROCEDURE LOL.sp_InicializarCalificacionesEmpresas
 DROP PROCEDURE LOL.sp_ImportarOfertas
 
 
