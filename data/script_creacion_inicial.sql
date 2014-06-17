@@ -1397,3 +1397,25 @@ BEGIN
     
 END
 GO
+
+/* Stored Procedure InsertarUsuario */
+CREATE PROCEDURE [LOL].[sp_InsertarUsuario]
+	@Username NVARCHAR(2555),
+	@Password NVARCHAR(255),
+	@ID INT OUT
+AS
+BEGIN
+	DECLARE @error varchar(255);
+	SET NOCOUNT ON;
+
+	IF EXISTS(SELECT Username FROM LOL.tl_Usuarios WHERE Username = @Username)
+		BEGIN
+			SET @error = 'Username Existente';
+			RAISERROR (@error, 11,1);
+    			RETURN -1;
+		END
+	INSERT INTO LOL.tl_Usuarios (Username,Password) VALUES (@Username,@Password)
+	SELECT @ID = @@IDENTITY
+	
+END
+GO
