@@ -59,6 +59,14 @@ namespace FrbaCommerce {
         
         private tl_VisibilidadesDataTable tabletl_Visibilidades;
         
+        private sp_VendedoresConMasStockDataTable tablesp_VendedoresConMasStock;
+        
+        private clientesMasPublicacionesSinCalificarDataTable tableclientesMasPublicacionesSinCalificar;
+        
+        private vendedoresMayorReputacionDataTable tablevendedoresMayorReputacion;
+        
+        private vendedoresMayorFacturacionDataTable tablevendedoresMayorFacturacion;
+        
         private global::System.Data.DataRelation relationfk_Compras_Cliente;
         
         private global::System.Data.DataRelation relationfk_Compras_Publicacion;
@@ -173,6 +181,18 @@ namespace FrbaCommerce {
                 }
                 if ((ds.Tables["tl_Visibilidades"] != null)) {
                     base.Tables.Add(new tl_VisibilidadesDataTable(ds.Tables["tl_Visibilidades"]));
+                }
+                if ((ds.Tables["sp_VendedoresConMasStock"] != null)) {
+                    base.Tables.Add(new sp_VendedoresConMasStockDataTable(ds.Tables["sp_VendedoresConMasStock"]));
+                }
+                if ((ds.Tables["clientesMasPublicacionesSinCalificar"] != null)) {
+                    base.Tables.Add(new clientesMasPublicacionesSinCalificarDataTable(ds.Tables["clientesMasPublicacionesSinCalificar"]));
+                }
+                if ((ds.Tables["vendedoresMayorReputacion"] != null)) {
+                    base.Tables.Add(new vendedoresMayorReputacionDataTable(ds.Tables["vendedoresMayorReputacion"]));
+                }
+                if ((ds.Tables["vendedoresMayorFacturacion"] != null)) {
+                    base.Tables.Add(new vendedoresMayorFacturacionDataTable(ds.Tables["vendedoresMayorFacturacion"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -346,6 +366,42 @@ namespace FrbaCommerce {
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public sp_VendedoresConMasStockDataTable sp_VendedoresConMasStock {
+            get {
+                return this.tablesp_VendedoresConMasStock;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public clientesMasPublicacionesSinCalificarDataTable clientesMasPublicacionesSinCalificar {
+            get {
+                return this.tableclientesMasPublicacionesSinCalificar;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public vendedoresMayorReputacionDataTable vendedoresMayorReputacion {
+            get {
+                return this.tablevendedoresMayorReputacion;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public vendedoresMayorFacturacionDataTable vendedoresMayorFacturacion {
+            get {
+                return this.tablevendedoresMayorFacturacion;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -454,6 +510,18 @@ namespace FrbaCommerce {
                 }
                 if ((ds.Tables["tl_Visibilidades"] != null)) {
                     base.Tables.Add(new tl_VisibilidadesDataTable(ds.Tables["tl_Visibilidades"]));
+                }
+                if ((ds.Tables["sp_VendedoresConMasStock"] != null)) {
+                    base.Tables.Add(new sp_VendedoresConMasStockDataTable(ds.Tables["sp_VendedoresConMasStock"]));
+                }
+                if ((ds.Tables["clientesMasPublicacionesSinCalificar"] != null)) {
+                    base.Tables.Add(new clientesMasPublicacionesSinCalificarDataTable(ds.Tables["clientesMasPublicacionesSinCalificar"]));
+                }
+                if ((ds.Tables["vendedoresMayorReputacion"] != null)) {
+                    base.Tables.Add(new vendedoresMayorReputacionDataTable(ds.Tables["vendedoresMayorReputacion"]));
+                }
+                if ((ds.Tables["vendedoresMayorFacturacion"] != null)) {
+                    base.Tables.Add(new vendedoresMayorFacturacionDataTable(ds.Tables["vendedoresMayorFacturacion"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -587,6 +655,30 @@ namespace FrbaCommerce {
                     this.tabletl_Visibilidades.InitVars();
                 }
             }
+            this.tablesp_VendedoresConMasStock = ((sp_VendedoresConMasStockDataTable)(base.Tables["sp_VendedoresConMasStock"]));
+            if ((initTable == true)) {
+                if ((this.tablesp_VendedoresConMasStock != null)) {
+                    this.tablesp_VendedoresConMasStock.InitVars();
+                }
+            }
+            this.tableclientesMasPublicacionesSinCalificar = ((clientesMasPublicacionesSinCalificarDataTable)(base.Tables["clientesMasPublicacionesSinCalificar"]));
+            if ((initTable == true)) {
+                if ((this.tableclientesMasPublicacionesSinCalificar != null)) {
+                    this.tableclientesMasPublicacionesSinCalificar.InitVars();
+                }
+            }
+            this.tablevendedoresMayorReputacion = ((vendedoresMayorReputacionDataTable)(base.Tables["vendedoresMayorReputacion"]));
+            if ((initTable == true)) {
+                if ((this.tablevendedoresMayorReputacion != null)) {
+                    this.tablevendedoresMayorReputacion.InitVars();
+                }
+            }
+            this.tablevendedoresMayorFacturacion = ((vendedoresMayorFacturacionDataTable)(base.Tables["vendedoresMayorFacturacion"]));
+            if ((initTable == true)) {
+                if ((this.tablevendedoresMayorFacturacion != null)) {
+                    this.tablevendedoresMayorFacturacion.InitVars();
+                }
+            }
             this.relationfk_Compras_Cliente = this.Relations["fk_Compras_Cliente"];
             this.relationfk_Compras_Publicacion = this.Relations["fk_Compras_Publicacion"];
             this.relationfk_Facturas_Publicacion = this.Relations["fk_Facturas_Publicacion"];
@@ -649,6 +741,14 @@ namespace FrbaCommerce {
             base.Tables.Add(this.tabletl_Usuarios_Roles);
             this.tabletl_Visibilidades = new tl_VisibilidadesDataTable();
             base.Tables.Add(this.tabletl_Visibilidades);
+            this.tablesp_VendedoresConMasStock = new sp_VendedoresConMasStockDataTable();
+            base.Tables.Add(this.tablesp_VendedoresConMasStock);
+            this.tableclientesMasPublicacionesSinCalificar = new clientesMasPublicacionesSinCalificarDataTable();
+            base.Tables.Add(this.tableclientesMasPublicacionesSinCalificar);
+            this.tablevendedoresMayorReputacion = new vendedoresMayorReputacionDataTable();
+            base.Tables.Add(this.tablevendedoresMayorReputacion);
+            this.tablevendedoresMayorFacturacion = new vendedoresMayorFacturacionDataTable();
+            base.Tables.Add(this.tablevendedoresMayorFacturacion);
             this.relationfk_Compras_Cliente = new global::System.Data.DataRelation("fk_Compras_Cliente", new global::System.Data.DataColumn[] {
                         this.tabletl_Clientes.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tabletl_Compras.Cliente_IDColumn}, false);
@@ -813,6 +913,26 @@ namespace FrbaCommerce {
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private bool ShouldSerializesp_VendedoresConMasStock() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private bool ShouldSerializeclientesMasPublicacionesSinCalificar() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private bool ShouldSerializevendedoresMayorReputacion() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private bool ShouldSerializevendedoresMayorFacturacion() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void SchemaChanged(object sender, global::System.ComponentModel.CollectionChangeEventArgs e) {
             if ((e.Action == global::System.ComponentModel.CollectionChangeAction.Remove)) {
                 this.InitVars();
@@ -898,6 +1018,14 @@ namespace FrbaCommerce {
         public delegate void tl_Usuarios_RolesRowChangeEventHandler(object sender, tl_Usuarios_RolesRowChangeEvent e);
         
         public delegate void tl_VisibilidadesRowChangeEventHandler(object sender, tl_VisibilidadesRowChangeEvent e);
+        
+        public delegate void sp_VendedoresConMasStockRowChangeEventHandler(object sender, sp_VendedoresConMasStockRowChangeEvent e);
+        
+        public delegate void clientesMasPublicacionesSinCalificarRowChangeEventHandler(object sender, clientesMasPublicacionesSinCalificarRowChangeEvent e);
+        
+        public delegate void vendedoresMayorReputacionRowChangeEventHandler(object sender, vendedoresMayorReputacionRowChangeEvent e);
+        
+        public delegate void vendedoresMayorFacturacionRowChangeEventHandler(object sender, vendedoresMayorFacturacionRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -6099,6 +6227,1042 @@ namespace FrbaCommerce {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class sp_VendedoresConMasStockDataTable : global::System.Data.TypedTableBase<sp_VendedoresConMasStockRow> {
+            
+            private global::System.Data.DataColumn columnCodigo_de_usuario;
+            
+            private global::System.Data.DataColumn columnProductos_sin_vender;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public sp_VendedoresConMasStockDataTable() {
+                this.TableName = "sp_VendedoresConMasStock";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal sp_VendedoresConMasStockDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected sp_VendedoresConMasStockDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Codigo_de_usuarioColumn {
+                get {
+                    return this.columnCodigo_de_usuario;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Productos_sin_venderColumn {
+                get {
+                    return this.columnProductos_sin_vender;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public sp_VendedoresConMasStockRow this[int index] {
+                get {
+                    return ((sp_VendedoresConMasStockRow)(this.Rows[index]));
+                }
+            }
+            
+            public event sp_VendedoresConMasStockRowChangeEventHandler sp_VendedoresConMasStockRowChanging;
+            
+            public event sp_VendedoresConMasStockRowChangeEventHandler sp_VendedoresConMasStockRowChanged;
+            
+            public event sp_VendedoresConMasStockRowChangeEventHandler sp_VendedoresConMasStockRowDeleting;
+            
+            public event sp_VendedoresConMasStockRowChangeEventHandler sp_VendedoresConMasStockRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void Addsp_VendedoresConMasStockRow(sp_VendedoresConMasStockRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public sp_VendedoresConMasStockRow Addsp_VendedoresConMasStockRow(decimal Codigo_de_usuario, decimal Productos_sin_vender) {
+                sp_VendedoresConMasStockRow rowsp_VendedoresConMasStockRow = ((sp_VendedoresConMasStockRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        Codigo_de_usuario,
+                        Productos_sin_vender};
+                rowsp_VendedoresConMasStockRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowsp_VendedoresConMasStockRow);
+                return rowsp_VendedoresConMasStockRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public override global::System.Data.DataTable Clone() {
+                sp_VendedoresConMasStockDataTable cln = ((sp_VendedoresConMasStockDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new sp_VendedoresConMasStockDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal void InitVars() {
+                this.columnCodigo_de_usuario = base.Columns["Codigo de usuario"];
+                this.columnProductos_sin_vender = base.Columns["Productos sin vender"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            private void InitClass() {
+                this.columnCodigo_de_usuario = new global::System.Data.DataColumn("Codigo de usuario", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCodigo_de_usuario);
+                this.columnProductos_sin_vender = new global::System.Data.DataColumn("Productos sin vender", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProductos_sin_vender);
+                this.columnCodigo_de_usuario.ReadOnly = true;
+                this.columnProductos_sin_vender.ReadOnly = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public sp_VendedoresConMasStockRow Newsp_VendedoresConMasStockRow() {
+                return ((sp_VendedoresConMasStockRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new sp_VendedoresConMasStockRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Type GetRowType() {
+                return typeof(sp_VendedoresConMasStockRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.sp_VendedoresConMasStockRowChanged != null)) {
+                    this.sp_VendedoresConMasStockRowChanged(this, new sp_VendedoresConMasStockRowChangeEvent(((sp_VendedoresConMasStockRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.sp_VendedoresConMasStockRowChanging != null)) {
+                    this.sp_VendedoresConMasStockRowChanging(this, new sp_VendedoresConMasStockRowChangeEvent(((sp_VendedoresConMasStockRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.sp_VendedoresConMasStockRowDeleted != null)) {
+                    this.sp_VendedoresConMasStockRowDeleted(this, new sp_VendedoresConMasStockRowChangeEvent(((sp_VendedoresConMasStockRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.sp_VendedoresConMasStockRowDeleting != null)) {
+                    this.sp_VendedoresConMasStockRowDeleting(this, new sp_VendedoresConMasStockRowChangeEvent(((sp_VendedoresConMasStockRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void Removesp_VendedoresConMasStockRow(sp_VendedoresConMasStockRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                GD1C2014DataSet ds = new GD1C2014DataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "sp_VendedoresConMasStockDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class clientesMasPublicacionesSinCalificarDataTable : global::System.Data.TypedTableBase<clientesMasPublicacionesSinCalificarRow> {
+            
+            private global::System.Data.DataColumn columnID;
+            
+            private global::System.Data.DataColumn columnUsername;
+            
+            private global::System.Data.DataColumn columnSin_calificar;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public clientesMasPublicacionesSinCalificarDataTable() {
+                this.TableName = "clientesMasPublicacionesSinCalificar";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal clientesMasPublicacionesSinCalificarDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected clientesMasPublicacionesSinCalificarDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn IDColumn {
+                get {
+                    return this.columnID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn UsernameColumn {
+                get {
+                    return this.columnUsername;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Sin_calificarColumn {
+                get {
+                    return this.columnSin_calificar;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public clientesMasPublicacionesSinCalificarRow this[int index] {
+                get {
+                    return ((clientesMasPublicacionesSinCalificarRow)(this.Rows[index]));
+                }
+            }
+            
+            public event clientesMasPublicacionesSinCalificarRowChangeEventHandler clientesMasPublicacionesSinCalificarRowChanging;
+            
+            public event clientesMasPublicacionesSinCalificarRowChangeEventHandler clientesMasPublicacionesSinCalificarRowChanged;
+            
+            public event clientesMasPublicacionesSinCalificarRowChangeEventHandler clientesMasPublicacionesSinCalificarRowDeleting;
+            
+            public event clientesMasPublicacionesSinCalificarRowChangeEventHandler clientesMasPublicacionesSinCalificarRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void AddclientesMasPublicacionesSinCalificarRow(clientesMasPublicacionesSinCalificarRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public clientesMasPublicacionesSinCalificarRow AddclientesMasPublicacionesSinCalificarRow(string Username, int Sin_calificar) {
+                clientesMasPublicacionesSinCalificarRow rowclientesMasPublicacionesSinCalificarRow = ((clientesMasPublicacionesSinCalificarRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        Username,
+                        Sin_calificar};
+                rowclientesMasPublicacionesSinCalificarRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowclientesMasPublicacionesSinCalificarRow);
+                return rowclientesMasPublicacionesSinCalificarRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public clientesMasPublicacionesSinCalificarRow FindByID(decimal ID) {
+                return ((clientesMasPublicacionesSinCalificarRow)(this.Rows.Find(new object[] {
+                            ID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public override global::System.Data.DataTable Clone() {
+                clientesMasPublicacionesSinCalificarDataTable cln = ((clientesMasPublicacionesSinCalificarDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new clientesMasPublicacionesSinCalificarDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal void InitVars() {
+                this.columnID = base.Columns["ID"];
+                this.columnUsername = base.Columns["Username"];
+                this.columnSin_calificar = base.Columns["Sin calificar"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            private void InitClass() {
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID);
+                this.columnUsername = new global::System.Data.DataColumn("Username", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUsername);
+                this.columnSin_calificar = new global::System.Data.DataColumn("Sin calificar", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSin_calificar);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnID}, true));
+                this.columnID.AutoIncrement = true;
+                this.columnID.AutoIncrementSeed = -1;
+                this.columnID.AutoIncrementStep = -1;
+                this.columnID.AllowDBNull = false;
+                this.columnID.ReadOnly = true;
+                this.columnID.Unique = true;
+                this.columnUsername.AllowDBNull = false;
+                this.columnUsername.MaxLength = 50;
+                this.columnSin_calificar.ReadOnly = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public clientesMasPublicacionesSinCalificarRow NewclientesMasPublicacionesSinCalificarRow() {
+                return ((clientesMasPublicacionesSinCalificarRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new clientesMasPublicacionesSinCalificarRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Type GetRowType() {
+                return typeof(clientesMasPublicacionesSinCalificarRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.clientesMasPublicacionesSinCalificarRowChanged != null)) {
+                    this.clientesMasPublicacionesSinCalificarRowChanged(this, new clientesMasPublicacionesSinCalificarRowChangeEvent(((clientesMasPublicacionesSinCalificarRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.clientesMasPublicacionesSinCalificarRowChanging != null)) {
+                    this.clientesMasPublicacionesSinCalificarRowChanging(this, new clientesMasPublicacionesSinCalificarRowChangeEvent(((clientesMasPublicacionesSinCalificarRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.clientesMasPublicacionesSinCalificarRowDeleted != null)) {
+                    this.clientesMasPublicacionesSinCalificarRowDeleted(this, new clientesMasPublicacionesSinCalificarRowChangeEvent(((clientesMasPublicacionesSinCalificarRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.clientesMasPublicacionesSinCalificarRowDeleting != null)) {
+                    this.clientesMasPublicacionesSinCalificarRowDeleting(this, new clientesMasPublicacionesSinCalificarRowChangeEvent(((clientesMasPublicacionesSinCalificarRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void RemoveclientesMasPublicacionesSinCalificarRow(clientesMasPublicacionesSinCalificarRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                GD1C2014DataSet ds = new GD1C2014DataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "clientesMasPublicacionesSinCalificarDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class vendedoresMayorReputacionDataTable : global::System.Data.TypedTableBase<vendedoresMayorReputacionRow> {
+            
+            private global::System.Data.DataColumn columnID;
+            
+            private global::System.Data.DataColumn columnUsername;
+            
+            private global::System.Data.DataColumn columnReputacion;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public vendedoresMayorReputacionDataTable() {
+                this.TableName = "vendedoresMayorReputacion";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal vendedoresMayorReputacionDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected vendedoresMayorReputacionDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn IDColumn {
+                get {
+                    return this.columnID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn UsernameColumn {
+                get {
+                    return this.columnUsername;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn ReputacionColumn {
+                get {
+                    return this.columnReputacion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public vendedoresMayorReputacionRow this[int index] {
+                get {
+                    return ((vendedoresMayorReputacionRow)(this.Rows[index]));
+                }
+            }
+            
+            public event vendedoresMayorReputacionRowChangeEventHandler vendedoresMayorReputacionRowChanging;
+            
+            public event vendedoresMayorReputacionRowChangeEventHandler vendedoresMayorReputacionRowChanged;
+            
+            public event vendedoresMayorReputacionRowChangeEventHandler vendedoresMayorReputacionRowDeleting;
+            
+            public event vendedoresMayorReputacionRowChangeEventHandler vendedoresMayorReputacionRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void AddvendedoresMayorReputacionRow(vendedoresMayorReputacionRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public vendedoresMayorReputacionRow AddvendedoresMayorReputacionRow(string Username, decimal Reputacion) {
+                vendedoresMayorReputacionRow rowvendedoresMayorReputacionRow = ((vendedoresMayorReputacionRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        Username,
+                        Reputacion};
+                rowvendedoresMayorReputacionRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowvendedoresMayorReputacionRow);
+                return rowvendedoresMayorReputacionRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public vendedoresMayorReputacionRow FindByID(decimal ID) {
+                return ((vendedoresMayorReputacionRow)(this.Rows.Find(new object[] {
+                            ID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public override global::System.Data.DataTable Clone() {
+                vendedoresMayorReputacionDataTable cln = ((vendedoresMayorReputacionDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new vendedoresMayorReputacionDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal void InitVars() {
+                this.columnID = base.Columns["ID"];
+                this.columnUsername = base.Columns["Username"];
+                this.columnReputacion = base.Columns["Reputacion"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            private void InitClass() {
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID);
+                this.columnUsername = new global::System.Data.DataColumn("Username", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUsername);
+                this.columnReputacion = new global::System.Data.DataColumn("Reputacion", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnReputacion);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnID}, true));
+                this.columnID.AutoIncrement = true;
+                this.columnID.AutoIncrementSeed = -1;
+                this.columnID.AutoIncrementStep = -1;
+                this.columnID.AllowDBNull = false;
+                this.columnID.ReadOnly = true;
+                this.columnID.Unique = true;
+                this.columnUsername.AllowDBNull = false;
+                this.columnUsername.MaxLength = 50;
+                this.columnReputacion.ReadOnly = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public vendedoresMayorReputacionRow NewvendedoresMayorReputacionRow() {
+                return ((vendedoresMayorReputacionRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new vendedoresMayorReputacionRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Type GetRowType() {
+                return typeof(vendedoresMayorReputacionRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.vendedoresMayorReputacionRowChanged != null)) {
+                    this.vendedoresMayorReputacionRowChanged(this, new vendedoresMayorReputacionRowChangeEvent(((vendedoresMayorReputacionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.vendedoresMayorReputacionRowChanging != null)) {
+                    this.vendedoresMayorReputacionRowChanging(this, new vendedoresMayorReputacionRowChangeEvent(((vendedoresMayorReputacionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.vendedoresMayorReputacionRowDeleted != null)) {
+                    this.vendedoresMayorReputacionRowDeleted(this, new vendedoresMayorReputacionRowChangeEvent(((vendedoresMayorReputacionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.vendedoresMayorReputacionRowDeleting != null)) {
+                    this.vendedoresMayorReputacionRowDeleting(this, new vendedoresMayorReputacionRowChangeEvent(((vendedoresMayorReputacionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void RemovevendedoresMayorReputacionRow(vendedoresMayorReputacionRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                GD1C2014DataSet ds = new GD1C2014DataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "vendedoresMayorReputacionDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class vendedoresMayorFacturacionDataTable : global::System.Data.TypedTableBase<vendedoresMayorFacturacionRow> {
+            
+            private global::System.Data.DataColumn columnID;
+            
+            private global::System.Data.DataColumn columnUsername;
+            
+            private global::System.Data.DataColumn columnFacturacion;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public vendedoresMayorFacturacionDataTable() {
+                this.TableName = "vendedoresMayorFacturacion";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal vendedoresMayorFacturacionDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected vendedoresMayorFacturacionDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn IDColumn {
+                get {
+                    return this.columnID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn UsernameColumn {
+                get {
+                    return this.columnUsername;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn FacturacionColumn {
+                get {
+                    return this.columnFacturacion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public vendedoresMayorFacturacionRow this[int index] {
+                get {
+                    return ((vendedoresMayorFacturacionRow)(this.Rows[index]));
+                }
+            }
+            
+            public event vendedoresMayorFacturacionRowChangeEventHandler vendedoresMayorFacturacionRowChanging;
+            
+            public event vendedoresMayorFacturacionRowChangeEventHandler vendedoresMayorFacturacionRowChanged;
+            
+            public event vendedoresMayorFacturacionRowChangeEventHandler vendedoresMayorFacturacionRowDeleting;
+            
+            public event vendedoresMayorFacturacionRowChangeEventHandler vendedoresMayorFacturacionRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void AddvendedoresMayorFacturacionRow(vendedoresMayorFacturacionRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public vendedoresMayorFacturacionRow AddvendedoresMayorFacturacionRow(string Username, decimal Facturacion) {
+                vendedoresMayorFacturacionRow rowvendedoresMayorFacturacionRow = ((vendedoresMayorFacturacionRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        Username,
+                        Facturacion};
+                rowvendedoresMayorFacturacionRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowvendedoresMayorFacturacionRow);
+                return rowvendedoresMayorFacturacionRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public vendedoresMayorFacturacionRow FindByID(decimal ID) {
+                return ((vendedoresMayorFacturacionRow)(this.Rows.Find(new object[] {
+                            ID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public override global::System.Data.DataTable Clone() {
+                vendedoresMayorFacturacionDataTable cln = ((vendedoresMayorFacturacionDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new vendedoresMayorFacturacionDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal void InitVars() {
+                this.columnID = base.Columns["ID"];
+                this.columnUsername = base.Columns["Username"];
+                this.columnFacturacion = base.Columns["Facturacion"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            private void InitClass() {
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID);
+                this.columnUsername = new global::System.Data.DataColumn("Username", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUsername);
+                this.columnFacturacion = new global::System.Data.DataColumn("Facturacion", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFacturacion);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnID}, true));
+                this.columnID.AutoIncrement = true;
+                this.columnID.AutoIncrementSeed = -1;
+                this.columnID.AutoIncrementStep = -1;
+                this.columnID.AllowDBNull = false;
+                this.columnID.ReadOnly = true;
+                this.columnID.Unique = true;
+                this.columnUsername.AllowDBNull = false;
+                this.columnUsername.MaxLength = 50;
+                this.columnFacturacion.ReadOnly = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public vendedoresMayorFacturacionRow NewvendedoresMayorFacturacionRow() {
+                return ((vendedoresMayorFacturacionRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new vendedoresMayorFacturacionRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Type GetRowType() {
+                return typeof(vendedoresMayorFacturacionRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.vendedoresMayorFacturacionRowChanged != null)) {
+                    this.vendedoresMayorFacturacionRowChanged(this, new vendedoresMayorFacturacionRowChangeEvent(((vendedoresMayorFacturacionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.vendedoresMayorFacturacionRowChanging != null)) {
+                    this.vendedoresMayorFacturacionRowChanging(this, new vendedoresMayorFacturacionRowChangeEvent(((vendedoresMayorFacturacionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.vendedoresMayorFacturacionRowDeleted != null)) {
+                    this.vendedoresMayorFacturacionRowDeleted(this, new vendedoresMayorFacturacionRowChangeEvent(((vendedoresMayorFacturacionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.vendedoresMayorFacturacionRowDeleting != null)) {
+                    this.vendedoresMayorFacturacionRowDeleting(this, new vendedoresMayorFacturacionRowChangeEvent(((vendedoresMayorFacturacionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void RemovevendedoresMayorFacturacionRow(vendedoresMayorFacturacionRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                GD1C2014DataSet ds = new GD1C2014DataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "vendedoresMayorFacturacionDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
@@ -8065,6 +9229,256 @@ namespace FrbaCommerce {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public partial class sp_VendedoresConMasStockRow : global::System.Data.DataRow {
+            
+            private sp_VendedoresConMasStockDataTable tablesp_VendedoresConMasStock;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal sp_VendedoresConMasStockRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablesp_VendedoresConMasStock = ((sp_VendedoresConMasStockDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public decimal Codigo_de_usuario {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablesp_VendedoresConMasStock.Codigo_de_usuarioColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Codigo de usuario\' in table \'sp_VendedoresConMasStock\' is D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_VendedoresConMasStock.Codigo_de_usuarioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public decimal Productos_sin_vender {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablesp_VendedoresConMasStock.Productos_sin_venderColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Productos sin vender\' in table \'sp_VendedoresConMasStock\' i" +
+                                "s DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_VendedoresConMasStock.Productos_sin_venderColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsCodigo_de_usuarioNull() {
+                return this.IsNull(this.tablesp_VendedoresConMasStock.Codigo_de_usuarioColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetCodigo_de_usuarioNull() {
+                this[this.tablesp_VendedoresConMasStock.Codigo_de_usuarioColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsProductos_sin_venderNull() {
+                return this.IsNull(this.tablesp_VendedoresConMasStock.Productos_sin_venderColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetProductos_sin_venderNull() {
+                this[this.tablesp_VendedoresConMasStock.Productos_sin_venderColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public partial class clientesMasPublicacionesSinCalificarRow : global::System.Data.DataRow {
+            
+            private clientesMasPublicacionesSinCalificarDataTable tableclientesMasPublicacionesSinCalificar;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal clientesMasPublicacionesSinCalificarRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableclientesMasPublicacionesSinCalificar = ((clientesMasPublicacionesSinCalificarDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public decimal ID {
+                get {
+                    return ((decimal)(this[this.tableclientesMasPublicacionesSinCalificar.IDColumn]));
+                }
+                set {
+                    this[this.tableclientesMasPublicacionesSinCalificar.IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Username {
+                get {
+                    return ((string)(this[this.tableclientesMasPublicacionesSinCalificar.UsernameColumn]));
+                }
+                set {
+                    this[this.tableclientesMasPublicacionesSinCalificar.UsernameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int Sin_calificar {
+                get {
+                    try {
+                        return ((int)(this[this.tableclientesMasPublicacionesSinCalificar.Sin_calificarColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Sin calificar\' in table \'clientesMasPublicacionesSinCalific" +
+                                "ar\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableclientesMasPublicacionesSinCalificar.Sin_calificarColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsSin_calificarNull() {
+                return this.IsNull(this.tableclientesMasPublicacionesSinCalificar.Sin_calificarColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetSin_calificarNull() {
+                this[this.tableclientesMasPublicacionesSinCalificar.Sin_calificarColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public partial class vendedoresMayorReputacionRow : global::System.Data.DataRow {
+            
+            private vendedoresMayorReputacionDataTable tablevendedoresMayorReputacion;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal vendedoresMayorReputacionRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablevendedoresMayorReputacion = ((vendedoresMayorReputacionDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public decimal ID {
+                get {
+                    return ((decimal)(this[this.tablevendedoresMayorReputacion.IDColumn]));
+                }
+                set {
+                    this[this.tablevendedoresMayorReputacion.IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Username {
+                get {
+                    return ((string)(this[this.tablevendedoresMayorReputacion.UsernameColumn]));
+                }
+                set {
+                    this[this.tablevendedoresMayorReputacion.UsernameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public decimal Reputacion {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablevendedoresMayorReputacion.ReputacionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Reputacion\' in table \'vendedoresMayorReputacion\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tablevendedoresMayorReputacion.ReputacionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsReputacionNull() {
+                return this.IsNull(this.tablevendedoresMayorReputacion.ReputacionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetReputacionNull() {
+                this[this.tablevendedoresMayorReputacion.ReputacionColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public partial class vendedoresMayorFacturacionRow : global::System.Data.DataRow {
+            
+            private vendedoresMayorFacturacionDataTable tablevendedoresMayorFacturacion;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal vendedoresMayorFacturacionRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablevendedoresMayorFacturacion = ((vendedoresMayorFacturacionDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public decimal ID {
+                get {
+                    return ((decimal)(this[this.tablevendedoresMayorFacturacion.IDColumn]));
+                }
+                set {
+                    this[this.tablevendedoresMayorFacturacion.IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Username {
+                get {
+                    return ((string)(this[this.tablevendedoresMayorFacturacion.UsernameColumn]));
+                }
+                set {
+                    this[this.tablevendedoresMayorFacturacion.UsernameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public decimal Facturacion {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablevendedoresMayorFacturacion.FacturacionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Facturacion\' in table \'vendedoresMayorFacturacion\' is DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tablevendedoresMayorFacturacion.FacturacionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsFacturacionNull() {
+                return this.IsNull(this.tablevendedoresMayorFacturacion.FacturacionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetFacturacionNull() {
+                this[this.tablevendedoresMayorFacturacion.FacturacionColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
@@ -8578,6 +9992,130 @@ namespace FrbaCommerce {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public tl_VisibilidadesRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class sp_VendedoresConMasStockRowChangeEvent : global::System.EventArgs {
+            
+            private sp_VendedoresConMasStockRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public sp_VendedoresConMasStockRowChangeEvent(sp_VendedoresConMasStockRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public sp_VendedoresConMasStockRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class clientesMasPublicacionesSinCalificarRowChangeEvent : global::System.EventArgs {
+            
+            private clientesMasPublicacionesSinCalificarRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public clientesMasPublicacionesSinCalificarRowChangeEvent(clientesMasPublicacionesSinCalificarRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public clientesMasPublicacionesSinCalificarRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class vendedoresMayorReputacionRowChangeEvent : global::System.EventArgs {
+            
+            private vendedoresMayorReputacionRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public vendedoresMayorReputacionRowChangeEvent(vendedoresMayorReputacionRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public vendedoresMayorReputacionRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class vendedoresMayorFacturacionRowChangeEvent : global::System.EventArgs {
+            
+            private vendedoresMayorFacturacionRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public vendedoresMayorFacturacionRowChangeEvent(vendedoresMayorFacturacionRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public vendedoresMayorFacturacionRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -16101,6 +17639,745 @@ SELECT Codigo, Descripcion, Precio, Porcentaje, Duracion FROM LOL.tl_Visibilidad
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class sp_VendedoresConMasStockTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public sp_VendedoresConMasStockTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "sp_VendedoresConMasStock";
+            tableMapping.ColumnMappings.Add("Codigo de usuario", "Codigo de usuario");
+            tableMapping.ColumnMappings.Add("Productos sin vender", "Productos sin vender");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::FrbaCommerce.Properties.Settings.Default.GD1C2014ConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "LOL.sp_VendedoresConMasStock";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@anio", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@trimestre", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@visibilidad_codigo", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@mes", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(GD1C2014DataSet.sp_VendedoresConMasStockDataTable dataTable, global::System.Nullable<int> anio, global::System.Nullable<int> trimestre, global::System.Nullable<int> visibilidad_codigo, global::System.Nullable<int> mes) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((anio.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(anio.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((trimestre.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(trimestre.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((visibilidad_codigo.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(visibilidad_codigo.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((mes.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((int)(mes.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class clientesMasPublicacionesSinCalificarTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public clientesMasPublicacionesSinCalificarTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "clientesMasPublicacionesSinCalificar";
+            tableMapping.ColumnMappings.Add("ID", "ID");
+            tableMapping.ColumnMappings.Add("Username", "Username");
+            tableMapping.ColumnMappings.Add("Sin calificar", "Sin calificar");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::FrbaCommerce.Properties.Settings.Default.GD1C2014ConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = @"--clientesMasPublicacionesSinCalificar
+SELECT TOP 5
+tl_Usuarios.ID,
+tl_Usuarios.Username,
+C.[Sin calificar]
+FROM 
+LOL.tl_Usuarios,
+(SELECT
+    tl_Compras.Cliente_ID,
+	COUNT(tl_Compras.Publicacion_Codigo) AS ""Sin calificar""
+FROM
+	LOL.tl_Compras
+WHERE
+	tl_Compras.Cliente_ID IS NOT NULL AND
+	tl_Compras.Calificacion_Cant_Estrellas IS NULL AND
+	YEAR(tl_Compras.Fecha) = @anio AND
+	(MONTH(tl_Compras.Fecha) BETWEEN @trimestre AND (@trimestre+2))
+GROUP BY
+	tl_Compras.Cliente_ID) AS C
+WHERE
+	C.Cliente_ID = tl_Usuarios.ID
+ORDER BY 3 DESC";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@anio", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@trimestre", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(GD1C2014DataSet.clientesMasPublicacionesSinCalificarDataTable dataTable, decimal anio, decimal trimestre) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(anio));
+            this.Adapter.SelectCommand.Parameters[1].Value = ((decimal)(trimestre));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class vendedoresMayorReputacionTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public vendedoresMayorReputacionTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "vendedoresMayorReputacion";
+            tableMapping.ColumnMappings.Add("ID", "ID");
+            tableMapping.ColumnMappings.Add("Username", "Username");
+            tableMapping.ColumnMappings.Add("Reputacion", "Reputacion");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::FrbaCommerce.Properties.Settings.Default.GD1C2014ConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = @"--VendedoresMayorReputacion
+SELECT TOP 5
+	tl_Usuarios.ID,
+	tl_Usuarios.Username,
+	R.Reputacion
+FROM
+	LOL.tl_Usuarios,
+(SELECT
+	tl_Clientes.ID,
+	AVG(tl_Compras.Calificacion_Cant_Estrellas) AS ""Reputacion""
+FROM
+	LOL.tl_Publicaciones,
+	LOL.tl_Compras,
+	LOL.tl_Clientes
+WHERE
+	tl_Compras.Calificacion_Cant_Estrellas IS NOT NULL AND
+                tl_Publicaciones.Codigo = tl_Compras.Publicacion_Codigo AND
+	tl_Publicaciones.Cliente_ID = tl_Clientes.ID AND
+	YEAR(tl_Compras.Fecha) = @anio AND
+	(MONTH(tl_Compras.Fecha) BETWEEN @trimestre AND (@trimestre+2))
+GROUP BY
+	tl_Clientes.ID
+UNION
+SELECT
+	tl_Empresas.ID,
+	AVG(tl_Compras.Calificacion_Cant_Estrellas) AS ""Reputacion""
+FROM
+	LOL.tl_Publicaciones,
+	LOL.tl_Compras,
+	LOL.tl_Empresas
+WHERE
+	tl_Compras.Calificacion_Cant_Estrellas IS NOT NULL AND
+                tl_Publicaciones.Codigo = tl_Compras.Publicacion_Codigo AND
+	tl_Publicaciones.Empresa_ID = tl_Empresas.ID AND
+	YEAR(tl_Compras.Fecha) = @anio AND
+	(MONTH(tl_Compras.Fecha) BETWEEN @trimestre AND (@trimestre+2))
+GROUP BY
+	tl_Empresas.ID) AS R
+WHERE tl_Usuarios.ID = R.ID
+ORDER BY 3 DESC";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@anio", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@trimestre", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(GD1C2014DataSet.vendedoresMayorReputacionDataTable dataTable, decimal anio, decimal trimestre) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(anio));
+            this.Adapter.SelectCommand.Parameters[1].Value = ((decimal)(trimestre));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class vendedoresMayorFacturacionTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public vendedoresMayorFacturacionTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "vendedoresMayorFacturacion";
+            tableMapping.ColumnMappings.Add("ID", "ID");
+            tableMapping.ColumnMappings.Add("Username", "Username");
+            tableMapping.ColumnMappings.Add("Facturacion", "Facturacion");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::FrbaCommerce.Properties.Settings.Default.GD1C2014ConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = @"--vendedoresMayorFacturacion
+SELECT TOP 5 
+	tl_Usuarios.ID,
+	tl_Usuarios.Username,
+	F.Facturacion
+FROM
+	(SELECT 
+		tl_Empresas.ID,
+		SUM(tl_Facturas_Items.Monto) AS ""Facturacion""
+	 FROM
+		LOL.tl_Empresas,
+		LOL.tl_Publicaciones,
+		LOL.tl_Facturas,
+		LOL.tl_Facturas_Items
+     WHERE
+		tl_Empresas.ID = tl_Publicaciones.Empresa_ID AND
+		tl_Publicaciones.Codigo = tl_Facturas.Publicacion_Cod AND
+		tl_Facturas.Nro = tl_Facturas_Items.Factura_Nro AND
+		YEAR(tl_Publicaciones.Fecha) = @anio AND
+		(MONTH(tl_Publicaciones.Fecha) BETWEEN @trimestre AND (@trimestre+2))
+     GROUP BY
+		tl_Empresas.ID
+	 UNION
+	 SELECT 
+		tl_Clientes.ID,
+		SUM(tl_Facturas_Items.Monto) AS ""Facturacion""
+	 FROM
+		LOL.tl_Clientes,
+		LOL.tl_Publicaciones,
+		LOL.tl_Facturas,
+		LOL.tl_Facturas_Items
+     WHERE
+		tl_Clientes.ID = tl_Publicaciones.Cliente_ID AND
+		tl_Publicaciones.Codigo = tl_Facturas.Publicacion_Cod AND
+		tl_Facturas.Nro = tl_Facturas_Items.Factura_Nro AND
+		YEAR(tl_Publicaciones.Fecha) = @anio AND
+		(MONTH(tl_Publicaciones.Fecha) BETWEEN @trimestre AND (@trimestre+2))
+     GROUP BY
+		tl_Clientes.ID
+    ) AS F,
+    LOL.tl_Usuarios
+    WHERE
+		F.ID = tl_Usuarios.ID
+ORDER BY 3 DESC";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@anio", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@trimestre", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(GD1C2014DataSet.vendedoresMayorFacturacionDataTable dataTable, decimal anio, decimal trimestre) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(anio));
+            this.Adapter.SelectCommand.Parameters[1].Value = ((decimal)(trimestre));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
     public partial class QueriesTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.IDbCommand[] _commandCollection;
@@ -16902,12 +19179,12 @@ SELECT Codigo, Descripcion, Precio, Porcentaje, Duracion FROM LOL.tl_Visibilidad
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._tl_ComprasTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.tl_Compras.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._tl_UsuariosTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.tl_Usuarios.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._tl_ComprasTableAdapter.Update(updatedRows));
+                    result = (result + this._tl_UsuariosTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -16920,30 +19197,12 @@ SELECT Codigo, Descripcion, Precio, Porcentaje, Duracion FROM LOL.tl_Visibilidad
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._tl_UsuariosTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.tl_Usuarios.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tl_UsuariosTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._tl_RolesTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.tl_Roles.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._tl_RolesTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._tl_FuncionalidadesTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.tl_Funcionalidades.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tl_FuncionalidadesTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -16956,12 +19215,21 @@ SELECT Codigo, Descripcion, Precio, Porcentaje, Duracion FROM LOL.tl_Visibilidad
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._tl_Facturas_ItemsTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.tl_Facturas_Items.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._tl_ComprasTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.tl_Compras.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._tl_Facturas_ItemsTableAdapter.Update(updatedRows));
+                    result = (result + this._tl_ComprasTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._tl_FuncionalidadesTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.tl_Funcionalidades.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._tl_FuncionalidadesTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -16974,12 +19242,12 @@ SELECT Codigo, Descripcion, Precio, Porcentaje, Duracion FROM LOL.tl_Visibilidad
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._tl_PreguntasTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.tl_Preguntas.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._tl_PendientesTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.tl_Pendientes.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._tl_PreguntasTableAdapter.Update(updatedRows));
+                    result = (result + this._tl_PendientesTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -16992,12 +19260,12 @@ SELECT Codigo, Descripcion, Precio, Porcentaje, Duracion FROM LOL.tl_Visibilidad
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._tl_PendientesTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.tl_Pendientes.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._tl_Facturas_ItemsTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.tl_Facturas_Items.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._tl_PendientesTableAdapter.Update(updatedRows));
+                    result = (result + this._tl_Facturas_ItemsTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -17016,6 +19284,15 @@ SELECT Codigo, Descripcion, Precio, Porcentaje, Duracion FROM LOL.tl_Visibilidad
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._tl_Publicaciones_RubrosTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._tl_PreguntasTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.tl_Preguntas.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._tl_PreguntasTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -17060,11 +19337,11 @@ SELECT Codigo, Descripcion, Precio, Porcentaje, Duracion FROM LOL.tl_Visibilidad
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._tl_ComprasTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.tl_Compras.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._tl_UsuariosTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.tl_Usuarios.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._tl_ComprasTableAdapter.Update(addedRows));
+                    result = (result + this._tl_UsuariosTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -17076,27 +19353,11 @@ SELECT Codigo, Descripcion, Precio, Porcentaje, Duracion FROM LOL.tl_Visibilidad
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._tl_UsuariosTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.tl_Usuarios.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tl_UsuariosTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._tl_RolesTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.tl_Roles.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._tl_RolesTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._tl_FuncionalidadesTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.tl_Funcionalidades.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tl_FuncionalidadesTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -17108,11 +19369,19 @@ SELECT Codigo, Descripcion, Precio, Porcentaje, Duracion FROM LOL.tl_Visibilidad
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._tl_Facturas_ItemsTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.tl_Facturas_Items.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._tl_ComprasTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.tl_Compras.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._tl_Facturas_ItemsTableAdapter.Update(addedRows));
+                    result = (result + this._tl_ComprasTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._tl_FuncionalidadesTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.tl_Funcionalidades.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._tl_FuncionalidadesTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -17124,11 +19393,11 @@ SELECT Codigo, Descripcion, Precio, Porcentaje, Duracion FROM LOL.tl_Visibilidad
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._tl_PreguntasTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.tl_Preguntas.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._tl_PendientesTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.tl_Pendientes.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._tl_PreguntasTableAdapter.Update(addedRows));
+                    result = (result + this._tl_PendientesTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -17140,11 +19409,11 @@ SELECT Codigo, Descripcion, Precio, Porcentaje, Duracion FROM LOL.tl_Visibilidad
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._tl_PendientesTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.tl_Pendientes.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._tl_Facturas_ItemsTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.tl_Facturas_Items.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._tl_PendientesTableAdapter.Update(addedRows));
+                    result = (result + this._tl_Facturas_ItemsTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -17164,6 +19433,14 @@ SELECT Codigo, Descripcion, Precio, Porcentaje, Duracion FROM LOL.tl_Visibilidad
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._tl_PreguntasTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.tl_Preguntas.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._tl_PreguntasTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             return result;
         }
         
@@ -17173,6 +19450,14 @@ SELECT Codigo, Descripcion, Precio, Porcentaje, Duracion FROM LOL.tl_Visibilidad
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private int UpdateDeletedRows(GD1C2014DataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._tl_PreguntasTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.tl_Preguntas.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._tl_PreguntasTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._tl_Publicaciones_RubrosTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.tl_Publicaciones_Rubros.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -17189,11 +19474,11 @@ SELECT Codigo, Descripcion, Precio, Porcentaje, Duracion FROM LOL.tl_Visibilidad
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._tl_PendientesTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.tl_Pendientes.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._tl_Facturas_ItemsTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.tl_Facturas_Items.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._tl_PendientesTableAdapter.Update(deletedRows));
+                    result = (result + this._tl_Facturas_ItemsTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -17205,11 +19490,11 @@ SELECT Codigo, Descripcion, Precio, Porcentaje, Duracion FROM LOL.tl_Visibilidad
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._tl_PreguntasTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.tl_Preguntas.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._tl_PendientesTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.tl_Pendientes.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._tl_PreguntasTableAdapter.Update(deletedRows));
+                    result = (result + this._tl_PendientesTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -17221,11 +19506,19 @@ SELECT Codigo, Descripcion, Precio, Porcentaje, Duracion FROM LOL.tl_Visibilidad
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._tl_Facturas_ItemsTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.tl_Facturas_Items.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._tl_FuncionalidadesTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.tl_Funcionalidades.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._tl_Facturas_ItemsTableAdapter.Update(deletedRows));
+                    result = (result + this._tl_FuncionalidadesTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._tl_ComprasTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.tl_Compras.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._tl_ComprasTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -17237,27 +19530,11 @@ SELECT Codigo, Descripcion, Precio, Porcentaje, Duracion FROM LOL.tl_Visibilidad
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._tl_FuncionalidadesTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.tl_Funcionalidades.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._tl_FuncionalidadesTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._tl_RolesTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.tl_Roles.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._tl_RolesTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._tl_UsuariosTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.tl_Usuarios.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._tl_UsuariosTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -17269,11 +19546,11 @@ SELECT Codigo, Descripcion, Precio, Porcentaje, Duracion FROM LOL.tl_Visibilidad
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._tl_ComprasTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.tl_Compras.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._tl_UsuariosTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.tl_Usuarios.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._tl_ComprasTableAdapter.Update(deletedRows));
+                    result = (result + this._tl_UsuariosTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }

@@ -61,7 +61,7 @@ namespace FrbaCommerce
             frame.ShowDialog();
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
+        private void btnListadoEstadistico_Click(object sender, EventArgs e)
         {
             Listado_Estadistico_form frame = new Listado_Estadistico_form();
             frame.ShowDialog();

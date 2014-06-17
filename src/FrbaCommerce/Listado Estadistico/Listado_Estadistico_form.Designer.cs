@@ -49,11 +49,42 @@
             this.btnGenerar = new System.Windows.Forms.Button();
             this.tl_VisibilidadesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_VisibilidadesTableAdapter();
             this.btnLimpiar = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.codigoDeUsuarioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productosSinVenderDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.spVendedoresConMasStockBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sp_VendedoresConMasStockTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.sp_VendedoresConMasStockTableAdapter();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.facturacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vendedoresMayorFacturacionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.vendedoresMayorFacturacionTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.vendedoresMayorFacturacionTableAdapter();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.iDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usernameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.reputacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vendedoresMayorReputacionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.vendedoresMayorReputacionTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.vendedoresMayorReputacionTableAdapter();
+            this.clientesMasPublicacionesSinCalificarBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.clientesMasPublicacionesSinCalificarTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.clientesMasPublicacionesSinCalificarTableAdapter();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.iDDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usernameDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sinCalificarDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tipoListadoGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tlVisibilidadesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.inputAnio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spVendedoresConMasStockBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vendedoresMayorFacturacionBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vendedoresMayorReputacionBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientesMasPublicacionesSinCalificarBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.SuspendLayout();
             // 
             // tipoListadoGroup
@@ -70,7 +101,7 @@
             this.tipoListadoGroup.Enabled = false;
             this.tipoListadoGroup.Location = new System.Drawing.Point(256, 12);
             this.tipoListadoGroup.Name = "tipoListadoGroup";
-            this.tipoListadoGroup.Size = new System.Drawing.Size(340, 189);
+            this.tipoListadoGroup.Size = new System.Drawing.Size(340, 179);
             this.tipoListadoGroup.TabIndex = 1;
             this.tipoListadoGroup.TabStop = false;
             this.tipoListadoGroup.Text = "Tipo de listado";
@@ -110,6 +141,7 @@
             this.inputVisibilidad.Size = new System.Drawing.Size(99, 21);
             this.inputVisibilidad.TabIndex = 8;
             this.inputVisibilidad.ValueMember = "Codigo";
+            this.inputVisibilidad.EnabledChanged += new System.EventHandler(this.inputVisibilidad_EnabledChanged);
             // 
             // tlVisibilidadesBindingSource
             // 
@@ -133,6 +165,7 @@
             this.inputMes.Name = "inputMes";
             this.inputMes.Size = new System.Drawing.Size(97, 21);
             this.inputMes.TabIndex = 5;
+            this.inputMes.EnabledChanged += new System.EventHandler(this.inputMes_EnabledChanged);
             // 
             // label1
             // 
@@ -153,7 +186,7 @@
             this.radioButton4.TabStop = true;
             this.radioButton4.Text = "Clientes con mayor cantidad de publicaciones sin calificar.";
             this.radioButton4.UseVisualStyleBackColor = true;
-            this.radioButton4.CheckedChanged += new System.EventHandler(this.tipoListado_CheckedChanged);
+            this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
             // 
             // radioButton3
             // 
@@ -165,7 +198,7 @@
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "Vendedores con mayores calificaciones.";
             this.radioButton3.UseVisualStyleBackColor = true;
-            this.radioButton3.CheckedChanged += new System.EventHandler(this.tipoListado_CheckedChanged);
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
             // radioButton2
             // 
@@ -177,7 +210,7 @@
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Vendedores con mayor facturacion.";
             this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.tipoListado_CheckedChanged);
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // radioButton1
             // 
@@ -189,7 +222,7 @@
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Vendedores con mayor cantidad de productos no vendidos.";
             this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.tipoListado_CheckedChanged);
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // groupBox2
             // 
@@ -199,7 +232,7 @@
             this.groupBox2.Controls.Add(this.inputTrimestre);
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(221, 189);
+            this.groupBox2.Size = new System.Drawing.Size(221, 179);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Filtros";
@@ -227,7 +260,7 @@
             0,
             0});
             this.inputAnio.Name = "inputAnio";
-            this.inputAnio.Size = new System.Drawing.Size(199, 20);
+            this.inputAnio.Size = new System.Drawing.Size(202, 20);
             this.inputAnio.TabIndex = 2;
             this.inputAnio.Value = new decimal(new int[] {
             2013,
@@ -261,7 +294,7 @@
             // btnGenerar
             // 
             this.btnGenerar.Enabled = false;
-            this.btnGenerar.Location = new System.Drawing.Point(12, 207);
+            this.btnGenerar.Location = new System.Drawing.Point(12, 197);
             this.btnGenerar.Name = "btnGenerar";
             this.btnGenerar.Size = new System.Drawing.Size(290, 23);
             this.btnGenerar.TabIndex = 3;
@@ -275,7 +308,7 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(306, 207);
+            this.btnLimpiar.Location = new System.Drawing.Point(306, 197);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(290, 23);
             this.btnLimpiar.TabIndex = 4;
@@ -283,15 +316,204 @@
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.codigoDeUsuarioDataGridViewTextBoxColumn,
+            this.productosSinVenderDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.spVendedoresConMasStockBindingSource;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 226);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(584, 146);
+            this.dataGridView1.TabIndex = 5;
+            this.dataGridView1.Visible = false;
+            // 
+            // codigoDeUsuarioDataGridViewTextBoxColumn
+            // 
+            this.codigoDeUsuarioDataGridViewTextBoxColumn.DataPropertyName = "Codigo de usuario";
+            this.codigoDeUsuarioDataGridViewTextBoxColumn.HeaderText = "Codigo de usuario";
+            this.codigoDeUsuarioDataGridViewTextBoxColumn.Name = "codigoDeUsuarioDataGridViewTextBoxColumn";
+            this.codigoDeUsuarioDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // productosSinVenderDataGridViewTextBoxColumn
+            // 
+            this.productosSinVenderDataGridViewTextBoxColumn.DataPropertyName = "Productos sin vender";
+            this.productosSinVenderDataGridViewTextBoxColumn.HeaderText = "Productos sin vender";
+            this.productosSinVenderDataGridViewTextBoxColumn.Name = "productosSinVenderDataGridViewTextBoxColumn";
+            this.productosSinVenderDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // spVendedoresConMasStockBindingSource
+            // 
+            this.spVendedoresConMasStockBindingSource.DataMember = "sp_VendedoresConMasStock";
+            this.spVendedoresConMasStockBindingSource.DataSource = this.gD1C2014DataSet;
+            // 
+            // sp_VendedoresConMasStockTableAdapter
+            // 
+            this.sp_VendedoresConMasStockTableAdapter.ClearBeforeFill = true;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.AutoGenerateColumns = false;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.iDDataGridViewTextBoxColumn,
+            this.usernameDataGridViewTextBoxColumn,
+            this.facturacionDataGridViewTextBoxColumn});
+            this.dataGridView2.DataSource = this.vendedoresMayorFacturacionBindingSource;
+            this.dataGridView2.Location = new System.Drawing.Point(12, 226);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
+            this.dataGridView2.Size = new System.Drawing.Size(584, 146);
+            this.dataGridView2.TabIndex = 6;
+            this.dataGridView2.Visible = false;
+            // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // usernameDataGridViewTextBoxColumn
+            // 
+            this.usernameDataGridViewTextBoxColumn.DataPropertyName = "Username";
+            this.usernameDataGridViewTextBoxColumn.HeaderText = "Username";
+            this.usernameDataGridViewTextBoxColumn.Name = "usernameDataGridViewTextBoxColumn";
+            this.usernameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // facturacionDataGridViewTextBoxColumn
+            // 
+            this.facturacionDataGridViewTextBoxColumn.DataPropertyName = "Facturacion";
+            this.facturacionDataGridViewTextBoxColumn.HeaderText = "Facturacion";
+            this.facturacionDataGridViewTextBoxColumn.Name = "facturacionDataGridViewTextBoxColumn";
+            this.facturacionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // vendedoresMayorFacturacionBindingSource
+            // 
+            this.vendedoresMayorFacturacionBindingSource.DataMember = "vendedoresMayorFacturacion";
+            this.vendedoresMayorFacturacionBindingSource.DataSource = this.gD1C2014DataSet;
+            // 
+            // vendedoresMayorFacturacionTableAdapter
+            // 
+            this.vendedoresMayorFacturacionTableAdapter.ClearBeforeFill = true;
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.AllowUserToAddRows = false;
+            this.dataGridView3.AllowUserToDeleteRows = false;
+            this.dataGridView3.AutoGenerateColumns = false;
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.iDDataGridViewTextBoxColumn1,
+            this.usernameDataGridViewTextBoxColumn1,
+            this.reputacionDataGridViewTextBoxColumn});
+            this.dataGridView3.DataSource = this.vendedoresMayorReputacionBindingSource;
+            this.dataGridView3.Location = new System.Drawing.Point(12, 226);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.ReadOnly = true;
+            this.dataGridView3.Size = new System.Drawing.Size(584, 146);
+            this.dataGridView3.TabIndex = 7;
+            this.dataGridView3.Visible = false;
+            // 
+            // iDDataGridViewTextBoxColumn1
+            // 
+            this.iDDataGridViewTextBoxColumn1.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn1.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn1.Name = "iDDataGridViewTextBoxColumn1";
+            this.iDDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // usernameDataGridViewTextBoxColumn1
+            // 
+            this.usernameDataGridViewTextBoxColumn1.DataPropertyName = "Username";
+            this.usernameDataGridViewTextBoxColumn1.HeaderText = "Username";
+            this.usernameDataGridViewTextBoxColumn1.Name = "usernameDataGridViewTextBoxColumn1";
+            this.usernameDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // reputacionDataGridViewTextBoxColumn
+            // 
+            this.reputacionDataGridViewTextBoxColumn.DataPropertyName = "Reputacion";
+            this.reputacionDataGridViewTextBoxColumn.HeaderText = "Reputacion";
+            this.reputacionDataGridViewTextBoxColumn.Name = "reputacionDataGridViewTextBoxColumn";
+            this.reputacionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // vendedoresMayorReputacionBindingSource
+            // 
+            this.vendedoresMayorReputacionBindingSource.DataMember = "vendedoresMayorReputacion";
+            this.vendedoresMayorReputacionBindingSource.DataSource = this.gD1C2014DataSet;
+            // 
+            // vendedoresMayorReputacionTableAdapter
+            // 
+            this.vendedoresMayorReputacionTableAdapter.ClearBeforeFill = true;
+            // 
+            // clientesMasPublicacionesSinCalificarBindingSource
+            // 
+            this.clientesMasPublicacionesSinCalificarBindingSource.DataMember = "clientesMasPublicacionesSinCalificar";
+            this.clientesMasPublicacionesSinCalificarBindingSource.DataSource = this.gD1C2014DataSet;
+            // 
+            // clientesMasPublicacionesSinCalificarTableAdapter
+            // 
+            this.clientesMasPublicacionesSinCalificarTableAdapter.ClearBeforeFill = true;
+            // 
+            // dataGridView4
+            // 
+            this.dataGridView4.AllowUserToAddRows = false;
+            this.dataGridView4.AllowUserToDeleteRows = false;
+            this.dataGridView4.AutoGenerateColumns = false;
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.iDDataGridViewTextBoxColumn2,
+            this.usernameDataGridViewTextBoxColumn2,
+            this.sinCalificarDataGridViewTextBoxColumn});
+            this.dataGridView4.DataSource = this.clientesMasPublicacionesSinCalificarBindingSource;
+            this.dataGridView4.Location = new System.Drawing.Point(12, 226);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.ReadOnly = true;
+            this.dataGridView4.Size = new System.Drawing.Size(584, 146);
+            this.dataGridView4.TabIndex = 8;
+            this.dataGridView4.Visible = false;
+            // 
+            // iDDataGridViewTextBoxColumn2
+            // 
+            this.iDDataGridViewTextBoxColumn2.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn2.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn2.Name = "iDDataGridViewTextBoxColumn2";
+            this.iDDataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // usernameDataGridViewTextBoxColumn2
+            // 
+            this.usernameDataGridViewTextBoxColumn2.DataPropertyName = "Username";
+            this.usernameDataGridViewTextBoxColumn2.HeaderText = "Username";
+            this.usernameDataGridViewTextBoxColumn2.Name = "usernameDataGridViewTextBoxColumn2";
+            this.usernameDataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // sinCalificarDataGridViewTextBoxColumn
+            // 
+            this.sinCalificarDataGridViewTextBoxColumn.DataPropertyName = "Sin calificar";
+            this.sinCalificarDataGridViewTextBoxColumn.HeaderText = "Sin calificar";
+            this.sinCalificarDataGridViewTextBoxColumn.Name = "sinCalificarDataGridViewTextBoxColumn";
+            this.sinCalificarDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // Listado_Estadistico_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(608, 384);
+            this.Controls.Add(this.dataGridView4);
+            this.Controls.Add(this.dataGridView3);
+            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnGenerar);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.tipoListadoGroup);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Listado_Estadistico_form";
             this.Text = "Listado Estadistico";
             this.Load += new System.EventHandler(this.Listado_Estadistico_form_Load);
@@ -302,6 +524,14 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.inputAnio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spVendedoresConMasStockBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vendedoresMayorFacturacionBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vendedoresMayorReputacionBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientesMasPublicacionesSinCalificarBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -328,5 +558,28 @@
         private System.Windows.Forms.CheckBox activarFiltroMes;
         private System.Windows.Forms.CheckBox activarFiltroVisibilidad;
         private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codigoDeUsuarioDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn productosSinVenderDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource spVendedoresConMasStockBindingSource;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.sp_VendedoresConMasStockTableAdapter sp_VendedoresConMasStockTableAdapter;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.BindingSource vendedoresMayorFacturacionBindingSource;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.vendedoresMayorFacturacionTableAdapter vendedoresMayorFacturacionTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn facturacionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn reputacionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource vendedoresMayorReputacionBindingSource;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.vendedoresMayorReputacionTableAdapter vendedoresMayorReputacionTableAdapter;
+        private System.Windows.Forms.BindingSource clientesMasPublicacionesSinCalificarBindingSource;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.clientesMasPublicacionesSinCalificarTableAdapter clientesMasPublicacionesSinCalificarTableAdapter;
+        private System.Windows.Forms.DataGridView dataGridView4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sinCalificarDataGridViewTextBoxColumn;
     }
 }

@@ -32,14 +32,14 @@ namespace FrbaCommerce
             this.btnABM_Rol = new System.Windows.Forms.Button();
             this.btnABM_Visibilidades = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.btnCalificarVendedor = new System.Windows.Forms.Button();
             this.btnABMEmpresa = new System.Windows.Forms.Button();
             this.btnABMCliente = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnListadoEstadistico = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
             this.tl_UsuariosTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_UsuariosTableAdapter();
             this.tl_RolesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RolesTableAdapter();
             this.groupBox1.SuspendLayout();
@@ -82,7 +82,7 @@ namespace FrbaCommerce
             this.groupBox1.Controls.Add(this.btnABMEmpresa);
             this.groupBox1.Controls.Add(this.btnABMCliente);
             this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.btnListadoEstadistico);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.btnABM_Rol);
             this.groupBox1.Controls.Add(this.btnABM_Visibilidades);
@@ -92,6 +92,16 @@ namespace FrbaCommerce
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Funcionaliades";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(415, 110);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(149, 19);
+            this.button4.TabIndex = 8;
+            this.button4.Text = "PRUEBA Calificar Vendedor";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // btnCalificarVendedor
             // 
@@ -133,15 +143,15 @@ namespace FrbaCommerce
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
-            // button2
+            // btnListadoEstadistico
             // 
-            this.button2.Location = new System.Drawing.Point(415, 38);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(149, 27);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Listado Estadístico";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            this.btnListadoEstadistico.Location = new System.Drawing.Point(415, 38);
+            this.btnListadoEstadistico.Name = "btnListadoEstadistico";
+            this.btnListadoEstadistico.Size = new System.Drawing.Size(149, 27);
+            this.btnListadoEstadistico.TabIndex = 5;
+            this.btnListadoEstadistico.Text = "Listado Estadístico";
+            this.btnListadoEstadistico.UseVisualStyleBackColor = true;
+            this.btnListadoEstadistico.Click += new System.EventHandler(this.btnListadoEstadistico_Click);
             // 
             // button1
             // 
@@ -162,16 +172,6 @@ namespace FrbaCommerce
             this.label1.Size = new System.Drawing.Size(102, 20);
             this.label1.TabIndex = 5;
             this.label1.Text = "Bienvenido!";
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(415, 110);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(149, 19);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "PRUEBA Calificar Vendedor";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // tl_UsuariosTableAdapter
             // 
@@ -208,7 +208,7 @@ namespace FrbaCommerce
         private System.Windows.Forms.Button button1;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_UsuariosTableAdapter tl_UsuariosTableAdapter;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RolesTableAdapter tl_RolesTableAdapter;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnListadoEstadistico;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btnABMEmpresa;
         private System.Windows.Forms.Button btnABMCliente;
