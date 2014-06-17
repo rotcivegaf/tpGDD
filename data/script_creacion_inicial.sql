@@ -1008,20 +1008,22 @@ END
 GO
 
 /* Stored Procedure sp_TryLogin */
-CREATE PROCEDURE LOL.sp_TryLogin @user varchar(50),
-                                 @pass varchar(50),
-	                             @ID int OUT
+CREATE PROCEDURE [LOL].[sp_TryLogin] @user VARCHAR(50),
+                                 	@pass VARCHAR(50),
+	                             	@ID INT OUT,
+	                             	@ChangePassword BIT OUT
 
 AS
 BEGIN
 	DECLARE @tl_pass VARCHAR(50);
 	DECLARE @tl_ID INT;
 	DECLARE @tl_Habilitado INT;
+	DECLARE @tl_ChangePassword BIT;
 	DECLARE @error NVARCHAR(255);
 
 	SET NOCOUNT ON;
 
-	SELECT @tl_pass = U.Password,@tl_ID = U.ID, @tl_Habilitado = U.Habilitado FROM LOL.tl_Usuarios U WHERE Username = @user
+	SELECT @tl_pass = U.Password,@tl_ID = U.ID, @tl_Habilitado = U.Habilitado , @tl_ChangePassword = Change_Password FROM LOL.tl_Usuarios U WHERE Username = @user
 
 	
 	IF (@tl_pass IS NULL)
@@ -1029,33 +1031,41 @@ BEGIN
 		BEGIN
 			SET @ID = -3;
 			SET @error = 'Usuario inexistente.'
-    		RAISERROR (@error, 11,1)
-    		RETURN -1
-    	END
-	ELSE
-		IF (@tl_Habilitado = 0)
-			BEGIN
-				SET @ID = -2; -- EL USUARIO ESTA INHABILITADO
-				SET @error = 'Usuario inhabilitado.'
     			RAISERROR (@error, 11,1)
     			RETURN -1
-    		END	
+	    	END
+	ELSE
+		IF (@tl_ChangePassword = 1)
+			BEGIN
+				EXEC LOL.sp_LoginExitoso @user;
+				SET @ID = @tl_ID;
+				SET @ChangePassword = @tl_ChangePassword;
+			END
 		ELSE
-			IF(@pass = @tl_pass)
-				-- CONTRASENIA CORRECTA
+			IF (@tl_Habilitado = 0)
 				BEGIN
-					EXEC LOL.sp_LoginExitoso @user;
-					SET @ID = @tl_ID;
-				END
+					SET @ID = -2; -- EL USUARIO ESTA INHABILITADO
+					SET @error = 'Usuario inhabilitado.'
+    					RAISERROR (@error, 11,1)
+    					RETURN -1
+    				END	
 			ELSE
-				-- CONTRASENIA INCORRECTA
-				BEGIN
-					EXEC LOL.sp_LoginFallido @user;
-					SET @ID = -1;
-					SET @error = 'Contrasenia incorrecta.'
-    				RAISERROR (@error, 11,1)
-    				RETURN -1
-				END
+				IF(@pass = @tl_pass)
+					-- CONTRASENIA CORRECTA
+					BEGIN
+						EXEC LOL.sp_LoginExitoso @user;
+						SET @ID = @tl_ID;
+						SET @ChangePassword = @tl_ChangePassword;
+					END
+				ELSE
+					-- CONTRASENIA INCORRECTA
+					BEGIN
+						EXEC LOL.sp_LoginFallido @user;
+						SET @ID = -1;
+						SET @error = 'Contrasenia incorrecta.'
+    						RAISERROR (@error, 11,1)
+    						RETURN -1
+					END
 END
 GO
 
