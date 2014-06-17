@@ -59,7 +59,9 @@ namespace FrbaCommerce.Abm_Empresa
         {
             String condicion;
 
-            condicion = "Razon_Social LIKE '%" + txtRazonSocial.Text + "%'";
+            condicion = "Habilitada = 1";
+            if (txtRazonSocial.Text !="")
+                condicion += " AND Razon_Social LIKE '%" + txtRazonSocial.Text + "%'";
             if (txtCUIT.Text != "")
                 condicion += " AND CUIT = '" + txtCUIT.Text + "'";
             if (txtMail.Text != "")
@@ -104,7 +106,9 @@ namespace FrbaCommerce.Abm_Empresa
             if (e.ColumnIndex == dgvEmpresas.ColumnCount - 1 && e.RowIndex >= 0)
             {
                 int ID = getEmpresaID(e.RowIndex);
-                //FALTA HACER -> sp_EliminarEmpresa
+                this.tl_EmpresasTableAdapter.deshabilitar(ID);
+                MessageBox.Show("Empresa 'Eliminada'");
+                llenarGrid();
             }
         }
     }

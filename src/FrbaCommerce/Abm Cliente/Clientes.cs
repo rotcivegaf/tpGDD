@@ -48,8 +48,10 @@ namespace FrbaCommerce.Abm_Cliente
         private String crearCondicion()
         {
             String condicion;
-            
-            condicion = "Nombre LIKE '%" + txtNombre.Text + "%'";
+
+            condicion = "Habilitado = 1";
+            if (txtNombre.Text != "")
+                condicion += " AND Nombre LIKE '%" + txtNombre.Text + "%'";
             if (txtApellido.Text != "")
                 condicion += " AND Apellido LIKE '%" + txtApellido.Text + "%'";
             if (cmbTipoDocumento.Text != "*")
@@ -72,7 +74,9 @@ namespace FrbaCommerce.Abm_Cliente
             if (e.ColumnIndex == dgvClientes.Columns.Count - 1)
             {
                 int ID = getClienteID(e.RowIndex);
-                //FALTA HACER -> sp_EliminarCliente (que es darlo de baja)
+                this.tl_ClientesTableAdapter.deshabilitar(ID);
+                MessageBox.Show("Cliente 'Eliminado'");
+                llenarGrid();
             }
         }
 

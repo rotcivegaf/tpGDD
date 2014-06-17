@@ -43,9 +43,7 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.dgvClientes = new System.Windows.Forms.DataGridView();
-            this.tlClientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
-            this.tl_ClientesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ClientesTableAdapter();
+            this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.optMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.optNuevo = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,13 +56,15 @@
             this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaNacDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.tlClientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
+            this.tl_ClientesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ClientesTableAdapter();
             this.grpBusqueda.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numNroDocumento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
+            this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tlClientesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
-            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpBusqueda
@@ -220,19 +220,21 @@
             this.dgvClientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellDoubleClick);
             this.dgvClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellContentClick);
             // 
-            // tlClientesBindingSource
+            // Eliminar
             // 
-            this.tlClientesBindingSource.DataMember = "tl_Clientes";
-            this.tlClientesBindingSource.DataSource = this.gD1C2014DataSet;
-            // 
-            // gD1C2014DataSet
-            // 
-            this.gD1C2014DataSet.DataSetName = "GD1C2014DataSet";
-            this.gD1C2014DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tl_ClientesTableAdapter
-            // 
-            this.tl_ClientesTableAdapter.ClearBeforeFill = true;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.NullValue = "Eliminar";
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Eliminar.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.ReadOnly = true;
+            this.Eliminar.Text = "Eliminar";
+            this.Eliminar.ToolTipText = "Eliminar Cliente";
             // 
             // menuStrip
             // 
@@ -335,21 +337,19 @@
             this.mailDataGridViewTextBoxColumn.ReadOnly = true;
             this.mailDataGridViewTextBoxColumn.Width = 51;
             // 
-            // Eliminar
+            // tlClientesBindingSource
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Red;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.NullValue = "Eliminar";
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Eliminar.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Eliminar.HeaderText = "Eliminar";
-            this.Eliminar.Name = "Eliminar";
-            this.Eliminar.ReadOnly = true;
-            this.Eliminar.Text = "Eliminar";
-            this.Eliminar.ToolTipText = "Eliminar Cliente";
+            this.tlClientesBindingSource.DataMember = "tl_Clientes";
+            this.tlClientesBindingSource.DataSource = this.gD1C2014DataSet;
+            // 
+            // gD1C2014DataSet
+            // 
+            this.gD1C2014DataSet.DataSetName = "GD1C2014DataSet";
+            this.gD1C2014DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tl_ClientesTableAdapter
+            // 
+            this.tl_ClientesTableAdapter.ClearBeforeFill = true;
             // 
             // Clientes
             // 
@@ -368,10 +368,10 @@
             this.grpBusqueda.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numNroDocumento)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tlClientesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).EndInit();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tlClientesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

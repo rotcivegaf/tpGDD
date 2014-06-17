@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 using FrbaCommerce.Abm_Cliente;
 using FrbaCommerce.Abm_Empresa;
+using System.Data.SqlClient;
 
 namespace FrbaCommerce.Registro_de_Usuario
 {
@@ -37,7 +38,17 @@ namespace FrbaCommerce.Registro_de_Usuario
 
             if (!faltanCampos())
             {
-                usuario_ID = Convert.ToInt32(this.tl_UsuariosTableAdapter.InsertAndGetID(txtUsername.Text, commons.hash(txtPassword.Text) ).ToString());
+                try
+                {
+                    int? userID = 0;
+                    this.tl_UsuariosTableAdapter.sp_InsertarUsuario(txtUsername.Text, commons.hash(txtPassword.Text), ref userID);
+                    usuario_ID = (int)userID;
+                }
+                catch (SqlException sqlE)
+                {
+                   MessageBox.Show(sqlE.Message);
+                    return;
+                }
                 if (optCliente.Checked)
                 {
                     Cliente frame = new Cliente();
