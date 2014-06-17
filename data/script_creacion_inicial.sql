@@ -726,7 +726,7 @@ BEGIN
 				JOIN LOL.tl_Clientes C
 				ON (M.Cli_Dni = C.Nro_Documento)
 		WHERE
-			Compra_Cantidad IS NOT NULL AND
+			Compra_Cantidad IS NOT NULL
 			--Asi importamos las compras que no estan calificadas, no se si falta algo mas
 			--Calificacion_Codigo IS NOT NULL
 
