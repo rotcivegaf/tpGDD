@@ -5,6 +5,7 @@ using System.Text;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 using System.Drawing;
+using System.IO;
 
 namespace FrbaCommerce
 {
@@ -29,6 +30,23 @@ namespace FrbaCommerce
             return sBuilder.ToString();
         }
 
+        public static DateTime getDate()
+        {
+            try
+            {
+                using (StreamReader sr = new StreamReader("..\\..\\fecha.config"))
+                {
+                    String line = sr.ReadToEnd();
+                    return Convert.ToDateTime(line);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("No se pudo leer el archivo de configuracion.\nSe devolvera la fecha del sistema");
+                return DateTime.Now;
+            }
+        }
+
         public static bool algunoVacio(params ComboBox[] campos)
         {
             bool vacio = false;
@@ -44,7 +62,16 @@ namespace FrbaCommerce
 
             return vacio;
         }
-        
+
+        public static void selectAll(NumericUpDown numeric)
+        {
+            numeric.Select(0,numeric.Value.ToString().Length);
+        }
+        public static void selectAll(TextBox texto)
+        {
+            texto.Select(0, texto.Text.Length);
+        }
+
         public static bool algunoVacio(params TextBox[] campos)
         {
             bool vacio = false;
@@ -67,6 +94,22 @@ namespace FrbaCommerce
 
             for (int i = 0; i < campos.Count(); i++)
                 if (campos[i].SelectedIndex == -1)
+                {
+                    vacio = true;
+                    campos[i].BackColor = Color.LightPink;
+                }
+                else
+                    campos[i].BackColor = Color.White;
+
+            return vacio;
+        }
+
+        public static bool algunoVacio(params NumericUpDown[] campos)
+        {
+            bool vacio = false;
+
+            for (int i = 0; i < campos.Count(); i++)
+                if (campos[i].Value == 0)
                 {
                     vacio = true;
                     campos[i].BackColor = Color.LightPink;

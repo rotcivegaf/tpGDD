@@ -43,6 +43,9 @@ CREATE TABLE LOL.tl_Clientes (
 	Depto          NVARCHAR(50) NULL,
 	Cod_Postal     NVARCHAR(50) NULL,
 	Telefono       NUMERIC(18, 0) NULL,
+	Suma_Calificaciones NUMERIC(18, 0) NULL,
+	Cantidad_Calificaciones NUMERIC(18, 0) NULL,
+	Habilitado	BIT DEFAULT(1) NOT NULL,
 
 	PRIMARY KEY (ID)
 )
@@ -60,6 +63,9 @@ CREATE TABLE LOL.tl_Empresas (
 	Piso           NUMERIC(18, 0) NULL,
 	Depto          NVARCHAR(50) NULL,
 	Cod_Postal     NVARCHAR(50) NULL,
+	Suma_Calificaciones NUMERIC(18, 0) NULL,
+	Cantidad_Calificaciones NUMERIC(18, 0) NULL,
+	Habilitada	BIT DEFAULT(1) NOT NULL,
 
 	PRIMARY KEY(ID)
 )
@@ -187,7 +193,6 @@ CREATE TABLE LOL.tl_Facturas (
 	Fecha            DATETIME NOT NULL,
 	Publicacion_Cod  NUMERIC(18, 0) NOT NULL,
 	Pago_Descripcion NVARCHAR(255) NULL,
-	Total            MONEY DEFAULT(0.00) NOT NULL,
 
 	PRIMARY KEY(Nro)
 )
@@ -545,7 +550,10 @@ BEGIN
 			Publ_Empresa_Nro_Calle,
 			Publ_Empresa_Piso,
 			Publ_Empresa_Depto,
-			Publ_Empresa_Cod_Postal
+			Publ_Empresa_Cod_Postal,
+			0, -- SumaCalificaciones
+			0, -- CantidadCalificaciones
+			1 -- Habilitada
 		FROM
 			LOL.tl_Usuarios U JOIN gd_esquema.Maestra M ON (U.Username = M.Publ_Empresa_Cuit)
 
@@ -608,7 +616,10 @@ BEGIN
 			Cli_Piso,
 			Cli_Depto,
 			Cli_Cod_Postal,
-			NULL -- TELEFONO
+			NULL, -- TELEFONO
+			0, -- SumaCalificaciones
+			0, -- CantidadCalificaciones
+			1 -- Habilitado
 		FROM
 			LOL.tl_Usuarios U JOIN gd_esquema.Maestra M ON (U.Username = CAST(M.Cli_Dni AS NVARCHAR(50)))
 
@@ -711,7 +722,6 @@ BEGIN
 			Calificacion_Codigo,
 			Calificacion_Cant_Estrellas,
 			Calificacion_Descripcion,
-			-- Aclaracion: Comision_pagada en 0 o en 1?
 			1
 		FROM
 			gd_esquema.Maestra M
@@ -721,6 +731,78 @@ BEGIN
 			Compra_Cantidad IS NOT NULL AND
 			Calificacion_Codigo IS NOT NULL
 
+END
+GO
+
+--Stored Procedure InicializarCalificacionesClientes
+CREATE PROCEDURE LOL.sp_InicializarCalificacionesClientes
+AS
+BEGIN
+	UPDATE
+		LOL.tl_Clientes
+	SET
+		Suma_Calificaciones = iii.SumaTotal,
+		Cantidad_Calificaciones = iii.CantidadTotal
+	FROM
+		(SELECT
+			ii.Cliente_ID,
+			SUM(ii.SumaCalificaciones) AS SumaTotal,
+			SUM(ii.CantidadCalificaciones) AS CantidadTotal
+		FROM
+			(SELECT
+				P.Cliente_ID,
+				i.*
+			FROM
+				(SELECT 
+					Publicacion_Codigo,
+					SUM(Calificacion_Cant_Estrellas) AS SumaCalificaciones,
+					COUNT(0) AS CantidadCalificaciones 
+				 FROM
+					LOL.tl_Compras
+				 WHERE
+					Calificacion_Cant_Estrellas IS NOT NULL
+				 GROUP BY
+					Publicacion_Codigo) i JOIN LOL.tl_Publicaciones P ON (i.Publicacion_Codigo = P.Codigo)) ii
+		WHERE
+			ii.Cliente_ID IS NOT NULL
+		GROUP BY
+			ii.Cliente_ID) iii JOIN LOL.tl_Clientes ON (iii.Cliente_ID = ID)
+END
+GO
+
+--Stored Procedure InicializarCalificacionesEmpresas
+CREATE PROCEDURE LOL.sp_InicializarCalificacionesEmpresas
+AS
+BEGIN
+	UPDATE
+		LOL.tl_Empresas
+	SET
+		Suma_Calificaciones = iii.SumaTotal,
+		Cantidad_Calificaciones = iii.CantidadTotal
+	FROM
+		(SELECT
+			ii.Empresa_ID,
+			SUM(ii.SumaCalificaciones) AS SumaTotal,
+			SUM(ii.CantidadCalificaciones) AS CantidadTotal
+		FROM
+			(SELECT
+				P.Empresa_ID,
+				i.*
+			FROM
+				(SELECT 
+					Publicacion_Codigo,
+					SUM(Calificacion_Cant_Estrellas) AS SumaCalificaciones,
+					COUNT(0) AS CantidadCalificaciones 
+				 FROM
+					LOL.tl_Compras
+				 WHERE
+					Calificacion_Cant_Estrellas IS NOT NULL
+				 GROUP BY
+					Publicacion_Codigo) i JOIN LOL.tl_Publicaciones P ON (i.Publicacion_Codigo = P.Codigo)) ii
+		WHERE
+			ii.Empresa_ID IS NOT NULL
+		GROUP BY
+			ii.Empresa_ID) iii JOIN LOL.tl_Empresas ON (iii.Empresa_ID = ID)
 END
 GO
 
@@ -735,7 +817,6 @@ BEGIN
 	INSERT INTO LOL.tl_Facturas
 		(Nro,Fecha,Publicacion_Cod, Pago_Descripcion)
 		SELECT DISTINCT
-			--Aclaracion: El total de la factura hay que calcularlo o es null?
 			Factura_Nro,Factura_Fecha,Publicacion_Cod, Forma_Pago_Desc
 		FROM
 			gd_esquema.Maestra
@@ -788,6 +869,8 @@ EXEC LOL.sp_ImportarEmpresas
 EXEC LOL.sp_ImportarClientes
 EXEC LOL.sp_ImportarPublicaciones
 EXEC LOL.sp_ImportarCompras
+EXEC LOL.sp_InicializarCalificacionesClientes
+EXEC LOL.sp_InicializarCalificacionesEmpresas
 EXEC LOL.sp_ImportarFacturas
 EXEC LOL.sp_ImportarOfertas
 
@@ -925,20 +1008,22 @@ END
 GO
 
 /* Stored Procedure sp_TryLogin */
-CREATE PROCEDURE LOL.sp_TryLogin @user varchar(50),
-                                 @pass varchar(50),
-	                             @ID int OUT
+CREATE PROCEDURE [LOL].[sp_TryLogin] @user VARCHAR(50),
+                                 	@pass VARCHAR(50),
+	                             	@ID INT OUT,
+	                             	@ChangePassword BIT OUT
 
 AS
 BEGIN
 	DECLARE @tl_pass VARCHAR(50);
 	DECLARE @tl_ID INT;
 	DECLARE @tl_Habilitado INT;
+	DECLARE @tl_ChangePassword BIT;
 	DECLARE @error NVARCHAR(255);
 
 	SET NOCOUNT ON;
 
-	SELECT @tl_pass = U.Password,@tl_ID = U.ID, @tl_Habilitado = U.Habilitado FROM LOL.tl_Usuarios U WHERE Username = @user
+	SELECT @tl_pass = U.Password,@tl_ID = U.ID, @tl_Habilitado = U.Habilitado , @tl_ChangePassword = Change_Password FROM LOL.tl_Usuarios U WHERE Username = @user
 
 	
 	IF (@tl_pass IS NULL)
@@ -946,33 +1031,41 @@ BEGIN
 		BEGIN
 			SET @ID = -3;
 			SET @error = 'Usuario inexistente.'
-    		RAISERROR (@error, 11,1)
-    		RETURN -1
-    	END
-	ELSE
-		IF (@tl_Habilitado = 0)
-			BEGIN
-				SET @ID = -2; -- EL USUARIO ESTA INHABILITADO
-				SET @error = 'Usuario inhabilitado.'
     			RAISERROR (@error, 11,1)
     			RETURN -1
-    		END	
+	    	END
+	ELSE
+		IF (@tl_ChangePassword = 1)
+			BEGIN
+				EXEC LOL.sp_LoginExitoso @user;
+				SET @ID = @tl_ID;
+				SET @ChangePassword = @tl_ChangePassword;
+			END
 		ELSE
-			IF(@pass = @tl_pass)
-				-- CONTRASENIA CORRECTA
+			IF (@tl_Habilitado = 0)
 				BEGIN
-					EXEC LOL.sp_LoginExitoso @user;
-					SET @ID = @tl_ID;
-				END
+					SET @ID = -2; -- EL USUARIO ESTA INHABILITADO
+					SET @error = 'Usuario inhabilitado.'
+    					RAISERROR (@error, 11,1)
+    					RETURN -1
+    				END	
 			ELSE
-				-- CONTRASENIA INCORRECTA
-				BEGIN
-					EXEC LOL.sp_LoginFallido @user;
-					SET @ID = -1;
-					SET @error = 'Contrasenia incorrecta.'
-    				RAISERROR (@error, 11,1)
-    				RETURN -1
-				END
+				IF(@pass = @tl_pass)
+					-- CONTRASENIA CORRECTA
+					BEGIN
+						EXEC LOL.sp_LoginExitoso @user;
+						SET @ID = @tl_ID;
+						SET @ChangePassword = @tl_ChangePassword;
+					END
+				ELSE
+					-- CONTRASENIA INCORRECTA
+					BEGIN
+						EXEC LOL.sp_LoginFallido @user;
+						SET @ID = -1;
+						SET @error = 'Contrasenia incorrecta.'
+    						RAISERROR (@error, 11,1)
+    						RETURN -1
+					END
 END
 GO
 
@@ -1043,7 +1136,8 @@ CREATE PROCEDURE [LOL].[sp_GuardarCliente]
 	@Piso INT = NULL,
 	@Depto NVARCHAR(50) = NULL,
 	@CodPostal NVARCHAR(50) = NULL,
-	@Telefono INT
+	@Telefono INT,
+	@Habilitado BIT
 AS
 BEGIN
 	DECLARE @error NVARCHAR(255);
@@ -1051,24 +1145,24 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
-	IF EXISTS(SELECT * FROM LOL.tl_Clientes WHERE Tipo_Documento = @TipoDocumento AND Nro_Documento = @Nro_Documento)
+	IF EXISTS(SELECT * FROM LOL.tl_Clientes WHERE Tipo_Documento = @TipoDocumento AND Nro_Documento = @Nro_Documento AND ID <> @ID)
 		BEGIN
-			SET @error = 'Cliente Existente';
+			SET @error = 'DNI Existente';
 			RAISERROR (@error, 11,1)
     			RETURN -1
 		END
-	IF EXISTS(SELECT * FROM LOL.tl_Clientes WHERE CUIL = @CUIL)
+	IF EXISTS(SELECT * FROM LOL.tl_Clientes WHERE CUIL = @CUIL AND ID <> @ID)
 		BEGIN
 			SET @error = 'CUIL Existente';
 			RAISERROR (@error, 11,1)
     			RETURN -1
 		END
 	IF(@Telefono IS NOT NULL)
-		IF EXISTS(SELECT * FROM LOL.tl_Clientes WHERE Telefono = @Telefono)
+		IF EXISTS(SELECT * FROM LOL.tl_Clientes WHERE Telefono = @Telefono AND ID <> @ID)
 			BEGIN
 				SET @error = 'Celular Existente';
 				RAISERROR (@error, 11,1)
-    			RETURN -1
+    				RETURN -1
 			END
 
 	BEGIN TRAN
@@ -1093,7 +1187,10 @@ BEGIN
 			@Piso,
 			@Depto,
 			@CodPostal,
-			@Telefono)
+			@Telefono,
+			0,
+			0,
+			1)
 	ELSE
 		UPDATE LOL.tl_Clientes SET
 			Tipo_Documento = @TipoDocumento,
@@ -1108,7 +1205,78 @@ BEGIN
 			Piso = @Piso,
 			Depto = @Depto,
 			Cod_Postal = @CodPostal,
-			Telefono = @Telefono
+			Telefono = @Telefono,
+			Habilitado = @Habilitado
+		WHERE
+			ID = @ID
+	COMMIT
+
+END
+GO
+
+/* Stored Procedure GuardarEmpresa*/
+CREATE PROCEDURE [LOL].[sp_GuardarEmpresa]
+	@isNew BIT,
+	@UserPassword NVARCHAR(255) = '',
+	@ID INT,
+	@Razon_Social NVARCHAR(255),
+	@CUIT NVARCHAR(50),
+	@FechaCreacion DATE = NULL,
+	@Mail NVARCHAR(255) = NULL,
+	@DomCalle NVARCHAR(255) = NULL,
+	@NroCalle INT = NULL,
+	@Piso INT = NULL,
+	@Depto NVARCHAR(50) = NULL,
+	@CodPostal NVARCHAR(50) = NULL,
+	@Habilitada BIT
+AS
+BEGIN
+	DECLARE @error NVARCHAR(255);
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	IF EXISTS(SELECT 0 FROM LOL.tl_Empresas WHERE CUIT = @CUIT AND ID <> @ID)
+		BEGIN
+			SET @error = 'CUIT Existente';
+			RAISERROR (@error, 11,1)
+    			RETURN -1
+		END
+
+	BEGIN TRAN
+	-- Todo OK
+	IF (@UserPassword <> '')
+		BEGIN
+			INSERT INTO LOL.tl_Usuarios(Username,Password,Change_Password) VALUES (@CUIT,@UserPassword,1)
+			SELECT @ID = @@IDENTITY
+		END
+	IF (@isNew = 1)
+		INSERT INTO LOL.tl_Empresas VALUES(
+			@ID,
+			@Razon_Social,
+			@CUIT,
+			@FechaCreacion,
+			@Mail,
+			@DomCalle,
+			@NroCalle,
+			@Piso,
+			@Depto,
+			@CodPostal,
+			0,
+			0,
+			1)
+	ELSE
+		UPDATE LOL.tl_Empresas SET
+			Razon_Social = @Razon_Social,
+			CUIT = @CUIT,
+			Fecha_Creacion = @FechaCreacion,
+			Mail = @Mail,
+			Dom_Calle = @DomCalle,
+			Nro_Calle = @NroCalle,
+			Piso = @Piso,
+			Depto = @Depto,
+			Cod_Postal = @CodPostal,
+			Habilitada = @Habilitada
 		WHERE
 			ID = @ID
 	COMMIT
@@ -1117,8 +1285,6 @@ END
 GO
 
 /* Stored Procedure Paginador*/
-
-
 CREATE PROCEDURE [LOL].[sp_Paginador]
 
 	@Offset int,
@@ -1171,5 +1337,97 @@ FROM Results
 WHERE RowNum >= @Offset
 AND RowNum < @Offset + @Limit
 
+END
+GO
+
+/* Stored Procedure CalificarVendedor*/
+CREATE PROCEDURE [LOL].[sp_CalificarVendedor]
+	@CompraID INT,
+	@CantidadEstrellas TINYINT,
+	@Descripcion NVARCHAR(255) = NULL
+AS
+BEGIN
+	DECLARE @ClienteID INT;
+	DECLARE @EmpresaID INT;
+	DECLARE @NewCalificacionCodigo INT;
+
+	SET NOCOUNT ON;
+
+	SELECT 
+		@ClienteID = P.Cliente_ID,
+		@EmpresaID = P.Empresa_ID
+	FROM 
+		(SELECT Publicacion_Codigo FROM LOL.tl_Compras WHERE (ID = @CompraID)) C JOIN LOL.tl_Publicaciones P ON (C.Publicacion_Codigo = P.Codigo)
+	
+	SELECT @NewCalificacionCodigo = MAX(Calificacion_Codigo) + 1 FROM LOL.tl_Compras WHERE Calificacion_Codigo IS NOT NULL
+	
+	BEGIN TRANSACTION;
+		UPDATE 
+			LOL.tl_Compras
+		SET
+			Calificacion_Codigo = @NewCalificacionCodigo,
+			Calificacion_Cant_Estrellas = @CantidadEstrellas,
+			Calificacion_Descripcion = @Descripcion
+		WHERE
+			ID = @CompraID;
+
+		IF (@ClienteID IS NOT NULL)
+			UPDATE LOL.tl_Clientes 
+			SET Suma_Calificaciones = Suma_Calificaciones + @CantidadEstrellas, Cantidad_Calificaciones = Cantidad_Calificaciones + 1
+			WHERE ID = @ClienteID;
+		ELSE
+			UPDATE LOL.tl_Empresas
+			SET Suma_Calificaciones = Suma_Calificaciones + @CantidadEstrellas, Cantidad_Calificaciones = Cantidad_Calificaciones + 1
+			WHERE ID = @EmpresaID;
+
+	COMMIT
+END
+GO
+
+/* Stored Procedure VendedoresConMasStock*/
+CREATE PROCEDURE LOL.sp_VendedoresConMasStock @anio int,
+											  @trimestre int,
+											  @visibilidad_codigo int,
+											  @mes int
+
+AS
+BEGIN
+
+	SELECT TOP 5
+		ISNULL(tl_Publicaciones.Cliente_ID, tl_Publicaciones.Empresa_ID) AS 'Codigo de usuario',
+		SUM(tl_Publicaciones.Stock) AS 'Productos sin vender'
+	FROM
+		LOL.tl_Publicaciones
+    WHERE
+		YEAR(tl_Publicaciones.Fecha) = @anio AND
+		(MONTH(tl_Publicaciones.Fecha) BETWEEN @trimestre AND (@trimestre+2)) AND
+		(MONTH(tl_Publicaciones.Fecha) = (@trimestre + @mes) OR @mes IS NULL) AND
+		(tl_Publicaciones.Visibilidad_Codigo = @visibilidad_codigo OR @visibilidad_codigo IS NULL)
+	GROUP BY ISNULL(tl_Publicaciones.Cliente_ID, tl_Publicaciones.Empresa_ID)
+	ORDER BY 2 DESC
+	OPTION(RECOMPILE)
+    
+END
+GO
+
+/* Stored Procedure InsertarUsuario */
+CREATE PROCEDURE [LOL].[sp_InsertarUsuario]
+	@Username NVARCHAR(2555),
+	@Password NVARCHAR(255),
+	@ID INT OUT
+AS
+BEGIN
+	DECLARE @error varchar(255);
+	SET NOCOUNT ON;
+
+	IF EXISTS(SELECT Username FROM LOL.tl_Usuarios WHERE Username = @Username)
+		BEGIN
+			SET @error = 'Username Existente';
+			RAISERROR (@error, 11,1);
+    			RETURN -1;
+		END
+	INSERT INTO LOL.tl_Usuarios (Username,Password) VALUES (@Username,@Password)
+	SELECT @ID = @@IDENTITY
+	
 END
 GO

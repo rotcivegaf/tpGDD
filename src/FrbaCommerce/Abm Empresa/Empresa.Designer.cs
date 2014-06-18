@@ -202,10 +202,12 @@
             // dateFechaCreacion
             // 
             this.dateFechaCreacion.Location = new System.Drawing.Point(112, 71);
+            this.dateFechaCreacion.MaxDate = new System.DateTime(2014, 6, 18, 0, 3, 16, 458);
             this.dateFechaCreacion.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dateFechaCreacion.Name = "dateFechaCreacion";
             this.dateFechaCreacion.Size = new System.Drawing.Size(200, 20);
             this.dateFechaCreacion.TabIndex = 2;
+            this.dateFechaCreacion.Value = new System.DateTime(2014, 6, 18, 0, 3, 16, 458);
             // 
             // txtRazonSocial
             // 

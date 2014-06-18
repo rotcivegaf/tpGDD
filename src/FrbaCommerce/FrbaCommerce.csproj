@@ -54,11 +54,23 @@
     <Compile Include="Abm Cliente\Cliente.Designer.cs">
       <DependentUpon>Cliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm Cliente\Clientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Cliente\Clientes.Designer.cs">
+      <DependentUpon>Clientes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm Empresa\Empresa.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Abm Empresa\Empresa.Designer.cs">
       <DependentUpon>Empresa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Empresa\Empresas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Empresa\Empresas.Designer.cs">
+      <DependentUpon>Empresas.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM Rol\ABM_Rol_form.cs">
       <SubType>Form</SubType>
@@ -90,11 +102,11 @@
     <Compile Include="Abm Visibilidad\Edit_Visibilidad_form.Designer.cs">
       <DependentUpon>Edit_Visibilidad_form.cs</DependentUpon>
     </Compile>
-    <Compile Include="Calificar Vendedor\Form1.cs">
+    <Compile Include="Calificar Vendedor\CalificarVendedor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Calificar Vendedor\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Calificar Vendedor\CalificarVendedor.Designer.cs">
+      <DependentUpon>CalificarVendedor.cs</DependentUpon>
     </Compile>
     <Compile Include="commons.cs" />
     <Compile Include="Comprar-Ofertar\Comprar-Ofertar.cs">
@@ -115,23 +127,17 @@
     <Compile Include="Comprar-Ofertar\NuevaCompra.Designer.cs">
       <DependentUpon>NuevaCompra.cs</DependentUpon>
     </Compile>
-    <Compile Include="Editar Publicacion\EditarPublicacion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Editar Publicacion\EditarPublicacion.Designer.cs">
-      <DependentUpon>EditarPublicacion.cs</DependentUpon>
-    </Compile>
     <Compile Include="Editar Publicacion\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Editar Publicacion\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Facturar Publicaciones\Form1.cs">
+    <Compile Include="Facturar Publicaciones\FacturarPublicaciones.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Facturar Publicaciones\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Facturar Publicaciones\FacturarPublicaciones.Designer.cs">
+      <DependentUpon>FacturarPublicaciones.cs</DependentUpon>
     </Compile>
     <Compile Include="Generar Publicacion\Generar_Publicacion_form.cs">
       <SubType>Form</SubType>
@@ -172,11 +178,11 @@
     <Compile Include="Gestion de Preguntas\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Historial Cliente\Form1.cs">
+    <Compile Include="Historial Cliente\HistorialCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Historial Cliente\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Historial Cliente\HistorialCliente.Designer.cs">
+      <DependentUpon>HistorialCliente.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\Login.cs">
       <SubType>Form</SubType>
@@ -189,8 +195,14 @@
     <EmbeddedResource Include="Abm Cliente\Cliente.resx">
       <DependentUpon>Cliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Abm Cliente\Clientes.resx">
+      <DependentUpon>Clientes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Abm Empresa\Empresa.resx">
       <DependentUpon>Empresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Empresa\Empresas.resx">
+      <DependentUpon>Empresas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Rol\ABM_Rol_form.resx">
       <DependentUpon>ABM_Rol_form.cs</DependentUpon>
@@ -207,14 +219,17 @@
     <EmbeddedResource Include="Abm Visibilidad\Edit_Visibilidad_form.resx">
       <DependentUpon>Edit_Visibilidad_form.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Calificar Vendedor\CalificarVendedor.resx">
+      <DependentUpon>CalificarVendedor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Comprar-Ofertar\Comprar-Ofertar.resx">
       <DependentUpon>Comprar-Ofertar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comprar-Ofertar\NuevaCompra.resx">
       <DependentUpon>NuevaCompra.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Editar Publicacion\EditarPublicacion.resx">
-      <DependentUpon>EditarPublicacion.cs</DependentUpon>
+    <EmbeddedResource Include="Facturar Publicaciones\FacturarPublicaciones.resx">
+      <DependentUpon>FacturarPublicaciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Generar Publicacion\Generar_Publicacion_form.resx">
       <DependentUpon>Generar_Publicacion_form.cs</DependentUpon>

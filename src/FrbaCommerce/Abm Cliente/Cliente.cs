@@ -15,6 +15,7 @@ namespace FrbaCommerce.Abm_Cliente
         bool nuevoCliente;
         bool crearUsuario;
         int ID;
+        bool guardado = false;
 
         public Cliente()
         {
@@ -30,23 +31,25 @@ namespace FrbaCommerce.Abm_Cliente
             this.ShowDialog();
         }
 
-        public void editar(int cliente_ID)
+        public bool editar(int cliente_ID)
         {
             nuevoCliente = false;
             crearUsuario = false;
             ID = cliente_ID;
             cargarDatos();
-
             this.ShowDialog();
+
+            return guardado;
         }
 
-        public void nuevoByAdmin()
+        public bool nuevoByAdmin()
         {
             nuevoCliente = true;
             crearUsuario = true;
             ID = 0;
-
             this.ShowDialog();
+
+            return guardado;
         }
 
         private void cargarDatos()
@@ -55,7 +58,7 @@ namespace FrbaCommerce.Abm_Cliente
             clienteDataTable = this.tl_ClientesTableAdapter.getByID(ID);
             DataRow cliente = clienteDataTable.Rows[0];
 
-            txtTipoDocumento.Text = cliente["Tipo_Documento"].ToString();
+            cmbTipoDocumento.Text = cliente["Tipo_Documento"].ToString();
             numNroDocumento.Value= Convert.ToInt32(cliente["Nro_Documento"].ToString());
             txtApellido.Text = cliente["Apellido"].ToString();
             txtNombre.Text = cliente["Nombre"].ToString();
@@ -72,8 +75,11 @@ namespace FrbaCommerce.Abm_Cliente
 
         private bool faltanCampos()
         {
-            //FALTA HACER -> VER QUE CHEQUEE TODO DE UNA
-            return commons.algunoVacio(txtTipoDocumento,txtApellido, txtNombre);
+            bool algunoVacio = commons.algunoVacio(cmbTipoDocumento);
+            algunoVacio |= commons.algunoVacio(txtNombre,txtApellido, txtCUIL, txtMail, txtCalle, txtDepto, txtCodigoPostal);
+            algunoVacio |= commons.algunoVacio(numNroDocumento,numNroCalle, numPiso);
+
+            return algunoVacio;
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -85,7 +91,7 @@ namespace FrbaCommerce.Abm_Cliente
                    nuevoCliente,
                    crearUsuario ? commons.hash(numNroDocumento.Value.ToString()) : "",
                    ID,
-                   txtTipoDocumento.Text,
+                   cmbTipoDocumento.Text,
                    (int)numNroDocumento.Value,
                    txtApellido.Text,
                    txtNombre.Text,
@@ -97,7 +103,8 @@ namespace FrbaCommerce.Abm_Cliente
                    Convert.ToInt32(numPiso.Value),
                    txtDepto.Text,
                    txtCodigoPostal.Text,
-                   (txtTelefono.Text == "") ? (int?)null : Convert.ToInt32(txtTelefono.Text)
+                   (txtTelefono.Text == "") ? (int?)null : Convert.ToInt32(txtTelefono.Text),
+                   true
                    );
             }
             catch (SqlException error)
@@ -105,7 +112,8 @@ namespace FrbaCommerce.Abm_Cliente
                 MessageBox.Show(error.Message);
                 return;
             }
-            MessageBox.Show("Cliente Creado");
+            MessageBox.Show("Cliente Guardado");
+            guardado = true;
             this.Close();
         }
 

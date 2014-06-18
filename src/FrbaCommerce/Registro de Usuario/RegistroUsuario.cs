@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 using FrbaCommerce.Abm_Cliente;
 using FrbaCommerce.Abm_Empresa;
+using System.Data.SqlClient;
 
 namespace FrbaCommerce.Registro_de_Usuario
 {
@@ -35,12 +36,19 @@ namespace FrbaCommerce.Registro_de_Usuario
         {
             int rol_ID;
 
-            if (!commons.algunoVacio(txtUsername, txtPassword))
-                if (!optCliente.Checked && !optEmpresa.Checked)
-                    MessageBox.Show("Debe seleccionar el Rol");
-                else
+            if (!faltanCampos())
             {
-                usuario_ID = Convert.ToInt32(this.tl_UsuariosTableAdapter.InsertAndGetID(txtUsername.Text, commons.hash(txtPassword.Text) ).ToString());
+                try
+                {
+                    int? userID = 0;
+                    this.tl_UsuariosTableAdapter.sp_InsertarUsuario(txtUsername.Text, commons.hash(txtPassword.Text), ref userID);
+                    usuario_ID = (int)userID;
+                }
+                catch (SqlException sqlE)
+                {
+                   MessageBox.Show(sqlE.Message);
+                    return;
+                }
                 if (optCliente.Checked)
                 {
                     Cliente frame = new Cliente();
@@ -50,12 +58,24 @@ namespace FrbaCommerce.Registro_de_Usuario
                 else
                 {
                     Empresa frame = new Empresa();
-                    frame.nuevo(usuario_ID);
+                    frame.nueva(usuario_ID);
                     rol_ID = 3;
                 }
                 this.tl_Usuarios_RolesTableAdapter.Insert(usuario_ID,rol_ID,true);
                 this.Close();
             }
+        }
+
+        private bool faltanCampos()
+        {
+            bool algunoVacio = commons.algunoVacio(txtUsername, txtPassword);   
+            if (!optCliente.Checked && !optEmpresa.Checked)
+            {    
+                MessageBox.Show("Debe seleccionar el Rol");
+                algunoVacio = true;
+            }
+
+            return algunoVacio;
         }
     }
 }

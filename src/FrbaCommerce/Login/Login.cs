@@ -16,33 +16,56 @@ namespace FrbaCommerce.Login
     {
         int usuario_ID;
         int rol_ID;
+        bool logueado = false;
 
         public formLogin()
         {
             InitializeComponent();
         }
 
-        //Hay que hacerlo con el dataset.
+        public bool login()
+        {
+            this.ShowDialog();
+            return logueado;
+        }
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
             if (!commons.algunoVacio(txtUsername, txtPassword))
             {
-                int? id = 0;
+                bool mustChangePassword;
+
                 try
                 {
-                    this.tl_UsuariosTableAdapter.sp_TryLogin(txtUsername.Text, commons.hash(txtPassword.Text), ref id);
+                    int? id = 0;
+                    bool? changePassword = false;
+
+                    this.tl_UsuariosTableAdapter.sp_TryLogin(txtUsername.Text, commons.hash(txtPassword.Text), ref id, ref changePassword);
+
+                    usuario_ID = (int)id;
+                    mustChangePassword = (bool)changePassword;
                 }
                 catch (SqlException sqlE)
                     {
                         MessageBox.Show(sqlE.Message);
                         return;
                     }
-                usuario_ID = (int)id;
                 commons.bloquearCampos(txtUsername, txtPassword);
                 commons.bloquearCampos(btnRegistrar, btnLogin);
-                btnContinuar.Enabled = true;
-
-                llenarComboRoles();
+                splitContainer.Visible = true;
+                if (mustChangePassword)
+                {
+                    splitContainer.Panel1Collapsed = false;
+                    splitContainer.Panel2Collapsed = true;
+                    txtNewPassword.Focus();
+                }
+                else
+                {
+                    splitContainer.Panel1Collapsed = true;
+                    splitContainer.Panel2Collapsed = false;
+                    cmbRoles.Focus();
+                    llenarComboRoles();
+                }
             }
         }
 
@@ -65,6 +88,7 @@ namespace FrbaCommerce.Login
         private void getRubroIDAndClose()
         {
             rol_ID = Convert.ToInt32(cmbRoles.SelectedValue.ToString());
+            logueado = true;
             this.Close();
         }
 
@@ -83,10 +107,23 @@ namespace FrbaCommerce.Login
             {
                 RegistroUsuario frame = new RegistroUsuario();  
                 usuario_ID = frame.nuevo(txtUsername.Text, txtPassword.Text);
-                llenarComboRoles();
+                if (usuario_ID != 0)
+                {
+                    splitContainer.Panel1Collapsed = true;
+                    splitContainer.Panel2Collapsed = false;
+                    cmbRoles.Focus();
+                    llenarComboRoles();
+                }
 
             }
         }
 
+        private void btnChangePassword_Click(object sender, EventArgs e)
+        {
+            this.tl_UsuariosTableAdapter.changePassword(commons.hash(txtNewPassword.Text),(decimal)usuario_ID);
+            splitContainer.Panel1Collapsed = true;
+            splitContainer.Panel2Collapsed = false;
+            llenarComboRoles();
+        }
     }
 }

@@ -31,6 +31,8 @@ DROP PROCEDURE LOL.sp_InicializarFuncionalidades
 DROP PROCEDURE LOL.sp_InicializarRoles
 DROP PROCEDURE LOL.sp_InicializarUsuarioAdmin
 DROP PROCEDURE LOL.sp_ImportarCompras
+DROP PROCEDURE LOL.sp_InicializarCalificacionesClientes
+DROP PROCEDURE LOL.sp_InicializarCalificacionesEmpresas
 DROP PROCEDURE LOL.sp_ImportarOfertas
 
 
@@ -45,7 +47,11 @@ DROP PROCEDURE LOL.sp_CrearPublicacion
 DROP PROCEDURE LOL.sp_InsertPublicacionRubro 
 --DROP PROCEDURE LOL.sp_InsertarCliente
 DROP PROCEDURE LOL.sp_GuardarCliente
+DROP PROCEDURE LOL.sp_GuardarEmpresa
 DROP PROCEDURE LOL.sp_Paginador
+DROP PROCEDURE LOL.sp_CalificarVendedor
+DROP PROCEDURE LOL.sp_VendedoresConMasStock
+DROP PROCEDURE LOL.sp_InsertarUsuario
 
 --Eliminar Tipo de dato
 DROP TYPE LOL.dataTable

@@ -15,13 +15,14 @@ namespace FrbaCommerce.Abm_Empresa
         bool nuevaEmpresa;
         bool crearUsuario;
         int ID;
+        bool guardada = false;
 
         public Empresa()
         {
             InitializeComponent();
         }
 
-        public void nuevo(int empresa_ID)
+        public void nueva(int empresa_ID)
         {
             nuevaEmpresa = true;
             crearUsuario = false;
@@ -30,23 +31,25 @@ namespace FrbaCommerce.Abm_Empresa
             this.ShowDialog();
         }
 
-        public void editar(int empresa_ID)
+        public bool editar(int empresa_ID)
         {
             nuevaEmpresa = false;
             crearUsuario = false;
             ID = empresa_ID;
             cargarDatos();
-
             this.ShowDialog();
+
+            return guardada;
         }
 
-        public void nuevaByAdmin()
+        public bool nuevaByAdmin()
         {
             nuevaEmpresa = true;
             crearUsuario = true;
             ID = 0;
-
             this.ShowDialog();
+
+            return guardada;
         }
 
         private void cargarDatos()
@@ -68,8 +71,10 @@ namespace FrbaCommerce.Abm_Empresa
 
         private bool faltanCampos()
         {
-            //FALTA HACER -> VER QUE CHEQUEE TODO DE UNA
-            return commons.algunoVacio(txtRazonSocial, txtCUIT);
+            bool algunoVacio = commons.algunoVacio(txtRazonSocial, txtCUIT, txtMail, txtCalle, txtDepto, txtCodigoPostal);
+            algunoVacio |= commons.algunoVacio(numNroCalle, numPiso); 
+
+            return algunoVacio;
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -89,7 +94,8 @@ namespace FrbaCommerce.Abm_Empresa
                    Convert.ToInt32(numNroCalle.Value),
                    Convert.ToInt32(numPiso.Value),
                    txtDepto.Text,
-                   txtCodigoPostal.Text
+                   txtCodigoPostal.Text,
+                   true
                    );
             }
             catch (SqlException error)
@@ -97,7 +103,8 @@ namespace FrbaCommerce.Abm_Empresa
                 MessageBox.Show(error.Message);
                 return;
             }
-            MessageBox.Show("Empresa Creada");
+            MessageBox.Show("Empresa Guardada");
+            guardada = true;
             this.Close();
         }
     }
