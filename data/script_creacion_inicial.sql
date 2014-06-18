@@ -191,7 +191,6 @@ CREATE TABLE LOL.tl_Facturas (
 	Fecha            DATETIME NOT NULL,
 	Publicacion_Cod  NUMERIC(18, 0) NOT NULL,
 	Pago_Descripcion NVARCHAR(255) NULL,
-	Total            MONEY DEFAULT(0.00) NOT NULL,
 
 	PRIMARY KEY(Nro)
 )
@@ -814,7 +813,6 @@ BEGIN
 	INSERT INTO LOL.tl_Facturas
 		(Nro,Fecha,Publicacion_Cod, Pago_Descripcion)
 		SELECT DISTINCT
-			--Aclaracion: El total de la factura hay que calcularlo o es null?
 			Factura_Nro,Factura_Fecha,Publicacion_Cod, Forma_Pago_Desc
 		FROM
 			gd_esquema.Maestra
