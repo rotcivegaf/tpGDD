@@ -115,6 +115,12 @@
     <Compile Include="Comprar-Ofertar\NuevaCompra.Designer.cs">
       <DependentUpon>NuevaCompra.cs</DependentUpon>
     </Compile>
+    <Compile Include="Editar Publicacion\EditarPublicacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editar Publicacion\EditarPublicacion.Designer.cs">
+      <DependentUpon>EditarPublicacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editar Publicacion\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -206,6 +212,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Comprar-Ofertar\NuevaCompra.resx">
       <DependentUpon>NuevaCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editar Publicacion\EditarPublicacion.resx">
+      <DependentUpon>EditarPublicacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Generar Publicacion\Generar_Publicacion_form.resx">
       <DependentUpon>Generar_Publicacion_form.cs</DependentUpon>

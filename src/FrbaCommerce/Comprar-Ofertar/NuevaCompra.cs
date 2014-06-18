@@ -24,16 +24,22 @@ namespace FrbaCommerce.Comprar_Ofertar
         private int UserID;
         private int publicacionID;
         private int stock;
+        GD1C2014DataSet.tl_ClientesyEmpresasDataTable tablaTemporal = new GD1C2014DataSet.tl_ClientesyEmpresasDataTable();
 
         private void NuevaCompra_Load(object sender, EventArgs e)
         {
-            numericUpDownStock.Maximum = this.stock;
+            this.numericUpDownStock.Maximum = this.stock;
+            this.tl_ClientesyEmpresasDataGridView.Visible = false;
+            this.label2.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //Acá empieza el baile porque no tengo idea como hacer que se muestre los datos de
-            //un vendedor sea el mismo empresa o cliente...
+            this.tl_ClientesyEmpresasDataGridView.Visible = true;
+            this.label2.Visible = true;
+            this.tl_ClientesyEmpresasTableAdapter.FillByID(tablaTemporal, this.UserID.ToString());
+            this.tl_ClientesyEmpresasDataGridView.DataSource = tablaTemporal;
+
         }
         
     }

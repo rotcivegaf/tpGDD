@@ -75,5 +75,12 @@ namespace FrbaCommerce
             Listado_Estadistico_form frame = new Listado_Estadistico_form();
             frame.ShowDialog();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Editar_Publicacion.EditarPublicacion frame = new FrbaCommerce.Editar_Publicacion.EditarPublicacion();
+            frame.setID(usuario_ID);
+            frame.ShowDialog();
+        }
     }
 }

@@ -33,6 +33,19 @@
             this.textBoxDescripcion = new System.Windows.Forms.TextBox();
             this.Descripcion = new System.Windows.Forms.Label();
             this.dataGridViewPublicaciones = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaVencimientoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.permitePreguntasDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Preguntar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Comprar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Cliente_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Empresa_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Visibilidad_Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tl_PublicacionesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
             this.label1 = new System.Windows.Forms.Label();
@@ -48,19 +61,6 @@
             this.tlRubrosBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.tl_Publicaciones_RubrosTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Publicaciones_RubrosTableAdapter();
             this.tl_ComprasTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ComprasTableAdapter();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stockDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaVencimientoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tipoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.permitePreguntasDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Preguntar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Comprar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Cliente_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Empresa_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Visibilidad_Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPublicaciones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tl_PublicacionesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
@@ -121,6 +121,96 @@
             this.dataGridViewPublicaciones.Size = new System.Drawing.Size(949, 221);
             this.dataGridViewPublicaciones.TabIndex = 3;
             this.dataGridViewPublicaciones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPublicaciones_CellContentClick);
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "Codigo";
+            this.Column1.HeaderText = "IDPublicacion";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // descripcionDataGridViewTextBoxColumn
+            // 
+            this.descripcionDataGridViewTextBoxColumn.DataPropertyName = "Descripcion";
+            this.descripcionDataGridViewTextBoxColumn.HeaderText = "Descripcion";
+            this.descripcionDataGridViewTextBoxColumn.Name = "descripcionDataGridViewTextBoxColumn";
+            this.descripcionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // stockDataGridViewTextBoxColumn
+            // 
+            this.stockDataGridViewTextBoxColumn.DataPropertyName = "Stock";
+            this.stockDataGridViewTextBoxColumn.HeaderText = "Stock";
+            this.stockDataGridViewTextBoxColumn.Name = "stockDataGridViewTextBoxColumn";
+            this.stockDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // fechaVencimientoDataGridViewTextBoxColumn
+            // 
+            this.fechaVencimientoDataGridViewTextBoxColumn.DataPropertyName = "Fecha_Vencimiento";
+            this.fechaVencimientoDataGridViewTextBoxColumn.HeaderText = "Fecha_Vencimiento";
+            this.fechaVencimientoDataGridViewTextBoxColumn.Name = "fechaVencimientoDataGridViewTextBoxColumn";
+            this.fechaVencimientoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // precioDataGridViewTextBoxColumn
+            // 
+            this.precioDataGridViewTextBoxColumn.DataPropertyName = "Precio";
+            this.precioDataGridViewTextBoxColumn.HeaderText = "Precio";
+            this.precioDataGridViewTextBoxColumn.Name = "precioDataGridViewTextBoxColumn";
+            this.precioDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // tipoDataGridViewTextBoxColumn
+            // 
+            this.tipoDataGridViewTextBoxColumn.DataPropertyName = "Tipo";
+            this.tipoDataGridViewTextBoxColumn.HeaderText = "Tipo";
+            this.tipoDataGridViewTextBoxColumn.Name = "tipoDataGridViewTextBoxColumn";
+            this.tipoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // estadoDataGridViewTextBoxColumn
+            // 
+            this.estadoDataGridViewTextBoxColumn.DataPropertyName = "Estado";
+            this.estadoDataGridViewTextBoxColumn.HeaderText = "Estado";
+            this.estadoDataGridViewTextBoxColumn.Name = "estadoDataGridViewTextBoxColumn";
+            this.estadoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // permitePreguntasDataGridViewCheckBoxColumn
+            // 
+            this.permitePreguntasDataGridViewCheckBoxColumn.DataPropertyName = "Permite_Preguntas";
+            this.permitePreguntasDataGridViewCheckBoxColumn.HeaderText = "Permite_Preguntas";
+            this.permitePreguntasDataGridViewCheckBoxColumn.Name = "permitePreguntasDataGridViewCheckBoxColumn";
+            this.permitePreguntasDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
+            // Preguntar
+            // 
+            this.Preguntar.HeaderText = "Preguntar";
+            this.Preguntar.Name = "Preguntar";
+            this.Preguntar.ReadOnly = true;
+            // 
+            // Comprar
+            // 
+            this.Comprar.HeaderText = "Comprar";
+            this.Comprar.Name = "Comprar";
+            this.Comprar.ReadOnly = true;
+            // 
+            // Cliente_ID
+            // 
+            this.Cliente_ID.DataPropertyName = "Cliente_ID";
+            this.Cliente_ID.HeaderText = "Cliente_ID";
+            this.Cliente_ID.Name = "Cliente_ID";
+            this.Cliente_ID.ReadOnly = true;
+            // 
+            // Empresa_ID
+            // 
+            this.Empresa_ID.DataPropertyName = "Empresa_ID";
+            this.Empresa_ID.HeaderText = "Empresa_ID";
+            this.Empresa_ID.Name = "Empresa_ID";
+            this.Empresa_ID.ReadOnly = true;
+            // 
+            // Visibilidad_Codigo
+            // 
+            this.Visibilidad_Codigo.DataPropertyName = "Visibilidad_Codigo";
+            this.Visibilidad_Codigo.HeaderText = "Visibilidad_Codigo";
+            this.Visibilidad_Codigo.Name = "Visibilidad_Codigo";
+            this.Visibilidad_Codigo.ReadOnly = true;
+            this.Visibilidad_Codigo.Visible = false;
             // 
             // tl_PublicacionesBindingSource
             // 
@@ -239,96 +329,6 @@
             // tl_ComprasTableAdapter1
             // 
             this.tl_ComprasTableAdapter1.ClearBeforeFill = true;
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "Codigo";
-            this.Column1.HeaderText = "IDPublicacion";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // descripcionDataGridViewTextBoxColumn
-            // 
-            this.descripcionDataGridViewTextBoxColumn.DataPropertyName = "Descripcion";
-            this.descripcionDataGridViewTextBoxColumn.HeaderText = "Descripcion";
-            this.descripcionDataGridViewTextBoxColumn.Name = "descripcionDataGridViewTextBoxColumn";
-            this.descripcionDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // stockDataGridViewTextBoxColumn
-            // 
-            this.stockDataGridViewTextBoxColumn.DataPropertyName = "Stock";
-            this.stockDataGridViewTextBoxColumn.HeaderText = "Stock";
-            this.stockDataGridViewTextBoxColumn.Name = "stockDataGridViewTextBoxColumn";
-            this.stockDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // fechaVencimientoDataGridViewTextBoxColumn
-            // 
-            this.fechaVencimientoDataGridViewTextBoxColumn.DataPropertyName = "Fecha_Vencimiento";
-            this.fechaVencimientoDataGridViewTextBoxColumn.HeaderText = "Fecha_Vencimiento";
-            this.fechaVencimientoDataGridViewTextBoxColumn.Name = "fechaVencimientoDataGridViewTextBoxColumn";
-            this.fechaVencimientoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // precioDataGridViewTextBoxColumn
-            // 
-            this.precioDataGridViewTextBoxColumn.DataPropertyName = "Precio";
-            this.precioDataGridViewTextBoxColumn.HeaderText = "Precio";
-            this.precioDataGridViewTextBoxColumn.Name = "precioDataGridViewTextBoxColumn";
-            this.precioDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // tipoDataGridViewTextBoxColumn
-            // 
-            this.tipoDataGridViewTextBoxColumn.DataPropertyName = "Tipo";
-            this.tipoDataGridViewTextBoxColumn.HeaderText = "Tipo";
-            this.tipoDataGridViewTextBoxColumn.Name = "tipoDataGridViewTextBoxColumn";
-            this.tipoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // estadoDataGridViewTextBoxColumn
-            // 
-            this.estadoDataGridViewTextBoxColumn.DataPropertyName = "Estado";
-            this.estadoDataGridViewTextBoxColumn.HeaderText = "Estado";
-            this.estadoDataGridViewTextBoxColumn.Name = "estadoDataGridViewTextBoxColumn";
-            this.estadoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // permitePreguntasDataGridViewCheckBoxColumn
-            // 
-            this.permitePreguntasDataGridViewCheckBoxColumn.DataPropertyName = "Permite_Preguntas";
-            this.permitePreguntasDataGridViewCheckBoxColumn.HeaderText = "Permite_Preguntas";
-            this.permitePreguntasDataGridViewCheckBoxColumn.Name = "permitePreguntasDataGridViewCheckBoxColumn";
-            this.permitePreguntasDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
-            // Preguntar
-            // 
-            this.Preguntar.HeaderText = "Preguntar";
-            this.Preguntar.Name = "Preguntar";
-            this.Preguntar.ReadOnly = true;
-            // 
-            // Comprar
-            // 
-            this.Comprar.HeaderText = "Comprar";
-            this.Comprar.Name = "Comprar";
-            this.Comprar.ReadOnly = true;
-            // 
-            // Cliente_ID
-            // 
-            this.Cliente_ID.DataPropertyName = "Cliente_ID";
-            this.Cliente_ID.HeaderText = "Cliente_ID";
-            this.Cliente_ID.Name = "Cliente_ID";
-            this.Cliente_ID.ReadOnly = true;
-            // 
-            // Empresa_ID
-            // 
-            this.Empresa_ID.DataPropertyName = "Empresa_ID";
-            this.Empresa_ID.HeaderText = "Empresa_ID";
-            this.Empresa_ID.Name = "Empresa_ID";
-            this.Empresa_ID.ReadOnly = true;
-            // 
-            // Visibilidad_Codigo
-            // 
-            this.Visibilidad_Codigo.DataPropertyName = "Visibilidad_Codigo";
-            this.Visibilidad_Codigo.HeaderText = "Visibilidad_Codigo";
-            this.Visibilidad_Codigo.Name = "Visibilidad_Codigo";
-            this.Visibilidad_Codigo.ReadOnly = true;
-            this.Visibilidad_Codigo.Visible = false;
             // 
             // Comprar_Ofertar
             // 

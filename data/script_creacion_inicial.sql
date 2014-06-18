@@ -977,7 +977,13 @@ END
 GO
 
 /* Stored Procedure CrearPublicacion*/
-CREATE PROCEDURE LOL.sp_CrearPublicacion @descripcion nvarchar(255),
+CREATE PROCEDURE LOL.sp_CrearPublicacion 
+
+
+
+					 @Cliente_ID INT = NULL,
+					 @Empresa_ID INT = NULL,
+					 @descripcion nvarchar(255),
                                          @fecha datetime,
                                          @stock numeric(18, 0),
                                          @fecha_vencimiento datetime,
@@ -992,10 +998,10 @@ AS
 BEGIN
 
 INSERT INTO LOL.tl_Publicaciones 
-	(Descripcion, Fecha, Stock,Fecha_Vencimiento, Precio,
+	(Cliente_ID,Empresa_ID,Descripcion, Fecha, Stock,Fecha_Vencimiento, Precio,
 	 Tipo, Visibilidad_Codigo, Estado, Permite_Preguntas) 
 	VALUES
-		(@descripcion,@fecha,@stock,@fecha_vencimiento,@precio,@tipo,@visibilidad_Codigo,
+		(@Cliente_ID,@Empresa_ID,@descripcion,@fecha,@stock,@fecha_vencimiento,@precio,@tipo,@visibilidad_Codigo,
 		 @estado,@permite_preguntas)
 		 
  -- Esto devuelve el valor de ID de publicación creado en este caso

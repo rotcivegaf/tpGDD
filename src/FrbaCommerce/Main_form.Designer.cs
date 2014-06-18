@@ -38,6 +38,7 @@ namespace FrbaCommerce
             this.label1 = new System.Windows.Forms.Label();
             this.tl_UsuariosTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_UsuariosTableAdapter();
             this.tl_RolesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RolesTableAdapter();
+            this.button4 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,6 +74,7 @@ namespace FrbaCommerce
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button1);
@@ -133,6 +135,16 @@ namespace FrbaCommerce
             // 
             this.tl_RolesTableAdapter.ClearBeforeFill = true;
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(153, 93);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(135, 31);
+            this.button4.TabIndex = 7;
+            this.button4.Text = "Ver Publicaciones";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // Main_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -162,6 +174,7 @@ namespace FrbaCommerce
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RolesTableAdapter tl_RolesTableAdapter;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }
 

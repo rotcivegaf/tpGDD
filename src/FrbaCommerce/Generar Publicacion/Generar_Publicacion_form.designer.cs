@@ -61,6 +61,8 @@
             this.tl_Publicaciones_RubrosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tl_Publicaciones_RubrosTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Publicaciones_RubrosTableAdapter();
             this.tableAdapterManager = new FrbaCommerce.GD1C2014DataSetTableAdapters.TableAdapterManager();
+            this.tl_ClientesTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ClientesTableAdapter();
+            this.tl_EmpresasTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_EmpresasTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlVisibilidadesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
@@ -350,6 +352,14 @@
             this.tableAdapterManager.tl_VisibilidadesTableAdapter = this.tl_VisibilidadesTableAdapter;
             this.tableAdapterManager.UpdateOrder = FrbaCommerce.GD1C2014DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
+            // tl_ClientesTableAdapter1
+            // 
+            this.tl_ClientesTableAdapter1.ClearBeforeFill = true;
+            // 
+            // tl_EmpresasTableAdapter1
+            // 
+            this.tl_EmpresasTableAdapter1.ClearBeforeFill = true;
+            // 
             // Generar_Publicacion_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -426,5 +436,7 @@
         private System.Windows.Forms.BindingSource tl_Publicaciones_RubrosBindingSource;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Publicaciones_RubrosTableAdapter tl_Publicaciones_RubrosTableAdapter;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ClientesTableAdapter tl_ClientesTableAdapter1;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_EmpresasTableAdapter tl_EmpresasTableAdapter1;
     }
 }

@@ -12,7 +12,17 @@ namespace FrbaCommerce.Generar_Publicacion
     public partial class Generar_Publicacion_form : Form
     {
         private int? nuevaPublicacionID = -1;
-
+        //HARDCODEADO
+        //HARDCODEADO
+        //HARDCODEADO
+        //HARDCODEADO
+        //HARDCODEADO
+        private int userID=70;
+        //HARDCODEADO
+        //HARDCODEADO
+        //HARDCODEADO
+        //HARDCODEADO
+        //HARDCODEADO
         public Generar_Publicacion_form()
         {
             InitializeComponent();
@@ -25,11 +35,10 @@ namespace FrbaCommerce.Generar_Publicacion
             //Cargo rubros y visibilidades
             this.tl_RubrosTableAdapter.Fill(this.gD1C2014DataSet.tl_Rubros);
             this.tl_VisibilidadesTableAdapter.Fill(this.gD1C2014DataSet.tl_Visibilidades);
-            
-
             //Selecciono por default
             comboBoxEstadoDeLaPublicacion.SelectedIndex = 0;
             comboBoxTipoDePublicacion.SelectedIndex = 0;
+            setFechaVencimiento();
         }
 
         private bool validar()
@@ -38,16 +47,24 @@ namespace FrbaCommerce.Generar_Publicacion
             return (!(commons.algunoVacio(inputDescripcion) || commons.algunoVacio(listBoxRubro)));
             
         }
+        //Me fijo si el ID de usuario pertenece a una empresa o a un cliente
+        private bool esEmpresa(int ID)
+        {
+            int cantidad = Convert.ToInt32(this.tl_ClientesTableAdapter1.CountPorID(ID));
+            return cantidad == 0;
+        }
 
         private void Guardar_Click(object sender, EventArgs e)
         {
             this.tl_Publicaciones_RubrosTableAdapter.Fill(this.gD1C2014DataSet.tl_Publicaciones_Rubros);
-           
             if (this.validar())
-            { 
-                //En este stored procedure hago un INSERT para las publicidades
-                this.tl_PublicacionesTableAdapter.sp_CrearPublicacion(inputDescripcion.Text,
-                    dateTimePickerFechaInicio.Value, 
+            {
+                if (esEmpresa(this.userID))
+                {
+                    //En este stored procedure hago un INSERT para las publicaciones
+                    //Insertando el ID de el cliente particular
+                    this.tl_PublicacionesTableAdapter.sp_CrearPublicacion(null, this.userID, inputDescripcion.Text,
+                    dateTimePickerFechaInicio.Value,
                     Convert.ToDecimal(numericUpDownStock.Value),
                     dateTimePickerFechaVencimiento.Value,
                     Convert.ToDecimal(numericUpDownPrecio.Value),
@@ -55,11 +72,28 @@ namespace FrbaCommerce.Generar_Publicacion
                     Convert.ToDecimal(comboBoxVisiblidad.SelectedValue),
                     comboBoxEstadoDeLaPublicacion.SelectedItem.ToString(),
                     checkBoxAceptaPreguntas.Checked, ref nuevaPublicacionID);
-
-                //Con el ref tengo el parámetro que me devuelve el SP, en este caso el ID de publicación que voy a usar
-                //en la tabla rubros_publicaciones
-
-                //Recorro el listBox y por cada item de tipo DataRowView hago un insert
+                    //Con el ref tengo el parámetro que me devuelve el SP, en este caso el ID de publicación que voy a usar
+                    //en la tabla rubros_publicaciones
+                    //Recorro el listBox y por cada item de tipo DataRowView hago un insert
+                }
+                else
+                {
+                    //En este stored procedure hago un INSERT para las publicaciones
+                    //Insertando el ID de la empresa
+                    this.tl_PublicacionesTableAdapter.sp_CrearPublicacion( this.userID, null, inputDescripcion.Text,
+                    dateTimePickerFechaInicio.Value,
+                    Convert.ToDecimal(numericUpDownStock.Value),
+                    dateTimePickerFechaVencimiento.Value,
+                    Convert.ToDecimal(numericUpDownPrecio.Value),
+                    comboBoxTipoDePublicacion.SelectedItem.ToString(),
+                    Convert.ToDecimal(comboBoxVisiblidad.SelectedValue),
+                    comboBoxEstadoDeLaPublicacion.SelectedItem.ToString(),
+                    checkBoxAceptaPreguntas.Checked, ref nuevaPublicacionID);
+                    //Con el ref tengo el parámetro que me devuelve el SP, en este caso el ID de publicación que voy a usar
+                    //en la tabla rubros_publicaciones
+                    //Recorro el listBox y por cada item de tipo DataRowView hago un insert
+                }
+                //HAgo las entradas correspondientes en la tabla de relaciones entre publicaciones y rubros
                 foreach (DataRowView item in listBoxRubro.SelectedItems)
                 {
                     this.tl_Publicaciones_RubrosTableAdapter.Insert(Convert.ToInt32(nuevaPublicacionID), Convert.ToInt32(item["ID"].ToString()));

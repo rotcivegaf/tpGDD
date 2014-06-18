@@ -104,6 +104,17 @@ namespace FrbaCommerce.Comprar_Ofertar
                     else
                     {
                         NuevaCompra frame = new NuevaCompra();
+                        //HARDCODING FOR TESTING ONLY
+                        //HARDCODING FOR TESTING ONLY
+                        //HARDCODING FOR TESTING ONLY
+                        //HARDCODING FOR TESTING ONLY
+                        //HARDCODING FOR TESTING ONLY
+                        this.UserID = 4;
+                        //HARDCODING FOR TESTING ONLY
+                        //HARDCODING FOR TESTING ONLY
+                        //HARDCODING FOR TESTING ONLY
+                        //HARDCODING FOR TESTING ONLY
+                        //HARDCODING FOR TESTING ONLY
                         frame.sendData(this.UserID, Convert.ToInt32(fila.Cells[0].Value),Convert.ToInt32(fila.Cells[2].Value));
                         frame.ShowDialog();
                     }
@@ -114,10 +125,12 @@ namespace FrbaCommerce.Comprar_Ofertar
         {
             if ((Convert.ToInt32(registro.Cells[10].Value.ToString().Length)) == 0)
             {
-                return (Convert.ToInt32(registro.Cells[11].Value) == this.UserID);
+                return false;
+                //return (Convert.ToInt32(registro.Cells[11].Value) == this.UserID);
             }
             else
-                return (Convert.ToInt32(registro.Cells[10].Value) == this.UserID);
+                return false;
+                //return (Convert.ToInt32(registro.Cells[10].Value) == this.UserID);
             
         }
 
