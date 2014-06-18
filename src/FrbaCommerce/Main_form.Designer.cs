@@ -32,7 +32,7 @@ namespace FrbaCommerce
             this.btnABM_Rol = new System.Windows.Forms.Button();
             this.btnABM_Visibilidades = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnHistorialCliente = new System.Windows.Forms.Button();
+            this.btnHistorial = new System.Windows.Forms.Button();
             this.btnABMRubro = new System.Windows.Forms.Button();
             this.btnFacturarPublicaciones = new System.Windows.Forms.Button();
             this.btnCalificarVendedor = new System.Windows.Forms.Button();
@@ -85,7 +85,7 @@ namespace FrbaCommerce
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnHistorialCliente);
+            this.groupBox1.Controls.Add(this.btnHistorial);
             this.groupBox1.Controls.Add(this.btnABMRubro);
             this.groupBox1.Controls.Add(this.btnFacturarPublicaciones);
             this.groupBox1.Controls.Add(this.btnCalificarVendedor);
@@ -103,15 +103,15 @@ namespace FrbaCommerce
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Funcionaliades";
             // 
-            // btnHistorialCliente
+            // btnHistorial
             // 
-            this.btnHistorialCliente.Location = new System.Drawing.Point(274, 128);
-            this.btnHistorialCliente.Name = "btnHistorialCliente";
-            this.btnHistorialCliente.Size = new System.Drawing.Size(122, 23);
-            this.btnHistorialCliente.TabIndex = 10;
-            this.btnHistorialCliente.Text = "Historial Cliente";
-            this.btnHistorialCliente.UseVisualStyleBackColor = true;
-            this.btnHistorialCliente.Click += new System.EventHandler(this.btnHistorialCliente_Click);
+            this.btnHistorial.Location = new System.Drawing.Point(274, 128);
+            this.btnHistorial.Name = "btnHistorial";
+            this.btnHistorial.Size = new System.Drawing.Size(122, 23);
+            this.btnHistorial.TabIndex = 10;
+            this.btnHistorial.Text = "Historial";
+            this.btnHistorial.UseVisualStyleBackColor = true;
+            this.btnHistorial.Click += new System.EventHandler(this.btnHistorial_Click);
             // 
             // btnABMRubro
             // 
@@ -293,7 +293,7 @@ namespace FrbaCommerce
         private System.Windows.Forms.ToolStripStatusLabel toolStripRol;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_FuncionalidadesTableAdapter tl_FuncionalidadesTableAdapter;
         private System.Windows.Forms.Button btnABMRubro;
-        private System.Windows.Forms.Button btnHistorialCliente;
+        private System.Windows.Forms.Button btnHistorial;
     }
 }
 

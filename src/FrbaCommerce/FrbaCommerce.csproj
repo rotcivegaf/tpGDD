@@ -178,11 +178,11 @@
     <Compile Include="Gestion de Preguntas\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Historial Cliente\HistorialCliente.cs">
+    <Compile Include="Historial Cliente\Historial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Historial Cliente\HistorialCliente.Designer.cs">
-      <DependentUpon>HistorialCliente.cs</DependentUpon>
+    <Compile Include="Historial Cliente\Historial.Designer.cs">
+      <DependentUpon>Historial.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\Login.cs">
       <SubType>Form</SubType>
@@ -237,8 +237,8 @@
     <EmbeddedResource Include="Gestion de Preguntas\Nueva_Pregunta.resx">
       <DependentUpon>Nueva_Pregunta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Historial Cliente\HistorialCliente.resx">
-      <DependentUpon>HistorialCliente.cs</DependentUpon>
+    <EmbeddedResource Include="Historial Cliente\Historial.resx">
+      <DependentUpon>Historial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Listado Estadistico\Listado_Estadistico_form.resx">
       <DependentUpon>Listado_Estadistico_form.cs</DependentUpon>

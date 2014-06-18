@@ -90,7 +90,7 @@ namespace FrbaCommerce
                         button3.Visible = true;
                         break;
                     case "Historial del Cliente":
-                        btnHistorialCliente.Visible = true;
+                        btnHistorial.Visible = true;
                         break;
                     case "Calificar al Vendedor":
                         btnCalificarVendedor.Visible = true;
@@ -182,10 +182,10 @@ namespace FrbaCommerce
             toolStripDate.Text = commons.getDate().ToString();
         }
 
-        private void btnHistorialCliente_Click(object sender, EventArgs e)
+        private void btnHistorial_Click(object sender, EventArgs e)
         {
-            HistorialCliente frmHistorialCliente = new HistorialCliente();
-            frmHistorialCliente.abrir(usuario_ID, rol_ID);
+            Historial frmHistorial = new Historial();
+            frmHistorial.abrir(usuario_ID, rol_ID);
         }
     }
 }

@@ -35,9 +35,9 @@
             this.optCliente = new System.Windows.Forms.RadioButton();
             this.btnCrear = new System.Windows.Forms.Button();
             this.optEmpresa = new System.Windows.Forms.RadioButton();
+            this.grpRol = new System.Windows.Forms.GroupBox();
             this.tl_UsuariosTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_UsuariosTableAdapter();
             this.tl_Usuarios_RolesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Usuarios_RolesTableAdapter();
-            this.grpRol = new System.Windows.Forms.GroupBox();
             this.grpRol.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,7 +80,7 @@
             this.optCliente.Location = new System.Drawing.Point(8, 21);
             this.optCliente.Name = "optCliente";
             this.optCliente.Size = new System.Drawing.Size(57, 17);
-            this.optCliente.TabIndex = 4;
+            this.optCliente.TabIndex = 5;
             this.optCliente.TabStop = true;
             this.optCliente.Text = "Cliente";
             this.optCliente.UseVisualStyleBackColor = true;
@@ -90,7 +90,7 @@
             this.btnCrear.Location = new System.Drawing.Point(100, 157);
             this.btnCrear.Name = "btnCrear";
             this.btnCrear.Size = new System.Drawing.Size(75, 23);
-            this.btnCrear.TabIndex = 6;
+            this.btnCrear.TabIndex = 7;
             this.btnCrear.Text = "Crear";
             this.btnCrear.UseVisualStyleBackColor = true;
             this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
@@ -101,18 +101,10 @@
             this.optEmpresa.Location = new System.Drawing.Point(8, 45);
             this.optEmpresa.Name = "optEmpresa";
             this.optEmpresa.Size = new System.Drawing.Size(66, 17);
-            this.optEmpresa.TabIndex = 7;
+            this.optEmpresa.TabIndex = 6;
             this.optEmpresa.TabStop = true;
             this.optEmpresa.Text = "Empresa";
             this.optEmpresa.UseVisualStyleBackColor = true;
-            // 
-            // tl_UsuariosTableAdapter
-            // 
-            this.tl_UsuariosTableAdapter.ClearBeforeFill = true;
-            // 
-            // tl_Usuarios_RolesTableAdapter
-            // 
-            this.tl_Usuarios_RolesTableAdapter.ClearBeforeFill = true;
             // 
             // grpRol
             // 
@@ -121,9 +113,17 @@
             this.grpRol.Location = new System.Drawing.Point(16, 69);
             this.grpRol.Name = "grpRol";
             this.grpRol.Size = new System.Drawing.Size(159, 78);
-            this.grpRol.TabIndex = 8;
+            this.grpRol.TabIndex = 4;
             this.grpRol.TabStop = false;
             this.grpRol.Text = "Rol";
+            // 
+            // tl_UsuariosTableAdapter
+            // 
+            this.tl_UsuariosTableAdapter.ClearBeforeFill = true;
+            // 
+            // tl_Usuarios_RolesTableAdapter
+            // 
+            this.tl_Usuarios_RolesTableAdapter.ClearBeforeFill = true;
             // 
             // RegistroUsuario
             // 
