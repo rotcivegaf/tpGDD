@@ -726,7 +726,7 @@ BEGIN
 				JOIN LOL.tl_Clientes C
 				ON (M.Cli_Dni = C.Nro_Documento)
 		WHERE
-			Compra_Cantidad IS NOT NULL
+			Compra_Cantidad IS NOT NULL AND
 			Calificacion_Codigo IS NOT NULL
 
 END
