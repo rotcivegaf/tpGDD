@@ -54,7 +54,6 @@ namespace FrbaCommerce
 
         private void acomodarFuncionalidades(int rolID)
         {
-            MessageBox.Show("FALTA HACER -> Mostrar Funcionalidades");
             btnLogin.Visible = false;
             hideGroupControls();
             DataTable funcionalidadesByRol = this.tl_FuncionalidadesTableAdapter.FuncionalidadesPorRol(rol_ID);
