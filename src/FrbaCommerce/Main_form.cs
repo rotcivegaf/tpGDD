@@ -16,6 +16,7 @@ using FrbaCommerce.Abm_Cliente;
 using FrbaCommerce.Abm_Empresa;
 using FrbaCommerce.Calificar_Vendedor;
 using FrbaCommerce.Facturar_Publicaciones;
+using FrbaCommerce.Historial_Cliente;
 
 namespace FrbaCommerce
 {
@@ -101,8 +102,6 @@ namespace FrbaCommerce
                         btnListadoEstadistico.Visible = true;
                         break;
                 }
-
-
             }
         }
 
@@ -185,7 +184,8 @@ namespace FrbaCommerce
 
         private void btnHistorialCliente_Click(object sender, EventArgs e)
         {
-
+            HistorialCliente frmHistorialCliente = new HistorialCliente();
+            frmHistorialCliente.abrir(usuario_ID, rol_ID);
         }
     }
 }
