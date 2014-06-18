@@ -37,9 +37,9 @@ namespace FrbaCommerce
                 usuario_ID = frmLogin.getUsuarioLogueadoID();
                 rol_ID = frmLogin.getRolID();
                 DataRow usuario = this.tl_UsuariosTableAdapter.getByID(usuario_ID).Rows[0];
-                toolStripUsuario.Text = usuario["Username"].ToString();
+                toolStripUsuario.Text = "Username: " + usuario["Username"].ToString();
                 DataRow rol = this.tl_RolesTableAdapter.getByID(rol_ID).Rows[0];
-                toolStripRol.Text = rol["Nombre"].ToString();
+                toolStripRol.Text = "Rol: " + rol["Nombre"].ToString();
                 acomodarFuncionalidades(rol_ID);
             }
         }
