@@ -719,7 +719,6 @@ BEGIN
 			Calificacion_Codigo,
 			Calificacion_Cant_Estrellas,
 			Calificacion_Descripcion,
-			-- Aclaracion: Comision_pagada en 0 o en 1?
 			1
 		FROM
 			gd_esquema.Maestra M
