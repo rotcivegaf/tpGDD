@@ -1130,7 +1130,8 @@ CREATE PROCEDURE [LOL].[sp_GuardarCliente]
 	@Piso INT = NULL,
 	@Depto NVARCHAR(50) = NULL,
 	@CodPostal NVARCHAR(50) = NULL,
-	@Telefono INT
+	@Telefono INT,
+	@Habilitado BIT
 AS
 BEGIN
 	DECLARE @error NVARCHAR(255);
@@ -1182,7 +1183,8 @@ BEGIN
 			@CodPostal,
 			@Telefono,
 			0,
-			0)
+			0,
+			1)
 	ELSE
 		UPDATE LOL.tl_Clientes SET
 			Tipo_Documento = @TipoDocumento,
@@ -1197,7 +1199,8 @@ BEGIN
 			Piso = @Piso,
 			Depto = @Depto,
 			Cod_Postal = @CodPostal,
-			Telefono = @Telefono
+			Telefono = @Telefono,
+			Habilitado = @Habilitado
 		WHERE
 			ID = @ID
 	COMMIT
@@ -1218,7 +1221,8 @@ CREATE PROCEDURE [LOL].[sp_GuardarEmpresa]
 	@NroCalle INT = NULL,
 	@Piso INT = NULL,
 	@Depto NVARCHAR(50) = NULL,
-	@CodPostal NVARCHAR(50) = NULL
+	@CodPostal NVARCHAR(50) = NULL,
+	@Habilitada BIT
 AS
 BEGIN
 	DECLARE @error NVARCHAR(255);
@@ -1253,7 +1257,8 @@ BEGIN
 			@Depto,
 			@CodPostal,
 			0,
-			0)
+			0,
+			1)
 	ELSE
 		UPDATE LOL.tl_Empresas SET
 			Razon_Social = @Razon_Social,
@@ -1264,7 +1269,8 @@ BEGIN
 			Nro_Calle = @NroCalle,
 			Piso = @Piso,
 			Depto = @Depto,
-			Cod_Postal = @CodPostal
+			Cod_Postal = @CodPostal,
+			Habilitada = @Habilitada
 		WHERE
 			ID = @ID
 	COMMIT
