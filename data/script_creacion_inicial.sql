@@ -45,6 +45,7 @@ CREATE TABLE LOL.tl_Clientes (
 	Telefono       NUMERIC(18, 0) NULL,
 	Suma_Calificaciones NUMERIC(18, 0) NULL,
 	Cantidad_Calificaciones NUMERIC(18, 0) NULL,
+	Habilitado	BIT DEFAULT(1) NOT NULL,
 
 	PRIMARY KEY (ID)
 )
@@ -64,6 +65,7 @@ CREATE TABLE LOL.tl_Empresas (
 	Cod_Postal     NVARCHAR(50) NULL,
 	Suma_Calificaciones NUMERIC(18, 0) NULL,
 	Cantidad_Calificaciones NUMERIC(18, 0) NULL,
+	Habilitada	BIT DEFAULT(1) NOT NULL,
 
 	PRIMARY KEY(ID)
 )
@@ -550,7 +552,8 @@ BEGIN
 			Publ_Empresa_Depto,
 			Publ_Empresa_Cod_Postal,
 			0, -- SumaCalificaciones
-			0 -- CantidadCalificaciones
+			0, -- CantidadCalificaciones
+			1 -- Habilitada
 		FROM
 			LOL.tl_Usuarios U JOIN gd_esquema.Maestra M ON (U.Username = M.Publ_Empresa_Cuit)
 
@@ -615,7 +618,8 @@ BEGIN
 			Cli_Cod_Postal,
 			NULL, -- TELEFONO
 			0, -- SumaCalificaciones
-			0 -- CantidadCalificaciones
+			0, -- CantidadCalificaciones
+			1 -- Habilitado
 		FROM
 			LOL.tl_Usuarios U JOIN gd_esquema.Maestra M ON (U.Username = CAST(M.Cli_Dni AS NVARCHAR(50)))
 
