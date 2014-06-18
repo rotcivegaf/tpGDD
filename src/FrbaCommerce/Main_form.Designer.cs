@@ -32,6 +32,7 @@ namespace FrbaCommerce
             this.btnABM_Rol = new System.Windows.Forms.Button();
             this.btnABM_Visibilidades = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.btnHistorial = new System.Windows.Forms.Button();
             this.btnABMRubro = new System.Windows.Forms.Button();
             this.btnFacturarPublicaciones = new System.Windows.Forms.Button();
@@ -49,7 +50,7 @@ namespace FrbaCommerce
             this.tl_UsuariosTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_UsuariosTableAdapter();
             this.tl_RolesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RolesTableAdapter();
             this.tl_FuncionalidadesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_FuncionalidadesTableAdapter();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnGestionarPreguntas = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -59,7 +60,7 @@ namespace FrbaCommerce
             this.btnLogin.Location = new System.Drawing.Point(578, 23);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(58, 27);
-            this.btnLogin.TabIndex = 1;
+            this.btnLogin.TabIndex = 0;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -69,23 +70,24 @@ namespace FrbaCommerce
             this.btnABM_Rol.Location = new System.Drawing.Point(37, 38);
             this.btnABM_Rol.Name = "btnABM_Rol";
             this.btnABM_Rol.Size = new System.Drawing.Size(75, 27);
-            this.btnABM_Rol.TabIndex = 2;
+            this.btnABM_Rol.TabIndex = 1;
             this.btnABM_Rol.Text = "ABM Rol";
             this.btnABM_Rol.UseVisualStyleBackColor = true;
             this.btnABM_Rol.Click += new System.EventHandler(this.btnABM_Rol_Click);
             // 
             // btnABM_Visibilidades
             // 
-            this.btnABM_Visibilidades.Location = new System.Drawing.Point(136, 38);
+            this.btnABM_Visibilidades.Location = new System.Drawing.Point(389, 38);
             this.btnABM_Visibilidades.Name = "btnABM_Visibilidades";
             this.btnABM_Visibilidades.Size = new System.Drawing.Size(112, 27);
-            this.btnABM_Visibilidades.TabIndex = 3;
+            this.btnABM_Visibilidades.TabIndex = 4;
             this.btnABM_Visibilidades.Text = "ABM Visibilidades";
             this.btnABM_Visibilidades.UseVisualStyleBackColor = true;
             this.btnABM_Visibilidades.Click += new System.EventHandler(this.btnABM_Visibilidades_Click);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnGestionarPreguntas);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.btnHistorial);
             this.groupBox1.Controls.Add(this.btnABMRubro);
@@ -105,12 +107,22 @@ namespace FrbaCommerce
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Funcionaliades";
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(478, 79);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(140, 23);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "Ver Publicaciones";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // btnHistorial
             // 
-            this.btnHistorial.Location = new System.Drawing.Point(274, 128);
+            this.btnHistorial.Location = new System.Drawing.Point(236, 126);
             this.btnHistorial.Name = "btnHistorial";
-            this.btnHistorial.Size = new System.Drawing.Size(122, 23);
-            this.btnHistorial.TabIndex = 10;
+            this.btnHistorial.Size = new System.Drawing.Size(95, 23);
+            this.btnHistorial.TabIndex = 11;
             this.btnHistorial.Text = "Historial";
             this.btnHistorial.UseVisualStyleBackColor = true;
             this.btnHistorial.Click += new System.EventHandler(this.btnHistorial_Click);
@@ -118,26 +130,26 @@ namespace FrbaCommerce
             // btnABMRubro
             // 
             this.btnABMRubro.Enabled = false;
-            this.btnABMRubro.Location = new System.Drawing.Point(136, 128);
+            this.btnABMRubro.Location = new System.Drawing.Point(526, 40);
             this.btnABMRubro.Name = "btnABMRubro";
             this.btnABMRubro.Size = new System.Drawing.Size(75, 23);
-            this.btnABMRubro.TabIndex = 9;
+            this.btnABMRubro.TabIndex = 5;
             this.btnABMRubro.Text = "ABM Rubro";
             this.btnABMRubro.UseVisualStyleBackColor = true;
             // 
             // btnFacturarPublicaciones
             // 
-            this.btnFacturarPublicaciones.Location = new System.Drawing.Point(37, 128);
+            this.btnFacturarPublicaciones.Location = new System.Drawing.Point(513, 120);
             this.btnFacturarPublicaciones.Name = "btnFacturarPublicaciones";
             this.btnFacturarPublicaciones.Size = new System.Drawing.Size(88, 39);
-            this.btnFacturarPublicaciones.TabIndex = 8;
+            this.btnFacturarPublicaciones.TabIndex = 13;
             this.btnFacturarPublicaciones.Text = "Facturar Publicaciones";
             this.btnFacturarPublicaciones.UseVisualStyleBackColor = true;
             this.btnFacturarPublicaciones.Click += new System.EventHandler(this.btnFacturarPublicaciones_Click);
             // 
             // btnCalificarVendedor
             // 
-            this.btnCalificarVendedor.Location = new System.Drawing.Point(415, 86);
+            this.btnCalificarVendedor.Location = new System.Drawing.Point(151, 81);
             this.btnCalificarVendedor.Name = "btnCalificarVendedor";
             this.btnCalificarVendedor.Size = new System.Drawing.Size(149, 23);
             this.btnCalificarVendedor.TabIndex = 7;
@@ -147,27 +159,27 @@ namespace FrbaCommerce
             // 
             // btnABMEmpresa
             // 
-            this.btnABMEmpresa.Location = new System.Drawing.Point(136, 86);
+            this.btnABMEmpresa.Location = new System.Drawing.Point(245, 40);
             this.btnABMEmpresa.Name = "btnABMEmpresa";
             this.btnABMEmpresa.Size = new System.Drawing.Size(112, 23);
-            this.btnABMEmpresa.TabIndex = 5;
+            this.btnABMEmpresa.TabIndex = 3;
             this.btnABMEmpresa.Text = "ABM Empresa";
             this.btnABMEmpresa.UseVisualStyleBackColor = true;
             this.btnABMEmpresa.Click += new System.EventHandler(this.btnABMEmpresa_Click);
             // 
             // btnABMCliente
             // 
-            this.btnABMCliente.Location = new System.Drawing.Point(37, 86);
+            this.btnABMCliente.Location = new System.Drawing.Point(151, 40);
             this.btnABMCliente.Name = "btnABMCliente";
             this.btnABMCliente.Size = new System.Drawing.Size(75, 23);
-            this.btnABMCliente.TabIndex = 5;
+            this.btnABMCliente.TabIndex = 2;
             this.btnABMCliente.Text = "ABM Cliente";
             this.btnABMCliente.UseVisualStyleBackColor = true;
             this.btnABMCliente.Click += new System.EventHandler(this.btnABMCliente_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(274, 86);
+            this.button3.Location = new System.Drawing.Point(37, 81);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(99, 32);
             this.button3.TabIndex = 6;
@@ -177,20 +189,20 @@ namespace FrbaCommerce
             // 
             // btnListadoEstadistico
             // 
-            this.btnListadoEstadistico.Location = new System.Drawing.Point(415, 38);
+            this.btnListadoEstadistico.Location = new System.Drawing.Point(37, 124);
             this.btnListadoEstadistico.Name = "btnListadoEstadistico";
             this.btnListadoEstadistico.Size = new System.Drawing.Size(149, 27);
-            this.btnListadoEstadistico.TabIndex = 5;
+            this.btnListadoEstadistico.TabIndex = 10;
             this.btnListadoEstadistico.Text = "Listado Estadístico";
             this.btnListadoEstadistico.UseVisualStyleBackColor = true;
             this.btnListadoEstadistico.Click += new System.EventHandler(this.btnListadoEstadistico_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(274, 38);
+            this.button1.Location = new System.Drawing.Point(328, 77);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(122, 27);
-            this.button1.TabIndex = 4;
+            this.button1.TabIndex = 8;
             this.button1.Text = "Generar Publicacion";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -252,15 +264,15 @@ namespace FrbaCommerce
             // 
             this.tl_FuncionalidadesTableAdapter.ClearBeforeFill = true;
             // 
-            // button2
+            // btnGestionarPreguntas
             // 
-            this.button2.Location = new System.Drawing.Point(424, 128);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(140, 23);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Ver Publicaciones";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnGestionarPreguntas.Enabled = false;
+            this.btnGestionarPreguntas.Location = new System.Drawing.Point(369, 120);
+            this.btnGestionarPreguntas.Name = "btnGestionarPreguntas";
+            this.btnGestionarPreguntas.Size = new System.Drawing.Size(109, 39);
+            this.btnGestionarPreguntas.TabIndex = 12;
+            this.btnGestionarPreguntas.Text = "Gestionar Preguntas";
+            this.btnGestionarPreguntas.UseVisualStyleBackColor = true;
             // 
             // Main_form
             // 
@@ -307,6 +319,7 @@ namespace FrbaCommerce
         private System.Windows.Forms.Button btnABMRubro;
         private System.Windows.Forms.Button btnHistorial;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnGestionarPreguntas;
     }
 }
 
