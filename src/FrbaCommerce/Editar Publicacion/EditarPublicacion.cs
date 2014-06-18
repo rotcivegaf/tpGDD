@@ -29,7 +29,6 @@ namespace FrbaCommerce.Editar_Publicacion
         {
 
             this.tl_PublicacionesTableAdapter.FillByID(tablaTemporal, 5);
-            //this.tl_PublicacionesDataGridView.DataSource = tablaTemporal;
             paginar(tablaTemporal);
         }
 

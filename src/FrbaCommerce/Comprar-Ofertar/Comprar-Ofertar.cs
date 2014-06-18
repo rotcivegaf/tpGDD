@@ -99,24 +99,45 @@ namespace FrbaCommerce.Comprar_Ofertar
                 //Verifico que no me quiera auto-comprar
                 if (!mismoCliente(fila))
                 {
-                    if (fila.Cells[5].Value.ToString().Equals("Subasta"))
-                        MessageBox.Show("Es Subasta");
-                    else
+                    if(!(fila.Cells[6].Value.ToString().Equals("Pausada")))
                     {
-                        NuevaCompra frame = new NuevaCompra();
-                        //HARDCODING FOR TESTING ONLY
-                        //HARDCODING FOR TESTING ONLY
-                        //HARDCODING FOR TESTING ONLY
-                        //HARDCODING FOR TESTING ONLY
-                        //HARDCODING FOR TESTING ONLY
-                        this.UserID = 4;
-                        //HARDCODING FOR TESTING ONLY
-                        //HARDCODING FOR TESTING ONLY
-                        //HARDCODING FOR TESTING ONLY
-                        //HARDCODING FOR TESTING ONLY
-                        //HARDCODING FOR TESTING ONLY
-                        frame.sendData(this.UserID, Convert.ToInt32(fila.Cells[0].Value),Convert.ToInt32(fila.Cells[2].Value));
-                        frame.ShowDialog();
+                        if (fila.Cells[5].Value.ToString().Equals("Subasta"))
+                            MessageBox.Show("Es Subasta");
+                        else
+                        {
+                            NuevaCompra frame = new NuevaCompra();
+                            //HARDCODING FOR TESTING ONLY
+                            //HARDCODING FOR TESTING ONLY
+                            //HARDCODING FOR TESTING ONLY
+                            //HARDCODING FOR TESTING ONLY
+                            //HARDCODING FOR TESTING ONLY
+                            this.UserID = 70;
+                            //HARDCODING FOR TESTING ONLY
+                            //HARDCODING FOR TESTING ONLY
+                            //HARDCODING FOR TESTING ONLY
+                            //HARDCODING FOR TESTING ONLY
+                            //HARDCODING FOR TESTING ONLY
+                            if (Convert.ToInt32(fila.Cells[10].Value.ToString().Length) == 0)
+                            {
+                                frame.sendData(this.UserID,
+                                Convert.ToInt32(fila.Cells[0].Value),
+                                Convert.ToInt32(fila.Cells[2].Value),
+                                Convert.ToInt32(fila.Cells[12].Value),
+                                Convert.ToInt32(fila.Cells[4].Value),
+                                Convert.ToInt32(fila.Cells[11].Value));
+                                frame.ShowDialog();
+                            }
+                            else
+                            {
+                                frame.sendData(this.UserID,
+                                Convert.ToInt32(fila.Cells[0].Value),
+                                Convert.ToInt32(fila.Cells[2].Value),
+                                Convert.ToInt32(fila.Cells[12].Value),
+                                Convert.ToInt32(fila.Cells[4].Value),
+                                Convert.ToInt32(fila.Cells[10].Value));
+                                frame.ShowDialog();
+                            }
+                        }
                     }
                 }
             }

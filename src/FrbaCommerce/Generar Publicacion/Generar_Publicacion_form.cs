@@ -71,7 +71,8 @@ namespace FrbaCommerce.Generar_Publicacion
                     comboBoxTipoDePublicacion.SelectedItem.ToString(),
                     Convert.ToDecimal(comboBoxVisiblidad.SelectedValue),
                     comboBoxEstadoDeLaPublicacion.SelectedItem.ToString(),
-                    checkBoxAceptaPreguntas.Checked, ref nuevaPublicacionID);
+                    checkBoxAceptaPreguntas.Checked, ref nuevaPublicacionID, commons.getDate()
+                    ,Convert.ToInt32(this.tl_VisibilidadesTableAdapter1.PrecioVisibilidadQuery(Convert.ToInt32(comboBoxVisiblidad.SelectedValue))));
                     //Con el ref tengo el parámetro que me devuelve el SP, en este caso el ID de publicación que voy a usar
                     //en la tabla rubros_publicaciones
                     //Recorro el listBox y por cada item de tipo DataRowView hago un insert
@@ -88,7 +89,8 @@ namespace FrbaCommerce.Generar_Publicacion
                     comboBoxTipoDePublicacion.SelectedItem.ToString(),
                     Convert.ToDecimal(comboBoxVisiblidad.SelectedValue),
                     comboBoxEstadoDeLaPublicacion.SelectedItem.ToString(),
-                    checkBoxAceptaPreguntas.Checked, ref nuevaPublicacionID);
+                    checkBoxAceptaPreguntas.Checked, ref nuevaPublicacionID, commons.getDate()
+                    ,Convert.ToInt32(this.tl_VisibilidadesTableAdapter1.PrecioVisibilidadQuery(Convert.ToInt32(comboBoxVisiblidad.SelectedValue))));
                     //Con el ref tengo el parámetro que me devuelve el SP, en este caso el ID de publicación que voy a usar
                     //en la tabla rubros_publicaciones
                     //Recorro el listBox y por cada item de tipo DataRowView hago un insert

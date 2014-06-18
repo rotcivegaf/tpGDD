@@ -1085,7 +1085,10 @@ CREATE PROCEDURE LOL.sp_CrearPublicacion
                                          @visibilidad_Codigo numeric(18, 0),
                                          @estado nvarchar(255),
                                          @permite_Preguntas bit,
-                                         @ID int OUT
+                                         @ID int OUT,
+                                         @fechaPendiente datetime,
+                                         @monto money
+                                         
 
 AS
 BEGIN
@@ -1099,6 +1102,11 @@ INSERT INTO LOL.tl_Publicaciones
 		 
  -- Esto devuelve el valor de ID de publicación creado en este caso
 SELECT @ID = @@IDENTITY
+
+INSERT INTO LOL.tl_Pendientes
+(Fecha, Monto, Publicacion_Codigo)
+VALUES
+(@fechaPendiente,@monto,@ID)
     
 END
 GO
@@ -1412,7 +1420,7 @@ GO
 
 /* Stored Procedure InsertarUsuario */
 CREATE PROCEDURE [LOL].[sp_InsertarUsuario]
-	@Username NVARCHAR(2555),
+	@Username NVARCHAR(255),
 	@Password NVARCHAR(255),
 	@ID INT OUT
 AS
@@ -1428,6 +1436,33 @@ BEGIN
 		END
 	INSERT INTO LOL.tl_Usuarios (Username,Password) VALUES (@Username,@Password)
 	SELECT @ID = @@IDENTITY
+	
+END
+GO
+
+CREATE PROCEDURE [LOL].[sp_crearCompra]
+	@Publicacion_Codigo int,
+	@Cliente_ID int,
+	@fecha date,
+	@Cantidad INT,
+	@fechaPendiente date,
+	@montoVisibilidad money
+	--PUB CODIGO Y COMPRA ID YA LO TENGO!
+	
+	
+	--@ID INT OUT
+AS
+BEGIN
+	DECLARE @ID INT;
+	
+	INSERT INTO LOL.tl_Compras (Publicacion_Codigo, Cliente_ID, Cantidad, Fecha) VALUES
+	(@Publicacion_Codigo, @Cliente_ID, @Cantidad, @fecha)
+	SELECT @ID = @@IDENTITY
+	
+	INSERT INTO LOL.tl_Pendientes (Fecha, Monto, Publicacion_Codigo, Compra_ID)
+	VALUES (@fecha, @montoVisibilidad, @Publicacion_Codigo, @ID)
+
+	UPDATE LOL.tl_Publicaciones set Stock = Stock-@Cantidad where Codigo=@Publicacion_Codigo
 	
 END
 GO
