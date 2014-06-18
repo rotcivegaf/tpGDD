@@ -1167,10 +1167,11 @@ BEGIN
 
 	BEGIN TRAN
 	-- Todo OK
-	IF (@UserPassword <> '')
+	IF (@UserPassword <> '') --Es creado por el Administrador
 		BEGIN
 			INSERT INTO LOL.tl_Usuarios(Username,Password,Change_Password) VALUES (@Nro_Documento,@UserPassword,1)
 			SELECT @ID = @@IDENTITY
+			INSERT INTO LOL.tl_Usuarios_Roles VALUES(@ID,2,1)
 		END
 	IF (@isNew = 1)
 		INSERT INTO LOL.tl_Clientes VALUES(
@@ -1245,10 +1246,11 @@ BEGIN
 
 	BEGIN TRAN
 	-- Todo OK
-	IF (@UserPassword <> '')
+	IF (@UserPassword <> '') -- Es creada por el Administrador
 		BEGIN
 			INSERT INTO LOL.tl_Usuarios(Username,Password,Change_Password) VALUES (@CUIT,@UserPassword,1)
 			SELECT @ID = @@IDENTITY
+			INSERT INTO LOL.tl_Usuarios_Roles VALUES (@ID,3,1)
 		END
 	IF (@isNew = 1)
 		INSERT INTO LOL.tl_Empresas VALUES(
