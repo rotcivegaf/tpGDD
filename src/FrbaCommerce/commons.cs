@@ -34,7 +34,7 @@ namespace FrbaCommerce
         {
             try
             {
-                using (StreamReader sr = new StreamReader("..\\config.config"))
+                using (StreamReader sr = new StreamReader("..\\..\\fecha.config"))
                 {
                     String line = sr.ReadToEnd();
                     return Convert.ToDateTime(line);
