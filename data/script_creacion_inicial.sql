@@ -727,8 +727,7 @@ BEGIN
 				ON (M.Cli_Dni = C.Nro_Documento)
 		WHERE
 			Compra_Cantidad IS NOT NULL
-			--Asi importamos las compras que no estan calificadas, no se si falta algo mas
-			--Calificacion_Codigo IS NOT NULL
+			Calificacion_Codigo IS NOT NULL
 
 END
 GO
