@@ -94,7 +94,8 @@ namespace FrbaCommerce.Abm_Empresa
                    Convert.ToInt32(numNroCalle.Value),
                    Convert.ToInt32(numPiso.Value),
                    txtDepto.Text,
-                   txtCodigoPostal.Text
+                   txtCodigoPostal.Text,
+                   true
                    );
             }
             catch (SqlException error)

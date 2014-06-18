@@ -90,7 +90,7 @@ namespace FrbaCommerce
                         button3.Visible = true;
                         break;
                     case "Historial del Cliente":
-                        MessageBox.Show("FALTA EL BOTON PARA HistorialDelCliente si es que va");
+                        btnHistorialCliente.Visible = true;
                         break;
                     case "Calificar al Vendedor":
                         btnCalificarVendedor.Visible = true;
@@ -182,6 +182,11 @@ namespace FrbaCommerce
         private void Main_form_Load(object sender, EventArgs e)
         {
             toolStripDate.Text = commons.getDate().ToString();
+        }
+
+        private void btnHistorialCliente_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

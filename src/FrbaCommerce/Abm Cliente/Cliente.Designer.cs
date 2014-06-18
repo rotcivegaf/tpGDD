@@ -54,9 +54,9 @@
             this.txtTelefono = new System.Windows.Forms.TextBox();
             this.txtCUIL = new System.Windows.Forms.TextBox();
             this.lblCUIL = new System.Windows.Forms.Label();
-            this.tl_ClientesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ClientesTableAdapter();
             this.numNroDocumento = new System.Windows.Forms.NumericUpDown();
             this.cmbTipoDocumento = new System.Windows.Forms.ComboBox();
+            this.tl_ClientesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ClientesTableAdapter();
             this.grpDireccion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPiso)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNroCalle)).BeginInit();
@@ -127,7 +127,7 @@
             // dateFechaNacimiento
             // 
             this.dateFechaNacimiento.Location = new System.Drawing.Point(105, 170);
-            this.dateFechaNacimiento.MaxDate = commons.getDate();
+            this.dateFechaNacimiento.MaxDate = new System.DateTime(2014, 6, 17, 23, 56, 11, 343);
             this.dateFechaNacimiento.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dateFechaNacimiento.Name = "dateFechaNacimiento";
             this.dateFechaNacimiento.Size = new System.Drawing.Size(200, 20);
@@ -295,10 +295,6 @@
             this.lblCUIL.TabIndex = 16;
             this.lblCUIL.Text = "CUIL";
             // 
-            // tl_ClientesTableAdapter
-            // 
-            this.tl_ClientesTableAdapter.ClearBeforeFill = true;
-            // 
             // numNroDocumento
             // 
             this.numNroDocumento.Location = new System.Drawing.Point(104, 40);
@@ -323,6 +319,10 @@
             this.cmbTipoDocumento.Name = "cmbTipoDocumento";
             this.cmbTipoDocumento.Size = new System.Drawing.Size(201, 21);
             this.cmbTipoDocumento.TabIndex = 17;
+            // 
+            // tl_ClientesTableAdapter
+            // 
+            this.tl_ClientesTableAdapter.ClearBeforeFill = true;
             // 
             // Cliente
             // 

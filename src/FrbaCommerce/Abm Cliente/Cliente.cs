@@ -103,7 +103,8 @@ namespace FrbaCommerce.Abm_Cliente
                    Convert.ToInt32(numPiso.Value),
                    txtDepto.Text,
                    txtCodigoPostal.Text,
-                   (txtTelefono.Text == "") ? (int?)null : Convert.ToInt32(txtTelefono.Text)
+                   (txtTelefono.Text == "") ? (int?)null : Convert.ToInt32(txtTelefono.Text),
+                   true
                    );
             }
             catch (SqlException error)
