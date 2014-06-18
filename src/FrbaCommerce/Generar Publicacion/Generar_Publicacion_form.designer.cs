@@ -63,6 +63,7 @@
             this.tableAdapterManager = new FrbaCommerce.GD1C2014DataSetTableAdapters.TableAdapterManager();
             this.tl_ClientesTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ClientesTableAdapter();
             this.tl_EmpresasTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_EmpresasTableAdapter();
+            this.tl_VisibilidadesTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_VisibilidadesTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlVisibilidadesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
@@ -360,6 +361,10 @@
             // 
             this.tl_EmpresasTableAdapter1.ClearBeforeFill = true;
             // 
+            // tl_VisibilidadesTableAdapter1
+            // 
+            this.tl_VisibilidadesTableAdapter1.ClearBeforeFill = true;
+            // 
             // Generar_Publicacion_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -438,5 +443,6 @@
         private FrbaCommerce.GD1C2014DataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ClientesTableAdapter tl_ClientesTableAdapter1;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_EmpresasTableAdapter tl_EmpresasTableAdapter1;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_VisibilidadesTableAdapter tl_VisibilidadesTableAdapter1;
     }
 }

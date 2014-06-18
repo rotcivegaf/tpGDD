@@ -187,5 +187,11 @@ namespace FrbaCommerce
             Historial frmHistorial = new Historial();
             frmHistorial.abrir(usuario_ID, rol_ID);
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Editar_Publicacion.EditarPublicacion frame = new FrbaCommerce.Editar_Publicacion.EditarPublicacion();
+            frame.ShowDialog();
+        }
     }
 }
