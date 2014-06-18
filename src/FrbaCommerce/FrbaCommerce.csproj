@@ -246,6 +246,9 @@
     <EmbeddedResource Include="Gestion de Preguntas\Nueva_Pregunta.resx">
       <DependentUpon>Nueva_Pregunta.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Historial Cliente\HistorialCliente.resx">
+      <DependentUpon>HistorialCliente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Listado Estadistico\Listado_Estadistico_form.resx">
       <DependentUpon>Listado_Estadistico_form.cs</DependentUpon>
     </EmbeddedResource>
