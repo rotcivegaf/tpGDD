@@ -255,13 +255,14 @@
             0,
             0});
             this.inputAnio.Minimum = new decimal(new int[] {
-            2013,
+            1990,
             0,
             0,
             0});
             this.inputAnio.Name = "inputAnio";
             this.inputAnio.Size = new System.Drawing.Size(202, 20);
             this.inputAnio.TabIndex = 2;
+            this.inputAnio.TabStop = false;
             this.inputAnio.Value = new decimal(new int[] {
             2013,
             0,
