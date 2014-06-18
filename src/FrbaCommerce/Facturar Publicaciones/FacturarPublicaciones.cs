@@ -13,6 +13,7 @@ namespace FrbaCommerce.Facturar_Publicaciones
     {
         int ID;
         int rol_ID;
+        int cantidadAFacturar = 0;
 
         public FacturarPublicaciones()
         {
@@ -38,6 +39,11 @@ namespace FrbaCommerce.Facturar_Publicaciones
         private void FacturarPublicaciones_Load(object sender, EventArgs e)
         {
             llenarGrid();
+        }
+
+        private void dgvPendientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

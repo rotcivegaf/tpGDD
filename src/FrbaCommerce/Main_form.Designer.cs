@@ -32,6 +32,7 @@ namespace FrbaCommerce
             this.btnABM_Rol = new System.Windows.Forms.Button();
             this.btnABM_Visibilidades = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnFacturarPublicaciones = new System.Windows.Forms.Button();
             this.btnCalificarVendedor = new System.Windows.Forms.Button();
             this.btnABMEmpresa = new System.Windows.Forms.Button();
             this.btnABMCliente = new System.Windows.Forms.Button();
@@ -39,10 +40,16 @@ namespace FrbaCommerce
             this.btnListadoEstadistico = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripUsuario = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripRol = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripDate = new System.Windows.Forms.ToolStripStatusLabel();
             this.tl_UsuariosTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_UsuariosTableAdapter();
             this.tl_RolesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RolesTableAdapter();
-            this.btnFacturarPublicaciones = new System.Windows.Forms.Button();
+            this.tl_FuncionalidadesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_FuncionalidadesTableAdapter();
+            this.btnABMRubro = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLogin
@@ -77,6 +84,7 @@ namespace FrbaCommerce
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnABMRubro);
             this.groupBox1.Controls.Add(this.btnFacturarPublicaciones);
             this.groupBox1.Controls.Add(this.btnCalificarVendedor);
             this.groupBox1.Controls.Add(this.btnABMEmpresa);
@@ -92,6 +100,16 @@ namespace FrbaCommerce
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Funcionaliades";
+            // 
+            // btnFacturarPublicaciones
+            // 
+            this.btnFacturarPublicaciones.Location = new System.Drawing.Point(37, 128);
+            this.btnFacturarPublicaciones.Name = "btnFacturarPublicaciones";
+            this.btnFacturarPublicaciones.Size = new System.Drawing.Size(88, 39);
+            this.btnFacturarPublicaciones.TabIndex = 8;
+            this.btnFacturarPublicaciones.Text = "Facturar Publicaciones";
+            this.btnFacturarPublicaciones.UseVisualStyleBackColor = true;
+            this.btnFacturarPublicaciones.Click += new System.EventHandler(this.btnFacturarPublicaciones_Click);
             // 
             // btnCalificarVendedor
             // 
@@ -129,7 +147,7 @@ namespace FrbaCommerce
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(99, 32);
             this.button3.TabIndex = 6;
-            this.button3.Text = "Comprar Ofertar";
+            this.button3.Text = "Comprar/Ofertar";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
@@ -163,6 +181,41 @@ namespace FrbaCommerce
             this.label1.TabIndex = 5;
             this.label1.Text = "Bienvenido!";
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripUsuario,
+            this.toolStripRol,
+            this.toolStripDate});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 301);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(648, 22);
+            this.statusStrip1.TabIndex = 6;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripUsuario
+            // 
+            this.toolStripUsuario.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.toolStripUsuario.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripUsuario.Name = "toolStripUsuario";
+            this.toolStripUsuario.Size = new System.Drawing.Size(211, 17);
+            this.toolStripUsuario.Spring = true;
+            // 
+            // toolStripRol
+            // 
+            this.toolStripRol.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.toolStripRol.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripRol.Name = "toolStripRol";
+            this.toolStripRol.Size = new System.Drawing.Size(211, 17);
+            this.toolStripRol.Spring = true;
+            // 
+            // toolStripDate
+            // 
+            this.toolStripDate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripDate.Name = "toolStripDate";
+            this.toolStripDate.Size = new System.Drawing.Size(211, 17);
+            this.toolStripDate.Spring = true;
+            // 
             // tl_UsuariosTableAdapter
             // 
             this.tl_UsuariosTableAdapter.ClearBeforeFill = true;
@@ -171,28 +224,36 @@ namespace FrbaCommerce
             // 
             this.tl_RolesTableAdapter.ClearBeforeFill = true;
             // 
-            // btnFacturarPublicaciones
+            // tl_FuncionalidadesTableAdapter
             // 
-            this.btnFacturarPublicaciones.Location = new System.Drawing.Point(37, 128);
-            this.btnFacturarPublicaciones.Name = "btnFacturarPublicaciones";
-            this.btnFacturarPublicaciones.Size = new System.Drawing.Size(88, 39);
-            this.btnFacturarPublicaciones.TabIndex = 8;
-            this.btnFacturarPublicaciones.Text = "Facturar Publicaciones";
-            this.btnFacturarPublicaciones.UseVisualStyleBackColor = true;
-            this.btnFacturarPublicaciones.Click += new System.EventHandler(this.btnFacturarPublicaciones_Click);
+            this.tl_FuncionalidadesTableAdapter.ClearBeforeFill = true;
+            // 
+            // btnABMRubro
+            // 
+            this.btnABMRubro.Enabled = false;
+            this.btnABMRubro.Location = new System.Drawing.Point(136, 128);
+            this.btnABMRubro.Name = "btnABMRubro";
+            this.btnABMRubro.Size = new System.Drawing.Size(75, 23);
+            this.btnABMRubro.TabIndex = 9;
+            this.btnABMRubro.Text = "ABM Rubro";
+            this.btnABMRubro.UseVisualStyleBackColor = true;
             // 
             // Main_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(648, 266);
+            this.ClientSize = new System.Drawing.Size(648, 323);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Main_form";
             this.Text = "TP GDD";
+            this.Load += new System.EventHandler(this.Main_form_Load);
             this.groupBox1.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -214,6 +275,12 @@ namespace FrbaCommerce
         private System.Windows.Forms.Button btnABMCliente;
         private System.Windows.Forms.Button btnCalificarVendedor;
         private System.Windows.Forms.Button btnFacturarPublicaciones;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripUsuario;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripDate;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripRol;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_FuncionalidadesTableAdapter tl_FuncionalidadesTableAdapter;
+        private System.Windows.Forms.Button btnABMRubro;
     }
 }
 

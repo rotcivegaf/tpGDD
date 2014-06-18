@@ -36,13 +36,75 @@ namespace FrbaCommerce
             {
                 usuario_ID = frmLogin.getUsuarioLogueadoID();
                 rol_ID = frmLogin.getRolID();
-                mostrarFuncionalidades(rol_ID);
+                DataRow usuario = this.tl_UsuariosTableAdapter.getByID(usuario_ID).Rows[0];
+                toolStripUsuario.Text = usuario["Username"].ToString();
+                DataRow rol = this.tl_RolesTableAdapter.getByID(rol_ID).Rows[0];
+                toolStripRol.Text = rol["Nombre"].ToString();
+                acomodarFuncionalidades(rol_ID);
             }
         }
 
-        private void mostrarFuncionalidades(int rolID)
+        private void hideGroupControls()
+        {
+            foreach (Control insideControl in groupBox1.Controls)
+            {
+                insideControl.Visible = false;
+            }
+        }
+
+        private void acomodarFuncionalidades(int rolID)
         {
             MessageBox.Show("FALTA HACER -> Mostrar Funcionalidades");
+            btnLogin.Visible = false;
+            hideGroupControls();
+            DataTable funcionalidadesByRol = this.tl_FuncionalidadesTableAdapter.FuncionalidadesPorRol(rol_ID);
+            foreach (DataRow fila in funcionalidadesByRol.Rows)
+            {
+                switch (fila["Nombre"].ToString())
+                {
+                    case "ABM de Rol":
+                        btnABM_Rol.Visible = true;
+                        break;
+                    case "ABM de Cliente":
+                        btnABMCliente.Visible = true;
+                        break;
+                    case "ABM de Empresa":
+                        btnABMEmpresa.Visible = true;
+                        break;
+                    case "ABM de Rubro":
+                        btnABMRubro.Visible = true;
+                        break;
+                    case "ABM Visibilidad de Publicacion":
+                        btnABM_Visibilidades.Visible = true;
+                        break;
+                    case "Generar Publicacion":
+                        button1.Visible = true;
+                        break;
+                    case "Editar Publicacion":
+                        MessageBox.Show("FALTA EL BOTON PARA EditarPublicacion si es que va");
+                        break;
+                    case "Gestion de Preguntas":
+                        MessageBox.Show("FALTA EL BOTON PARA GestionarPreguntas si es que va");
+                        break;
+                    case "Comprar/Ofertar":
+                        button3.Visible = true;
+                        break;
+                    case "Historial del Cliente":
+                        MessageBox.Show("FALTA EL BOTON PARA HistorialDelCliente si es que va");
+                        break;
+                    case "Calificar al Vendedor":
+                        btnCalificarVendedor.Visible = true;
+                        break;
+                    case "Facturar Publicaciones":
+                        btnFacturarPublicaciones.Visible = true;
+                        break;
+                    case "Listado Estadistico":
+                        btnListadoEstadistico.Visible = true;
+                        break;
+                }
+
+
+            }
         }
 
         private void btnABM_Rol_Click(object sender, EventArgs e)
@@ -115,6 +177,11 @@ namespace FrbaCommerce
                 FacturarPublicaciones frmFacturarPublicaciones = new FacturarPublicaciones();
                 frmFacturarPublicaciones.abrir(usuario_ID, rol_ID);
             }
+        }
+
+        private void Main_form_Load(object sender, EventArgs e)
+        {
+            toolStripDate.Text = commons.getDate().ToString();
         }
     }
 }
