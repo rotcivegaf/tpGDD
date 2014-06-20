@@ -120,6 +120,7 @@ namespace FrbaCommerce
         private void button1_Click(object sender, EventArgs e)
         {
             Generar_Publicacion_form frame = new Generar_Publicacion_form();
+            frame.setID(usuario_ID);
             frame.ShowDialog();
         }
 

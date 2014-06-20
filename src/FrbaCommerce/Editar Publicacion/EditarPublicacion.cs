@@ -27,8 +27,10 @@ namespace FrbaCommerce.Editar_Publicacion
 
         private void EditarPublicacion_Load(object sender, EventArgs e)
         {
-
-            this.tl_PublicacionesTableAdapter.FillByID(tablaTemporal, 5);
+            //Muestro las publicaciones que del usuario //HARDCODEADO!!!
+            this.tl_PublicacionesTableAdapter.FillByIDAndVisibilidad(tablaTemporal, userID);
+            //HARDCODEADO!!!
+            //Paginamos esa tabla utilizando el paginador
             paginar(tablaTemporal);
         }
 
@@ -36,6 +38,8 @@ namespace FrbaCommerce.Editar_Publicacion
         {
             //Pagino la tabla
             this.tl_PublicacionesDataGridView.DataSource = this.tl_PublicacionesTableAdapter.GetDataByPaginador(offset, LIMITE, unaTabla);
+           
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -72,11 +76,13 @@ namespace FrbaCommerce.Editar_Publicacion
 
         private void tl_PublicacionesDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //Eveto para editar
+            //Evento para editar
             if (e.ColumnIndex == 8)
             {
                 Generar_Publicacion.Generar_Publicacion_form frame = new Generar_Publicacion.Generar_Publicacion_form();
-
+                frame.setID(userID);
+                frame.editPublicidad(Convert.ToInt32(this.tl_PublicacionesDataGridView.Rows[e.RowIndex].Cells[0].Value));
+                frame.ShowDialog();
             }
         }
         
