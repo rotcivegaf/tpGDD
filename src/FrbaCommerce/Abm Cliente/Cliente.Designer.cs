@@ -127,12 +127,11 @@
             // dateFechaNacimiento
             // 
             this.dateFechaNacimiento.Location = new System.Drawing.Point(105, 170);
-            this.dateFechaNacimiento.MaxDate = commons.getDate();
+            this.dateFechaNacimiento.MaxDate = new System.DateTime(2014, 6, 18, 1, 16, 22, 79);
             this.dateFechaNacimiento.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dateFechaNacimiento.Name = "dateFechaNacimiento";
             this.dateFechaNacimiento.Size = new System.Drawing.Size(200, 20);
             this.dateFechaNacimiento.TabIndex = 5;
-            this.dateFechaNacimiento.Value = new System.DateTime(1900, 1, 2, 0, 0, 0, 0);
             // 
             // lblFechaNacimiento
             // 
@@ -318,7 +317,7 @@
             this.cmbTipoDocumento.Location = new System.Drawing.Point(104, 9);
             this.cmbTipoDocumento.Name = "cmbTipoDocumento";
             this.cmbTipoDocumento.Size = new System.Drawing.Size(201, 21);
-            this.cmbTipoDocumento.TabIndex = 17;
+            this.cmbTipoDocumento.TabIndex = 0;
             // 
             // tl_ClientesTableAdapter
             // 

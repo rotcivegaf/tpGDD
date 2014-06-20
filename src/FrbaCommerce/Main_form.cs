@@ -28,6 +28,12 @@ namespace FrbaCommerce
         public Main_form()
         {
             InitializeComponent();
+            hideGroupControls();
+        }
+
+        private void Main_form_Load(object sender, EventArgs e)
+        {
+            toolStripDate.Text = commons.getDate().ToString();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -56,7 +62,7 @@ namespace FrbaCommerce
         private void acomodarFuncionalidades(int rolID)
         {
             btnLogin.Visible = false;
-            hideGroupControls();
+            //hideGroupControls();
             DataTable funcionalidadesByRol = this.tl_FuncionalidadesTableAdapter.FuncionalidadesPorRol(rol_ID);
             foreach (DataRow fila in funcionalidadesByRol.Rows)
             {
@@ -81,16 +87,16 @@ namespace FrbaCommerce
                         button1.Visible = true;
                         break;
                     case "Editar Publicacion":
-                        MessageBox.Show("FALTA EL BOTON PARA EditarPublicacion si es que va");
+                        button2.Visible = true;
                         break;
                     case "Gestion de Preguntas":
-                        MessageBox.Show("FALTA EL BOTON PARA GestionarPreguntas si es que va");
+                        btnGestionarPreguntas.Visible = true;
                         break;
                     case "Comprar/Ofertar":
                         button3.Visible = true;
                         break;
                     case "Historial del Cliente":
-                        btnHistorialCliente.Visible = true;
+                        btnHistorial.Visible = true;
                         break;
                     case "Calificar al Vendedor":
                         btnCalificarVendedor.Visible = true;
@@ -151,13 +157,14 @@ namespace FrbaCommerce
 
         private void btnCalificarVendedor_Click(object sender, EventArgs e)
         {
-            if (logueado())
-            {
+            //if (logueado())
+            //{
                 CalificarVendedor frmCalificarVendedor = new CalificarVendedor();
                 frmCalificarVendedor.abrir(usuario_ID);
-            }
+            //}
         }
 
+        /*
         private bool logueado()
         {
             if (usuario_ID != 0)
@@ -168,25 +175,21 @@ namespace FrbaCommerce
                 return false;
             }
         }
+        */
 
         private void btnFacturarPublicaciones_Click(object sender, EventArgs e)
         {
-            if (logueado())
-            {
+            //if (logueado())
+            //{
                 FacturarPublicaciones frmFacturarPublicaciones = new FacturarPublicaciones();
                 frmFacturarPublicaciones.abrir(usuario_ID, rol_ID);
-            }
+            //}
         }
 
-        private void Main_form_Load(object sender, EventArgs e)
+        private void btnHistorial_Click(object sender, EventArgs e)
         {
-            toolStripDate.Text = commons.getDate().ToString();
-        }
-
-        private void btnHistorialCliente_Click(object sender, EventArgs e)
-        {
-            HistorialCliente frmHistorialCliente = new HistorialCliente();
-            frmHistorialCliente.abrir(usuario_ID, rol_ID);
+            Historial frmHistorial = new Historial();
+            frmHistorial.abrir(usuario_ID, rol_ID);
         }
 
         private void button2_Click(object sender, EventArgs e)

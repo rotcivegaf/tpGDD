@@ -207,7 +207,6 @@
             this.dateFechaCreacion.Name = "dateFechaCreacion";
             this.dateFechaCreacion.Size = new System.Drawing.Size(200, 20);
             this.dateFechaCreacion.TabIndex = 2;
-            this.dateFechaCreacion.Value = new System.DateTime(2014, 6, 18, 0, 3, 16, 458);
             // 
             // txtRazonSocial
             // 
