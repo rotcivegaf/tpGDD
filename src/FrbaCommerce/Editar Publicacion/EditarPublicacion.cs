@@ -11,13 +11,14 @@ namespace FrbaCommerce.Editar_Publicacion
 {
     public partial class EditarPublicacion : Form
     {
-        private int userID=5;
+        private int userID;
         int offset = 0;
         int LIMITE = 20;
         GD1C2014DataSet.tl_PublicacionesDataTable tablaTemporal = new GD1C2014DataSet.tl_PublicacionesDataTable();
-        public EditarPublicacion()
+        public EditarPublicacion(int usuario_ID)
         {
             InitializeComponent();
+            userID = usuario_ID;
         }
 
         internal void setID(int usuario_ID)
@@ -27,9 +28,7 @@ namespace FrbaCommerce.Editar_Publicacion
 
         private void EditarPublicacion_Load(object sender, EventArgs e)
         {
-            //Muestro las publicaciones que del usuario //HARDCODEADO!!!
             this.tl_PublicacionesTableAdapter.FillByIDAndVisibilidad(tablaTemporal, userID);
-            //HARDCODEADO!!!
             //Paginamos esa tabla utilizando el paginador
             paginar(tablaTemporal);
         }
