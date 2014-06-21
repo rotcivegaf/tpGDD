@@ -29,7 +29,7 @@ namespace FrbaCommerce.Comprar_Ofertar
         private int stock;
         private int visibilidad;
         private int precio;
-        private int comision;
+        private decimal comision;
         private int vendedor;
 
         GD1C2014DataSet.tl_ClientesyEmpresasDataTable tablaTemporal = new GD1C2014DataSet.tl_ClientesyEmpresasDataTable();
@@ -51,15 +51,13 @@ namespace FrbaCommerce.Comprar_Ofertar
             this.label2.Visible = true;
             this.tl_ClientesyEmpresasTableAdapter.FillByID(tablaTemporal,vendedor.ToString());
             this.tl_ClientesyEmpresasDataGridView.DataSource = tablaTemporal;
-            comision = stock * precio * (Convert.ToInt32(this.tl_VisibilidadesTableAdapter1.PorcentajePorCodigo(visibilidad)));
+            comision = (decimal)this.tl_VisibilidadesTableAdapter1.PorcentajePorCodigo(visibilidad) * stock * precio;
             this.tl_ComprasTableAdapter1.sp_crearCompra(publicacionID,
                 UserID,
                 commons.getDate(),
                Convert.ToInt32(this.numericUpDownStock.Value),
                 commons.getDate(),
                 comision);
-
-
         }
         
     }

@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvPendientes = new System.Windows.Forms.DataGridView();
             this.tlPendientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
@@ -42,7 +43,7 @@
             this.montoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.publicacionCodigoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.compraIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Facturar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Facturar = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPendientes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlPendientesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
@@ -147,8 +148,12 @@
             // Facturar
             // 
             this.Facturar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.NullValue = "Facturar";
+            this.Facturar.DefaultCellStyle = dataGridViewCellStyle3;
             this.Facturar.HeaderText = "Facturar";
             this.Facturar.Name = "Facturar";
+            this.Facturar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Facturar.Width = 52;
             // 
             // FacturarPublicaciones
@@ -180,6 +185,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn montoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn publicacionCodigoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn compraIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Facturar;
+        private System.Windows.Forms.DataGridViewButtonColumn Facturar;
     }
 }
