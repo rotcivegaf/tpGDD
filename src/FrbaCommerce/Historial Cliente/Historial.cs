@@ -23,7 +23,7 @@ namespace FrbaCommerce.Historial_Cliente
         {
             usuario_ID = userID;
             rol_ID = rolID;
-            if (rol_ID == 2) //Cliente
+            if (rol_ID == commons.Rol_Cliente_ID)
                 optCompras.Checked = true;
             else
             {
@@ -40,8 +40,10 @@ namespace FrbaCommerce.Historial_Cliente
         {
             if (optCompras.Checked)
             {
-                String condicion = "Cliente_ID = " + usuario_ID;
-                this.dgvHistorialBindingSource.DataSource = this.tl_ComprasTableAdapter.GetData().Select(condicion);
+                dgvHistorial.DataSource = ComprasBindingSource;
+                dgvHistorial.Refresh();
+                ComprasBindingSource.DataSource = historialComprasTableAdapter.GetData(usuario_ID);
+                txtCantidadRegistros.Text = dgvHistorial.RowCount.ToString();
             }
         }
 
@@ -49,8 +51,10 @@ namespace FrbaCommerce.Historial_Cliente
         {
             if (optOfertas.Checked)
             {
-                String condicion = "Cliente_ID = " + usuario_ID;
-                //this.dgvHistorialBindingSource.DataSource = this.tl_OfertasTableAdapter.GetData().Select(condicion());
+                dgvHistorial.DataSource = OfertasBindingSource;
+                dgvHistorial.Refresh();
+                OfertasBindingSource.DataSource = historialOfertasTableAdapter.GetData(usuario_ID);
+                txtCantidadRegistros.Text = dgvHistorial.RowCount.ToString();
             }
         }
 
@@ -58,8 +62,10 @@ namespace FrbaCommerce.Historial_Cliente
         {
             if (optCalificacionesOtorgadas.Checked)
             {
-                String condicion = "Cliente_ID = " + usuario_ID;
-                //this.dgvHistorialBindingSource.DataSource = this.tl_OfertasTableAdapter.GetData().Select(condicion());
+                dgvHistorial.DataSource = CalificacionesOtorgadasBindingSource;
+                dgvHistorial.Refresh();
+                CalificacionesOtorgadasBindingSource.DataSource = historialCalificacionesOtorgadasTableAdapter.GetData(usuario_ID);
+                txtCantidadRegistros.Text = dgvHistorial.RowCount.ToString();
             }
         }
 
@@ -67,17 +73,17 @@ namespace FrbaCommerce.Historial_Cliente
         {
             if (optCalificacionesRecibidas.Checked)
             {
-                String condicion;
-                if (rol_ID == 2)//Cliente
+                dgvHistorial.DataSource = CalificacionesRecibidasBindingSource;
+                dgvHistorial.Refresh();
+                if (rol_ID == commons.Rol_Cliente_ID)
                 {
-                    condicion = "Cliente_ID = " + usuario_ID;
-                    //this.dgvHistorialBindingSource.DataSource = this.tl_OfertasTableAdapter.GetData().Select(condicion()) ;
+                    CalificacionesRecibidasBindingSource.DataSource = historialCalificacionesRecibidasTableAdapter.GetDataByClienteID(usuario_ID);
                 }
                 else
                 {
-                    condicion = "Empresa_ID = " + usuario_ID;
-                    //this.dgvHistorialBindingSource.DataSource = this.tl_OfertasTableAdapter.GetData().Select(condicion()) 
+                    CalificacionesRecibidasBindingSource.DataSource = historialCalificacionesRecibidasTableAdapter.GetDataByEmpresaID(usuario_ID);
                 }
+                txtCantidadRegistros.Text = dgvHistorial.RowCount.ToString();
             }
         }
     }

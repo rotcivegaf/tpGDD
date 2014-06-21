@@ -11,9 +11,11 @@ namespace FrbaCommerce
 {
     public static class commons
     {
+        public static int Rol_Cliente_ID = 2;
+        public static int Rol_Empresa_ID = 3;
+
         public static string hash(string input)
         {
-
             SHA256 hash = SHA256.Create();
 
             // Convertir la cadena en un array de bytes y calcular hash

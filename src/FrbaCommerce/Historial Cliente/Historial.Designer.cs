@@ -34,18 +34,23 @@
             this.optCalificacionesOtorgadas = new System.Windows.Forms.RadioButton();
             this.dgvHistorial = new System.Windows.Forms.DataGridView();
             this.optCalificacionesRecibidas = new System.Windows.Forms.RadioButton();
-            this.dgvHistorialBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tl_ComprasTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ComprasTableAdapter();
+            this.lblCantidadRegistros = new System.Windows.Forms.Label();
+            this.txtCantidadRegistros = new System.Windows.Forms.TextBox();
+            this.ComprasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
-            this.publicacionCodigoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cantidadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.calificacionCodigoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.calificacionCantEstrellasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.calificacionDescripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.historialComprasTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.HistorialComprasTableAdapter();
+            this.historialCalificacionesOtorgadasTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.HistorialCalificacionesOtorgadasTableAdapter();
+            this.CalificacionesOtorgadasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.OfertasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.historialOfertasTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.HistorialOfertasTableAdapter();
+            this.CalificacionesRecibidasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.historialCalificacionesRecibidasTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.HistorialCalificacionesRecibidasTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistorial)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvHistorialBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ComprasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CalificacionesOtorgadasBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OfertasBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CalificacionesRecibidasBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // optCompras
@@ -88,16 +93,7 @@
             // 
             this.dgvHistorial.AllowUserToAddRows = false;
             this.dgvHistorial.AllowUserToDeleteRows = false;
-            this.dgvHistorial.AutoGenerateColumns = false;
             this.dgvHistorial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvHistorial.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.publicacionCodigoDataGridViewTextBoxColumn,
-            this.cantidadDataGridViewTextBoxColumn,
-            this.fechaDataGridViewTextBoxColumn,
-            this.calificacionCodigoDataGridViewTextBoxColumn,
-            this.calificacionCantEstrellasDataGridViewTextBoxColumn,
-            this.calificacionDescripcionDataGridViewTextBoxColumn});
-            this.dgvHistorial.DataSource = this.dgvHistorialBindingSource;
             this.dgvHistorial.Location = new System.Drawing.Point(13, 35);
             this.dgvHistorial.Name = "dgvHistorial";
             this.dgvHistorial.ReadOnly = true;
@@ -116,79 +112,70 @@
             this.optCalificacionesRecibidas.UseVisualStyleBackColor = true;
             this.optCalificacionesRecibidas.CheckedChanged += new System.EventHandler(this.optCalificacionesRecibidas_CheckedChanged);
             // 
-            // dgvHistorialBindingSource
+            // lblCantidadRegistros
             // 
-            this.dgvHistorialBindingSource.DataMember = "tl_Compras";
-            this.dgvHistorialBindingSource.DataSource = this.gD1C2014DataSet;
+            this.lblCantidadRegistros.AutoSize = true;
+            this.lblCantidadRegistros.Location = new System.Drawing.Point(13, 629);
+            this.lblCantidadRegistros.Name = "lblCantidadRegistros";
+            this.lblCantidadRegistros.Size = new System.Drawing.Size(99, 13);
+            this.lblCantidadRegistros.TabIndex = 6;
+            this.lblCantidadRegistros.Text = "Cantidad Registros:";
             // 
-            // tl_ComprasTableAdapter
+            // txtCantidadRegistros
             // 
-            this.tl_ComprasTableAdapter.ClearBeforeFill = true;
+            this.txtCantidadRegistros.Location = new System.Drawing.Point(115, 626);
+            this.txtCantidadRegistros.Name = "txtCantidadRegistros";
+            this.txtCantidadRegistros.Size = new System.Drawing.Size(100, 20);
+            this.txtCantidadRegistros.TabIndex = 7;
+            // 
+            // ComprasBindingSource
+            // 
+            this.ComprasBindingSource.DataMember = "HistorialCompras";
+            this.ComprasBindingSource.DataSource = this.gD1C2014DataSet;
             // 
             // gD1C2014DataSet
             // 
             this.gD1C2014DataSet.DataSetName = "GD1C2014DataSet";
             this.gD1C2014DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // publicacionCodigoDataGridViewTextBoxColumn
+            // historialComprasTableAdapter
             // 
-            this.publicacionCodigoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.publicacionCodigoDataGridViewTextBoxColumn.DataPropertyName = "Publicacion_Codigo";
-            this.publicacionCodigoDataGridViewTextBoxColumn.HeaderText = "Publicacion_Codigo";
-            this.publicacionCodigoDataGridViewTextBoxColumn.Name = "publicacionCodigoDataGridViewTextBoxColumn";
-            this.publicacionCodigoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.publicacionCodigoDataGridViewTextBoxColumn.Width = 126;
+            this.historialComprasTableAdapter.ClearBeforeFill = true;
             // 
-            // cantidadDataGridViewTextBoxColumn
+            // historialCalificacionesOtorgadasTableAdapter
             // 
-            this.cantidadDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.cantidadDataGridViewTextBoxColumn.DataPropertyName = "Cantidad";
-            this.cantidadDataGridViewTextBoxColumn.HeaderText = "Cantidad";
-            this.cantidadDataGridViewTextBoxColumn.Name = "cantidadDataGridViewTextBoxColumn";
-            this.cantidadDataGridViewTextBoxColumn.ReadOnly = true;
-            this.cantidadDataGridViewTextBoxColumn.Width = 74;
+            this.historialCalificacionesOtorgadasTableAdapter.ClearBeforeFill = true;
             // 
-            // fechaDataGridViewTextBoxColumn
+            // CalificacionesOtorgadasBindingSource
             // 
-            this.fechaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.fechaDataGridViewTextBoxColumn.DataPropertyName = "Fecha";
-            this.fechaDataGridViewTextBoxColumn.HeaderText = "Fecha";
-            this.fechaDataGridViewTextBoxColumn.Name = "fechaDataGridViewTextBoxColumn";
-            this.fechaDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fechaDataGridViewTextBoxColumn.Width = 62;
+            this.CalificacionesOtorgadasBindingSource.DataMember = "HistorialCalificacionesOtorgadas";
+            this.CalificacionesOtorgadasBindingSource.DataSource = this.gD1C2014DataSet;
             // 
-            // calificacionCodigoDataGridViewTextBoxColumn
+            // OfertasBindingSource
             // 
-            this.calificacionCodigoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.calificacionCodigoDataGridViewTextBoxColumn.DataPropertyName = "Calificacion_Codigo";
-            this.calificacionCodigoDataGridViewTextBoxColumn.HeaderText = "Calificacion_Codigo";
-            this.calificacionCodigoDataGridViewTextBoxColumn.Name = "calificacionCodigoDataGridViewTextBoxColumn";
-            this.calificacionCodigoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.calificacionCodigoDataGridViewTextBoxColumn.Width = 125;
+            this.OfertasBindingSource.DataMember = "HistorialOfertas";
+            this.OfertasBindingSource.DataSource = this.gD1C2014DataSet;
             // 
-            // calificacionCantEstrellasDataGridViewTextBoxColumn
+            // historialOfertasTableAdapter
             // 
-            this.calificacionCantEstrellasDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.calificacionCantEstrellasDataGridViewTextBoxColumn.DataPropertyName = "Calificacion_Cant_Estrellas";
-            this.calificacionCantEstrellasDataGridViewTextBoxColumn.HeaderText = "Calificacion_Cant_Estrellas";
-            this.calificacionCantEstrellasDataGridViewTextBoxColumn.Name = "calificacionCantEstrellasDataGridViewTextBoxColumn";
-            this.calificacionCantEstrellasDataGridViewTextBoxColumn.ReadOnly = true;
-            this.calificacionCantEstrellasDataGridViewTextBoxColumn.Width = 159;
+            this.historialOfertasTableAdapter.ClearBeforeFill = true;
             // 
-            // calificacionDescripcionDataGridViewTextBoxColumn
+            // CalificacionesRecibidasBindingSource
             // 
-            this.calificacionDescripcionDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.calificacionDescripcionDataGridViewTextBoxColumn.DataPropertyName = "Calificacion_Descripcion";
-            this.calificacionDescripcionDataGridViewTextBoxColumn.HeaderText = "Calificacion_Descripcion";
-            this.calificacionDescripcionDataGridViewTextBoxColumn.Name = "calificacionDescripcionDataGridViewTextBoxColumn";
-            this.calificacionDescripcionDataGridViewTextBoxColumn.ReadOnly = true;
-            this.calificacionDescripcionDataGridViewTextBoxColumn.Width = 148;
+            this.CalificacionesRecibidasBindingSource.DataMember = "HistorialCalificacionesRecibidas";
+            this.CalificacionesRecibidasBindingSource.DataSource = this.gD1C2014DataSet;
+            // 
+            // historialCalificacionesRecibidasTableAdapter
+            // 
+            this.historialCalificacionesRecibidasTableAdapter.ClearBeforeFill = true;
             // 
             // Historial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(815, 626);
+            this.ClientSize = new System.Drawing.Size(815, 654);
+            this.Controls.Add(this.txtCantidadRegistros);
+            this.Controls.Add(this.lblCantidadRegistros);
             this.Controls.Add(this.optCalificacionesRecibidas);
             this.Controls.Add(this.dgvHistorial);
             this.Controls.Add(this.optCalificacionesOtorgadas);
@@ -197,8 +184,11 @@
             this.Name = "Historial";
             this.Text = "Historial";
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistorial)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvHistorialBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ComprasBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CalificacionesOtorgadasBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OfertasBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CalificacionesRecibidasBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -211,14 +201,16 @@
         private System.Windows.Forms.RadioButton optCalificacionesOtorgadas;
         private System.Windows.Forms.DataGridView dgvHistorial;
         private System.Windows.Forms.RadioButton optCalificacionesRecibidas;
-        private System.Windows.Forms.BindingSource dgvHistorialBindingSource;
-        private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ComprasTableAdapter tl_ComprasTableAdapter;
+        private System.Windows.Forms.BindingSource ComprasBindingSource;
         private GD1C2014DataSet gD1C2014DataSet;
-        private System.Windows.Forms.DataGridViewTextBoxColumn publicacionCodigoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fechaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn calificacionCodigoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn calificacionCantEstrellasDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn calificacionDescripcionDataGridViewTextBoxColumn;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.HistorialComprasTableAdapter historialComprasTableAdapter;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.HistorialCalificacionesOtorgadasTableAdapter historialCalificacionesOtorgadasTableAdapter;
+        private System.Windows.Forms.BindingSource CalificacionesOtorgadasBindingSource;
+        private System.Windows.Forms.Label lblCantidadRegistros;
+        private System.Windows.Forms.TextBox txtCantidadRegistros;
+        private System.Windows.Forms.BindingSource OfertasBindingSource;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.HistorialOfertasTableAdapter historialOfertasTableAdapter;
+        private System.Windows.Forms.BindingSource CalificacionesRecibidasBindingSource;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.HistorialCalificacionesRecibidasTableAdapter historialCalificacionesRecibidasTableAdapter;
     }
 }
