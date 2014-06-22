@@ -12,8 +12,10 @@ namespace FrbaCommerce.Editar_Publicacion
     public partial class EditarPublicacion : Form
     {
         private int userID;
-        int offset = 0;
+        int offset = 1;
         int LIMITE = 20;
+        int QtyRegistros;
+
         GD1C2014DataSet.tl_PublicacionesDataTable tablaTemporal = new GD1C2014DataSet.tl_PublicacionesDataTable();
         public EditarPublicacion(int usuario_ID)
         {
@@ -29,6 +31,7 @@ namespace FrbaCommerce.Editar_Publicacion
         private void EditarPublicacion_Load(object sender, EventArgs e)
         {
             this.tl_PublicacionesTableAdapter.FillByIDAndVisibilidad(tablaTemporal, userID);
+            QtyRegistros = Convert.ToInt32(tablaTemporal.Count);
             //Paginamos esa tabla utilizando el paginador
             paginar(tablaTemporal);
         }
@@ -37,31 +40,33 @@ namespace FrbaCommerce.Editar_Publicacion
         {
             //Pagino la tabla
             this.tl_PublicacionesDataGridView.DataSource = this.tl_PublicacionesTableAdapter.GetDataByPaginador(offset, LIMITE, unaTabla);
-           
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            offset = 0;
+            offset = 1;
             paginar(tablaTemporal);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            offset -= LIMITE;
+            if (offset > LIMITE)
+                offset -= LIMITE;
+            else
+                offset = 1;
             paginar(tablaTemporal);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            offset += LIMITE;
+            if (offset <= QtyRegistros - LIMITE)
+                offset += LIMITE;
             paginar(tablaTemporal);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            offset = Convert.ToInt32(tablaTemporal.Count) - LIMITE;
+            offset = QtyRegistros - LIMITE +1;
             paginar(tablaTemporal);
         }
 

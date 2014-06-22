@@ -14,13 +14,10 @@ namespace FrbaCommerce.Comprar_Ofertar
     {
         private int UserID;
 
-        private const int IndexColumnaClienteID = 10;
-        private const int IndexColumnaEmpresaID = 11;
-
-        int offset = 0;
+        int offset = 1;
         int LIMITE = 20;
+        int QtyRegistros;
         GD1C2014DataSet.tl_PublicacionesDataTable tablaTemporal = new GD1C2014DataSet.tl_PublicacionesDataTable();
-
 
         public Comprar_Ofertar()
         {
@@ -60,6 +57,7 @@ namespace FrbaCommerce.Comprar_Ofertar
             //Si pasa la validación, es decir si el campo descripción no está vacio
             if (this.validar())
             {
+                offset = 1;
                 llenarPublicaciones();
             }
         }
@@ -70,6 +68,7 @@ namespace FrbaCommerce.Comprar_Ofertar
             //No muestra las publicaciones en estado borrador y finalizada
             //Aplica el criterio de visibilidad
             this.tl_PublicacionesTableAdapter.FillByFilter(tablaTemporal, armarLike(textBoxDescripcion.Text), Convert.ToInt32(comboBoxRubros.SelectedValue));
+            QtyRegistros = Convert.ToInt32(tablaTemporal.Rows.Count);
             //Una vez que tengo la tabla filtrada llamo al método paginar
             paginar(tablaTemporal);
         }
@@ -159,25 +158,29 @@ namespace FrbaCommerce.Comprar_Ofertar
 
         private void button1_Click(object sender, EventArgs e)
         {
-            offset = 0;
+            offset = 1;
             paginar(tablaTemporal);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            offset -= LIMITE;
+            if (offset > LIMITE)
+                offset -= LIMITE;
+            else
+                offset = 1;
             paginar(tablaTemporal);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            offset += LIMITE;
+            if (offset <= QtyRegistros - LIMITE)
+                offset += LIMITE;
             paginar(tablaTemporal);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            offset = Convert.ToInt32(tablaTemporal.Count) - LIMITE;
+            offset = QtyRegistros - LIMITE + 1;
             paginar(tablaTemporal);
         }
     }
