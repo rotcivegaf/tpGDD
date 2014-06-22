@@ -98,6 +98,8 @@
             // 
             // tl_ClientesyEmpresasDataGridView
             // 
+            this.tl_ClientesyEmpresasDataGridView.AllowUserToAddRows = false;
+            this.tl_ClientesyEmpresasDataGridView.AllowUserToDeleteRows = false;
             this.tl_ClientesyEmpresasDataGridView.AutoGenerateColumns = false;
             this.tl_ClientesyEmpresasDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tl_ClientesyEmpresasDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -114,6 +116,7 @@
             this.tl_ClientesyEmpresasDataGridView.DataSource = this.tl_ClientesyEmpresasBindingSource;
             this.tl_ClientesyEmpresasDataGridView.Location = new System.Drawing.Point(15, 75);
             this.tl_ClientesyEmpresasDataGridView.Name = "tl_ClientesyEmpresasDataGridView";
+            this.tl_ClientesyEmpresasDataGridView.ReadOnly = true;
             this.tl_ClientesyEmpresasDataGridView.Size = new System.Drawing.Size(1097, 64);
             this.tl_ClientesyEmpresasDataGridView.TabIndex = 4;
             // 

@@ -58,6 +58,8 @@ namespace FrbaCommerce.Comprar_Ofertar
                Convert.ToInt32(this.numericUpDownStock.Value),
                 commons.getDate(),
                 comision);
+            this.numericUpDownStock.Enabled = false;
+            this.button1.Enabled = false;
         }
         
     }

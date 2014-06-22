@@ -123,7 +123,7 @@ namespace FrbaCommerce
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(140, 23);
             this.button2.TabIndex = 9;
-            this.button2.Text = "Ver Publicaciones";
+            this.button2.Text = "Editar Publicaciones";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -244,7 +244,7 @@ namespace FrbaCommerce
             this.toolStripUsuario.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
             this.toolStripUsuario.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripUsuario.Name = "toolStripUsuario";
-            this.toolStripUsuario.Size = new System.Drawing.Size(200, 17);
+            this.toolStripUsuario.Size = new System.Drawing.Size(211, 17);
             this.toolStripUsuario.Spring = true;
             this.toolStripUsuario.Click += new System.EventHandler(this.toolStripUsuario_Click);
             // 
@@ -253,14 +253,14 @@ namespace FrbaCommerce
             this.toolStripRol.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
             this.toolStripRol.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripRol.Name = "toolStripRol";
-            this.toolStripRol.Size = new System.Drawing.Size(200, 17);
+            this.toolStripRol.Size = new System.Drawing.Size(211, 17);
             this.toolStripRol.Spring = true;
             // 
             // toolStripDate
             // 
             this.toolStripDate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripDate.Name = "toolStripDate";
-            this.toolStripDate.Size = new System.Drawing.Size(200, 17);
+            this.toolStripDate.Size = new System.Drawing.Size(211, 17);
             this.toolStripDate.Spring = true;
             // 
             // tl_UsuariosTableAdapter

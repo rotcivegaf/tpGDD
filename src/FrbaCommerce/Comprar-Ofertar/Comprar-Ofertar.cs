@@ -13,6 +13,10 @@ namespace FrbaCommerce.Comprar_Ofertar
     public partial class Comprar_Ofertar : Form
     {
         private int UserID;
+
+        private const int IndexColumnaClienteID = 10;
+        private const int IndexColumnaEmpresaID = 11;
+
         int offset = 0;
         int LIMITE = 20;
         GD1C2014DataSet.tl_PublicacionesDataTable tablaTemporal = new GD1C2014DataSet.tl_PublicacionesDataTable();
@@ -41,7 +45,7 @@ namespace FrbaCommerce.Comprar_Ofertar
             //Cargo las tablas necesarias en los dataTable correspondientes, por motivos de performance
             //la tabla de publicaciones solo se cargará al momento de buscar una publicación
             this.tl_RubrosTableAdapter.Fill(this.gD1C2014DataSet.tl_Rubros);
-            this.tl_Publicaciones_RubrosTableAdapter.Fill(this.gD1C2014DataSet.tl_Publicaciones_Rubros);
+            //this.tl_Publicaciones_RubrosTableAdapter.Fill(this.gD1C2014DataSet.tl_Publicaciones_Rubros);
         }
 
         private bool validar()
@@ -56,13 +60,18 @@ namespace FrbaCommerce.Comprar_Ofertar
             //Si pasa la validación, es decir si el campo descripción no está vacio
             if (this.validar())
             {
-                //Aplica los filtros de descripción, rubro.
-                //No muestra las publicaciones en estado borrador y finalizada
-                //Aplica el criterio de visibilidad
-                this.tl_PublicacionesTableAdapter.FillByFilter(tablaTemporal, armarLike(textBoxDescripcion.Text), Convert.ToInt32(comboBoxRubros.SelectedValue));
-                //Una vez que tengo la tabla filtrada llamo al método paginar
-                paginar(tablaTemporal);
+                llenarPublicaciones();
             }
+        }
+
+        private void llenarPublicaciones()
+        {
+            //Aplica los filtros de descripción, rubro.
+            //No muestra las publicaciones en estado borrador y finalizada
+            //Aplica el criterio de visibilidad
+            this.tl_PublicacionesTableAdapter.FillByFilter(tablaTemporal, armarLike(textBoxDescripcion.Text), Convert.ToInt32(comboBoxRubros.SelectedValue));
+            //Una vez que tengo la tabla filtrada llamo al método paginar
+            paginar(tablaTemporal);
         }
         private void paginar(GD1C2014DataSet.tl_PublicacionesDataTable unaTabla )
         {
@@ -106,18 +115,7 @@ namespace FrbaCommerce.Comprar_Ofertar
                         else
                         {
                             NuevaCompra frame = new NuevaCompra();
-                            //HARDCODING FOR TESTING ONLY
-                            //HARDCODING FOR TESTING ONLY
-                            //HARDCODING FOR TESTING ONLY
-                            //HARDCODING FOR TESTING ONLY
-                            //HARDCODING FOR TESTING ONLY
-                            this.UserID = 70;
-                            //HARDCODING FOR TESTING ONLY
-                            //HARDCODING FOR TESTING ONLY
-                            //HARDCODING FOR TESTING ONLY
-                            //HARDCODING FOR TESTING ONLY
-                            //HARDCODING FOR TESTING ONLY
-                            if (Convert.ToInt32(fila.Cells[10].Value.ToString().Length) == 0)
+                            if (isPublicacionDeEmpresa(fila)) //es Empresa
                             {
                                 frame.sendData(this.UserID,
                                 Convert.ToInt32(fila.Cells[0].Value),
@@ -127,7 +125,7 @@ namespace FrbaCommerce.Comprar_Ofertar
                                 Convert.ToInt32(fila.Cells[11].Value));
                                 frame.ShowDialog();
                             }
-                            else
+                            else //es Cliente
                             {
                                 frame.sendData(this.UserID,
                                 Convert.ToInt32(fila.Cells[0].Value),
@@ -137,6 +135,7 @@ namespace FrbaCommerce.Comprar_Ofertar
                                 Convert.ToInt32(fila.Cells[10].Value));
                                 frame.ShowDialog();
                             }
+                            llenarPublicaciones();
                         }
                     }
                 }
@@ -144,15 +143,18 @@ namespace FrbaCommerce.Comprar_Ofertar
         }
         private bool mismoCliente(DataGridViewRow registro)
         {
-            if ((Convert.ToInt32(registro.Cells[10].Value.ToString().Length)) == 0)
+            if (isPublicacionDeEmpresa(registro))
             {
-                return false;
-                //return (Convert.ToInt32(registro.Cells[11].Value) == this.UserID);
+                return (Convert.ToInt32(registro.Cells[11].Value) == this.UserID);
             }
             else
-                return false;
-                //return (Convert.ToInt32(registro.Cells[10].Value) == this.UserID);
+                return (Convert.ToInt32(registro.Cells[10].Value) == this.UserID);
             
+        }
+
+        private static bool isPublicacionDeEmpresa(DataGridViewRow registro)
+        {
+            return (Convert.ToInt32(registro.Cells[10].Value.ToString().Length)) == 0;
         }
 
         private void button1_Click(object sender, EventArgs e)

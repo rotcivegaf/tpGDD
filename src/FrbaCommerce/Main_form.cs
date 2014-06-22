@@ -61,7 +61,7 @@ namespace FrbaCommerce
 
         private void acomodarFuncionalidades(int rolID)
         {
-            btnLogin.Visible = false;
+            //btnLogin.Visible = false;
             //hideGroupControls();
             DataTable funcionalidadesByRol = this.tl_FuncionalidadesTableAdapter.FuncionalidadesPorRol(rol_ID);
             foreach (DataRow fila in funcionalidadesByRol.Rows)

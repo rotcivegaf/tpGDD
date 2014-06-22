@@ -13,19 +13,10 @@ namespace FrbaCommerce.Generar_Publicacion
     {
         GD1C2014DataSet.tl_PublicacionesDataTable publicacionAEditar;
         private int? nuevaPublicacionID = -1;
-        //HARDCODEADO
-        //HARDCODEADO
-        //HARDCODEADO
-        //HARDCODEADO
-        //HARDCODEADO
-        private int userID=70;
-        //HARDCODEADO
-        //HARDCODEADO
-        //HARDCODEADO
-        //HARDCODEADO
-        //HARDCODEADO
+        private int userID;
         private int publicacionID;
-        private int edicion=0;
+        private int edicion = 0;
+
         public Generar_Publicacion_form()
         {
             InitializeComponent();
@@ -60,10 +51,19 @@ namespace FrbaCommerce.Generar_Publicacion
                 this.dateTimePickerFechaInicio.Value =Convert.ToDateTime(publicacionAEditar.Rows[0]["Fecha"]);
                 this.dateTimePickerFechaVencimiento.Value = Convert.ToDateTime(publicacionAEditar.Rows[0]["Fecha_Vencimiento"]);
                 this.numericUpDownPrecio.Value = Convert.ToInt32(publicacionAEditar.Rows[0]["Precio"]);
+                //RUBROS
+                GD1C2014DataSet.tl_Publicaciones_RubrosDataTable rubros = new GD1C2014DataSet.tl_Publicaciones_RubrosDataTable();
+                rubros = this.tl_Publicaciones_RubrosTableAdapter.getDataByPublicacionCodigo(this.publicacionID);
+                foreach (GD1C2014DataSet.tl_Publicaciones_RubrosRow rubro in rubros.Rows)
+                {
+                    listBoxRubro.SelectedValue = Convert.ToInt32(rubro["Rubro_ID"].ToString());
+                    listBoxRubro.SetSelected(listBoxRubro.SelectedIndex, true);
+                }
+                //
                 this.comboBoxVisiblidad.SelectedValue = Convert.ToInt32(publicacionAEditar.Rows[0]["Visibilidad_Codigo"]);
-                this.comboBoxTipoDePublicacion.ValueMember = publicacionAEditar.Rows[0]["Tipo"].ToString();
-                this.comboBoxEstadoDeLaPublicacion.ValueMember = publicacionAEditar.Rows[0]["Estado"].ToString();
-                this.checkBoxAceptaPreguntas.Enabled =Convert.ToBoolean(publicacionAEditar.Rows[0]["Permite_Preguntas"]);
+                this.comboBoxTipoDePublicacion.Text = publicacionAEditar.Rows[0]["Tipo"].ToString();
+                this.comboBoxEstadoDeLaPublicacion.Text = publicacionAEditar.Rows[0]["Estado"].ToString();
+                this.checkBoxAceptaPreguntas.Checked =Convert.ToBoolean(publicacionAEditar.Rows[0]["Permite_Preguntas"]);
             }
         }
 

@@ -17205,14 +17205,13 @@ INNER JOIN LOL.tl_Publicaciones_Rubros PR
 ON P.Codigo=PR.Publicacion_Codigo
 inner join LOL.tl_Visibilidades as V
 ON P.Visibilidad_Codigo = V.Codigo
-WHERE p.Descripcion like @Descripcion and PR.Rubro_ID=@Rubro and Estado != 'Borrador' and Estado != 'Finalizada'
-order by V.Precio desc";
+WHERE p.Descripcion like @Descripcion and PR.Rubro_ID=@Rubro and Estado != 'Borrador' and Estado != 'Finalizada'";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Descripcion", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "Descripcion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Rubro", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, "Rubro_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = @"SELECT P.Codigo, P.Cliente_ID, P.Empresa_ID, P.Descripcion, P.Fecha, P.Stock, P.Fecha_Vencimiento, P.Precio, P.Tipo, P.Visibilidad_Codigo, P.Estado, P.Permite_Preguntas,V.Precio
+            this._commandCollection[3].CommandText = @"SELECT DISTINCT P.Codigo, P.Cliente_ID, P.Empresa_ID, P.Descripcion, P.Fecha, P.Stock, P.Fecha_Vencimiento, P.Precio, P.Tipo, P.Visibilidad_Codigo, P.Estado, P.Permite_Preguntas,V.Precio
 FROM lol.tl_Publicaciones P 
 INNER JOIN LOL.tl_Publicaciones_Rubros PR
 ON P.Codigo=PR.Publicacion_Codigo
@@ -17967,18 +17966,24 @@ SELECT Publicacion_Codigo, Rubro_ID FROM LOL.tl_Publicaciones_Rubros WHERE (Publ
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT Publicacion_Codigo, Rubro_ID FROM LOL.tl_Publicaciones_Rubros";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "LOL.sp_InsertPublicacionRubro";
-            this._commandCollection[1].CommandType = global::System.Data.CommandType.StoredProcedure;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Publicacion_Codigo", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Rubro_ID", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].CommandText = "SELECT Publicacion_Codigo, Rubro_ID FROM LOL.tl_Publicaciones_Rubros WHERE Public" +
+                "acion_Codigo = @Publicacion_Codigo";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Publicacion_Codigo", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, "Publicacion_Codigo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "LOL.sp_InsertPublicacionRubro";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Publicacion_Codigo", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Rubro_ID", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -17998,6 +18003,17 @@ SELECT Publicacion_Codigo, Rubro_ID FROM LOL.tl_Publicaciones_Rubros WHERE (Publ
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual GD1C2014DataSet.tl_Publicaciones_RubrosDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            GD1C2014DataSet.tl_Publicaciones_RubrosDataTable dataTable = new GD1C2014DataSet.tl_Publicaciones_RubrosDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual GD1C2014DataSet.tl_Publicaciones_RubrosDataTable getDataByPublicacionCodigo(decimal Publicacion_Codigo) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(Publicacion_Codigo));
             GD1C2014DataSet.tl_Publicaciones_RubrosDataTable dataTable = new GD1C2014DataSet.tl_Publicaciones_RubrosDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -18106,7 +18122,7 @@ SELECT Publicacion_Codigo, Rubro_ID FROM LOL.tl_Publicaciones_Rubros WHERE (Publ
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int sp_InsertPublicacionRubro(global::System.Nullable<decimal> Publicacion_Codigo, global::System.Nullable<decimal> Rubro_ID) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
             if ((Publicacion_Codigo.HasValue == true)) {
                 command.Parameters[1].Value = ((decimal)(Publicacion_Codigo.Value));
             }

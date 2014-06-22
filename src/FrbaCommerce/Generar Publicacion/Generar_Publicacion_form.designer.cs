@@ -153,6 +153,11 @@
             0,
             131072});
             this.numericUpDownPrecio.Location = new System.Drawing.Point(138, 165);
+            this.numericUpDownPrecio.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
             this.numericUpDownPrecio.Name = "numericUpDownPrecio";
             this.numericUpDownPrecio.Size = new System.Drawing.Size(123, 20);
             this.numericUpDownPrecio.TabIndex = 13;
@@ -249,11 +254,6 @@
             // numericUpDownStock
             // 
             this.numericUpDownStock.Location = new System.Drawing.Point(136, 63);
-            this.numericUpDownStock.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.numericUpDownStock.Name = "numericUpDownStock";
             this.numericUpDownStock.Size = new System.Drawing.Size(120, 20);
             this.numericUpDownStock.TabIndex = 22;
@@ -268,7 +268,7 @@
             this.comboBoxEstadoDeLaPublicacion.FormattingEnabled = true;
             this.comboBoxEstadoDeLaPublicacion.Items.AddRange(new object[] {
             "Borrador",
-            "Activa",
+            "Publicada",
             "Pausada"});
             this.comboBoxEstadoDeLaPublicacion.Location = new System.Drawing.Point(138, 383);
             this.comboBoxEstadoDeLaPublicacion.Name = "comboBoxEstadoDeLaPublicacion";

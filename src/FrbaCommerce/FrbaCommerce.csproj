@@ -115,12 +115,6 @@
     <Compile Include="Comprar-Ofertar\Comprar-Ofertar.Designer.cs">
       <DependentUpon>Comprar-Ofertar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Comprar-Ofertar\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Comprar-Ofertar\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Comprar-Ofertar\NuevaCompra.cs">
       <SubType>Form</SubType>
     </Compile>

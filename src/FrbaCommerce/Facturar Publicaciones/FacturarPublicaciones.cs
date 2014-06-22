@@ -63,7 +63,9 @@ namespace FrbaCommerce.Facturar_Publicaciones
         private void btnFacturar_Click(object sender, EventArgs e)
         {
             if (!faltanCampos())
-            { }
+            {
+                //FALTA HACER -> sp_Facturar
+            }
         }
 
         private bool faltanCampos()
