@@ -197,5 +197,20 @@ namespace FrbaCommerce
             Editar_Publicacion.EditarPublicacion frame = new FrbaCommerce.Editar_Publicacion.EditarPublicacion(usuario_ID);
             frame.ShowDialog();
         }
+
+        private void toolStripUsuario_Click(object sender, EventArgs e)
+        {
+            if (usuario_ID != 0)
+                if (rol_ID == commons.Rol_Cliente_ID)
+                { 
+                    Cliente frmCliente = new Cliente();
+                    frmCliente.ver(usuario_ID);
+                }
+                else
+                {
+                    Empresa frmEmpresa = new Empresa();
+                    frmEmpresa.ver(usuario_ID);
+                }
+        }
     }
 }

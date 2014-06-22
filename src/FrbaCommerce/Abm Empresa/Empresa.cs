@@ -52,6 +52,15 @@ namespace FrbaCommerce.Abm_Empresa
             return guardada;
         }
 
+        public void ver(int empresa_ID)
+        {
+            ID = empresa_ID;
+            btnGuardar.Visible = false;
+            cargarDatos();
+
+            this.ShowDialog();
+        }
+
         private void cargarDatos()
         {
             GD1C2014DataSet.tl_EmpresasDataTable empresaDeTabla = new GD1C2014DataSet.tl_EmpresasDataTable();

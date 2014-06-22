@@ -52,6 +52,15 @@ namespace FrbaCommerce.Abm_Cliente
             return guardado;
         }
 
+        public void ver(int cliente_ID)
+        {
+            ID = cliente_ID;
+            btnGuardar.Visible = false;
+            cargarDatos();
+
+            this.ShowDialog();
+        }
+
         private void cargarDatos()
         {
             GD1C2014DataSet.tl_ClientesDataTable clienteDataTable = new GD1C2014DataSet.tl_ClientesDataTable();

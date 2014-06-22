@@ -32,6 +32,7 @@ namespace FrbaCommerce
             this.btnABM_Rol = new System.Windows.Forms.Button();
             this.btnABM_Visibilidades = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnGestionarPreguntas = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btnHistorial = new System.Windows.Forms.Button();
             this.btnABMRubro = new System.Windows.Forms.Button();
@@ -50,7 +51,6 @@ namespace FrbaCommerce
             this.tl_UsuariosTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_UsuariosTableAdapter();
             this.tl_RolesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RolesTableAdapter();
             this.tl_FuncionalidadesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_FuncionalidadesTableAdapter();
-            this.btnGestionarPreguntas = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -106,6 +106,16 @@ namespace FrbaCommerce
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Funcionaliades";
+            // 
+            // btnGestionarPreguntas
+            // 
+            this.btnGestionarPreguntas.Enabled = false;
+            this.btnGestionarPreguntas.Location = new System.Drawing.Point(369, 120);
+            this.btnGestionarPreguntas.Name = "btnGestionarPreguntas";
+            this.btnGestionarPreguntas.Size = new System.Drawing.Size(109, 39);
+            this.btnGestionarPreguntas.TabIndex = 12;
+            this.btnGestionarPreguntas.Text = "Gestionar Preguntas";
+            this.btnGestionarPreguntas.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -234,22 +244,23 @@ namespace FrbaCommerce
             this.toolStripUsuario.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
             this.toolStripUsuario.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripUsuario.Name = "toolStripUsuario";
-            this.toolStripUsuario.Size = new System.Drawing.Size(211, 17);
+            this.toolStripUsuario.Size = new System.Drawing.Size(200, 17);
             this.toolStripUsuario.Spring = true;
+            this.toolStripUsuario.Click += new System.EventHandler(this.toolStripUsuario_Click);
             // 
             // toolStripRol
             // 
             this.toolStripRol.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
             this.toolStripRol.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripRol.Name = "toolStripRol";
-            this.toolStripRol.Size = new System.Drawing.Size(211, 17);
+            this.toolStripRol.Size = new System.Drawing.Size(200, 17);
             this.toolStripRol.Spring = true;
             // 
             // toolStripDate
             // 
             this.toolStripDate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripDate.Name = "toolStripDate";
-            this.toolStripDate.Size = new System.Drawing.Size(211, 17);
+            this.toolStripDate.Size = new System.Drawing.Size(200, 17);
             this.toolStripDate.Spring = true;
             // 
             // tl_UsuariosTableAdapter
@@ -263,16 +274,6 @@ namespace FrbaCommerce
             // tl_FuncionalidadesTableAdapter
             // 
             this.tl_FuncionalidadesTableAdapter.ClearBeforeFill = true;
-            // 
-            // btnGestionarPreguntas
-            // 
-            this.btnGestionarPreguntas.Enabled = false;
-            this.btnGestionarPreguntas.Location = new System.Drawing.Point(369, 120);
-            this.btnGestionarPreguntas.Name = "btnGestionarPreguntas";
-            this.btnGestionarPreguntas.Size = new System.Drawing.Size(109, 39);
-            this.btnGestionarPreguntas.TabIndex = 12;
-            this.btnGestionarPreguntas.Text = "Gestionar Preguntas";
-            this.btnGestionarPreguntas.UseVisualStyleBackColor = true;
             // 
             // Main_form
             // 
