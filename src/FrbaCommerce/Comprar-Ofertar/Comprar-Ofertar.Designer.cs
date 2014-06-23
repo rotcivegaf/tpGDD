@@ -304,7 +304,7 @@
             // 
             // Comprar
             // 
-            this.Comprar.HeaderText = "Comprar";
+            this.Comprar.HeaderText = "Comprar/Ofertar";
             this.Comprar.Name = "Comprar";
             this.Comprar.ReadOnly = true;
             // 

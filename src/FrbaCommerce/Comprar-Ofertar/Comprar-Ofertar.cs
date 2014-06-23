@@ -72,6 +72,7 @@ namespace FrbaCommerce.Comprar_Ofertar
             //Una vez que tengo la tabla filtrada llamo al método paginar
             paginar(tablaTemporal);
         }
+
         private void paginar(GD1C2014DataSet.tl_PublicacionesDataTable unaTabla )
         {
             //Pagino la tabla
@@ -83,6 +84,7 @@ namespace FrbaCommerce.Comprar_Ofertar
             //La consulta del where es LIKE %Descripcion%
             return "%"+textBoxDescripcion.Text.ToString()+"%";
         }
+
         private void dataGridViewPublicaciones_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //Si quiero hacer una pregunta
@@ -90,8 +92,8 @@ namespace FrbaCommerce.Comprar_Ofertar
             {
                 //Cargo en una fila (DataGridViewRow) el registro deseado
                 DataGridViewRow fila = dataGridViewPublicaciones.Rows[e.RowIndex];
-                //Si la publicación acepta preguntas && valido que no sea una auto-pregunta
-                if (Convert.ToBoolean(fila.Cells[7].Value) &&  ( !mismoCliente(fila) ))
+                //Si la publicación acepta preguntas && valido que no sea una auto-pregunta && el estado no es borrador
+                if (Convert.ToBoolean(fila.Cells[7].Value) &&  ( !mismoCliente(fila) ) && !(fila.Cells[6].Value.ToString().Equals("Pausada")) )
                 {
                     //Creo un formulario de nueva pregunta y le mando el ID de la publicación para cargarlo en la tabla
                     Gestion_de_Preguntas.Nueva_Pregunta frame = new Gestion_de_Preguntas.Nueva_Pregunta();
@@ -110,7 +112,13 @@ namespace FrbaCommerce.Comprar_Ofertar
                     if(!(fila.Cells[6].Value.ToString().Equals("Pausada")))
                     {
                         if (fila.Cells[5].Value.ToString().Equals("Subasta"))
-                            MessageBox.Show("Es Subasta");
+                        {
+                            NuevaSubasta frame = new NuevaSubasta();
+                            frame.setID(this.UserID);
+                            frame.sendData(Convert.ToInt32(fila.Cells[4].Value),
+                                Convert.ToInt32(fila.Cells[0].Value));
+                            frame.ShowDialog();
+                        }
                         else
                         {
                             NuevaCompra frame = new NuevaCompra();

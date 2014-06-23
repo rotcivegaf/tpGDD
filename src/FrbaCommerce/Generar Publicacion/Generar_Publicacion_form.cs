@@ -40,31 +40,76 @@ namespace FrbaCommerce.Generar_Publicacion
             comboBoxEstadoDeLaPublicacion.SelectedIndex = 0;
             comboBoxTipoDePublicacion.SelectedIndex = 0;
             setFechaVencimiento();
-            //Si voy a editar una publicación ya existente cargo los datos en el formulario
+            //Si voy a editar una publicación ya existente
             if (edicion == 1)
-            { 
-                //Cargo el data table con los datos de la publicación a editar
-                publicacionAEditar = this.tl_PublicacionesTableAdapter.GetDataByCode(publicacionID);
-                //Completo el form con los valores de la publicación
-                this.inputDescripcion.Text = publicacionAEditar.Rows[0]["Descripcion"].ToString();
-                this.numericUpDownStock.Value = Convert.ToInt32(publicacionAEditar.Rows[0]["Stock"]);
-                this.dateTimePickerFechaInicio.Value =Convert.ToDateTime(publicacionAEditar.Rows[0]["Fecha"]);
-                this.dateTimePickerFechaVencimiento.Value = Convert.ToDateTime(publicacionAEditar.Rows[0]["Fecha_Vencimiento"]);
-                this.numericUpDownPrecio.Value = Convert.ToInt32(publicacionAEditar.Rows[0]["Precio"]);
-                //RUBROS
-                GD1C2014DataSet.tl_Publicaciones_RubrosDataTable rubros = new GD1C2014DataSet.tl_Publicaciones_RubrosDataTable();
-                rubros = this.tl_Publicaciones_RubrosTableAdapter.getDataByPublicacionCodigo(this.publicacionID);
-                foreach (GD1C2014DataSet.tl_Publicaciones_RubrosRow rubro in rubros.Rows)
+            {
+                //cargo los datos en el formulario
+                cargarDatos();
+                switch (publicacionAEditar.Rows[0]["Estado"].ToString())
                 {
-                    listBoxRubro.SelectedValue = Convert.ToInt32(rubro["Rubro_ID"].ToString());
-                    listBoxRubro.SetSelected(listBoxRubro.SelectedIndex, true);
+                    case "Publicada":
+                        //Deshabilito los campos que no se pueden editar según los requerimientos
+                        this.dateTimePickerFechaInicio.Enabled = false;
+                        this.dateTimePickerFechaVencimiento.Enabled = false;
+                        this.numericUpDownPrecio.Enabled = false;
+                        this.listBoxRubro.Enabled = false;
+                        this.comboBoxVisiblidad.Enabled = false;
+                        this.comboBoxTipoDePublicacion.Enabled = false;
+                        this.checkBoxAceptaPreguntas.Enabled = false;
+                        break;
+                    case "Pausada":
+                        //Deshabilito los campos que no se pueden editar según los requerimientos
+                        this.inputDescripcion.Enabled = false;
+                        this.numericUpDownStock.Enabled = false;
+                        this.dateTimePickerFechaInicio.Enabled = false;
+                        this.dateTimePickerFechaVencimiento.Enabled = false;
+                        this.numericUpDownPrecio.Enabled = false;
+                        this.listBoxRubro.Enabled = false;
+                        this.comboBoxVisiblidad.Enabled = false;
+                        this.comboBoxTipoDePublicacion.Enabled = false;
+                        this.checkBoxAceptaPreguntas.Enabled = false;
+                        break;
+                    case "Finalizada":
+                        //Deshabilito los campos que no se pueden editar según los requerimientos
+                        this.inputDescripcion.Enabled = false;
+                        this.numericUpDownStock.Enabled = false;
+                        this.dateTimePickerFechaInicio.Enabled = false;
+                        this.dateTimePickerFechaVencimiento.Enabled = false;
+                        this.numericUpDownPrecio.Enabled = false;
+                        this.listBoxRubro.Enabled = false;
+                        this.comboBoxVisiblidad.Enabled = false;
+                        this.comboBoxTipoDePublicacion.Enabled = false;
+                        this.checkBoxAceptaPreguntas.Enabled = false;
+                        this.comboBoxEstadoDeLaPublicacion.Enabled = false;
+                        break;
+                    default:
+                        break;
                 }
-                //
-                this.comboBoxVisiblidad.SelectedValue = Convert.ToInt32(publicacionAEditar.Rows[0]["Visibilidad_Codigo"]);
-                this.comboBoxTipoDePublicacion.Text = publicacionAEditar.Rows[0]["Tipo"].ToString();
-                this.comboBoxEstadoDeLaPublicacion.Text = publicacionAEditar.Rows[0]["Estado"].ToString();
-                this.checkBoxAceptaPreguntas.Checked =Convert.ToBoolean(publicacionAEditar.Rows[0]["Permite_Preguntas"]);
             }
+        }
+
+        private void cargarDatos()
+        {
+            //Cargo el data table con los datos de la publicación a editar
+            publicacionAEditar = this.tl_PublicacionesTableAdapter.GetDataByCode(publicacionID);
+            //Completo el form con los valores de la publicación
+            this.inputDescripcion.Text = publicacionAEditar.Rows[0]["Descripcion"].ToString();
+            this.numericUpDownStock.Value = Convert.ToInt32(publicacionAEditar.Rows[0]["Stock"]);
+            this.dateTimePickerFechaInicio.Value = Convert.ToDateTime(publicacionAEditar.Rows[0]["Fecha"]);
+            this.dateTimePickerFechaVencimiento.Value = Convert.ToDateTime(publicacionAEditar.Rows[0]["Fecha_Vencimiento"]);
+            this.numericUpDownPrecio.Value = Convert.ToInt32(publicacionAEditar.Rows[0]["Precio"]);
+            //RUBROS
+            GD1C2014DataSet.tl_Publicaciones_RubrosDataTable rubros = new GD1C2014DataSet.tl_Publicaciones_RubrosDataTable();
+            rubros = this.tl_Publicaciones_RubrosTableAdapter.getDataByPublicacionCodigo(this.publicacionID);
+            foreach (GD1C2014DataSet.tl_Publicaciones_RubrosRow rubro in rubros.Rows)
+            {
+                listBoxRubro.SelectedValue = Convert.ToInt32(rubro["Rubro_ID"].ToString());
+                listBoxRubro.SetSelected(listBoxRubro.SelectedIndex, true);
+            }
+            this.comboBoxVisiblidad.SelectedValue = Convert.ToInt32(publicacionAEditar.Rows[0]["Visibilidad_Codigo"]);
+            this.comboBoxTipoDePublicacion.Text = publicacionAEditar.Rows[0]["Tipo"].ToString();
+            this.comboBoxEstadoDeLaPublicacion.Text = publicacionAEditar.Rows[0]["Estado"].ToString();
+            this.checkBoxAceptaPreguntas.Checked = Convert.ToBoolean(publicacionAEditar.Rows[0]["Permite_Preguntas"]);
         }
 
         private bool validar()
@@ -88,7 +133,9 @@ namespace FrbaCommerce.Generar_Publicacion
             {
                 //Y si no es un registro nuevo entonces ejecuto el método nuevaPublicación
                 if (edicion == 0)
+                {
                     nuevaPublicacion();
+                }
                 else
                     //Caso contrario ejecuto el método editarPublicación
                     editarPublicacion();
@@ -96,53 +143,84 @@ namespace FrbaCommerce.Generar_Publicacion
         }
 
         private void editarPublicacion()
-        { 
-            
+        {
+            if (esPublicada() || esPausada() || esFinalizada())
+            {
+                if (this.comboBoxEstadoDeLaPublicacion.Text.Equals("Borrador"))
+                {
+                    MessageBox.Show("No se puede cambiar el estado a borrador");
+                }
+                else
+                { 
+                    //SP para modificar la publicación
+                }
+            }
+        }
+
+        private bool esPublicada()
+        {
+            return publicacionAEditar.Rows[0]["Estado"].ToString().Equals("Publicada");
+        }
+
+        private bool esPausada()
+        {
+            return publicacionAEditar.Rows[0]["Estado"].ToString().Equals("Pausada");
+        }
+
+        private bool esFinalizada()
+        {
+            return publicacionAEditar.Rows[0]["Estado"].ToString().Equals("Finalizada");
         }
 
         private void nuevaPublicacion()
         {
-            if (esEmpresa(this.userID))
+            if (!(comboBoxEstadoDeLaPublicacion.Text.Equals("Finalizada")))
             {
-                //En este stored procedure hago un INSERT para las publicaciones
-                //Insertando el ID de el cliente particular
-                this.tl_PublicacionesTableAdapter.sp_CrearPublicacion(null, this.userID, inputDescripcion.Text,
-                dateTimePickerFechaInicio.Value,
-                Convert.ToDecimal(numericUpDownStock.Value),
-                dateTimePickerFechaVencimiento.Value,
-                Convert.ToDecimal(numericUpDownPrecio.Value),
-                comboBoxTipoDePublicacion.SelectedItem.ToString(),
-                Convert.ToDecimal(comboBoxVisiblidad.SelectedValue),
-                comboBoxEstadoDeLaPublicacion.SelectedItem.ToString(),
-                checkBoxAceptaPreguntas.Checked, ref nuevaPublicacionID, commons.getDate()
-                , Convert.ToInt32(this.tl_VisibilidadesTableAdapter1.PrecioVisibilidadQuery(Convert.ToInt32(comboBoxVisiblidad.SelectedValue))));
-                //Con el ref tengo el parámetro que me devuelve el SP, en este caso el ID de publicación que voy a usar
-                //en la tabla rubros_publicaciones
-                //Recorro el listBox y por cada item de tipo DataRowView hago un insert
+                if (esEmpresa(this.userID))
+                {
+                    //En este stored procedure hago un INSERT para las publicaciones
+                    //Insertando el ID de el cliente particular
+                    this.tl_PublicacionesTableAdapter.sp_CrearPublicacion(null, this.userID, inputDescripcion.Text,
+                    dateTimePickerFechaInicio.Value,
+                    Convert.ToDecimal(numericUpDownStock.Value),
+                    dateTimePickerFechaVencimiento.Value,
+                    Convert.ToDecimal(numericUpDownPrecio.Value),
+                    comboBoxTipoDePublicacion.SelectedItem.ToString(),
+                    Convert.ToDecimal(comboBoxVisiblidad.SelectedValue),
+                    comboBoxEstadoDeLaPublicacion.SelectedItem.ToString(),
+                    checkBoxAceptaPreguntas.Checked, ref nuevaPublicacionID, commons.getDate()
+                    , Convert.ToInt32(this.tl_VisibilidadesTableAdapter1.PrecioVisibilidadQuery(Convert.ToInt32(comboBoxVisiblidad.SelectedValue))));
+                    //Con el ref tengo el parámetro que me devuelve el SP, en este caso el ID de publicación que voy a usar
+                    //en la tabla rubros_publicaciones
+                    //Recorro el listBox y por cada item de tipo DataRowView hago un insert
+                }
+                else
+                {
+                    //En este stored procedure hago un INSERT para las publicaciones
+                    //Insertando el ID de la empresa
+                    this.tl_PublicacionesTableAdapter.sp_CrearPublicacion(this.userID, null, inputDescripcion.Text,
+                    dateTimePickerFechaInicio.Value,
+                    Convert.ToDecimal(numericUpDownStock.Value),
+                    dateTimePickerFechaVencimiento.Value,
+                    Convert.ToDecimal(numericUpDownPrecio.Value),
+                    comboBoxTipoDePublicacion.SelectedItem.ToString(),
+                    Convert.ToDecimal(comboBoxVisiblidad.SelectedValue),
+                    comboBoxEstadoDeLaPublicacion.SelectedItem.ToString(),
+                    checkBoxAceptaPreguntas.Checked, ref nuevaPublicacionID, commons.getDate()
+                    , Convert.ToInt32(this.tl_VisibilidadesTableAdapter1.PrecioVisibilidadQuery(Convert.ToInt32(comboBoxVisiblidad.SelectedValue))));
+                    //Con el ref tengo el parámetro que me devuelve el SP, en este caso el ID de publicación que voy a usar
+                    //en la tabla rubros_publicaciones
+                    //Recorro el listBox y por cada item de tipo DataRowView hago un insert
+                }
+                //HAgo las entradas correspondientes en la tabla de relaciones entre publicaciones y rubros
+                foreach (DataRowView item in listBoxRubro.SelectedItems)
+                {
+                    this.tl_Publicaciones_RubrosTableAdapter.Insert(Convert.ToInt32(nuevaPublicacionID), Convert.ToInt32(item["ID"].ToString()));
+                }
+                MessageBox.Show("Publicación creada exitosamente");
             }
             else
-            {
-                //En este stored procedure hago un INSERT para las publicaciones
-                //Insertando el ID de la empresa
-                this.tl_PublicacionesTableAdapter.sp_CrearPublicacion(this.userID, null, inputDescripcion.Text,
-                dateTimePickerFechaInicio.Value,
-                Convert.ToDecimal(numericUpDownStock.Value),
-                dateTimePickerFechaVencimiento.Value,
-                Convert.ToDecimal(numericUpDownPrecio.Value),
-                comboBoxTipoDePublicacion.SelectedItem.ToString(),
-                Convert.ToDecimal(comboBoxVisiblidad.SelectedValue),
-                comboBoxEstadoDeLaPublicacion.SelectedItem.ToString(),
-                checkBoxAceptaPreguntas.Checked, ref nuevaPublicacionID, commons.getDate()
-                , Convert.ToInt32(this.tl_VisibilidadesTableAdapter1.PrecioVisibilidadQuery(Convert.ToInt32(comboBoxVisiblidad.SelectedValue))));
-                //Con el ref tengo el parámetro que me devuelve el SP, en este caso el ID de publicación que voy a usar
-                //en la tabla rubros_publicaciones
-                //Recorro el listBox y por cada item de tipo DataRowView hago un insert
-            }
-            //HAgo las entradas correspondientes en la tabla de relaciones entre publicaciones y rubros
-            foreach (DataRowView item in listBoxRubro.SelectedItems)
-            {
-                this.tl_Publicaciones_RubrosTableAdapter.Insert(Convert.ToInt32(nuevaPublicacionID), Convert.ToInt32(item["ID"].ToString()));
-            }
+                MessageBox.Show("No se puede crear una publicación como finalizada");
         }
 
         private void comboBoxVisiblidad_SelectedIndexChanged(object sender, EventArgs e)

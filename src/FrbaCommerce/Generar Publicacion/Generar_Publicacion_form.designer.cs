@@ -269,7 +269,8 @@
             this.comboBoxEstadoDeLaPublicacion.Items.AddRange(new object[] {
             "Borrador",
             "Publicada",
-            "Pausada"});
+            "Pausada",
+            "Finalizada"});
             this.comboBoxEstadoDeLaPublicacion.Location = new System.Drawing.Point(138, 383);
             this.comboBoxEstadoDeLaPublicacion.Name = "comboBoxEstadoDeLaPublicacion";
             this.comboBoxEstadoDeLaPublicacion.Size = new System.Drawing.Size(123, 21);

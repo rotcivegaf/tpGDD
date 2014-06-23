@@ -1468,3 +1468,18 @@ BEGIN
 	
 END
 GO
+
+CREATE PROCEDURE [LOL].[sp_crearOferta]
+	@Publicacion_Codigo int,
+	@Cliente_ID int,
+	@fecha date,
+	@Monto money
+AS
+BEGIN
+	DECLARE @ID INT;
+	
+	INSERT INTO LOL.tl_Ofertas (Publicacion_Codigo, Cliente_ID, Fecha, Monto) VALUES
+	(@Publicacion_Codigo, @Cliente_ID, @fecha, @Monto)	
+		
+END
+GO
