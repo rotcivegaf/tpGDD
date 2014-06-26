@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace FrbaCommerce.Facturar_Publicaciones
 {
@@ -51,11 +52,12 @@ namespace FrbaCommerce.Facturar_Publicaciones
             {
                 if (i < numCantidadPendientesAFacturar.Value)
                 {
-                    dgvPendientes.Rows[i].Cells[5].Value = true;
+
+                    dgvPendientes.Rows[i].Cells["Facturar"].Value = true;
                     montoAFacturar += (decimal)dgvPendientes.Rows[i].Cells[2].Value;
                 }
                 else
-                    dgvPendientes.Rows[i].Cells[5].Value = false;
+                    dgvPendientes.Rows[i].Cells["Facturar"].Value = false;
             }
             txtMontoAFacturar.Text = montoAFacturar.ToString();
         }
@@ -64,7 +66,26 @@ namespace FrbaCommerce.Facturar_Publicaciones
         {
             if (!faltanCampos())
             {
-                //FALTA HACER -> sp_Facturar
+                int facturaNro;
+                /*INSERTAR FACTURA*/
+                try
+                {
+                    int? factNum = 0;
+                    this.tl_FacturasTableAdapter.sp_InsertarFactura(commons.getDate(),cmbModoPago.Text ,ref factNum);
+                    facturaNro = (int)factNum;
+                }
+                catch (SqlException sqlE)
+                {
+                    MessageBox.Show(sqlE.Message);
+                    return;
+                }
+                /*INSERTAR ITEMS*/
+                for (int i = 0; i < numCantidadPendientesAFacturar.Value; i++)
+                {
+                    int pendienteID = Convert.ToInt32(dgvPendientes.Rows[i].Cells["Pendiente_ID"].Value);
+                    this.tl_Facturas_ItemsTableAdapter.sp_InsertarFacturaItem(facturaNro, pendienteID);
+                }
+                llenarGrid();
             }
         }
 

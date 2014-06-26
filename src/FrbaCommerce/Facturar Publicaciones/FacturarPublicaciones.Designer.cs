@@ -32,17 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvPendientes = new System.Windows.Forms.DataGridView();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.montoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.publicacionCodigoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.compraIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Facturar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.tlPendientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
-            this.tl_PendientesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_PendientesTableAdapter();
-            this.tl_FacturasTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_FacturasTableAdapter();
-            this.tl_Facturas_ItemsTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Facturas_ItemsTableAdapter();
             this.lblCantidadPendientesAFacturar = new System.Windows.Forms.Label();
             this.numCantidadPendientesAFacturar = new System.Windows.Forms.NumericUpDown();
             this.lblMontoAFacturar = new System.Windows.Forms.Label();
@@ -50,10 +39,22 @@
             this.lblModoPago = new System.Windows.Forms.Label();
             this.cmbModoPago = new System.Windows.Forms.ComboBox();
             this.btnFacturar = new System.Windows.Forms.Button();
+            this.tlPendientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
+            this.tl_PendientesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_PendientesTableAdapter();
+            this.tl_FacturasTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_FacturasTableAdapter();
+            this.tl_Facturas_ItemsTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Facturas_ItemsTableAdapter();
+            this.Pendiente_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Publicacion_Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Compra_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.compraIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Facturar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPendientes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCantidadPendientesAFacturar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlPendientesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numCantidadPendientesAFacturar)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvPendientes
@@ -65,10 +66,11 @@
             this.dgvPendientes.AutoGenerateColumns = false;
             this.dgvPendientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPendientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.iDDataGridViewTextBoxColumn,
+            this.Pendiente_ID,
             this.fechaDataGridViewTextBoxColumn,
-            this.montoDataGridViewTextBoxColumn,
-            this.publicacionCodigoDataGridViewTextBoxColumn,
+            this.Monto,
+            this.Publicacion_Codigo,
+            this.Compra_ID,
             this.compraIDDataGridViewTextBoxColumn,
             this.Facturar});
             this.dgvPendientes.DataSource = this.tlPendientesBindingSource;
@@ -80,88 +82,6 @@
             this.dgvPendientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvPendientes.Size = new System.Drawing.Size(509, 256);
             this.dgvPendientes.TabIndex = 0;
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // fechaDataGridViewTextBoxColumn
-            // 
-            this.fechaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.fechaDataGridViewTextBoxColumn.DataPropertyName = "Fecha";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.fechaDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
-            this.fechaDataGridViewTextBoxColumn.HeaderText = "Fecha";
-            this.fechaDataGridViewTextBoxColumn.Name = "fechaDataGridViewTextBoxColumn";
-            this.fechaDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fechaDataGridViewTextBoxColumn.Width = 62;
-            // 
-            // montoDataGridViewTextBoxColumn
-            // 
-            this.montoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.montoDataGridViewTextBoxColumn.DataPropertyName = "Monto";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.montoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.montoDataGridViewTextBoxColumn.HeaderText = "Monto";
-            this.montoDataGridViewTextBoxColumn.Name = "montoDataGridViewTextBoxColumn";
-            this.montoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.montoDataGridViewTextBoxColumn.Width = 62;
-            // 
-            // publicacionCodigoDataGridViewTextBoxColumn
-            // 
-            this.publicacionCodigoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.publicacionCodigoDataGridViewTextBoxColumn.DataPropertyName = "Publicacion_Codigo";
-            this.publicacionCodigoDataGridViewTextBoxColumn.HeaderText = "Publicacion_Codigo";
-            this.publicacionCodigoDataGridViewTextBoxColumn.Name = "publicacionCodigoDataGridViewTextBoxColumn";
-            this.publicacionCodigoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.publicacionCodigoDataGridViewTextBoxColumn.Width = 126;
-            // 
-            // compraIDDataGridViewTextBoxColumn
-            // 
-            this.compraIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.compraIDDataGridViewTextBoxColumn.DataPropertyName = "Compra_ID";
-            this.compraIDDataGridViewTextBoxColumn.HeaderText = "Comision";
-            this.compraIDDataGridViewTextBoxColumn.Name = "compraIDDataGridViewTextBoxColumn";
-            this.compraIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.compraIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.compraIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.compraIDDataGridViewTextBoxColumn.Width = 74;
-            // 
-            // Facturar
-            // 
-            this.Facturar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Facturar.HeaderText = "Facturar";
-            this.Facturar.Name = "Facturar";
-            this.Facturar.ReadOnly = true;
-            this.Facturar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Facturar.Width = 52;
-            // 
-            // tlPendientesBindingSource
-            // 
-            this.tlPendientesBindingSource.DataMember = "tl_Pendientes";
-            this.tlPendientesBindingSource.DataSource = this.gD1C2014DataSet;
-            // 
-            // gD1C2014DataSet
-            // 
-            this.gD1C2014DataSet.DataSetName = "GD1C2014DataSet";
-            this.gD1C2014DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tl_PendientesTableAdapter
-            // 
-            this.tl_PendientesTableAdapter.ClearBeforeFill = true;
-            // 
-            // tl_FacturasTableAdapter
-            // 
-            this.tl_FacturasTableAdapter.ClearBeforeFill = true;
-            // 
-            // tl_Facturas_ItemsTableAdapter
-            // 
-            this.tl_Facturas_ItemsTableAdapter.ClearBeforeFill = true;
             // 
             // lblCantidadPendientesAFacturar
             // 
@@ -211,6 +131,7 @@
             // 
             // cmbModoPago
             // 
+            this.cmbModoPago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbModoPago.FormattingEnabled = true;
             this.cmbModoPago.Items.AddRange(new object[] {
             "Efectivo",
@@ -232,6 +153,97 @@
             this.btnFacturar.UseVisualStyleBackColor = true;
             this.btnFacturar.Click += new System.EventHandler(this.btnFacturar_Click);
             // 
+            // tlPendientesBindingSource
+            // 
+            this.tlPendientesBindingSource.DataMember = "tl_Pendientes";
+            this.tlPendientesBindingSource.DataSource = this.gD1C2014DataSet;
+            // 
+            // gD1C2014DataSet
+            // 
+            this.gD1C2014DataSet.DataSetName = "GD1C2014DataSet";
+            this.gD1C2014DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tl_PendientesTableAdapter
+            // 
+            this.tl_PendientesTableAdapter.ClearBeforeFill = true;
+            // 
+            // tl_FacturasTableAdapter
+            // 
+            this.tl_FacturasTableAdapter.ClearBeforeFill = true;
+            // 
+            // tl_Facturas_ItemsTableAdapter
+            // 
+            this.tl_Facturas_ItemsTableAdapter.ClearBeforeFill = true;
+            // 
+            // Pendiente_ID
+            // 
+            this.Pendiente_ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Pendiente_ID.DataPropertyName = "ID";
+            this.Pendiente_ID.HeaderText = "Pendiente ID";
+            this.Pendiente_ID.Name = "Pendiente_ID";
+            this.Pendiente_ID.ReadOnly = true;
+            this.Pendiente_ID.Visible = false;
+            this.Pendiente_ID.Width = 94;
+            // 
+            // fechaDataGridViewTextBoxColumn
+            // 
+            this.fechaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.fechaDataGridViewTextBoxColumn.DataPropertyName = "Fecha";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.fechaDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.fechaDataGridViewTextBoxColumn.HeaderText = "Fecha";
+            this.fechaDataGridViewTextBoxColumn.Name = "fechaDataGridViewTextBoxColumn";
+            this.fechaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fechaDataGridViewTextBoxColumn.Width = 62;
+            // 
+            // Monto
+            // 
+            this.Monto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Monto.DataPropertyName = "Monto";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Monto.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Monto.HeaderText = "Monto";
+            this.Monto.Name = "Monto";
+            this.Monto.ReadOnly = true;
+            this.Monto.Width = 62;
+            // 
+            // Publicacion_Codigo
+            // 
+            this.Publicacion_Codigo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Publicacion_Codigo.DataPropertyName = "Publicacion_Codigo";
+            this.Publicacion_Codigo.HeaderText = "Publicacion Codigo";
+            this.Publicacion_Codigo.Name = "Publicacion_Codigo";
+            this.Publicacion_Codigo.ReadOnly = true;
+            this.Publicacion_Codigo.Width = 113;
+            // 
+            // Compra_ID
+            // 
+            this.Compra_ID.DataPropertyName = "Compra_ID";
+            this.Compra_ID.HeaderText = "Compra ID";
+            this.Compra_ID.Name = "Compra_ID";
+            this.Compra_ID.ReadOnly = true;
+            this.Compra_ID.Visible = false;
+            // 
+            // compraIDDataGridViewTextBoxColumn
+            // 
+            this.compraIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.compraIDDataGridViewTextBoxColumn.DataPropertyName = "Compra_ID";
+            this.compraIDDataGridViewTextBoxColumn.HeaderText = "Comision";
+            this.compraIDDataGridViewTextBoxColumn.Name = "compraIDDataGridViewTextBoxColumn";
+            this.compraIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.compraIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.compraIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.compraIDDataGridViewTextBoxColumn.Width = 74;
+            // 
+            // Facturar
+            // 
+            this.Facturar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Facturar.HeaderText = "Facturar";
+            this.Facturar.Name = "Facturar";
+            this.Facturar.ReadOnly = true;
+            this.Facturar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Facturar.Width = 52;
+            // 
             // FacturarPublicaciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -249,9 +261,9 @@
             this.Text = "Facturar Publicaciones";
             this.Load += new System.EventHandler(this.FacturarPublicaciones_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPendientes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCantidadPendientesAFacturar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlPendientesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numCantidadPendientesAFacturar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -267,16 +279,17 @@
         private GD1C2014DataSet gD1C2014DataSet;
         private System.Windows.Forms.Label lblCantidadPendientesAFacturar;
         private System.Windows.Forms.NumericUpDown numCantidadPendientesAFacturar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fechaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn montoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn publicacionCodigoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn compraIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Facturar;
         private System.Windows.Forms.Label lblMontoAFacturar;
         private System.Windows.Forms.Label txtMontoAFacturar;
         private System.Windows.Forms.Label lblModoPago;
         private System.Windows.Forms.ComboBox cmbModoPago;
         private System.Windows.Forms.Button btnFacturar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Pendiente_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Monto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Publicacion_Codigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Compra_ID;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn compraIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Facturar;
     }
 }
