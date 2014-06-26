@@ -43,8 +43,8 @@ CREATE TABLE LOL.tl_Clientes (
 	Depto          NVARCHAR(50) NULL,
 	Cod_Postal     NVARCHAR(50) NULL,
 	Telefono       NUMERIC(18, 0) NULL,
-	Suma_Calificaciones NUMERIC(18, 0) NULL,
-	Cantidad_Calificaciones NUMERIC(18, 0) NULL,
+	Suma_Calificaciones NUMERIC(18, 0) DEFAULT(0) NOT NULL,
+	Cantidad_Calificaciones NUMERIC(18, 0) DEFAULT(0) NOT NULL,
 	Habilitado	BIT DEFAULT(1) NOT NULL,
 	Comisiones_Pendientes NUMERIC(18,0) DEFAULT(0) NOT NULL,
 
@@ -64,8 +64,8 @@ CREATE TABLE LOL.tl_Empresas (
 	Piso           NUMERIC(18, 0) NULL,
 	Depto          NVARCHAR(50) NULL,
 	Cod_Postal     NVARCHAR(50) NULL,
-	Suma_Calificaciones NUMERIC(18, 0) NULL,
-	Cantidad_Calificaciones NUMERIC(18, 0) NULL,
+	Suma_Calificaciones NUMERIC(18, 0) DEFAULT(0) NOT NULL,
+	Cantidad_Calificaciones NUMERIC(18, 0) DEFAULT(0) NOT NULL,
 	Habilitada	BIT DEFAULT(1) NOT NULL,
 	Comisiones_Pendientes NUMERIC(18,0) DEFAULT(0) NOT NULL,
 	
