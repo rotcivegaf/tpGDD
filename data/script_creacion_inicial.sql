@@ -1518,3 +1518,18 @@ BEGIN
 END
 GO
 
+/* Stored Procedure sp_InsertarFactura */
+CREATE PROCEDURE LOL.sp_InsertarFactura
+	@Fecha DATETIME,
+	@PagoDescripcion NVARCHAR(255),
+	@Nro INT OUT
+AS
+BEGIN
+	DECLARE @error varchar(255);
+	SET NOCOUNT ON;
+
+	INSERT INTO LOL.tl_Facturas (Fecha,Pago_Descripcion) VALUES (@Fecha,@PagoDescripcion)
+	SELECT @Nro = @@IDENTITY
+
+END
+GO
