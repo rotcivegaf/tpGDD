@@ -1533,3 +1533,18 @@ BEGIN
 
 END
 GO
+
+/* sp_InsertarFacturaItem */
+CREATE PROCEDURE [LOL].[sp_InsertarFacturaItem]
+	@FacturaNro INT,
+	@PendienteID INT
+AS
+BEGIN
+
+	INSERT INTO LOL.tl_Facturas_Items 
+		SELECT @FacturaNro, 0, Monto,Publicacion_Codigo,Compra_ID FROM LOL.tl_Pendientes WHERE ID = @PendienteID
+
+	DELETE FROM LOL.tl_Pendientes WHERE ID = @PendienteID
+	
+END
+GO
