@@ -191,7 +191,6 @@ GO
 CREATE TABLE LOL.tl_Facturas (
 	Nro              NUMERIC(18, 0) IDENTITY(1,1) NOT NULL,
 	Fecha            DATETIME NOT NULL,
-	Publicacion_Cod  NUMERIC(18, 0) NOT NULL,
 	Pago_Descripcion NVARCHAR(255) NULL,
 
 	PRIMARY KEY(Nro)
@@ -216,11 +215,12 @@ GO
 
 --Tabla Ofertas
 CREATE TABLE LOL.tl_Ofertas (
-	ID                 NUMERIC(18, 0) IDENTITY(1,1) NOT NULL,
-	Publicacion_Codigo NUMERIC(18, 0) NOT NULL,
-	Cliente_ID         NUMERIC(18, 0) NOT NULL,
-	Fecha              DATE NOT NULL,
-	Monto              MONEY NOT NULL,
+	ID					NUMERIC(18, 0) IDENTITY(1,1) NOT NULL,
+	Publicacion_Codigo	NUMERIC(18, 0) NOT NULL,
+	Cliente_ID			NUMERIC(18, 0) NOT NULL,
+	Fecha				DATE NOT NULL,
+	Monto				MONEY NOT NULL,
+	Ganadora			BIT DEFAULT(0) NOT NULL,
 
 	PRIMARY KEY(ID)
 )
@@ -228,11 +228,12 @@ GO
 
 --Tabla Facturas_Items
 CREATE TABLE LOL.tl_Facturas_Items (
-	ID          NUMERIC(18, 0) IDENTITY(1,1) NOT NULL,
-	Factura_Nro NUMERIC(18, 0) NOT NULL,
-	Cantidad    NUMERIC(18, 0) NOT NULL,
-	Monto       MONEY NOT NULL,
-	Compra_ID   NUMERIC(18, 0) NULL
+	ID					NUMERIC(18, 0) IDENTITY(1,1) NOT NULL,
+	Factura_Nro			NUMERIC(18, 0) NOT NULL,
+	Cantidad			NUMERIC(18, 0) NOT NULL,
+	Monto				MONEY NOT NULL,
+	Publicacion_Codigo	NUMERIC(18,0) NOT NULL,
+	Compra_ID			NUMERIC(18, 0) NULL
 
 	PRIMARY KEY(ID)
 )
@@ -312,12 +313,6 @@ ALTER TABLE LOL.tl_Usuarios_Roles WITH CHECK ADD
 	FOREIGN KEY (Rol_ID)
 	REFERENCES LOL.tl_Roles (ID)
 
---Facturas.Publicacion_Cod -> Publicaciones.Codigo
-ALTER TABLE LOL.tl_Facturas WITH CHECK ADD
-	CONSTRAINT fk_Facturas_Publicacion
-	FOREIGN KEY (Publicacion_Cod)
-	REFERENCES LOL.tl_Publicaciones (Codigo)
-
 --Compras.Cliente_ID -> Clientes.ID
 ALTER TABLE LOL.tl_Compras WITH CHECK ADD
 	CONSTRAINT fk_Compras_Cliente
@@ -339,6 +334,12 @@ ALTER TABLE LOL.tl_Ofertas WITH CHECK ADD
 --Ofertas.Publicacion_Codigo -> Publicaciones.Codigo
 ALTER TABLE LOL.tl_Ofertas WITH CHECK ADD
 	CONSTRAINT fk_Ofertas_Publicacion
+	FOREIGN KEY (Publicacion_Codigo)
+	REFERENCES LOL.tl_Publicaciones (Codigo)
+
+--Facturas_Items.Publicacion_Codigo -> Publicaciones.Codigo
+ALTER TABLE LOL.tl_Facturas_Items WITH CHECK ADD
+	CONSTRAINT fk_Facturas_Items_Publicacion
 	FOREIGN KEY (Publicacion_Codigo)
 	REFERENCES LOL.tl_Publicaciones (Codigo)
 
@@ -815,9 +816,9 @@ BEGIN
 	SET IDENTITY_INSERT LOL.tl_Facturas ON;
 
 	INSERT INTO LOL.tl_Facturas
-		(Nro,Fecha,Publicacion_Cod, Pago_Descripcion)
+		(Nro,Fecha, Pago_Descripcion)
 		SELECT DISTINCT
-			Factura_Nro,Factura_Fecha,Publicacion_Cod, Forma_Pago_Desc
+			Factura_Nro,Factura_Fecha, Forma_Pago_Desc
 		FROM
 			gd_esquema.Maestra
 		WHERE
@@ -826,7 +827,7 @@ BEGIN
 	INSERT INTO LOL.tl_Facturas_Items
 		SELECT
 			--Aclaracion Compra_ID es null?
-			Factura_Nro,Item_Factura_Cantidad,Item_Factura_Monto,Null
+			Factura_Nro,Item_Factura_Cantidad,Item_Factura_Monto,Publicacion_Cod, Null
 		FROM
 			gd_esquema.Maestra
 		WHERE
@@ -847,13 +848,23 @@ BEGIN
 			Publicacion_Cod,
 			C.ID,
 			Oferta_Fecha,
-			Oferta_Monto
+			Oferta_Monto,
+			0
 		FROM
 		gd_esquema.Maestra M
 			JOIN LOL.tl_Clientes C
 			ON (M.Cli_Dni = C.Nro_Documento)
 		WHERE
 			Oferta_Monto IS NOT NULL
+
+	UPDATE 
+		LOL.tl_Ofertas 
+	SET 
+		Ganadora = 1 
+	FROM 
+		LOL.tl_Ofertas O 
+			JOIN (SELECT Publicacion_Codigo, MAX(Monto) Monto FROM LOL.tl_Ofertas GROUP BY Publicacion_Codigo) AS Ganadoras
+			ON O.Publicacion_Codigo = Ganadoras.Publicacion_Codigo AND O.Monto = Ganadoras.Monto
 
 END
 GO
