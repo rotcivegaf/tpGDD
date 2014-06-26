@@ -875,7 +875,99 @@ GO
 
 --Creación de Tipos de datos de usuario----------------------------------------
 
+--Creación de Triggers----------------------------------------
 
+CREATE TRIGGER LOL.PendientesAfterInsert
+   ON  LOL.tl_Pendientes
+   AFTER INSERT
+AS 
+BEGIN
+	DECLARE @PublicacionCodigo INT;
+	DECLARE @CompraID INT;
+	DECLARE @ClienteID INT;
+	DECLARE @EmpresaID INT;
+
+	SET NOCOUNT ON;
+
+    SELECT @PublicacionCodigo = Publicacion_Codigo, @CompraID = Compra_ID FROM INSERTED
+    IF(@CompraID IS NOT NULL)
+		BEGIN
+			SELECT @ClienteID = Cliente_ID, @EmpresaID= Empresa_ID FROM LOL.tl_Publicaciones WHERE Codigo = @PublicacionCodigo
+			IF (@ClienteID IS NOT NULL)
+				UPDATE LOL.tl_Clientes SET Comisiones_Pendientes = Comisiones_Pendientes + 1 WHERE ID = @ClienteID
+			ELSE
+				UPDATE LOL.tl_Empresas SET Comisiones_Pendientes = Comisiones_Pendientes + 1 WHERE ID = @EmpresaID
+		END
+
+END
+GO
+
+CREATE TRIGGER LOL.PendientesAfterDelete
+   ON  LOL.tl_Pendientes
+   AFTER DELETE
+AS 
+BEGIN
+	DECLARE @PublicacionCodigo INT;
+	DECLARE @CompraID INT;
+	DECLARE @ClienteID INT;
+	DECLARE @EmpresaID INT;
+
+	SET NOCOUNT ON;
+
+    SELECT @PublicacionCodigo = Publicacion_Codigo, @CompraID = Compra_ID FROM DELETED
+    IF(@CompraID IS NOT NULL)
+		BEGIN
+			SELECT @ClienteID = Cliente_ID, @EmpresaID= Empresa_ID FROM LOL.tl_Publicaciones WHERE Codigo = @PublicacionCodigo
+			IF (@ClienteID IS NOT NULL)
+				UPDATE LOL.tl_Clientes SET Comisiones_Pendientes = Comisiones_Pendientes - 1 WHERE ID = @ClienteID
+			ELSE
+				UPDATE LOL.tl_Empresas SET Comisiones_Pendientes = Comisiones_Pendientes - 1 WHERE ID = @EmpresaID
+		END
+
+END
+GO
+
+CREATE TRIGGER LOL.tr_ClientesAfterUpdate
+   ON  LOL.tl_Clientes
+   AFTER UPDATE
+AS 
+BEGIN
+	DECLARE @ComisionesPendientes INT;
+	DECLARE @ID INT;
+
+	SET NOCOUNT ON;
+
+    SELECT @ID = ID, @ComisionesPendientes = Comisiones_Pendientes FROM INSERTED
+	IF (@ComisionesPendientes > 10)
+		BEGIN
+			UPDATE LOL.tl_Clientes SET Habilitado = 0 WHERE ID = @ID
+			UPDATE LOL.tl_Usuarios_Roles SET Habilitado = 0 WHERE Usuario_ID = @ID AND Rol_ID = 2
+			UPDATE LOL.tl_Publicaciones SET Estado = 'Pausada' WHERE Cliente_ID = @ID
+		END
+
+END
+GO
+
+CREATE TRIGGER LOL.tr_EmpresasAfterUpdate
+   ON  LOL.tl_Empresas
+   AFTER UPDATE
+AS 
+BEGIN
+	DECLARE @ComisionesPendientes INT;
+	DECLARE @ID INT;
+
+	SET NOCOUNT ON;
+
+    SELECT @ID = ID, @ComisionesPendientes = Comisiones_Pendientes FROM INSERTED
+	IF (@ComisionesPendientes > 10)
+		BEGIN
+			UPDATE LOL.tl_Empresas SET Habilitada = 0 WHERE ID = @ID
+			UPDATE LOL.tl_Usuarios_Roles SET Habilitado = 0 WHERE Usuario_ID = @ID AND Rol_ID = 3
+			UPDATE LOL.tl_Publicaciones SET Estado = 'Pausada' WHERE Empresa_ID = @ID
+		END
+
+END
+GO
 
 --Stored procedures de la nueva aplicacion-------------------------------------
 
