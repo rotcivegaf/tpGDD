@@ -1483,3 +1483,27 @@ BEGIN
 		
 END
 GO
+
+CREATE PROCEDURE [LOL].[sp_editarPublicacion]
+	@Publicacion_Codigo int,
+	@Descripcion NVARCHAR(255),
+	@Fecha datetime,
+	@stock numeric(18, 0),
+	@Fecha_Vencimiento datetime,
+	@precio money,
+	@tipo NVARCHAR(255),
+	@visibilidad_Codigo numeric(18, 0),
+	@Estado NVARCHAR (255),
+	@preguntas bit
+	
+AS
+BEGIN
+	
+	UPDATE LOL.tl_Publicaciones
+		SET Descripcion=@descripcion,Fecha=@Fecha, Stock=@stock, Fecha_Vencimiento=@Fecha_Vencimiento, Tipo=@tipo, Visibilidad_Codigo=@visibilidad_Codigo, Estado=@Estado, Permite_Preguntas=@preguntas
+		WHERE Codigo=@Publicacion_Codigo
+		
+		
+END
+GO
+

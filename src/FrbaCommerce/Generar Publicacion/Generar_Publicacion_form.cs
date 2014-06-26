@@ -56,6 +56,7 @@ namespace FrbaCommerce.Generar_Publicacion
                         this.comboBoxVisiblidad.Enabled = false;
                         this.comboBoxTipoDePublicacion.Enabled = false;
                         this.checkBoxAceptaPreguntas.Enabled = false;
+                        this.numericUpDownStock.Minimum = Convert.ToInt32(publicacionAEditar.Rows[0]["Stock"]);
                         break;
                     case "Pausada":
                         //Deshabilito los campos que no se pueden editar según los requerimientos
@@ -84,6 +85,11 @@ namespace FrbaCommerce.Generar_Publicacion
                         break;
                     default:
                         break;
+                }
+                //Si la publicación es de tipo subasta no se permite modificación de stock alguna
+                if (publicacionAEditar.Rows[0]["Tipo"].ToString().Equals("Subasta") && !esBorrador())
+                {
+                    this.numericUpDownStock.Enabled = false;
                 }
             }
         }
@@ -144,17 +150,41 @@ namespace FrbaCommerce.Generar_Publicacion
 
         private void editarPublicacion()
         {
-            if (esPublicada() || esPausada() || esFinalizada())
-            {
-                if (this.comboBoxEstadoDeLaPublicacion.Text.Equals("Borrador"))
+            //Si se quiere cambiar el estado de una publicación a Borrador
+            if (this.comboBoxEstadoDeLaPublicacion.Text.Equals("Borrador") && (esPublicada() || esPausada() || esFinalizada()))
+                MessageBox.Show("No se puede cambiar el estado a borrador");
+            else
                 {
-                    MessageBox.Show("No se puede cambiar el estado a borrador");
-                }
-                else
-                { 
+                    //Edición en la tabla de publicaciones
+                    this.tl_PublicacionesTableAdapter.sp_editarPublicacion(publicacionID,
+                        inputDescripcion.Text,
+                        dateTimePickerFechaInicio.Value,
+                        Convert.ToDecimal(numericUpDownStock.Value),
+                        dateTimePickerFechaVencimiento.Value,
+                        //No se xq el precio fuma pipa, pero por algún motivo no se está guardando :(
+                        Convert.ToDecimal(numericUpDownPrecio.Value),
+                        comboBoxTipoDePublicacion.Text,
+                        Convert.ToDecimal(comboBoxVisiblidad.SelectedValue),
+                        comboBoxEstadoDeLaPublicacion.Text,
+                        checkBoxAceptaPreguntas.Checked);
+                    //Solamente en el caso de borrador voy a poder editar los rubros, por lo tanto...
+                    if (esBorrador())
+                    {
+                        //Borro los antiguos registros de la tabla de relaciones de rubros y publicaciones
+                        this.tl_Publicaciones_RubrosTableAdapter.DeletePorPublicacion(this.publicacionID);
+                        //Agrego los nuevos rubros a la tabla de relaciones
+                        foreach (DataRowView item in listBoxRubro.SelectedItems)
+                        {
+                            this.tl_Publicaciones_RubrosTableAdapter.Insert(Convert.ToInt32(this.publicacionID), Convert.ToInt32(item["ID"].ToString()));
+                        }
+                        MessageBox.Show("Edición de publicación exitosa");
+                    }
                     //SP para modificar la publicación
                 }
-            }
+        }
+        private bool esBorrador()
+        {
+            return publicacionAEditar.Rows[0]["Estado"].ToString().Equals("Borrador");
         }
 
         private bool esPublicada()
