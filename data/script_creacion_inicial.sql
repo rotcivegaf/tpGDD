@@ -1494,7 +1494,7 @@ AS
 BEGIN
 	
 	UPDATE LOL.tl_Publicaciones
-		SET Descripcion=@descripcion,Fecha=@Fecha, Stock=@stock, Fecha_Vencimiento=@Fecha_Vencimiento, Tipo=@tipo, Visibilidad_Codigo=@visibilidad_Codigo, Estado=@Estado, Permite_Preguntas=@preguntas
+		SET Descripcion=@descripcion,Fecha=@Fecha, Stock=@stock, Fecha_Vencimiento=@Fecha_Vencimiento, Precio=@precio, Tipo=@tipo, Visibilidad_Codigo=@visibilidad_Codigo, Estado=@Estado, Permite_Preguntas=@preguntas
 		WHERE Codigo=@Publicacion_Codigo
 		
 		
