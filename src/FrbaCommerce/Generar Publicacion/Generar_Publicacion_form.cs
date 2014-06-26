@@ -141,6 +141,7 @@ namespace FrbaCommerce.Generar_Publicacion
                 if (edicion == 0)
                 {
                     nuevaPublicacion();
+                    Guardar.Enabled = false; //LO DESHABILITO ASI NO SE PUEDE APRETAR DE NUEVO
                 }
                 else
                     //Caso contrario ejecuto el método editarPublicación
