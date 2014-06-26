@@ -103,7 +103,7 @@ namespace FrbaCommerce.Generar_Publicacion
             this.numericUpDownStock.Value = Convert.ToInt32(publicacionAEditar.Rows[0]["Stock"]);
             this.dateTimePickerFechaInicio.Value = Convert.ToDateTime(publicacionAEditar.Rows[0]["Fecha"]);
             this.dateTimePickerFechaVencimiento.Value = Convert.ToDateTime(publicacionAEditar.Rows[0]["Fecha_Vencimiento"]);
-            this.numericUpDownPrecio.Value = Convert.ToInt32(publicacionAEditar.Rows[0]["Precio"]);
+            this.numericUpDownPrecio.Value = Convert.ToDecimal(publicacionAEditar.Rows[0]["Precio"]);
             //RUBROS
             GD1C2014DataSet.tl_Publicaciones_RubrosDataTable rubros = new GD1C2014DataSet.tl_Publicaciones_RubrosDataTable();
             rubros = this.tl_Publicaciones_RubrosTableAdapter.getDataByPublicacionCodigo(this.publicacionID);
