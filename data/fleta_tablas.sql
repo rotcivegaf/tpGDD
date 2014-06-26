@@ -57,6 +57,7 @@ DROP PROCEDURE LOL.sp_crearOferta
 DROP PROCEDURE LOL.sp_editarPublicacion
 DROP PROCEDURE LOL.sp_InsertarFactura
 DROP PROCEDURE LOL.sp_InsertarFacturaItem
+DROP PROCEDURE LOL.sp_RegistrarFinalizacionSubasta
 
 --Eliminar Tipo de dato
 DROP TYPE LOL.dataTable
