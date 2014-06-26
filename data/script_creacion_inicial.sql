@@ -1475,8 +1475,11 @@ BEGIN
 	INSERT INTO LOL.tl_Pendientes (Fecha, Monto, Publicacion_Codigo, Compra_ID)
 	VALUES (@fecha, @montoVisibilidad, @Publicacion_Codigo, @ID)
 
-	UPDATE LOL.tl_Publicaciones set Stock = Stock-@Cantidad where Codigo=@Publicacion_Codigo
-	
+	IF EXISTS(SELECT * FROM LOL.tl_Publicaciones WHERE Codigo = @Publicacion_Codigo AND Stock = @Cantidad) --Se vendio todo el stock de la Publicacion
+		UPDATE LOL.tl_Publicaciones set Stock = 0, Estado = 'Finalizada' WHERE Codigo = @Publicacion_Codigo
+	ELSE
+		UPDATE LOL.tl_Publicaciones set Stock = Stock-@Cantidad where Codigo=@Publicacion_Codigo
+
 END
 GO
 
