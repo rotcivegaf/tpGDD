@@ -46,6 +46,7 @@ CREATE TABLE LOL.tl_Clientes (
 	Suma_Calificaciones NUMERIC(18, 0) NULL,
 	Cantidad_Calificaciones NUMERIC(18, 0) NULL,
 	Habilitado	BIT DEFAULT(1) NOT NULL,
+	Comisiones_Pendientes NUMERIC(18,0) DEFAULT(0) NOT NULL,
 
 	PRIMARY KEY (ID)
 )
@@ -66,7 +67,8 @@ CREATE TABLE LOL.tl_Empresas (
 	Suma_Calificaciones NUMERIC(18, 0) NULL,
 	Cantidad_Calificaciones NUMERIC(18, 0) NULL,
 	Habilitada	BIT DEFAULT(1) NOT NULL,
-
+	Comisiones_Pendientes NUMERIC(18,0) DEFAULT(0) NOT NULL,
+	
 	PRIMARY KEY(ID)
 )
 GO
@@ -527,20 +529,16 @@ BEGIN
 	SET NOCOUNT ON;
 	DECLARE @RolEmpresa_ID INT = 3
 
-	INSERT INTO LOL.tl_Usuarios
+	INSERT INTO LOL.tl_Usuarios (Username,Password)
 		SELECT DISTINCT
 			Publ_Empresa_Cuit,
-			Publ_Empresa_Cuit,
-			0,
-			1,
-			1,
-			1
+			Publ_Empresa_Cuit
 		FROM
 			gd_esquema.Maestra
 		WHERE
 			Publ_Empresa_Cuit IS NOT NULL
 
-	INSERT INTO LOL.tl_Empresas
+	INSERT INTO LOL.tl_Empresas (ID,Razon_Social,CUIT,Fecha_Creacion,Mail,Dom_Calle,Nro_Calle,Piso,Depto,Cod_Postal)
 		SELECT DISTINCT
 			U.ID,
 			Publ_Empresa_Razon_Social,
@@ -551,10 +549,7 @@ BEGIN
 			Publ_Empresa_Nro_Calle,
 			Publ_Empresa_Piso,
 			Publ_Empresa_Depto,
-			Publ_Empresa_Cod_Postal,
-			0, -- SumaCalificaciones
-			0, -- CantidadCalificaciones
-			1 -- Habilitada
+			Publ_Empresa_Cod_Postal
 		FROM
 			LOL.tl_Usuarios U JOIN gd_esquema.Maestra M ON (U.Username = M.Publ_Empresa_Cuit)
 
@@ -577,14 +572,10 @@ BEGIN
 	SET NOCOUNT ON;
 	DECLARE @RolCliente_ID INT = 2
 
-	INSERT INTO LOL.tl_Usuarios
+	INSERT INTO LOL.tl_Usuarios (Username,Password)
 		SELECT DISTINCT
 			Cli_Dni,
-			Cli_Dni,
-			0,
-			1,
-			1,
-			1
+			Cli_Dni
 		FROM
 			gd_esquema.Maestra
 		WHERE
@@ -592,17 +583,13 @@ BEGIN
 		UNION
 		SELECT DISTINCT
 			Publ_Cli_Dni,
-			Publ_Cli_Dni,
-			0,
-			1,
-			1,
-			1
+			Publ_Cli_Dni
 		FROM
 			gd_esquema.Maestra
 		WHERE
 			Publ_Cli_Dni IS NOT NULL
 
-	INSERT INTO LOL.tl_Clientes
+	INSERT INTO LOL.tl_Clientes(ID,Tipo_Documento,Nro_Documento,Apellido,Nombre,CUIL,Fecha_Nac,Mail,Dom_Calle,Nro_Calle,Piso,Depto,Cod_Postal,Telefono)
 		SELECT DISTINCT
 			U.ID,
 			'DNI',
@@ -617,10 +604,7 @@ BEGIN
 			Cli_Piso,
 			Cli_Depto,
 			Cli_Cod_Postal,
-			NULL, -- TELEFONO
-			0, -- SumaCalificaciones
-			0, -- CantidadCalificaciones
-			1 -- Habilitado
+			NULL -- TELEFONO
 		FROM
 			LOL.tl_Usuarios U JOIN gd_esquema.Maestra M ON (U.Username = CAST(M.Cli_Dni AS NVARCHAR(50)))
 
@@ -1193,7 +1177,8 @@ BEGIN
 			INSERT INTO LOL.tl_Usuarios_Roles VALUES(@ID,2,1)
 		END
 	IF (@isNew = 1)
-		INSERT INTO LOL.tl_Clientes VALUES(
+		INSERT INTO LOL.tl_Clientes (ID,Tipo_Documento,Nro_Documento,CUIL,Apellido,Nombre,Fecha_Nac,Mail,Dom_Calle,Nro_Calle,Piso,Depto,Cod_Postal,Telefono)
+		VALUES(
 			@ID,
 			@TipoDocumento,
 			@Nro_Documento,
@@ -1207,10 +1192,7 @@ BEGIN
 			@Piso,
 			@Depto,
 			@CodPostal,
-			@Telefono,
-			0,
-			0,
-			1)
+			@Telefono)
 	ELSE
 		UPDATE LOL.tl_Clientes SET
 			Tipo_Documento = @TipoDocumento,
@@ -1272,7 +1254,8 @@ BEGIN
 			INSERT INTO LOL.tl_Usuarios_Roles VALUES (@ID,3,1)
 		END
 	IF (@isNew = 1)
-		INSERT INTO LOL.tl_Empresas VALUES(
+		INSERT INTO LOL.tl_Empresas (ID,Razon_Social,CUIT,Fecha_Creacion,Mail,Dom_Calle,Nro_Calle,Piso,Depto,Cod_Postal)
+		VALUES(
 			@ID,
 			@Razon_Social,
 			@CUIT,
@@ -1282,10 +1265,7 @@ BEGIN
 			@NroCalle,
 			@Piso,
 			@Depto,
-			@CodPostal,
-			0,
-			0,
-			1)
+			@CodPostal)
 	ELSE
 		UPDATE LOL.tl_Empresas SET
 			Razon_Social = @Razon_Social,
