@@ -1623,3 +1623,41 @@ BEGIN
 	
 END
 GO
+
+/* sp_RegistrarFinalizacionSubasta */
+CREATE PROCEDURE LOL.sp_RegistrarFinalizacionSubasta
+	@PublicacionCodigo INT,
+	@Fecha DATE,
+	@Precio NUMERIC(18,2),
+	@VisibilidadCodigo INT
+AS
+BEGIN
+	DECLARE @ClienteID INT;
+	DECLARE @CompraID INT;
+	DECLARE @Porcentaje NUMERIC(18,2);
+	
+	SET NOCOUNT ON;
+	--Marco la Oferta mas alta como Ganadora
+    UPDATE 
+		LOL.tl_Ofertas 
+	SET 
+		Ganadora = 1 
+	FROM 
+		LOL.tl_Ofertas O 
+			JOIN (SELECT Publicacion_Codigo, MAX(Monto) Monto FROM LOL.tl_Ofertas GROUP BY Publicacion_Codigo) AS Ganadoras
+			ON Ganadoras.Publicacion_Codigo = @PublicacionCodigo AND O.Monto = Ganadoras.Monto
+	-- Obtengo el Cliente_ID del que hizo la oferta Ganadora
+	SELECT @ClienteID = Cliente_ID FROM LOL.tl_Ofertas WHERE Publicacion_Codigo = @PublicacionCodigo AND Ganadora = 1
+	--Registro la Compra
+	INSERT INTO LOL.tl_Compras(Publicacion_Codigo,Cliente_ID,Cantidad,Fecha)
+	VALUES (@PublicacionCodigo,@ClienteID,1,@Fecha)
+	--Obtengo el ID de la Compra
+	SELECT @CompraID = @@IDENTITY
+	--Obtengo el Porcentaje segun el Codigo de Visibilidad
+	SELECT @Porcentaje = Porcentaje FROM LOL.tl_Visibilidades WHERE Codigo = @VisibilidadCodigo
+	--Agrego un registro en la tabla de Pendientes
+	INSERT INTO LOL.tl_Pendientes (Fecha,Monto,Publicacion_Codigo,Compra_ID)
+	VALUES (@Fecha,@Precio * @Porcentaje,@PublicacionCodigo,@CompraID)
+
+END
+GO
