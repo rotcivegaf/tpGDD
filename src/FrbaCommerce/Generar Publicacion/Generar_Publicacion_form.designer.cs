@@ -176,6 +176,7 @@
             this.comboBoxVisiblidad.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.tlVisibilidadesBindingSource, "Codigo", true));
             this.comboBoxVisiblidad.DataSource = this.tlVisibilidadesBindingSource;
             this.comboBoxVisiblidad.DisplayMember = "Descripcion";
+            this.comboBoxVisiblidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxVisiblidad.FormattingEnabled = true;
             this.comboBoxVisiblidad.Location = new System.Drawing.Point(140, 308);
             this.comboBoxVisiblidad.Name = "comboBoxVisiblidad";
@@ -196,6 +197,7 @@
             // 
             // comboBoxTipoDePublicacion
             // 
+            this.comboBoxTipoDePublicacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxTipoDePublicacion.FormattingEnabled = true;
             this.comboBoxTipoDePublicacion.Items.AddRange(new object[] {
             "Compra Inmediata",
@@ -265,6 +267,7 @@
             // 
             // comboBoxEstadoDeLaPublicacion
             // 
+            this.comboBoxEstadoDeLaPublicacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxEstadoDeLaPublicacion.FormattingEnabled = true;
             this.comboBoxEstadoDeLaPublicacion.Items.AddRange(new object[] {
             "Borrador",
