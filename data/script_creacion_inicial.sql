@@ -10,9 +10,10 @@ GO
 
 CREATE TYPE [LOL].dataTable AS TABLE 
 (
-    Codigo numeric(18,0), 
-    Cliente_ID numeric (18,0),
-    Empresa_ID numeric (18,0),
+    Codigo numeric(18,0),
+	Usuario_ID numeric (18,0),
+    --Cliente_ID numeric (18,0),
+    --Empresa_ID numeric (18,0),
     Descripcion nvarchar (255),
     Fecha datetime,
     Stock numeric (18,0),
@@ -29,9 +30,9 @@ CREATE TYPE [LOL].dataTable AS TABLE
 
 --Tabla Clientes
 CREATE TABLE LOL.tl_Clientes (
-	ID             NUMERIC(18, 0) NOT NULL,
-	Tipo_Documento NVARCHAR(10) NOT NULL,
-	Nro_Documento  NUMERIC(18, 0) NOT NULL,
+	ID				NUMERIC(18, 0) NOT NULL,
+	Tipo_Documento	NVARCHAR(10) NOT NULL,
+	Nro_Documento	NUMERIC(18, 0) NOT NULL,
 	Apellido       NVARCHAR(255) NOT NULL,
 	Nombre         NVARCHAR(255) NOT NULL,
 	CUIL           NVARCHAR(50) NOT NULL,
@@ -43,10 +44,10 @@ CREATE TABLE LOL.tl_Clientes (
 	Depto          NVARCHAR(50) NULL,
 	Cod_Postal     NVARCHAR(50) NULL,
 	Telefono       NUMERIC(18, 0) NULL,
-	Suma_Calificaciones NUMERIC(18, 0) DEFAULT(0) NOT NULL,
-	Cantidad_Calificaciones NUMERIC(18, 0) DEFAULT(0) NOT NULL,
-	Habilitado	BIT DEFAULT(1) NOT NULL,
-	Comisiones_Pendientes NUMERIC(18,0) DEFAULT(0) NOT NULL,
+	Suma_Calificaciones		NUMERIC(18, 0) DEFAULT(0) NOT NULL,
+	Cantidad_Calificaciones	NUMERIC(18, 0) DEFAULT(0) NOT NULL,
+	Habilitado				BIT DEFAULT(1) NOT NULL,
+	Comisiones_Pendientes	NUMERIC(18,0) DEFAULT(0) NOT NULL,
 
 	PRIMARY KEY (ID)
 )
@@ -64,10 +65,10 @@ CREATE TABLE LOL.tl_Empresas (
 	Piso           NUMERIC(18, 0) NULL,
 	Depto          NVARCHAR(50) NULL,
 	Cod_Postal     NVARCHAR(50) NULL,
-	Suma_Calificaciones NUMERIC(18, 0) DEFAULT(0) NOT NULL,
-	Cantidad_Calificaciones NUMERIC(18, 0) DEFAULT(0) NOT NULL,
-	Habilitada	BIT DEFAULT(1) NOT NULL,
-	Comisiones_Pendientes NUMERIC(18,0) DEFAULT(0) NOT NULL,
+	Suma_Calificaciones		NUMERIC(18, 0) DEFAULT(0) NOT NULL,
+	Cantidad_Calificaciones	NUMERIC(18, 0) DEFAULT(0) NOT NULL,
+	Habilitada				BIT DEFAULT(1) NOT NULL,
+	Comisiones_Pendientes	NUMERIC(18,0) DEFAULT(0) NOT NULL,
 	
 	PRIMARY KEY(ID)
 )
@@ -75,8 +76,8 @@ GO
 
 --Tabla Funcionalidades
 CREATE TABLE LOL.tl_Funcionalidades (
-	ID     NUMERIC(18, 0) IDENTITY(1,1) NOT NULL,
-	Nombre NVARCHAR(50) NOT NULL,
+	ID		NUMERIC(18, 0)	IDENTITY(1,1)	NOT NULL,
+	Nombre	NVARCHAR(50)	NOT NULL,
 
 	PRIMARY KEY(ID)
 )
@@ -84,11 +85,11 @@ GO
 
 --Tabla Visibilidades
 CREATE TABLE LOL.tl_Visibilidades (
-	Codigo      NUMERIC(18, 0) NOT NULL,
-	Descripcion NVARCHAR(255) NOT NULL,
-	Precio      MONEY NOT NULL,
-	Porcentaje  NUMERIC(18, 2) NOT NULL,
-	Duracion    INT NOT NULL,
+	Codigo		NUMERIC(18, 0)	NOT NULL,
+	Descripcion	NVARCHAR(255)	NOT NULL,
+	Precio		MONEY			NOT NULL,
+	Porcentaje	NUMERIC(18, 2)	NOT NULL,
+	Duracion	INT				NOT NULL,
 
 	PRIMARY KEY(Codigo)
 )
@@ -106,9 +107,9 @@ GO
 
 --Tabla Rubros
 CREATE TABLE LOL.tl_Rubros (
-	ID          NUMERIC(18, 0) IDENTITY(1,1) NOT NULL,
-	Descripcion NVARCHAR(50) NOT NULL,
-	Habilitado  BIT DEFAULT(1) NOT NULL,
+	ID			NUMERIC(18, 0)	IDENTITY(1,1)	NOT NULL,
+	Descripcion	NVARCHAR(50)	NOT NULL,
+	Habilitado 	BIT				DEFAULT(1)		NOT NULL,
 
 	PRIMARY KEY(ID)
 )
@@ -116,18 +117,17 @@ GO
 
 --Tabla Publicaciones
 CREATE TABLE LOL.tl_Publicaciones (
-	Codigo             NUMERIC(18, 0) IDENTITY(1,1) NOT NULL,
-	Cliente_ID         NUMERIC(18, 0) NULL,
-	Empresa_ID         NUMERIC(18, 0) NULL,
-	Descripcion        NVARCHAR(255) NOT NULL,
-	Fecha              DATETIME NOT NULL,
-	Stock              NUMERIC(18, 0) NOT NULL,
-	Fecha_Vencimiento  DATETIME NOT NULL,
-	Precio             MONEY NOT NULL,
-	Tipo               NVARCHAR(255) NOT NULL,
-	Visibilidad_Codigo NUMERIC(18, 0) NOT NULL,
-	Estado             NVARCHAR(255) NOT NULL,
-	Permite_Preguntas  BIT DEFAULT(1) NOT NULL,
+	Codigo				NUMERIC(18, 0)	NOT NULL	IDENTITY(1,1),
+	Usuario_ID			NUMERIC(18, 0)	NOT NULL,
+	Descripcion			NVARCHAR(255)	NOT NULL,
+	Fecha				DATETIME		NOT NULL,
+	Stock				NUMERIC(18, 0)	NOT NULL,
+	Fecha_Vencimiento	DATETIME		NOT NULL,
+	Precio				MONEY			NOT NULL,
+	Tipo_ID				NUMERIC(18, 0)	NOT NULL,
+	Visibilidad_Codigo	NUMERIC(18, 0)	NOT NULL,
+	Estado_ID			NUMERIC(18, 0)	NOT NULL,
+	Permite_Preguntas	BIT				NOT NULL	DEFAULT(1),
 
 	PRIMARY KEY(Codigo)
 )
@@ -135,12 +135,12 @@ GO
 
 --Tabla Preguntas
 CREATE TABLE LOL.tl_Preguntas (
-	ID                 NUMERIC(18, 0) IDENTITY(1,1) NOT NULL,
-	Publicacion_Codigo NUMERIC(18, 0) NOT NULL,
-	Cliente_ID         NUMERIC(18, 0) NOT NULL,
-	Pregunta           NVARCHAR(255) NOT NULL,
-	Fecha_Respuesta    DATE NULL,
-	Respuesta          NVARCHAR(255) NULL,
+	ID					NUMERIC(18, 0)	IDENTITY(1,1)	NOT NULL,
+	Publicacion_Codigo	NUMERIC(18, 0)	NOT NULL,
+	Usuario_ID			NUMERIC(18, 0)	NOT NULL,
+	Pregunta			NVARCHAR(255)	NOT NULL,
+	Fecha_Respuesta		DATE			NULL,
+	Respuesta			NVARCHAR(255)	NULL,
 
 	PRIMARY KEY(ID)
 )
@@ -148,17 +148,39 @@ GO
 
 --Tabla Publicaciones_Rubros
 CREATE TABLE LOL.tl_Publicaciones_Rubros (
-	Publicacion_Codigo NUMERIC(18, 0) NOT NULL,
-	Rubro_ID           NUMERIC(18, 0) NOT NULL,
+	Publicacion_Codigo	NUMERIC(18, 0)	NOT NULL,
+	Rubro_ID			NUMERIC(18, 0)	NOT NULL,
 
 	PRIMARY KEY(Publicacion_Codigo, Rubro_ID)
 )
 GO
 
+--Tabla Publicacion_Tipos
+CREATE TABLE LOL.tl_Publicacion_Tipos (
+	ID			NUMERIC(18, 0)	IDENTITY(1,1)	NOT NULL,
+	Tipo		NVARCHAR(50)	NOT NULL,
+	Habilitado	BIT				DEFAULT(1)		NOT NULL,
+
+	PRIMARY KEY(ID)
+)
+GO
+--FALTA HACER -> Agregar Indice de Unique a 'TIpo'
+
+--Tabla Publicacion_Estados
+CREATE TABLE LOL.tl_Publicacion_Estados (
+	ID			NUMERIC(18, 0)	IDENTITY(1,1)	NOT NULL,
+	Estado		NVARCHAR(50)	NOT NULL,
+	Habilitado	BIT				DEFAULT(1)		NOT NULL,
+
+	PRIMARY KEY(ID)
+)
+GO
+--FALTA HACER -> Agregar Indice de Unique a 'Estado'
+
 --Tabla Roles_Funcionalidades
 CREATE TABLE LOL.tl_Roles_Funcionalidades (
-	Rol_ID           NUMERIC(18, 0) NOT NULL,
-	Funcionalidad_ID NUMERIC(18, 0) NOT NULL,
+	Rol_ID				NUMERIC(18, 0)	NOT NULL,
+	Funcionalidad_ID	NUMERIC(18, 0)	NOT NULL,
 
 	PRIMARY KEY(Rol_ID, Funcionalidad_ID)
 )
@@ -166,18 +188,17 @@ GO
 
 --Tabla Usuarios
 CREATE TABLE LOL.tl_Usuarios (
-	ID              NUMERIC(18, 0) IDENTITY(1,1) NOT NULL,
-	Username        NVARCHAR(50) NOT NULL,
-	Password        NVARCHAR(255) NOT NULL,
-	Logins_Fallidos TINYINT DEFAULT(0) NOT NULL,
-	Habilitado      BIT DEFAULT(1) NOT NULL,
-	Activo          BIT DEFAULT(1) NOT NULL,
-	Change_Password BIT DEFAULT(0) NOT NULL,
+	ID				NUMERIC(18, 0)	IDENTITY(1,1)	NOT NULL,
+	Username		NVARCHAR(50)	NOT NULL,
+	Password		NVARCHAR(255)	NOT NULL,
+	Logins_Fallidos	TINYINT			DEFAULT(0)		NOT NULL,
+	Habilitado		BIT				DEFAULT(1)		NOT NULL,
+	Activo			BIT				DEFAULT(1)		NOT NULL,
+	Change_Password	BIT				DEFAULT(0)		NOT NULL,
 
 	PRIMARY KEY(ID)
 )
 GO
-
 
 --Tabla Usuarios_Roles
 CREATE TABLE LOL.tl_Usuarios_Roles (
@@ -201,17 +222,25 @@ GO
 
 --Tabla Compras
 CREATE TABLE LOL.tl_Compras (
-	ID                          NUMERIC(18, 0) IDENTITY(1,1) NOT NULL,
-	Publicacion_Codigo          NUMERIC(18, 0) NOT NULL,
-	Cliente_ID                  NUMERIC(18, 0) NOT NULL,
-	Cantidad                    NUMERIC(18, 0) NOT NULL,
-	Fecha                       DATETIME NOT NULL,
-	Calificacion_Codigo         NUMERIC(18, 0) DEFAULT(NULL) NULL,
-	Calificacion_Cant_Estrellas NUMERIC(18, 0) DEFAULT(NULL) NULL,
-	Calificacion_Descripcion    NVARCHAR(255) DEFAULT(NULL) NULL,
-	Comision_Pagada             BIT DEFAULT(0) NOT NULL,
+	ID					NUMERIC(18, 0)	NOT NULL	IDENTITY(1,1),
+	Publicacion_Codigo	NUMERIC(18, 0)	NOT NULL,
+	Usuario_ID			NUMERIC(18, 0)	NOT NULL,
+	Cantidad			NUMERIC(18, 0)	NOT NULL,
+	Fecha				DATETIME		NOT NULL,
+	Comision_Pagada		BIT				NOT NULL	DEFAULT(0),
 
 	PRIMARY KEY(ID)
+)
+GO
+
+--Tabla Calificaciones
+CREATE TABLE LOL.tl_Calificaciones (
+	Codigo				NUMERIC(18, 0)	IDENTITY(1,1)	NOT NULL,
+	Compra_ID			NUMERIC(18,0)	NOT NULL,
+	Cantidad_Estrellas	NUMERIC(18,0)	NOT NULL,
+	Descripcion			NVARCHAR(255)	NOT NULL,
+
+	PRIMARY KEY(Codigo)
 )
 GO
 
@@ -219,7 +248,7 @@ GO
 CREATE TABLE LOL.tl_Ofertas (
 	ID					NUMERIC(18, 0) IDENTITY(1,1) NOT NULL,
 	Publicacion_Codigo	NUMERIC(18, 0) NOT NULL,
-	Cliente_ID			NUMERIC(18, 0) NOT NULL,
+	Usuario_ID			NUMERIC(18, 0) NOT NULL,
 	Fecha				DATE NOT NULL,
 	Monto				MONEY NOT NULL,
 	Ganadora			BIT DEFAULT(0) NOT NULL,
@@ -255,23 +284,35 @@ GO
 
 --Creacion de Foreign Keys-----------------------------------------------------
 
---Publicaciones.Cliente_ID -> Clientes.ID
-ALTER TABLE LOL.tl_Publicaciones WITH CHECK ADD
-	CONSTRAINT fk_Publicaciones_Cliente
-	FOREIGN KEY (Cliente_ID)
-	REFERENCES LOL.tl_Clientes (ID)
+--Calificaciones.Compra_ID -> Compras.ID
+ALTER TABLE LOL.tl_Calificaciones WITH CHECK ADD
+	CONSTRAINT fk_Calificaciones_Compra
+	FOREIGN KEY (Compra_ID)
+	REFERENCES LOL.tl_Compras (ID)
 
---Publicaciones.Empresa_ID -> Empresas.ID
+--Publicaciones.Usuario_ID -> Usuarios.ID
 ALTER TABLE LOL.tl_Publicaciones WITH CHECK ADD
-	CONSTRAINT fk_Publicaciones_Empresa
-	FOREIGN KEY (Empresa_ID)
-	REFERENCES LOL.tl_Empresas (ID)
+	CONSTRAINT fk_Publicaciones_Usuario
+	FOREIGN KEY (Usuario_ID)
+	REFERENCES LOL.tl_Usuarios (ID)
+
+--Publicaciones.Tipo_ID -> Publicacion_Tipos.ID
+ALTER TABLE LOL.tl_Publicaciones WITH CHECK ADD
+	CONSTRAINT fk_Publicaciones_Tipo
+	FOREIGN KEY (Tipo_ID)
+	REFERENCES LOL.tl_Publicacion_Tipos (ID)
 
 --Publicaciones.Visibilidad_Codigo -> Visibilidades.Codigo
 ALTER TABLE LOL.tl_Publicaciones WITH CHECK ADD
 	CONSTRAINT fk_Publicaciones_Visibilidad
 	FOREIGN KEY (Visibilidad_Codigo)
 	REFERENCES LOL.tl_Visibilidades (Codigo)
+
+--Publicaciones.Estado_ID -> Publicacion_Estados.ID
+ALTER TABLE LOL.tl_Publicaciones WITH CHECK ADD
+	CONSTRAINT fk_Publicaciones_Estado
+	FOREIGN KEY (Estado_ID)
+	REFERENCES LOL.tl_Publicacion_Estados (ID)
 
 --Preguntas.Publicacion_Codigo -> Publicaciones.Codigo
 ALTER TABLE LOL.tl_Preguntas WITH CHECK ADD
@@ -315,11 +356,11 @@ ALTER TABLE LOL.tl_Usuarios_Roles WITH CHECK ADD
 	FOREIGN KEY (Rol_ID)
 	REFERENCES LOL.tl_Roles (ID)
 
---Compras.Cliente_ID -> Clientes.ID
+--Compras.Usuario_ID -> Usuarios.ID
 ALTER TABLE LOL.tl_Compras WITH CHECK ADD
-	CONSTRAINT fk_Compras_Cliente
-	FOREIGN KEY (Cliente_ID)
-	REFERENCES LOL.tl_Clientes (ID)
+	CONSTRAINT fk_Compras_Usuario
+	FOREIGN KEY (Usuario_ID)
+	REFERENCES LOL.tl_Usuarios (ID)
 
 --Compras.Publicacion_Codigo -> Publicaciones.Codigo
 ALTER TABLE LOL.tl_Compras WITH CHECK ADD
@@ -327,11 +368,11 @@ ALTER TABLE LOL.tl_Compras WITH CHECK ADD
 	FOREIGN KEY (Publicacion_Codigo)
 	REFERENCES LOL.tl_Publicaciones (Codigo)
 
---Ofertas.Cliente_ID -> Clientes.ID
+--Ofertas.Usuario_ID -> Usuarios.ID
 ALTER TABLE LOL.tl_Ofertas WITH CHECK ADD
-	CONSTRAINT fk_Ofertas_Cliente
-	FOREIGN KEY (Cliente_ID)
-	REFERENCES LOL.tl_Clientes (ID)
+	CONSTRAINT fk_Ofertas_Usuario
+	FOREIGN KEY (Usuario_ID)
+	REFERENCES LOL.tl_Usuarios (ID)
 
 --Ofertas.Publicacion_Codigo -> Publicaciones.Codigo
 ALTER TABLE LOL.tl_Ofertas WITH CHECK ADD
@@ -409,6 +450,7 @@ BEGIN
 	INSERT INTO LOL.tl_Funcionalidades (ID,Nombre)
 		VALUES (13,'Listado Estadistico')
 
+	SET IDENTITY_INSERT LOL.tl_Funcionalidades OFF;
 END
 GO
 
@@ -417,7 +459,7 @@ CREATE PROCEDURE LOL.sp_InicializarRoles
 AS
 BEGIN
 
-	SET IDENTITY_INSERT LOL.tl_Roles ON
+	SET IDENTITY_INSERT LOL.tl_Roles ON;
 
 	DECLARE @Administrativo_ID INT = 1
 	DECLARE @Cliente_ID INT = 2
@@ -453,6 +495,7 @@ BEGIN
 	INSERT INTO LOL.tl_Roles_Funcionalidades VALUES (@Empresa_ID,12)
 	INSERT INTO LOL.tl_Roles_Funcionalidades VALUES (@Empresa_ID,13)
 
+	SET IDENTITY_INSERT LOL.tl_Roles OFF;
 END
 GO
 
@@ -474,6 +517,7 @@ BEGIN
 	INSERT INTO LOL.tl_Usuarios_Roles (Usuario_ID,Rol_ID)
 		VALUES (@Usuario_ID,@Administrativo_ID)
 
+	SET IDENTITY_INSERT LOL.tl_Usuarios OFF;
 END
 GO
 
@@ -619,6 +663,36 @@ BEGIN
 END
 GO
 
+--Stored Procedure ImportarPublicacionTipos
+CREATE PROCEDURE LOL.sp_ImportarPublicacionTipos
+AS
+BEGIN
+	SET NOCOUNT ON;
+	SET IDENTITY_INSERT LOL.tl_Publicacion_Tipos ON;
+
+	INSERT INTO LOL.tl_Publicacion_Tipos(ID,Tipo) VALUES(1,'Compra Inmediata');
+	INSERT INTO LOL.tl_Publicacion_Tipos(ID,Tipo) VALUES(2,'Subasta');
+
+	SET IDENTITY_INSERT LOL.tl_Publicacion_Tipos OFF;
+END
+GO
+
+--Stored Procedure ImportarPublicacionEstados
+CREATE PROCEDURE LOL.sp_ImportarPublicacionEstados
+AS
+BEGIN
+	SET NOCOUNT ON;
+	SET IDENTITY_INSERT LOL.tl_Publicacion_Estados ON;
+	
+	INSERT INTO LOL.tl_Publicacion_Estados(ID,Estado) VALUES(1,'Publicada');
+	INSERT INTO LOL.tl_Publicacion_Estados(ID,Estado) VALUES(2,'Pausada');
+	INSERT INTO LOL.tl_Publicacion_Estados(ID,Estado) VALUES(3,'Borrador');
+	INSERT INTO LOL.tl_Publicacion_Estados(ID,Estado) VALUES(4,'Finalizada');
+		
+	SET IDENTITY_INSERT LOL.tl_Publicacion_Estados OFF;
+END
+GO
+
 --Stored Procedure ImportarPublicaciones
 CREATE PROCEDURE LOL.sp_ImportarPublicaciones
 AS
@@ -627,51 +701,53 @@ BEGIN
 	SET NOCOUNT ON;
 	SET IDENTITY_INSERT LOL.tl_Publicaciones ON;
 
+	-- Inserto las Publicaciones hechas por Clientes
 	INSERT INTO LOL.tl_Publicaciones
-		(Codigo,Cliente_ID,Empresa_ID,Descripcion,Stock,Fecha,
-			Fecha_Vencimiento,Precio,Tipo,Visibilidad_Codigo,Estado,
+		(Codigo,Usuario_ID,Descripcion,Fecha,Stock,
+			Fecha_Vencimiento,Precio,Tipo_ID,Visibilidad_Codigo,Estado_ID,
 			Permite_Preguntas)
 		SELECT DISTINCT
 			Publicacion_Cod,
-			C.ID,
-			NULL,
+			C.ID, --Usuario_ID
 			Publicacion_Descripcion,
-			Publicacion_Stock,
 			Publicacion_Fecha,
+			Publicacion_Stock,
 			Publicacion_Fecha_Venc,
 			Publicacion_Precio,
-			Publicacion_Tipo,
+			T.ID,
 			Publicacion_Visibilidad_Cod,
-			Publicacion_Estado,
-			1
+			E.ID,
+			1 --Permite_Preguntas
 		FROM
 			gd_esquema.Maestra M
-				LEFT JOIN LOL.tl_Clientes C
-				ON (M.Publ_Cli_Dni = C.Nro_Documento)
+			JOIN LOL.tl_Clientes C ON (M.Publ_Cli_Dni = C.Nro_Documento)
+			JOIN LOL.tl_Publicacion_Tipos T ON (M.Publicacion_Tipo = T.Tipo)
+			JOIN LOL.tl_Publicacion_Estados E ON (M.Publicacion_Estado = E.Estado)
 		WHERE
 			Publicacion_Cod IS NOT NULL AND Publ_Cli_Dni IS NOT NULL
 
+	-- Inserto las Publicaciones hechas por Empresas
 	INSERT INTO LOL.tl_Publicaciones
-		(Codigo,Cliente_ID,Empresa_ID,Descripcion,Stock,Fecha,
-			Fecha_Vencimiento,Precio,Tipo,Visibilidad_Codigo,Estado,
+		(Codigo,Usuario_ID,Descripcion,Fecha,Stock,
+			Fecha_Vencimiento,Precio,Tipo_ID,Visibilidad_Codigo,Estado_ID,
 			Permite_Preguntas)
 		SELECT DISTINCT
 			Publicacion_Cod,
-			NULL,
-			E.ID,
+			Em.ID, --Usuario_ID
 			Publicacion_Descripcion,
-			Publicacion_Stock,
 			Publicacion_Fecha,
+			Publicacion_Stock,
 			Publicacion_Fecha_Venc,
 			Publicacion_Precio,
-			Publicacion_Tipo,
+			T.ID,
 			Publicacion_Visibilidad_Cod,
-			Publicacion_Estado,
-			1
+			Es.ID,
+			1 --Permite_Preguntas
 		FROM
 			gd_esquema.Maestra M
-				LEFT JOIN LOL.tl_Empresas E
-				ON (M.Publ_Empresa_Cuit = E.CUIT)
+			JOIN LOL.tl_Empresas Em ON (M.Publ_Empresa_Cuit = Em.CUIT)
+			JOIN LOL.tl_Publicacion_Tipos T ON (M.Publicacion_Tipo = T.Tipo)
+			JOIN LOL.tl_Publicacion_Estados Es ON (M.Publicacion_Estado = Es.Estado)
 		WHERE
 			Publicacion_Cod IS NOT NULL AND
 			Publ_Empresa_Cuit IS NOT NULL
@@ -687,6 +763,7 @@ BEGIN
 		WHERE
 			Publicacion_Cod IS NOT NULL
 
+	SET IDENTITY_INSERT LOL.tl_Publicaciones OFF;
 END
 GO
 
@@ -696,18 +773,34 @@ AS
 BEGIN
 
 	SET NOCOUNT ON;
-
+	
+	-- Creo la tabla TEMPORAL para generar el ID, y despues pasar los datos a las tablas Compras y Calificaciones
+	CREATE TABLE LOL.tl_ComprasTEMP (
+		ID					NUMERIC(18, 0)	IDENTITY(1,1)	NOT NULL,
+		Publicacion_Codigo	NUMERIC(18, 0)	NOT NULL,
+		Usuario_ID			NUMERIC(18, 0)	NOT NULL,
+		Cantidad			NUMERIC(18, 0)	NOT NULL,
+		Fecha				DATETIME		NOT NULL,
+		Comision_Pagada		BIT DEFAULT(0)	NOT NULL,
+		Codigo				NUMERIC(18, 0)	NOT NULL,
+		Cantidad_Estrellas	NUMERIC(18,0)	NOT NULL,
+		Descripcion			NVARCHAR(255)	NOT NULL,
+	
+		PRIMARY KEY(ID)
+	)
+	
 	-- Aclaracion: Suponemos que todas las compras están Calificadas
-	INSERT INTO LOL.tl_Compras
+	-- Importamos todas las compras a una tabla TEMPORAL.
+	INSERT INTO LOL.tl_ComprasTEMP
 		SELECT
 			Publicacion_Cod,
 			C.ID,
 			Compra_Cantidad,
 			Compra_Fecha,
+			1, --Comision_Pagada
 			Calificacion_Codigo,
 			Calificacion_Cant_Estrellas,
-			Calificacion_Descripcion,
-			1
+			Calificacion_Descripcion
 		FROM
 			gd_esquema.Maestra M
 				JOIN LOL.tl_Clientes C
@@ -716,9 +809,47 @@ BEGIN
 			Compra_Cantidad IS NOT NULL AND
 			Calificacion_Codigo IS NOT NULL
 
+	-- Lleno la tabla Compras
+	SET IDENTITY_INSERT LOL.tl_Compras ON;
+	INSERT INTO LOL.tl_Compras
+		(ID,Publicacion_Codigo,Usuario_ID,Cantidad,Fecha,Comision_Pagada)
+		SELECT
+			ID,
+			Publicacion_Codigo,
+			Usuario_ID,
+			Cantidad,
+			Fecha,
+			Comision_Pagada
+		FROM
+			LOL.tl_ComprasTEMP
+	SET IDENTITY_INSERT LOL.tl_Compras OFF;
+	
+	-- Lleno la tabla Calificaciones
+	SET IDENTITY_INSERT LOL.tl_Calificaciones ON;
+	INSERT INTO LOL.tl_Calificaciones
+		(Codigo,Compra_ID,Cantidad_Estrellas,Descripcion)
+		SELECT
+			Codigo,
+			ID,
+			Cantidad_Estrellas,
+			Descripcion
+		FROM
+			LOL.tl_ComprasTEMP
+	SET IDENTITY_INSERT LOL.tl_Calificaciones OFF;
+
+	DROP TABLE LOL.tl_ComprasTEMP
 END
 GO
 
+
+CREATE PROCEDURE LOL.sp_InicializarCalificacionesClientes
+AS
+BEGIN
+	DECLARE @NUM INT;
+END
+GO
+/*
+--FALTA HACER -> !!REHACER!! CON LO DE Usuario_ID
 --Stored Procedure InicializarCalificacionesClientes
 CREATE PROCEDURE LOL.sp_InicializarCalificacionesClientes
 AS
@@ -735,26 +866,37 @@ BEGIN
 			SUM(ii.CantidadCalificaciones) AS CantidadTotal
 		FROM
 			(SELECT
-				P.Cliente_ID,
+				P.Usuario_ID,
 				i.*
 			FROM
 				(SELECT 
-					Publicacion_Codigo,
-					SUM(Calificacion_Cant_Estrellas) AS SumaCalificaciones,
+					Co.Publicacion_Codigo,
+					SUM(Ca.Cantntidad_Estrellas) AS SumaCalificaciones,
 					COUNT(0) AS CantidadCalificaciones 
 				 FROM
-					LOL.tl_Compras
+					LOL.tl_Calificaciones Ca
+					JOIN LOL.tl_Compras Co ON (Ca.Compra_ID = Co.ID)
 				 WHERE
 					Calificacion_Cant_Estrellas IS NOT NULL
 				 GROUP BY
-					Publicacion_Codigo) i JOIN LOL.tl_Publicaciones P ON (i.Publicacion_Codigo = P.Codigo)) ii
+					Co.Publicacion_Codigo
+				) i JOIN LOL.tl_Publicaciones P ON (i.Publicacion_Codigo = P.Codigo)) ii
 		WHERE
 			ii.Cliente_ID IS NOT NULL
 		GROUP BY
 			ii.Cliente_ID) iii JOIN LOL.tl_Clientes ON (iii.Cliente_ID = ID)
 END
 GO
+*/
 
+CREATE PROCEDURE LOL.sp_InicializarCalificacionesEmpresas
+AS
+BEGIN
+	DECLARE @NUM INT;
+END
+GO
+/*
+--FALTA HACER -> !!REHACER!! CON LO DE Usuario_ID
 --Stored Procedure InicializarCalificacionesEmpresas
 CREATE PROCEDURE LOL.sp_InicializarCalificacionesEmpresas
 AS
@@ -790,7 +932,7 @@ BEGIN
 			ii.Empresa_ID) iii JOIN LOL.tl_Empresas ON (iii.Empresa_ID = ID)
 END
 GO
-
+*/
 --Stored Procedure ImportarFacturas
 CREATE PROCEDURE LOL.sp_ImportarFacturas
 AS
@@ -817,6 +959,7 @@ BEGIN
 		WHERE
 			Item_Factura_Cantidad IS NOT NULL
 
+	SET IDENTITY_INSERT LOL.tl_Facturas OFF;
 END
 GO
 
@@ -833,7 +976,7 @@ BEGIN
 			C.ID,
 			Oferta_Fecha,
 			Oferta_Monto,
-			0
+			0 -- Ganadora
 		FROM
 		gd_esquema.Maestra M
 			JOIN LOL.tl_Clientes C
@@ -862,6 +1005,8 @@ EXEC LOL.sp_ImportarVisibilidades
 EXEC LOL.sp_ImportarRubros
 EXEC LOL.sp_ImportarEmpresas
 EXEC LOL.sp_ImportarClientes
+EXEC LOL.sp_ImportarPublicacionTipos
+EXEC LOL.sp_ImportarPublicacionEstados
 EXEC LOL.sp_ImportarPublicaciones
 EXEC LOL.sp_ImportarCompras
 EXEC LOL.sp_InicializarCalificacionesClientes
@@ -884,19 +1029,18 @@ AS
 BEGIN
 	DECLARE @PublicacionCodigo INT;
 	DECLARE @CompraID INT;
-	DECLARE @ClienteID INT;
-	DECLARE @EmpresaID INT;
+	DECLARE @UsuarioID INT;
 
 	SET NOCOUNT ON;
 
     SELECT @PublicacionCodigo = Publicacion_Codigo, @CompraID = Compra_ID FROM INSERTED
     IF(@CompraID IS NOT NULL)
 		BEGIN
-			SELECT @ClienteID = Cliente_ID, @EmpresaID= Empresa_ID FROM LOL.tl_Publicaciones WHERE Codigo = @PublicacionCodigo
-			IF (@ClienteID IS NOT NULL)
-				UPDATE LOL.tl_Clientes SET Comisiones_Pendientes = Comisiones_Pendientes + 1 WHERE ID = @ClienteID
-			ELSE
-				UPDATE LOL.tl_Empresas SET Comisiones_Pendientes = Comisiones_Pendientes + 1 WHERE ID = @EmpresaID
+			SELECT @UsuarioID = Usuario_ID FROM LOL.tl_Publicaciones WHERE Codigo = @PublicacionCodigo
+			IF EXISTS(SELECT 0 FROM LOL.tl_Clientes WHERE ID = @UsuarioID) --Es Cliente
+				UPDATE LOL.tl_Clientes SET Comisiones_Pendientes = Comisiones_Pendientes + 1 WHERE ID = @UsuarioID
+			ELSE --Es Empresa
+				UPDATE LOL.tl_Empresas SET Comisiones_Pendientes = Comisiones_Pendientes + 1 WHERE ID = @UsuarioID
 		END
 
 END
@@ -909,19 +1053,18 @@ AS
 BEGIN
 	DECLARE @PublicacionCodigo INT;
 	DECLARE @CompraID INT;
-	DECLARE @ClienteID INT;
-	DECLARE @EmpresaID INT;
+	DECLARE @UsuarioID INT;
 
 	SET NOCOUNT ON;
 
     SELECT @PublicacionCodigo = Publicacion_Codigo, @CompraID = Compra_ID FROM DELETED
     IF(@CompraID IS NOT NULL)
 		BEGIN
-			SELECT @ClienteID = Cliente_ID, @EmpresaID= Empresa_ID FROM LOL.tl_Publicaciones WHERE Codigo = @PublicacionCodigo
-			IF (@ClienteID IS NOT NULL)
-				UPDATE LOL.tl_Clientes SET Comisiones_Pendientes = Comisiones_Pendientes - 1 WHERE ID = @ClienteID
-			ELSE
-				UPDATE LOL.tl_Empresas SET Comisiones_Pendientes = Comisiones_Pendientes - 1 WHERE ID = @EmpresaID
+			SELECT @UsuarioID = Usuario_ID FROM LOL.tl_Publicaciones WHERE Codigo = @PublicacionCodigo
+			IF EXISTS(SELECT 0 FROM LOL.tl_Clientes WHERE ID = @UsuarioID) --Es Cliente
+				UPDATE LOL.tl_Clientes SET Comisiones_Pendientes = Comisiones_Pendientes - 1 WHERE ID = @UsuarioID
+			ELSE --Es Empresa
+				UPDATE LOL.tl_Empresas SET Comisiones_Pendientes = Comisiones_Pendientes - 1 WHERE ID = @UsuarioID
 		END
 
 END
@@ -932,17 +1075,20 @@ CREATE TRIGGER LOL.tr_ClientesAfterUpdate
    AFTER UPDATE
 AS 
 BEGIN
-	DECLARE @ComisionesPendientes INT;
-	DECLARE @ID INT;
+	DECLARE @ID						INT;
+	DECLARE @ComisionesPendientes	INT;
+	DECLARE @EstadoPausadaID		INT;
 
 	SET NOCOUNT ON;
 
     SELECT @ID = ID, @ComisionesPendientes = Comisiones_Pendientes FROM INSERTED
 	IF (@ComisionesPendientes > 10)
 		BEGIN
+			SELECT @EstadoPausadaID = ID FROM LOL.tl_Publicacion_Estados WHERE Estado = 'Pausada'
+
 			UPDATE LOL.tl_Clientes SET Habilitado = 0 WHERE ID = @ID
 			UPDATE LOL.tl_Usuarios_Roles SET Habilitado = 0 WHERE Usuario_ID = @ID AND Rol_ID = 2
-			UPDATE LOL.tl_Publicaciones SET Estado = 'Pausada' WHERE Cliente_ID = @ID
+			UPDATE LOL.tl_Publicaciones SET Estado_ID = @EstadoPausadaID WHERE Usuario_ID = @ID
 		END
 
 END
@@ -953,17 +1099,20 @@ CREATE TRIGGER LOL.tr_EmpresasAfterUpdate
    AFTER UPDATE
 AS 
 BEGIN
-	DECLARE @ComisionesPendientes INT;
-	DECLARE @ID INT;
+	DECLARE @ID						INT;
+	DECLARE @ComisionesPendientes	INT;
+	DECLARE @EstadoPausadaID		INT;
 
 	SET NOCOUNT ON;
 
     SELECT @ID = ID, @ComisionesPendientes = Comisiones_Pendientes FROM INSERTED
 	IF (@ComisionesPendientes > 10)
 		BEGIN
+			SELECT @EstadoPausadaID = ID FROM LOL.tl_Publicacion_Estados WHERE Estado = 'Pausada'
+
 			UPDATE LOL.tl_Empresas SET Habilitada = 0 WHERE ID = @ID
 			UPDATE LOL.tl_Usuarios_Roles SET Habilitado = 0 WHERE Usuario_ID = @ID AND Rol_ID = 3
-			UPDATE LOL.tl_Publicaciones SET Estado = 'Pausada' WHERE Empresa_ID = @ID
+			UPDATE LOL.tl_Publicaciones SET Estado_ID = @EstadoPausadaID WHERE Usuario_ID = @ID
 		END
 
 END
@@ -1158,25 +1307,21 @@ GO
 
 /* Stored Procedure CrearPublicacion*/
 CREATE PROCEDURE LOL.sp_CrearPublicacion 
-
-
-
-					 @Cliente_ID INT = NULL,
-					 @Empresa_ID INT = NULL,
-					 @descripcion nvarchar(255),
-                                         @fecha datetime,
-                                         @stock numeric(18, 0),
-                                         @fecha_vencimiento datetime,
-                                         @precio money,
-                                         @tipo nvarchar(255),
-                                         @visibilidad_Codigo numeric(18, 0),
-                                         @estado nvarchar(255),
-                                         @permite_Preguntas bit,
-                                         @ID int OUT,
-                                         @fechaPendiente datetime,
-                                         @monto money
-                                         
-
+	--@Cliente_ID INT = NULL,
+	--@Empresa_ID INT = NULL,
+	@Usuario_ID			INT,
+	@descripcion		nvarchar(255),
+	@fecha				datetime,
+	@stock				numeric(18, 0),
+	@fecha_vencimiento	datetime,
+	@precio				money,
+	@tipo_ID			INT,
+	@visibilidad_Codigo	numeric(18, 0),
+	@estado_ID			INT,
+	@permite_Preguntas	bit,
+	@ID					int OUT,
+	@fechaPendiente		datetime,
+	@monto				money
 AS
 BEGIN
 	DECLARE @QtyPublicacionGratuitasActivas INT;
@@ -1184,11 +1329,14 @@ BEGIN
 
 	IF (@visibilidad_Codigo = 10006)
 		BEGIN
+			
+			SELECT @QtyPublicacionGratuitasActivas = COUNT(0) FROM LOL.tl_Publicaciones WHERE Usuario_ID = @Usuario_ID AND Visibilidad_Codigo = 10006 AND Estado_ID IN (1,2)--Publicada,Pausada
+			/*
 			IF (@Cliente_ID IS NOT NULL)
 				SELECT @QtyPublicacionGratuitasActivas = COUNT(0) FROM LOL.tl_Publicaciones WHERE Cliente_ID = @Cliente_ID AND Visibilidad_Codigo = 10006 AND Estado IN ('Pausada','Publicada')
 			ELSE
 				SELECT @QtyPublicacionGratuitasActivas = COUNT(0) FROM LOL.tl_Publicaciones WHERE Empresa_ID = @Empresa_ID AND Visibilidad_Codigo = 10006 AND Estado IN ('Pausada','Publicada')
-
+			*/
 			IF (@QtyPublicacionGratuitasActivas >= 3)
 				BEGIN
 					SET @error = 'Tiene 3 o mas Publicaciones Gratuitas Activas';
@@ -1198,11 +1346,11 @@ BEGIN
 		END
 
 	INSERT INTO LOL.tl_Publicaciones 
-		(Cliente_ID,Empresa_ID,Descripcion, Fecha, Stock,Fecha_Vencimiento, Precio,
-		 Tipo, Visibilidad_Codigo, Estado, Permite_Preguntas) 
+		(Usuario_ID,Descripcion, Fecha, Stock,Fecha_Vencimiento, Precio,
+		 Tipo_ID, Visibilidad_Codigo, Estado_ID, Permite_Preguntas) 
 		VALUES
-			(@Cliente_ID,@Empresa_ID,@descripcion,@fecha,@stock,@fecha_vencimiento,@precio,@tipo,@visibilidad_Codigo,
-			 @estado,@permite_preguntas)
+			(@Usuario_ID,@descripcion,@fecha,@stock,@fecha_vencimiento,@precio,@tipo_ID,@visibilidad_Codigo,
+			 @estado_ID,@permite_preguntas)
 			 
 	 -- Esto devuelve el valor de ID de publicación creado en este caso
 	SELECT @ID = @@IDENTITY
@@ -1261,25 +1409,25 @@ BEGIN
 		BEGIN
 			SET @error = 'DNI Existente';
 			RAISERROR (@error, 11,1)
-    			RETURN -1
+    		RETURN -1
 		END
 	IF EXISTS(SELECT * FROM LOL.tl_Clientes WHERE CUIL = @CUIL AND ID <> @ID)
 		BEGIN
 			SET @error = 'CUIL Existente';
 			RAISERROR (@error, 11,1)
-    			RETURN -1
+    		RETURN -1
 		END
 	IF(@Telefono IS NOT NULL)
 		IF EXISTS(SELECT * FROM LOL.tl_Clientes WHERE Telefono = @Telefono AND ID <> @ID)
 			BEGIN
 				SET @error = 'Celular Existente';
 				RAISERROR (@error, 11,1)
-    				RETURN -1
+				RETURN -1
 			END
 
 	BEGIN TRAN
 	-- Todo OK
-	IF (@UserPassword <> '') --Es creado por el Administrador
+	IF (@UserPassword <> '') -- Es creado por el Administrador
 		BEGIN
 			INSERT INTO LOL.tl_Usuarios(Username,Password,Change_Password) VALUES (@Nro_Documento,@UserPassword,1)
 			SELECT @ID = @@IDENTITY
@@ -1409,30 +1557,29 @@ BEGIN
 ;WITH Results AS
 
 	(SELECT 
-Codigo, 
-Cliente_ID, 
-Empresa_ID, 
-Descripcion, 
-Fecha, 
-Stock, 
-Fecha_Vencimiento, 
-Precio, 
-Tipo, 
-Visibilidad_Codigo, 
-Estado, 
-Permite_Preguntas,
-PrecioVisibilidad,
-
-ROW_NUMBER() OVER (ORDER BY PrecioVisibilidad desc) AS RowNum
-
-FROM @Table
-
-)
+		Codigo, 
+		--Cliente_ID, 
+		--Empresa_ID, 
+		Usuario_ID,
+		Descripcion, 
+		Fecha, 
+		Stock, 
+		Fecha_Vencimiento, 
+		Precio, 
+		Tipo, 
+		Visibilidad_Codigo, 
+		Estado, 
+		Permite_Preguntas,
+		PrecioVisibilidad,
+		ROW_NUMBER() OVER (ORDER BY PrecioVisibilidad desc) AS RowNum
+	FROM @Table
+	)
 
 SELECT 
 Results.Codigo, 
-Results.Cliente_ID, 
-Results.Empresa_ID, 
+--Results.Cliente_ID, 
+--Results.Empresa_ID, 
+Results.Usuario_ID,
 Results.Descripcion, 
 Results.Fecha, 
 Results.Stock, 
@@ -1457,38 +1604,35 @@ CREATE PROCEDURE [LOL].[sp_CalificarVendedor]
 	@Descripcion NVARCHAR(255) = NULL
 AS
 BEGIN
-	DECLARE @ClienteID INT;
-	DECLARE @EmpresaID INT;
-	DECLARE @NewCalificacionCodigo INT;
+	--DECLARE @ClienteID INT;
+	--DECLARE @EmpresaID INT;
+	DECLARE @UsuarioID				INT;
+	--DECLARE @NewCalificacionCodigo	INT;
 
 	SET NOCOUNT ON;
 
 	SELECT 
-		@ClienteID = P.Cliente_ID,
-		@EmpresaID = P.Empresa_ID
+		@UsuarioID = P.Usuario_ID
 	FROM 
 		(SELECT Publicacion_Codigo FROM LOL.tl_Compras WHERE (ID = @CompraID)) C JOIN LOL.tl_Publicaciones P ON (C.Publicacion_Codigo = P.Codigo)
-	
-	SELECT @NewCalificacionCodigo = MAX(Calificacion_Codigo) + 1 FROM LOL.tl_Compras WHERE Calificacion_Codigo IS NOT NULL
-	
-	BEGIN TRANSACTION;
-		UPDATE 
-			LOL.tl_Compras
-		SET
-			Calificacion_Codigo = @NewCalificacionCodigo,
-			Calificacion_Cant_Estrellas = @CantidadEstrellas,
-			Calificacion_Descripcion = @Descripcion
-		WHERE
-			ID = @CompraID;
 
-		IF (@ClienteID IS NOT NULL)
+	--SELECT @NewCalificacionCodigo = MAX(Calificacion_Codigo) + 1 FROM LOL.tl_Compras WHERE Calificacion_Codigo IS NOT NULL
+
+	BEGIN TRANSACTION;
+		INSERT INTO 
+			LOL.tl_Calificaciones
+		VALUES(
+			@CompraID, @CantidadEstrellas, @Descripcion
+		)
+
+		IF EXISTS(SELECT 0 FROM LOL.tl_Clientes WHERE ID = @UsuarioID) --Es Cliente
 			UPDATE LOL.tl_Clientes 
 			SET Suma_Calificaciones = Suma_Calificaciones + @CantidadEstrellas, Cantidad_Calificaciones = Cantidad_Calificaciones + 1
-			WHERE ID = @ClienteID;
-		ELSE
+			WHERE ID = @UsuarioID;
+		ELSE --Es Empresa
 			UPDATE LOL.tl_Empresas
 			SET Suma_Calificaciones = Suma_Calificaciones + @CantidadEstrellas, Cantidad_Calificaciones = Cantidad_Calificaciones + 1
-			WHERE ID = @EmpresaID;
+			WHERE ID = @UsuarioID;
 
 	COMMIT
 END
@@ -1502,9 +1646,9 @@ CREATE PROCEDURE LOL.sp_VendedoresConMasStock @anio int,
 
 AS
 BEGIN
-
+--FALTA HACER -> CHECKEAR CON LO DE Usuario_ID
 	SELECT TOP 5
-		ISNULL(tl_Publicaciones.Cliente_ID, tl_Publicaciones.Empresa_ID) AS 'Codigo de usuario',
+		Usuario_ID AS 'Codigo de usuario',
 		SUM(tl_Publicaciones.Stock) AS 'Productos sin vender'
 	FROM
 		LOL.tl_Publicaciones
@@ -1513,10 +1657,10 @@ BEGIN
 		(MONTH(tl_Publicaciones.Fecha) BETWEEN @trimestre AND (@trimestre+2)) AND
 		(MONTH(tl_Publicaciones.Fecha) = (@trimestre + @mes) OR @mes IS NULL) AND
 		(tl_Publicaciones.Visibilidad_Codigo = @visibilidad_codigo OR @visibilidad_codigo IS NULL)
-	GROUP BY ISNULL(tl_Publicaciones.Cliente_ID, tl_Publicaciones.Empresa_ID)
+	GROUP BY (tl_Publicaciones.Usuario_ID)
 	ORDER BY 2 DESC
 	OPTION(RECOMPILE)
-    
+
 END
 GO
 
@@ -1534,7 +1678,7 @@ BEGIN
 		BEGIN
 			SET @error = 'Username Existente';
 			RAISERROR (@error, 11,1);
-    			RETURN -1;
+    		RETURN -1;
 		END
 	INSERT INTO LOL.tl_Usuarios (Username,Password) VALUES (@Username,@Password)
 	SELECT @ID = @@IDENTITY
@@ -1543,78 +1687,84 @@ END
 GO
 
 CREATE PROCEDURE [LOL].[sp_crearCompra]
-	@Publicacion_Codigo int,
-	@Cliente_ID int,
-	@fecha date,
-	@Cantidad INT,
-	@fechaPendiente date,
-	@montoVisibilidad money
+	@Publicacion_Codigo	int,
+	@Usuario_ID			int,
+	@fecha				date,
+	@Cantidad			INT,
+	@fechaPendiente		date,
+	@montoVisibilidad	money
 	--PUB CODIGO Y COMPRA ID YA LO TENGO!
-	
-	
 	--@ID INT OUT
 AS
 BEGIN
 	DECLARE @ID INT;
-	
-	INSERT INTO LOL.tl_Compras (Publicacion_Codigo, Cliente_ID, Cantidad, Fecha) VALUES
-	(@Publicacion_Codigo, @Cliente_ID, @Cantidad, @fecha)
+
+	INSERT INTO LOL.tl_Compras (Publicacion_Codigo, Usuario_ID, Cantidad, Fecha) VALUES
+	(@Publicacion_Codigo, @Usuario_ID, @Cantidad, @fecha)
 	SELECT @ID = @@IDENTITY
 	
 	INSERT INTO LOL.tl_Pendientes (Fecha, Monto, Publicacion_Codigo, Compra_ID)
 	VALUES (@fecha, @montoVisibilidad, @Publicacion_Codigo, @ID)
 
 	IF EXISTS(SELECT * FROM LOL.tl_Publicaciones WHERE Codigo = @Publicacion_Codigo AND Stock = @Cantidad) --Se vendio todo el stock de la Publicacion
-		UPDATE LOL.tl_Publicaciones set Stock = 0, Estado = 'Finalizada' WHERE Codigo = @Publicacion_Codigo
+		UPDATE LOL.tl_Publicaciones set Stock = 0, Estado_ID = 4 WHERE Codigo = @Publicacion_Codigo
 	ELSE
-		UPDATE LOL.tl_Publicaciones set Stock = Stock-@Cantidad where Codigo=@Publicacion_Codigo
+		UPDATE LOL.tl_Publicaciones set Stock = Stock - @Cantidad where Codigo = @Publicacion_Codigo
 
 END
 GO
 
 CREATE PROCEDURE [LOL].[sp_crearOferta]
-	@Publicacion_Codigo int,
-	@Cliente_ID int,
-	@fecha date,
-	@Monto money
+	@Publicacion_Codigo	int,
+	@Usuario_ID			int,
+	@fecha				date,
+	@Monto				money
 AS
 BEGIN
-	DECLARE @ID INT;
-	
-	INSERT INTO LOL.tl_Ofertas (Publicacion_Codigo, Cliente_ID, Fecha, Monto) VALUES
-	(@Publicacion_Codigo, @Cliente_ID, @fecha, @Monto)	
+	--DECLARE @ID INT;
+
+	INSERT INTO LOL.tl_Ofertas (Publicacion_Codigo, Usuario_ID, Fecha, Monto) VALUES
+	(@Publicacion_Codigo, @Usuario_ID, @fecha, @Monto)	
 		
 END
 GO
 
 CREATE PROCEDURE [LOL].[sp_editarPublicacion]
-	@Publicacion_Codigo int,
-	@Descripcion NVARCHAR(255),
-	@Fecha datetime,
-	@stock numeric(18, 0),
-	@Fecha_Vencimiento datetime,
-	@precio money,
-	@tipo NVARCHAR(255),
-	@visibilidad_Codigo numeric(18, 0),
-	@Estado NVARCHAR (255),
-	@preguntas bit
+	@Publicacion_Codigo	INT,
+	@Descripcion		NVARCHAR(255),
+	@Fecha				DATETIME,
+	@stock				NUMERIC(18, 0),
+	@Fecha_Vencimiento	DATETIME,
+	@precio				MONEY,
+	@tipo_ID			INT,
+	@visibilidad_Codigo	NUMERIC(18, 0),
+	@Estado_ID			INT,
+	@preguntas			BIT
 	
 AS
 BEGIN
 	
 	UPDATE LOL.tl_Publicaciones
-		SET Descripcion=@descripcion,Fecha=@Fecha, Stock=@stock, Fecha_Vencimiento=@Fecha_Vencimiento, Precio=@precio, Tipo=@tipo, Visibilidad_Codigo=@visibilidad_Codigo, Estado=@Estado, Permite_Preguntas=@preguntas
-		WHERE Codigo=@Publicacion_Codigo
-		
-		
+	SET
+		Descripcion = @descripcion,
+		Fecha = @Fecha,
+		Stock = @stock,
+		Fecha_Vencimiento = @Fecha_Vencimiento,
+		Precio = @precio,
+		Tipo_ID = @tipo_ID,
+		Visibilidad_Codigo = @visibilidad_Codigo,
+		Estado_ID = @Estado_ID,
+		Permite_Preguntas = @preguntas
+	WHERE Codigo = @Publicacion_Codigo
+
 END
 GO
 
 /* Stored Procedure sp_InsertarFactura */
 CREATE PROCEDURE LOL.sp_InsertarFactura
-	@Fecha DATETIME,
-	@PagoDescripcion NVARCHAR(255),
-	@Nro INT OUT
+	@Fecha				DATETIME,
+	@PagoDescripcion	NVARCHAR(255),
+	@Nro				INT OUT
 AS
 BEGIN
 	DECLARE @error varchar(255);
@@ -1643,16 +1793,16 @@ GO
 
 /* sp_RegistrarFinalizacionSubasta */
 CREATE PROCEDURE LOL.sp_RegistrarFinalizacionSubasta
-	@PublicacionCodigo INT,
-	@Fecha DATE,
-	@Precio NUMERIC(18,2),
-	@VisibilidadCodigo INT
+	@PublicacionCodigo	INT,
+	@Fecha				DATE,
+	@Precio				NUMERIC(18,2),
+	@VisibilidadCodigo	INT
 AS
 BEGIN
-	DECLARE @ClienteID INT;
-	DECLARE @CompraID INT;
-	DECLARE @Porcentaje NUMERIC(18,2);
-	
+	DECLARE @UsuarioID	INT;
+	DECLARE @CompraID	INT;
+	DECLARE @Porcentaje	NUMERIC(18,2);
+
 	SET NOCOUNT ON;
 	--Marco la Oferta mas alta como Ganadora
     UPDATE 
@@ -1663,11 +1813,11 @@ BEGIN
 		LOL.tl_Ofertas O 
 			JOIN (SELECT Publicacion_Codigo, MAX(Monto) Monto FROM LOL.tl_Ofertas GROUP BY Publicacion_Codigo) AS Ganadoras
 			ON Ganadoras.Publicacion_Codigo = @PublicacionCodigo AND O.Monto = Ganadoras.Monto
-	-- Obtengo el Cliente_ID del que hizo la oferta Ganadora
-	SELECT @ClienteID = Cliente_ID FROM LOL.tl_Ofertas WHERE Publicacion_Codigo = @PublicacionCodigo AND Ganadora = 1
+	-- Obtengo el Usuario_ID del que hizo la oferta Ganadora
+	SELECT @UsuarioID = Usuario_ID FROM LOL.tl_Ofertas WHERE Publicacion_Codigo = @PublicacionCodigo AND Ganadora = 1
 	--Registro la Compra
-	INSERT INTO LOL.tl_Compras(Publicacion_Codigo,Cliente_ID,Cantidad,Fecha)
-	VALUES (@PublicacionCodigo,@ClienteID,1,@Fecha)
+	INSERT INTO LOL.tl_Compras(Publicacion_Codigo,Usuario_ID,Cantidad,Fecha)
+	VALUES (@PublicacionCodigo,@UsuarioID,1,@Fecha)
 	--Obtengo el ID de la Compra
 	SELECT @CompraID = @@IDENTITY
 	--Obtengo el Porcentaje segun el Codigo de Visibilidad

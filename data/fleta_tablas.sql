@@ -3,10 +3,7 @@
 
 --Eliminar Tablas
 DROP TABLE LOL.tl_roles_funcionalidades
-DROP TABLE LOL.tl_publicaciones_rubros
-DROP TABLE LOL.tl_rubros
 DROP TABLE LOL.tl_usuarios_roles
-DROP TABLE LOL.tl_usuarios
 DROP TABLE LOL.tl_roles
 DROP TABLE LOL.tl_preguntas
 DROP TABLE LOL.tl_pendientes
@@ -14,16 +11,24 @@ DROP TABLE LOL.tl_facturas_items
 DROP TABLE LOL.tl_facturas
 DROP TABLE LOL.tl_funcionalidades
 DROP TABLE LOL.tl_ofertas
+DROP TABLE LOL.tl_Calificaciones
 DROP TABLE LOL.tl_compras
-DROP TABLE LOL.tl_publicaciones
-DROP TABLE LOL.tl_visibilidades
 DROP TABLE LOL.tl_empresas
 DROP TABLE LOL.tl_clientes
+DROP TABLE LOL.tl_publicaciones_rubros
+DROP TABLE LOL.tl_rubros
+DROP TABLE LOL.tl_publicaciones
+DROP TABLE LOL.tl_Publicacion_Tipos
+DROP TABLE LOL.tl_Publicacion_Estados
+DROP TABLE LOL.tl_visibilidades
+DROP TABLE LOL.tl_usuarios
 
 --Eliminar Procedimientos de migracion
 DROP PROCEDURE LOL.sp_ImportarClientes
 DROP PROCEDURE LOL.sp_ImportarEmpresas
 DROP PROCEDURE LOL.sp_ImportarFacturas
+DROP PROCEDURE LOL.sp_ImportarPublicacionTipos
+DROP PROCEDURE LOL.sp_ImportarPublicacionEstados
 DROP PROCEDURE LOL.sp_ImportarPublicaciones
 DROP PROCEDURE LOL.sp_ImportarRubros
 DROP PROCEDURE LOL.sp_ImportarVisibilidades
