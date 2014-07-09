@@ -33,5 +33,14 @@ namespace FrbaCommerce.Properties {
                 return ((string)(this["GD1C2014ConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2014-01-01")]
+        public global::System.DateTime fecha {
+            get {
+                return ((global::System.DateTime)(this["fecha"]));
+            }
+        }
     }
 }

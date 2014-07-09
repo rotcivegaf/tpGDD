@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace FrbaCommerce.Generar_Publicacion
 {
@@ -140,8 +141,15 @@ namespace FrbaCommerce.Generar_Publicacion
                 //Y si no es un registro nuevo entonces ejecuto el método nuevaPublicación
                 if (edicion == 0)
                 {
-                    nuevaPublicacion();
-                    Guardar.Enabled = false; //LO DESHABILITO ASI NO SE PUEDE APRETAR DE NUEVO
+                    try
+                    {
+                        nuevaPublicacion();
+                        Guardar.Enabled = false; //LO DESHABILITO ASI NO SE PUEDE APRETAR DE NUEVO
+                    }
+                    catch (SqlException sqlE)
+                    {
+                        MessageBox.Show(sqlE.Message);
+                    }
                 }
                 else
                     //Caso contrario ejecuto el método editarPublicación

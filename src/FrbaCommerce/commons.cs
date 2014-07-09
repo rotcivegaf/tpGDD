@@ -7,6 +7,9 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
 
+using System.Configuration;
+using System.Configuration.Assemblies;
+
 namespace FrbaCommerce
 {
     public static class commons
@@ -34,19 +37,9 @@ namespace FrbaCommerce
 
         public static DateTime getDate()
         {
-            try
-            {
-                using (StreamReader sr = new StreamReader("fecha.config"))
-                {
-                    String line = sr.ReadToEnd();
-                    return Convert.ToDateTime(line);
-                }
-            }
-            catch
-            {
-                MessageBox.Show("No se pudo leer el archivo de configuracion.\nSe devolvera la fecha del sistema");
-                return DateTime.Now;
-            }
+            System.Windows.Forms.MessageBox.Show(FrbaCommerce.Properties.Settings.Default.fecha.ToString());
+            return FrbaCommerce.Properties.Settings.Default.fecha;
+            //return Convert.ToDateTime(ConfigurationSettings.AppSettings.Get("fecha").ToString());
         }
 
         public static bool algunoVacio(params ComboBox[] campos)

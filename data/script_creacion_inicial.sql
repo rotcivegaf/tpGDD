@@ -1179,21 +1179,38 @@ CREATE PROCEDURE LOL.sp_CrearPublicacion
 
 AS
 BEGIN
+	DECLARE @QtyPublicacionGratuitasActivas INT;
+	DECLARE @Error NVARCHAR(255);
 
-INSERT INTO LOL.tl_Publicaciones 
-	(Cliente_ID,Empresa_ID,Descripcion, Fecha, Stock,Fecha_Vencimiento, Precio,
-	 Tipo, Visibilidad_Codigo, Estado, Permite_Preguntas) 
+	IF (@visibilidad_Codigo = 10006)
+		BEGIN
+			IF (@Cliente_ID IS NOT NULL)
+				SELECT @QtyPublicacionGratuitasActivas = COUNT(0) FROM LOL.tl_Publicaciones WHERE Cliente_ID = @Cliente_ID AND Visibilidad_Codigo = 10006 AND Estado IN ('Pausada','Publicada')
+			ELSE
+				SELECT @QtyPublicacionGratuitasActivas = COUNT(0) FROM LOL.tl_Publicaciones WHERE Empresa_ID = @Empresa_ID AND Visibilidad_Codigo = 10006 AND Estado IN ('Pausada','Publicada')
+
+			IF (@QtyPublicacionGratuitasActivas >= 3)
+				BEGIN
+					SET @error = 'Tiene 3 o mas Publicaciones Gratuitas Activas';
+					RAISERROR (@error, 11,1)
+    				RETURN -1
+				END
+		END
+
+	INSERT INTO LOL.tl_Publicaciones 
+		(Cliente_ID,Empresa_ID,Descripcion, Fecha, Stock,Fecha_Vencimiento, Precio,
+		 Tipo, Visibilidad_Codigo, Estado, Permite_Preguntas) 
+		VALUES
+			(@Cliente_ID,@Empresa_ID,@descripcion,@fecha,@stock,@fecha_vencimiento,@precio,@tipo,@visibilidad_Codigo,
+			 @estado,@permite_preguntas)
+			 
+	 -- Esto devuelve el valor de ID de publicación creado en este caso
+	SELECT @ID = @@IDENTITY
+
+	INSERT INTO LOL.tl_Pendientes
+	(Fecha, Monto, Publicacion_Codigo)
 	VALUES
-		(@Cliente_ID,@Empresa_ID,@descripcion,@fecha,@stock,@fecha_vencimiento,@precio,@tipo,@visibilidad_Codigo,
-		 @estado,@permite_preguntas)
-		 
- -- Esto devuelve el valor de ID de publicación creado en este caso
-SELECT @ID = @@IDENTITY
-
-INSERT INTO LOL.tl_Pendientes
-(Fecha, Monto, Publicacion_Codigo)
-VALUES
-(@fechaPendiente,@monto,@ID)
+	(@fechaPendiente,@monto,@ID)
     
 END
 GO
