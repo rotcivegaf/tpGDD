@@ -31,9 +31,9 @@ namespace FrbaCommerce.Facturar_Publicaciones
 
         private void llenarGrid()
         {
-            this.tl_PendientesTableAdapter.getByUsuarioID(ID);
-            numCantidadPendientesAFacturar.Maximum = dgvPendientes.RowCount;
             dgvPendientes.ClearSelection();
+            this.tlPendientesBindingSource.DataSource = this.tl_PendientesTableAdapter.getByUsuarioID(ID);
+            numCantidadPendientesAFacturar.Maximum = dgvPendientes.RowCount;
         }
 
         private void FacturarPublicaciones_Load(object sender, EventArgs e)
@@ -43,20 +43,24 @@ namespace FrbaCommerce.Facturar_Publicaciones
 
         private void numCantidadPendientesAFacturar_ValueChanged(object sender, EventArgs e)
         {
-            montoAFacturar = 0;
-            txtMontoAFacturar.Text = "-";
-            for (int i = 0; i < dgvPendientes.RowCount; i++)
+            if (numCantidadPendientesAFacturar.Value == 0)
+                txtMontoAFacturar.Text = "-";
+            else
             {
-                if (i < numCantidadPendientesAFacturar.Value)
+                montoAFacturar = 0;
+                for (int i = 0; i < dgvPendientes.RowCount; i++)
                 {
+                    if (i < numCantidadPendientesAFacturar.Value)
+                    {
 
-                    dgvPendientes.Rows[i].Cells["Facturar"].Value = true;
-                    montoAFacturar += (decimal)dgvPendientes.Rows[i].Cells[2].Value;
+                        dgvPendientes.Rows[i].Cells["Facturar"].Value = true;
+                        montoAFacturar += (decimal)dgvPendientes.Rows[i].Cells[2].Value;
+                    }
+                    else
+                        dgvPendientes.Rows[i].Cells["Facturar"].Value = false;
                 }
-                else
-                    dgvPendientes.Rows[i].Cells["Facturar"].Value = false;
+                txtMontoAFacturar.Text = montoAFacturar.ToString();
             }
-            txtMontoAFacturar.Text = montoAFacturar.ToString();
         }
 
         private void btnFacturar_Click(object sender, EventArgs e)
@@ -82,6 +86,10 @@ namespace FrbaCommerce.Facturar_Publicaciones
                     int pendienteID = Convert.ToInt32(dgvPendientes.Rows[i].Cells["Pendiente_ID"].Value);
                     this.tl_Facturas_ItemsTableAdapter.sp_InsertarFacturaItem(facturaNro, pendienteID);
                 }
+                MessageBox.Show("Factura Creada");
+                numCantidadPendientesAFacturar.Value = 0;
+                cmbModoPago.SelectedIndex = -1;
+
                 llenarGrid();
             }
         }

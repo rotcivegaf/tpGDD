@@ -17601,11 +17601,10 @@ SELECT ID, Fecha, Monto, Publicacion_Codigo, Compra_ID FROM LOL.tl_Pendientes WH
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT
-    LOL.tl_Pendientes.Compra_ID, LOL.tl_Pendientes.Fecha, LOL.tl_Pendientes.ID, LOL.tl_Pendientes.Monto, LOL.tl_Pendientes.Publicacion_Codigo
-FROM
-    LOL.tl_Publicaciones
-    INNER JOIN LOL.tl_Pendientes ON tl_Publicaciones.Usuario_ID = @Usuario_ID AND LOL.tl_Publicaciones.Codigo = LOL.tl_Pendientes.Publicacion_Codigo";
+            this._commandCollection[1].CommandText = @"SELECT     LOL.tl_Pendientes.Compra_ID, LOL.tl_Pendientes.Fecha, LOL.tl_Pendientes.ID, LOL.tl_Pendientes.Monto, LOL.tl_Pendientes.Publicacion_Codigo
+FROM         LOL.tl_Publicaciones INNER JOIN
+                      LOL.tl_Pendientes ON LOL.tl_Publicaciones.Codigo = LOL.tl_Pendientes.Publicacion_Codigo
+WHERE     (LOL.tl_Publicaciones.Usuario_ID = @Usuario_ID)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Usuario_ID", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, "Usuario_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
