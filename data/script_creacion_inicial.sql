@@ -1602,20 +1602,19 @@ CREATE PROCEDURE LOL.sp_VendedoresConMasStock @anio int,
 
 AS
 BEGIN
---FALTA HACER -> CHECKEAR CON LO DE Usuario_ID
+
 	SELECT TOP 5
-		Usuario_ID AS 'Codigo de usuario',
-		SUM(tl_Publicaciones.Stock) AS 'Productos sin vender'
+		P.Usuario_ID AS 'Codigo de usuario',
+		SUM(P.Stock) AS 'Productos sin vender'
 	FROM
-		LOL.tl_Publicaciones
-    WHERE
-		YEAR(tl_Publicaciones.Fecha) = @anio AND
-		(MONTH(tl_Publicaciones.Fecha) BETWEEN @trimestre AND (@trimestre+2)) AND
-		(MONTH(tl_Publicaciones.Fecha) = (@trimestre + @mes) OR @mes IS NULL) AND
-		(tl_Publicaciones.Visibilidad_Codigo = @visibilidad_codigo OR @visibilidad_codigo IS NULL)
-	GROUP BY (tl_Publicaciones.Usuario_ID)
+		LOL.tl_Publicaciones P
+	WHERE
+		YEAR(P.Fecha) = @anio AND
+		(MONTH(P.Fecha) BETWEEN @trimestre AND (@trimestre+2)) AND
+		(MONTH(P.Fecha) = (@trimestre + @mes) OR @mes IS NULL) AND
+		(P.Visibilidad_Codigo = @visibilidad_codigo OR @visibilidad_codigo IS NULL)
+	GROUP BY (P.Usuario_ID)
 	ORDER BY 2 DESC
-	OPTION(RECOMPILE)
 
 END
 GO
