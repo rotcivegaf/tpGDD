@@ -185,6 +185,7 @@
             this.Controls.Add(this.optCalificacionesOtorgadas);
             this.Controls.Add(this.optOfertas);
             this.Controls.Add(this.optCompras);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Historial";
             this.Text = "Historial";
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistorial)).EndInit();

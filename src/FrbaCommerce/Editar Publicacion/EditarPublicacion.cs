@@ -12,21 +12,25 @@ namespace FrbaCommerce.Editar_Publicacion
     public partial class EditarPublicacion : Form
     {
         private int userID;
+        private int rolID;
         int offset = 1;
         int LIMITE = 20;
         int QtyRegistros;
 
         GD1C2014DataSet.tl_PublicacionesDataTable tablaTemporal = new GD1C2014DataSet.tl_PublicacionesDataTable();
-        public EditarPublicacion(int usuario_ID)
+        public EditarPublicacion(int usuario_ID,int rol_ID)
         {
             InitializeComponent();
             userID = usuario_ID;
+            rolID = rol_ID;
         }
 
+        /*
         internal void setID(int usuario_ID)
         {
             this.userID = usuario_ID;
         }
+        */
 
         private void EditarPublicacion_Load(object sender, EventArgs e)
         {
@@ -84,7 +88,7 @@ namespace FrbaCommerce.Editar_Publicacion
             if (e.ColumnIndex == 8)
             {
                 Generar_Publicacion.Generar_Publicacion_form frame = new Generar_Publicacion.Generar_Publicacion_form();
-                frame.setID(userID);
+                frame.setIDs(userID,rolID);
                 frame.editPublicidad(Convert.ToInt32(this.tl_PublicacionesDataGridView.Rows[e.RowIndex].Cells[0].Value));
                 frame.ShowDialog();
             }

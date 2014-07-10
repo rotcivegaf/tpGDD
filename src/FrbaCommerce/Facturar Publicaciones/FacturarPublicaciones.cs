@@ -31,10 +31,11 @@ namespace FrbaCommerce.Facturar_Publicaciones
 
         private void llenarGrid()
         {
-            if (rol_ID == commons.Rol_Cliente_ID)
-                this.tlPendientesBindingSource.DataSource = this.tl_PendientesTableAdapter.getByClienteID(ID);
-            else //Empresa
-                this.tlPendientesBindingSource.DataSource = this.tl_PendientesTableAdapter.getByEmpresaID(ID);
+            //if (rol_ID == commons.Rol_Cliente_ID)
+            //    this.tlPendientesBindingSource.DataSource = this.tl_PendientesTableAdapter.getByClienteID(ID);
+            //else //Empresa
+            //    this.tlPendientesBindingSource.DataSource = this.tl_PendientesTableAdapter.getByEmpresaID(ID);
+            this.tl_PendientesTableAdapter.getByUsuarioID(ID);
             numCantidadPendientesAFacturar.Maximum = dgvPendientes.RowCount;
             dgvPendientes.ClearSelection();
         }

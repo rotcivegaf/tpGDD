@@ -126,7 +126,7 @@ namespace FrbaCommerce
         private void button1_Click(object sender, EventArgs e)
         {
             Generar_Publicacion_form frame = new Generar_Publicacion_form();
-            frame.setID(usuario_ID);
+            frame.setIDs(usuario_ID,rol_ID);
             frame.ShowDialog();
         }
 
@@ -194,7 +194,7 @@ namespace FrbaCommerce
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Editar_Publicacion.EditarPublicacion frame = new FrbaCommerce.Editar_Publicacion.EditarPublicacion(usuario_ID);
+            Editar_Publicacion.EditarPublicacion frame = new FrbaCommerce.Editar_Publicacion.EditarPublicacion(usuario_ID,rol_ID);
             frame.ShowDialog();
         }
 

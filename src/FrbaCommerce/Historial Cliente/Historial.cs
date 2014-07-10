@@ -75,14 +75,15 @@ namespace FrbaCommerce.Historial_Cliente
             {
                 dgvHistorial.DataSource = CalificacionesRecibidasBindingSource;
                 dgvHistorial.Refresh();
-                if (rol_ID == commons.Rol_Cliente_ID)
-                {
-                    CalificacionesRecibidasBindingSource.DataSource = historialCalificacionesRecibidasTableAdapter.GetDataByClienteID(usuario_ID);
-                }
-                else
-                {
-                    CalificacionesRecibidasBindingSource.DataSource = historialCalificacionesRecibidasTableAdapter.GetDataByEmpresaID(usuario_ID);
-                }
+                //if (rol_ID == commons.Rol_Cliente_ID)
+                //{
+                //    CalificacionesRecibidasBindingSource.DataSource = historialCalificacionesRecibidasTableAdapter.GetDataByClienteID(usuario_ID);
+                //}
+                //else
+                //{
+                //    CalificacionesRecibidasBindingSource.DataSource = historialCalificacionesRecibidasTableAdapter.GetDataByEmpresaID(usuario_ID);
+                //}
+                CalificacionesRecibidasBindingSource.DataSource = historialCalificacionesRecibidasTableAdapter.GetDataByUsuarioID(usuario_ID);
                 txtCantidadRegistros.Text = dgvHistorial.RowCount.ToString();
             }
         }

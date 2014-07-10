@@ -49,7 +49,7 @@ namespace FrbaCommerce.Comprar_Ofertar
         {
             this.tl_ClientesyEmpresasDataGridView.Visible = true;
             this.label2.Visible = true;
-            this.tl_ClientesyEmpresasTableAdapter.FillByID(tablaTemporal,vendedor.ToString());
+            this.tl_ClientesyEmpresasTableAdapter.FillByID(tablaTemporal,vendedor);
             this.tl_ClientesyEmpresasDataGridView.DataSource = tablaTemporal;
             comision = (decimal)this.tl_VisibilidadesTableAdapter1.PorcentajePorCodigo(visibilidad) * stock * precio;
             this.tl_ComprasTableAdapter1.sp_crearCompra(publicacionID,

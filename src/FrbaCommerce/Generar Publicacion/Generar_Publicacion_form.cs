@@ -15,6 +15,7 @@ namespace FrbaCommerce.Generar_Publicacion
         GD1C2014DataSet.tl_PublicacionesDataTable publicacionAEditar;
         private int? nuevaPublicacionID = -1;
         private int userID;
+        private int rolID;
         private int publicacionID;
         private int edicion = 0;
 
@@ -22,9 +23,10 @@ namespace FrbaCommerce.Generar_Publicacion
         {
             InitializeComponent();
         }
-        public void setID(int userID)
+        public void setIDs(int user_ID,int rol_ID)
         {
-            this.userID = userID;
+            this.userID = user_ID;
+            this.rolID = rol_ID;
         }
         public void editPublicidad (int publicacionID)
         {
@@ -33,6 +35,10 @@ namespace FrbaCommerce.Generar_Publicacion
         }
         private void Publicacion_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'gD1C2014DataSet.tl_Publicacion_Estados' table. You can move, or remove it, as needed.
+            this.tl_Publicacion_EstadosTableAdapter.Fill(this.gD1C2014DataSet.tl_Publicacion_Estados);
+            // TODO: This line of code loads data into the 'gD1C2014DataSet.tl_Publicacion_Tipos' table. You can move, or remove it, as needed.
+            this.tl_Publicacion_TiposTableAdapter.Fill(this.gD1C2014DataSet.tl_Publicacion_Tipos);
             
             //Cargo rubros y visibilidades
             this.tl_RubrosTableAdapter.Fill(this.gD1C2014DataSet.tl_Rubros);
@@ -114,8 +120,8 @@ namespace FrbaCommerce.Generar_Publicacion
                 listBoxRubro.SetSelected(listBoxRubro.SelectedIndex, true);
             }
             this.comboBoxVisiblidad.SelectedValue = Convert.ToInt32(publicacionAEditar.Rows[0]["Visibilidad_Codigo"]);
-            this.comboBoxTipoDePublicacion.Text = publicacionAEditar.Rows[0]["Tipo"].ToString();
-            this.comboBoxEstadoDeLaPublicacion.Text = publicacionAEditar.Rows[0]["Estado"].ToString();
+            this.comboBoxTipoDePublicacion.SelectedValue = Convert.ToInt32(publicacionAEditar.Rows[0]["Tipo_ID"]);
+            this.comboBoxEstadoDeLaPublicacion.SelectedValue = Convert.ToInt32(publicacionAEditar.Rows[0]["Estado_ID"]);
             this.checkBoxAceptaPreguntas.Checked = Convert.ToBoolean(publicacionAEditar.Rows[0]["Permite_Preguntas"]);
         }
 
@@ -170,11 +176,10 @@ namespace FrbaCommerce.Generar_Publicacion
                         dateTimePickerFechaInicio.Value,
                         Convert.ToDecimal(numericUpDownStock.Value),
                         dateTimePickerFechaVencimiento.Value,
-                        //No se xq el precio fuma pipa, pero por algún motivo no se está guardando :(
                         Convert.ToDecimal(numericUpDownPrecio.Value),
-                        comboBoxTipoDePublicacion.Text,
+                        Convert.ToInt32(comboBoxTipoDePublicacion.SelectedValue),
                         Convert.ToDecimal(comboBoxVisiblidad.SelectedValue),
-                        comboBoxEstadoDeLaPublicacion.Text,
+                        Convert.ToInt32(comboBoxEstadoDeLaPublicacion.SelectedValue),
                         checkBoxAceptaPreguntas.Checked);
                     //Solamente en el caso de borrador voy a poder editar los rubros, por lo tanto...
                     if (esBorrador())
@@ -215,6 +220,7 @@ namespace FrbaCommerce.Generar_Publicacion
         {
             if (!(comboBoxEstadoDeLaPublicacion.Text.Equals("Finalizada")))
             {
+                /*
                 if (esEmpresa(this.userID))
                 {
                     //En este stored procedure hago un INSERT para las publicaciones
@@ -251,6 +257,20 @@ namespace FrbaCommerce.Generar_Publicacion
                     //en la tabla rubros_publicaciones
                     //Recorro el listBox y por cada item de tipo DataRowView hago un insert
                 }
+                */
+                this.tl_PublicacionesTableAdapter.sp_CrearPublicacion(this.userID, inputDescripcion.Text,
+                    dateTimePickerFechaInicio.Value,
+                    Convert.ToDecimal(numericUpDownStock.Value),
+                    dateTimePickerFechaVencimiento.Value,
+                    Convert.ToDecimal(numericUpDownPrecio.Value),
+                    Convert.ToInt32(comboBoxTipoDePublicacion.SelectedValue),
+                    Convert.ToDecimal(comboBoxVisiblidad.SelectedValue),
+                    Convert.ToInt32(comboBoxEstadoDeLaPublicacion.SelectedValue),
+                    checkBoxAceptaPreguntas.Checked, ref nuevaPublicacionID, commons.getDate()
+                    , Convert.ToInt32(this.tl_VisibilidadesTableAdapter1.PrecioVisibilidadQuery(Convert.ToInt32(comboBoxVisiblidad.SelectedValue))));
+                //Con el ref tengo el parámetro que me devuelve el SP, en este caso el ID de publicación que voy a usar
+                //en la tabla rubros_publicaciones
+
                 //HAgo las entradas correspondientes en la tabla de relaciones entre publicaciones y rubros
                 foreach (DataRowView item in listBoxRubro.SelectedItems)
                 {
@@ -284,7 +304,5 @@ namespace FrbaCommerce.Generar_Publicacion
         {
             setFechaVencimiento();
         }
-
-
     }
 }

@@ -236,6 +236,7 @@ namespace FrbaCommerce
             this.statusStrip1.Location = new System.Drawing.Point(0, 301);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(648, 22);
+            this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 6;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -244,7 +245,7 @@ namespace FrbaCommerce
             this.toolStripUsuario.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
             this.toolStripUsuario.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripUsuario.Name = "toolStripUsuario";
-            this.toolStripUsuario.Size = new System.Drawing.Size(211, 17);
+            this.toolStripUsuario.Size = new System.Drawing.Size(200, 17);
             this.toolStripUsuario.Spring = true;
             this.toolStripUsuario.Click += new System.EventHandler(this.toolStripUsuario_Click);
             // 
@@ -253,14 +254,14 @@ namespace FrbaCommerce
             this.toolStripRol.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
             this.toolStripRol.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripRol.Name = "toolStripRol";
-            this.toolStripRol.Size = new System.Drawing.Size(211, 17);
+            this.toolStripRol.Size = new System.Drawing.Size(200, 17);
             this.toolStripRol.Spring = true;
             // 
             // toolStripDate
             // 
             this.toolStripDate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripDate.Name = "toolStripDate";
-            this.toolStripDate.Size = new System.Drawing.Size(211, 17);
+            this.toolStripDate.Size = new System.Drawing.Size(200, 17);
             this.toolStripDate.Spring = true;
             // 
             // tl_UsuariosTableAdapter

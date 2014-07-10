@@ -43,6 +43,7 @@
             this.tlVisibilidadesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
             this.comboBoxTipoDePublicacion = new System.Windows.Forms.ComboBox();
+            this.tlPublicacionTiposBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.Guardar = new System.Windows.Forms.Button();
@@ -52,6 +53,7 @@
             this.tl_VisibilidadesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_VisibilidadesTableAdapter();
             this.numericUpDownStock = new System.Windows.Forms.NumericUpDown();
             this.comboBoxEstadoDeLaPublicacion = new System.Windows.Forms.ComboBox();
+            this.tlPublicacionEstadosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label10 = new System.Windows.Forms.Label();
             this.checkBoxAceptaPreguntas = new System.Windows.Forms.CheckBox();
             this.dateTimePickerFechaVencimiento = new System.Windows.Forms.DateTimePicker();
@@ -64,12 +66,16 @@
             this.tl_ClientesTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ClientesTableAdapter();
             this.tl_EmpresasTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_EmpresasTableAdapter();
             this.tl_VisibilidadesTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_VisibilidadesTableAdapter();
+            this.tl_Publicacion_TiposTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Publicacion_TiposTableAdapter();
+            this.tl_Publicacion_EstadosTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Publicacion_EstadosTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlVisibilidadesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tlPublicacionTiposBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tl_PublicacionesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tl_VisibilidadesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownStock)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tlPublicacionEstadosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlRubrosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tl_Publicaciones_RubrosBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -197,15 +203,20 @@
             // 
             // comboBoxTipoDePublicacion
             // 
+            this.comboBoxTipoDePublicacion.DataSource = this.tlPublicacionTiposBindingSource;
+            this.comboBoxTipoDePublicacion.DisplayMember = "Tipo";
             this.comboBoxTipoDePublicacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxTipoDePublicacion.FormattingEnabled = true;
-            this.comboBoxTipoDePublicacion.Items.AddRange(new object[] {
-            "Compra Inmediata",
-            "Subasta"});
             this.comboBoxTipoDePublicacion.Location = new System.Drawing.Point(140, 345);
             this.comboBoxTipoDePublicacion.Name = "comboBoxTipoDePublicacion";
             this.comboBoxTipoDePublicacion.Size = new System.Drawing.Size(121, 21);
             this.comboBoxTipoDePublicacion.TabIndex = 17;
+            this.comboBoxTipoDePublicacion.ValueMember = "ID";
+            // 
+            // tlPublicacionTiposBindingSource
+            // 
+            this.tlPublicacionTiposBindingSource.DataMember = "tl_Publicacion_Tipos";
+            this.tlPublicacionTiposBindingSource.DataSource = this.gD1C2014DataSet;
             // 
             // label8
             // 
@@ -267,17 +278,20 @@
             // 
             // comboBoxEstadoDeLaPublicacion
             // 
+            this.comboBoxEstadoDeLaPublicacion.DataSource = this.tlPublicacionEstadosBindingSource;
+            this.comboBoxEstadoDeLaPublicacion.DisplayMember = "Estado";
             this.comboBoxEstadoDeLaPublicacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxEstadoDeLaPublicacion.FormattingEnabled = true;
-            this.comboBoxEstadoDeLaPublicacion.Items.AddRange(new object[] {
-            "Borrador",
-            "Publicada",
-            "Pausada",
-            "Finalizada"});
             this.comboBoxEstadoDeLaPublicacion.Location = new System.Drawing.Point(138, 383);
             this.comboBoxEstadoDeLaPublicacion.Name = "comboBoxEstadoDeLaPublicacion";
             this.comboBoxEstadoDeLaPublicacion.Size = new System.Drawing.Size(123, 21);
             this.comboBoxEstadoDeLaPublicacion.TabIndex = 24;
+            this.comboBoxEstadoDeLaPublicacion.ValueMember = "ID";
+            // 
+            // tlPublicacionEstadosBindingSource
+            // 
+            this.tlPublicacionEstadosBindingSource.DataMember = "tl_Publicacion_Estados";
+            this.tlPublicacionEstadosBindingSource.DataSource = this.gD1C2014DataSet;
             // 
             // label10
             // 
@@ -338,6 +352,7 @@
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.tl_CalificacionesTableAdapter = null;
             this.tableAdapterManager.tl_ClientesTableAdapter = null;
             this.tableAdapterManager.tl_ComprasTableAdapter = null;
             this.tableAdapterManager.tl_EmpresasTableAdapter = null;
@@ -347,6 +362,8 @@
             this.tableAdapterManager.tl_OfertasTableAdapter = null;
             this.tableAdapterManager.tl_PendientesTableAdapter = null;
             this.tableAdapterManager.tl_PreguntasTableAdapter = null;
+            this.tableAdapterManager.tl_Publicacion_EstadosTableAdapter = null;
+            this.tableAdapterManager.tl_Publicacion_TiposTableAdapter = null;
             this.tableAdapterManager.tl_Publicaciones_RubrosTableAdapter = this.tl_Publicaciones_RubrosTableAdapter;
             this.tableAdapterManager.tl_PublicacionesTableAdapter = this.tl_PublicacionesTableAdapter;
             this.tableAdapterManager.tl_Roles_FuncionalidadesTableAdapter = null;
@@ -368,6 +385,14 @@
             // tl_VisibilidadesTableAdapter1
             // 
             this.tl_VisibilidadesTableAdapter1.ClearBeforeFill = true;
+            // 
+            // tl_Publicacion_TiposTableAdapter
+            // 
+            this.tl_Publicacion_TiposTableAdapter.ClearBeforeFill = true;
+            // 
+            // tl_Publicacion_EstadosTableAdapter
+            // 
+            this.tl_Publicacion_EstadosTableAdapter.ClearBeforeFill = true;
             // 
             // Generar_Publicacion_form
             // 
@@ -401,9 +426,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPrecio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlVisibilidadesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tlPublicacionTiposBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tl_PublicacionesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tl_VisibilidadesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownStock)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tlPublicacionEstadosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlRubrosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tl_Publicaciones_RubrosBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -448,5 +475,9 @@
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ClientesTableAdapter tl_ClientesTableAdapter1;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_EmpresasTableAdapter tl_EmpresasTableAdapter1;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_VisibilidadesTableAdapter tl_VisibilidadesTableAdapter1;
+        private System.Windows.Forms.BindingSource tlPublicacionTiposBindingSource;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Publicacion_TiposTableAdapter tl_Publicacion_TiposTableAdapter;
+        private System.Windows.Forms.BindingSource tlPublicacionEstadosBindingSource;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Publicacion_EstadosTableAdapter tl_Publicacion_EstadosTableAdapter;
     }
 }
