@@ -37,9 +37,8 @@ namespace FrbaCommerce
 
         public static DateTime getDate()
         {
-            System.Windows.Forms.MessageBox.Show(FrbaCommerce.Properties.Settings.Default.fecha.ToString());
+            //System.Windows.Forms.MessageBox.Show(FrbaCommerce.Properties.Settings.Default.fecha.ToString());            
             return FrbaCommerce.Properties.Settings.Default.fecha;
-            //return Convert.ToDateTime(ConfigurationSettings.AppSettings.Get("fecha").ToString());
         }
 
         public static bool algunoVacio(params ComboBox[] campos)
