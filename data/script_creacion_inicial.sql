@@ -629,7 +629,8 @@ BEGIN
 		UNION
 		SELECT DISTINCT
 			Publ_Cli_Dni,
-			Publ_Cli_Dni
+			Publ_Cli_Dni,
+			1
 		FROM
 			gd_esquema.Maestra
 		WHERE
