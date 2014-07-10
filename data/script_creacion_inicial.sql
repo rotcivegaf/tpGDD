@@ -573,10 +573,11 @@ BEGIN
 	SET NOCOUNT ON;
 	DECLARE @RolEmpresa_ID INT = 3
 
-	INSERT INTO LOL.tl_Usuarios (Username,Password)
+	INSERT INTO LOL.tl_Usuarios (Username,Password,Change_Password)
 		SELECT DISTINCT
 			Publ_Empresa_Cuit,
-			Publ_Empresa_Cuit
+			Publ_Empresa_Cuit,
+			1
 		FROM
 			gd_esquema.Maestra
 		WHERE
@@ -616,10 +617,11 @@ BEGIN
 	SET NOCOUNT ON;
 	DECLARE @RolCliente_ID INT = 2
 
-	INSERT INTO LOL.tl_Usuarios (Username,Password)
+	INSERT INTO LOL.tl_Usuarios (Username,Password,Change_Password)
 		SELECT DISTINCT
 			Cli_Dni,
-			Cli_Dni
+			Cli_Dni,
+			1
 		FROM
 			gd_esquema.Maestra
 		WHERE
