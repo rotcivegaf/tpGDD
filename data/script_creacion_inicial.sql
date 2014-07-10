@@ -30,24 +30,24 @@ CREATE TYPE [LOL].dataTable AS TABLE
 
 --Tabla Clientes
 CREATE TABLE LOL.tl_Clientes (
-	ID				NUMERIC(18, 0) NOT NULL,
-	Tipo_Documento	NVARCHAR(10) NOT NULL,
-	Nro_Documento	NUMERIC(18, 0) NOT NULL,
-	Apellido       NVARCHAR(255) NOT NULL,
-	Nombre         NVARCHAR(255) NOT NULL,
-	CUIL           NVARCHAR(50) NOT NULL,
-	Fecha_Nac      DATETIME NULL,
-	Mail           NVARCHAR(255) NULL,
-	Dom_Calle      NVARCHAR(255) NULL,
-	Nro_Calle      NUMERIC(18, 0) NULL,
-	Piso           NUMERIC(18, 0) NULL,
-	Depto          NVARCHAR(50) NULL,
-	Cod_Postal     NVARCHAR(50) NULL,
-	Telefono       NUMERIC(18, 0) NULL,
-	Suma_Calificaciones		NUMERIC(18, 0) DEFAULT(0) NOT NULL,
-	Cantidad_Calificaciones	NUMERIC(18, 0) DEFAULT(0) NOT NULL,
-	Habilitado				BIT DEFAULT(1) NOT NULL,
-	Comisiones_Pendientes	NUMERIC(18,0) DEFAULT(0) NOT NULL,
+	ID						NUMERIC(18, 0)	NOT NULL,
+	Tipo_Documento			NVARCHAR(10)	NOT NULL,
+	Nro_Documento			NUMERIC(18, 0)	NOT NULL,
+	Apellido				NVARCHAR(255)	NOT NULL,
+	Nombre					NVARCHAR(255)	NOT NULL,
+	CUIL					NVARCHAR(50)	NOT NULL,
+	Fecha_Nac				DATETIME		NULL,
+	Mail					NVARCHAR(255)	NULL,
+	Dom_Calle				NVARCHAR(255)	NULL,
+	Nro_Calle				NUMERIC(18, 0)	NULL,
+	Piso					NUMERIC(18, 0)	NULL,
+	Depto					NVARCHAR(50)	NULL,
+	Cod_Postal				NVARCHAR(50)	NULL,
+	Telefono				NUMERIC(18, 0)	NULL,
+	Suma_Calificaciones		NUMERIC(18, 0)	NOT NULL	DEFAULT(0),
+	Cantidad_Calificaciones	NUMERIC(18, 0)	NOT NULL	DEFAULT(0),
+	Habilitado				BIT DEFAULT(1)	NOT NULL,
+	Comisiones_Pendientes	NUMERIC(18,0)	NOT NULL	DEFAULT(0),
 
 	PRIMARY KEY (ID)
 )
@@ -776,7 +776,7 @@ BEGIN
 	
 	-- Creo la tabla TEMPORAL para generar el ID, y despues pasar los datos a las tablas Compras y Calificaciones
 	CREATE TABLE LOL.tl_ComprasTEMP (
-		ID					NUMERIC(18, 0)	IDENTITY(1,1)	NOT NULL,
+		ID					NUMERIC(18, 0)	NOT NULL	IDENTITY(1,1),
 		Publicacion_Codigo	NUMERIC(18, 0)	NOT NULL,
 		Usuario_ID			NUMERIC(18, 0)	NOT NULL,
 		Cantidad			NUMERIC(18, 0)	NOT NULL,
@@ -841,15 +841,6 @@ BEGIN
 END
 GO
 
-
-CREATE PROCEDURE LOL.sp_InicializarCalificacionesClientes
-AS
-BEGIN
-	DECLARE @NUM INT;
-END
-GO
-/*
---FALTA HACER -> !!REHACER!! CON LO DE Usuario_ID
 --Stored Procedure InicializarCalificacionesClientes
 CREATE PROCEDURE LOL.sp_InicializarCalificacionesClientes
 AS
@@ -857,46 +848,23 @@ BEGIN
 	UPDATE
 		LOL.tl_Clientes
 	SET
-		Suma_Calificaciones = iii.SumaTotal,
-		Cantidad_Calificaciones = iii.CantidadTotal
+		Suma_Calificaciones = M.SumaTotal,
+		Cantidad_Calificaciones = M.CantidadTotal
 	FROM
 		(SELECT
-			ii.Cliente_ID,
-			SUM(ii.SumaCalificaciones) AS SumaTotal,
-			SUM(ii.CantidadCalificaciones) AS CantidadTotal
+			Publ_Cli_Dni,
+			SUM(Calificacion_Cant_Estrellas) AS SumaTotal,
+			COUNT(0) AS CantidadTotal
 		FROM
-			(SELECT
-				P.Usuario_ID,
-				i.*
-			FROM
-				(SELECT 
-					Co.Publicacion_Codigo,
-					SUM(Ca.Cantntidad_Estrellas) AS SumaCalificaciones,
-					COUNT(0) AS CantidadCalificaciones 
-				 FROM
-					LOL.tl_Calificaciones Ca
-					JOIN LOL.tl_Compras Co ON (Ca.Compra_ID = Co.ID)
-				 WHERE
-					Calificacion_Cant_Estrellas IS NOT NULL
-				 GROUP BY
-					Co.Publicacion_Codigo
-				) i JOIN LOL.tl_Publicaciones P ON (i.Publicacion_Codigo = P.Codigo)) ii
+			gd_esquema.Maestra
 		WHERE
-			ii.Cliente_ID IS NOT NULL
+			Publ_Cli_Dni IS NOT NULL AND
+			Calificacion_Cant_Estrellas IS NOT NULL
 		GROUP BY
-			ii.Cliente_ID) iii JOIN LOL.tl_Clientes ON (iii.Cliente_ID = ID)
+			Publ_Cli_Dni) M JOIN LOL.tl_Clientes C ON (M.Publ_Cli_Dni = C.Nro_Documento)
 END
 GO
-*/
 
-CREATE PROCEDURE LOL.sp_InicializarCalificacionesEmpresas
-AS
-BEGIN
-	DECLARE @NUM INT;
-END
-GO
-/*
---FALTA HACER -> !!REHACER!! CON LO DE Usuario_ID
 --Stored Procedure InicializarCalificacionesEmpresas
 CREATE PROCEDURE LOL.sp_InicializarCalificacionesEmpresas
 AS
@@ -904,35 +872,23 @@ BEGIN
 	UPDATE
 		LOL.tl_Empresas
 	SET
-		Suma_Calificaciones = iii.SumaTotal,
-		Cantidad_Calificaciones = iii.CantidadTotal
+		Suma_Calificaciones = M.SumaTotal,
+		Cantidad_Calificaciones = M.CantidadTotal
 	FROM
 		(SELECT
-			ii.Empresa_ID,
-			SUM(ii.SumaCalificaciones) AS SumaTotal,
-			SUM(ii.CantidadCalificaciones) AS CantidadTotal
+			Publ_Empresa_Cuit,
+			SUM(Calificacion_Cant_Estrellas) AS SumaTotal,
+			COUNT(0) AS CantidadTotal
 		FROM
-			(SELECT
-				P.Empresa_ID,
-				i.*
-			FROM
-				(SELECT 
-					Publicacion_Codigo,
-					SUM(Calificacion_Cant_Estrellas) AS SumaCalificaciones,
-					COUNT(0) AS CantidadCalificaciones 
-				 FROM
-					LOL.tl_Compras
-				 WHERE
-					Calificacion_Cant_Estrellas IS NOT NULL
-				 GROUP BY
-					Publicacion_Codigo) i JOIN LOL.tl_Publicaciones P ON (i.Publicacion_Codigo = P.Codigo)) ii
+			gd_esquema.Maestra
 		WHERE
-			ii.Empresa_ID IS NOT NULL
+			Publ_Empresa_Cuit IS NOT NULL AND
+			Calificacion_Cant_Estrellas IS NOT NULL
 		GROUP BY
-			ii.Empresa_ID) iii JOIN LOL.tl_Empresas ON (iii.Empresa_ID = ID)
+			Publ_Empresa_Cuit) M JOIN LOL.tl_Empresas E ON (M.Publ_Empresa_Cuit = E.CUIT)
 END
 GO
-*/
+
 --Stored Procedure ImportarFacturas
 CREATE PROCEDURE LOL.sp_ImportarFacturas
 AS
