@@ -21,7 +21,7 @@ namespace FrbaCommerce.Calificar_Vendedor
         
         public void abrir(int user_ID)
         {
-            usuario_ID=user_ID;
+            usuario_ID = user_ID;
             this.ShowDialog();
         }
 
@@ -29,9 +29,7 @@ namespace FrbaCommerce.Calificar_Vendedor
 
         private void llenarGrid()
         {
-            String condicion = "Cliente_ID = " + usuario_ID + " AND Calificacion_Codigo IS NULL";
-
-            this.tlComprasBindingSource.DataSource = this.tl_ComprasTableAdapter.GetData().Select(condicion);
+            this.tlComprasBindingSource.DataSource = this.tl_ComprasTableAdapter.GetPendientesCalificarByID(usuario_ID);
         }
 
         private void dgvCompras_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -53,13 +51,13 @@ namespace FrbaCommerce.Calificar_Vendedor
 
         private void btnCalificar_Click(object sender, EventArgs e)
         {
-
             this.tl_ComprasTableAdapter.sp_CalificarVendedor(compra_ID, (byte)numCantidadEstrellas.Value, cmbDescripcion.Text);
-            llenarGrid();
-            grpCompras.Enabled = true;
-            grpCalificacion.Enabled = false;
             numCantidadEstrellas.Value = 0;
             cmbDescripcion.Text = "";
+            grpCompras.Enabled = true;
+            grpCalificacion.Enabled = false;
+            llenarGrid();
         }
+
     }
 }

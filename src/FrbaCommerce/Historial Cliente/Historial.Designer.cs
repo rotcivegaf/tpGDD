@@ -35,7 +35,6 @@
             this.dgvHistorial = new System.Windows.Forms.DataGridView();
             this.optCalificacionesRecibidas = new System.Windows.Forms.RadioButton();
             this.lblCantidadRegistros = new System.Windows.Forms.Label();
-            this.txtCantidadRegistros = new System.Windows.Forms.TextBox();
             this.ComprasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
             this.historialComprasTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.HistorialComprasTableAdapter();
@@ -45,6 +44,7 @@
             this.historialOfertasTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.HistorialOfertasTableAdapter();
             this.CalificacionesRecibidasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.historialCalificacionesRecibidasTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.HistorialCalificacionesRecibidasTableAdapter();
+            this.txtCantidadRegistros = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistorial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ComprasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
@@ -125,13 +125,6 @@
             this.lblCantidadRegistros.TabIndex = 6;
             this.lblCantidadRegistros.Text = "Cantidad Registros:";
             // 
-            // txtCantidadRegistros
-            // 
-            this.txtCantidadRegistros.Location = new System.Drawing.Point(115, 626);
-            this.txtCantidadRegistros.Name = "txtCantidadRegistros";
-            this.txtCantidadRegistros.Size = new System.Drawing.Size(100, 20);
-            this.txtCantidadRegistros.TabIndex = 7;
-            // 
             // ComprasBindingSource
             // 
             this.ComprasBindingSource.DataMember = "HistorialCompras";
@@ -173,6 +166,14 @@
             // 
             this.historialCalificacionesRecibidasTableAdapter.ClearBeforeFill = true;
             // 
+            // txtCantidadRegistros
+            // 
+            this.txtCantidadRegistros.Location = new System.Drawing.Point(118, 629);
+            this.txtCantidadRegistros.Name = "txtCantidadRegistros";
+            this.txtCantidadRegistros.Size = new System.Drawing.Size(100, 13);
+            this.txtCantidadRegistros.TabIndex = 8;
+            this.txtCantidadRegistros.Text = "####";
+            // 
             // Historial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -212,10 +213,10 @@
         private FrbaCommerce.GD1C2014DataSetTableAdapters.HistorialCalificacionesOtorgadasTableAdapter historialCalificacionesOtorgadasTableAdapter;
         private System.Windows.Forms.BindingSource CalificacionesOtorgadasBindingSource;
         private System.Windows.Forms.Label lblCantidadRegistros;
-        private System.Windows.Forms.TextBox txtCantidadRegistros;
         private System.Windows.Forms.BindingSource OfertasBindingSource;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.HistorialOfertasTableAdapter historialOfertasTableAdapter;
         private System.Windows.Forms.BindingSource CalificacionesRecibidasBindingSource;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.HistorialCalificacionesRecibidasTableAdapter historialCalificacionesRecibidasTableAdapter;
+        private System.Windows.Forms.Label txtCantidadRegistros;
     }
 }
