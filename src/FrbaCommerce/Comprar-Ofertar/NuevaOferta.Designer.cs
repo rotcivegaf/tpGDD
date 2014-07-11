@@ -1,6 +1,6 @@
 ﻿namespace FrbaCommerce.Comprar_Ofertar
 {
-    partial class NuevaSubasta
+    partial class NuevaOferta
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             this.buttonOfertar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.numericUpDownOferta = new System.Windows.Forms.NumericUpDown();
-            this.tl_OfertasTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_OfertasTableAdapter();
+            this.tl_OfertasTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_OfertasTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOferta)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,11 +71,11 @@
             0,
             0});
             // 
-            // tl_OfertasTableAdapter1
+            // tl_OfertasTableAdapter
             // 
-            this.tl_OfertasTableAdapter1.ClearBeforeFill = true;
+            this.tl_OfertasTableAdapter.ClearBeforeFill = true;
             // 
-            // NuevaSubasta
+            // NuevaOferta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -83,9 +83,8 @@
             this.Controls.Add(this.buttonOfertar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numericUpDownOferta);
-            this.Name = "NuevaSubasta";
+            this.Name = "NuevaOferta";
             this.Text = "Nueva Oferta";
-            this.Load += new System.EventHandler(this.NuevaSubasta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOferta)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -97,6 +96,6 @@
         private System.Windows.Forms.Button buttonOfertar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numericUpDownOferta;
-        private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_OfertasTableAdapter tl_OfertasTableAdapter1;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_OfertasTableAdapter tl_OfertasTableAdapter;
     }
 }

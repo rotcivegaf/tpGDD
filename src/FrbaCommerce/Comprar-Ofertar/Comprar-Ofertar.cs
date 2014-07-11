@@ -36,7 +36,7 @@ namespace FrbaCommerce.Comprar_Ofertar
             UserID = user_ID;
         }
         */
-
+        /*
         private void tl_PublicacionesBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             this.Validate();
@@ -44,7 +44,7 @@ namespace FrbaCommerce.Comprar_Ofertar
             this.tableAdapterManager.UpdateAll(this.gD1C2014DataSet);
 
         }
-
+        */
         private void Comprar_Ofertar_Load(object sender, EventArgs e)
         {
             //Cargo las tablas necesarias en los dataTable correspondientes, por motivos de performance
@@ -90,50 +90,66 @@ namespace FrbaCommerce.Comprar_Ofertar
             dataGridViewPublicaciones.DataSource = this.tl_PublicacionesTableAdapter.GetDataByPaginador(offset, LIMITE, unaTabla);            
         }
 
+        /*
         private string armarLike(string descripcion)
         {
             //La consulta del where es LIKE %Descripcion%
             return "%"+textBoxDescripcion.Text.ToString()+"%";
         }
-
+        */
         private void dataGridViewPublicaciones_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            //int CodigoColumnIndex = dataGridViewPublicaciones.Columns["Codigo"].Index;
+            //int TipoColumnIndex = dataGridViewPublicaciones.Columns["Tipo"].Index;
+            //int PermitePreguntasColumnIndex = dataGridViewPublicaciones.Columns["Permite_Preguntas"].Index;
+            //int PreguntarColumnIndex = dataGridViewPublicaciones.Columns["Preguntar"].Index;
+            //int ComprarColumnIndex = dataGridViewPublicaciones.Columns["Comprar"].Index; ;
+
             //Si quiero hacer una pregunta
-            
-            if (e.ColumnIndex == 8)
+            if (e.ColumnIndex == Preguntar.Index)// PreguntarColumnIndex)
             {
                 //Cargo en una fila (DataGridViewRow) el registro deseado
                 DataGridViewRow fila = dataGridViewPublicaciones.Rows[e.RowIndex];
                 //Si la publicación acepta preguntas && valido que no sea una auto-pregunta && el estado no es borrador
-                if (Convert.ToBoolean(fila.Cells[7].Value) &&  ( !mismoCliente(fila) ) && !(fila.Cells[6].Value.ToString().Equals("Pausada")) )
+                //if (Convert.ToBoolean(fila.Cells[7].Value) &&  ( !mismoCliente(fila) ) && !(fila.Cells[6].Value.ToString().Equals("Pausada")) )
+                if (Convert.ToBoolean(fila.Cells[Permite_Preguntas.Index].Value))
                 {
                     //Creo un formulario de nueva pregunta y le mando el ID de la publicación para cargarlo en la tabla
                     Gestion_de_Preguntas.Nueva_Pregunta frame = new Gestion_de_Preguntas.Nueva_Pregunta();
-                    frame.setIDPublicacion(Convert.ToInt32(fila.Cells[0].Value));
+                    frame.setIDPublicacion(Convert.ToInt32(fila.Cells[Codigo.Index].Value));
                     frame.ShowDialog();
                 }
             }
             //si quiero hacer una compra
-            if (e.ColumnIndex == 9)
+            if (e.ColumnIndex == Comprar.Index)
             {
                 //Cargo en una fila (DataGridViewRow) el registro deseado
                 DataGridViewRow fila = dataGridViewPublicaciones.Rows[e.RowIndex];
                 //Verifico que no me quiera auto-comprar
-                if (!mismoCliente(fila))
-                {
-                    if(!(fila.Cells[6].Value.ToString().Equals("Pausada")))
-                    {
-                        if (fila.Cells[5].Value.ToString().Equals("Subasta"))
+                //if (!mismoCliente(fila))
+                //{
+                    //if(!(fila.Cells[6].Value.ToString().Equals("Pausada")))
+                    //{
+                        if (fila.Cells[Tipo.Index].Value.ToString().Equals("Subasta"))
                         {
-                            NuevaSubasta frame = new NuevaSubasta();
-                            frame.setID(this.UserID);
-                            frame.sendData(Convert.ToInt32(fila.Cells[4].Value),
-                                Convert.ToInt32(fila.Cells[0].Value));
-                            frame.ShowDialog();
+                            NuevaOferta frmOferta = new NuevaOferta();
+                            frmOferta.abrir(
+                                UserID,
+                                Convert.ToDecimal(fila.Cells[Precio.Index].Value),
+                                Convert.ToInt32(fila.Cells[Codigo.Index].Value));
                         }
-                        else
+                        else //Compra Inmediata
                         {
                             NuevaCompra frame = new NuevaCompra();
+                            frame.sendData(
+                                UserID,
+                                Convert.ToInt32(fila.Cells[Codigo.Index].Value),
+                                Convert.ToInt32(fila.Cells[Stock.Index].Value),
+                                Convert.ToInt32(fila.Cells[Visibilidad_Codigo.Index].Value),
+                                Convert.ToDecimal(fila.Cells[Precio.Index].Value),
+                                Convert.ToInt32(fila.Cells[Usuario_ID.Index].Value));
+                            frame.ShowDialog();
+                            /*
                             if (isPublicacionDeEmpresa(fila)) //es Empresa
                             {
                                 frame.sendData(this.UserID,
@@ -154,12 +170,14 @@ namespace FrbaCommerce.Comprar_Ofertar
                                 Convert.ToInt32(fila.Cells[10].Value));
                                 frame.ShowDialog();
                             }
+                            */
                             llenarPublicaciones();
                         }
-                    }
-                }
+                    //}
+                //}
             }
         }
+        /*
         private bool mismoCliente(DataGridViewRow registro)
         {
             if (isPublicacionDeEmpresa(registro))
@@ -167,22 +185,23 @@ namespace FrbaCommerce.Comprar_Ofertar
                 return (Convert.ToInt32(registro.Cells[11].Value) == this.UserID);
             }
             else
-                return (Convert.ToInt32(registro.Cells[10].Value) == this.UserID);
-            
+                return (Convert.ToInt32(registro.Cells[10].Value) == this.UserID);  
         }
-
+        */
+        /*
         private static bool isPublicacionDeEmpresa(DataGridViewRow registro)
         {
             return (Convert.ToInt32(registro.Cells[10].Value.ToString().Length)) == 0;
         }
+        */
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonPrincipio_Click(object sender, EventArgs e)
         {
             offset = 1;
             paginar(tablaTemporal);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void buttonAnterior_Click(object sender, EventArgs e)
         {
             if (offset > LIMITE)
                 offset -= LIMITE;
@@ -191,14 +210,14 @@ namespace FrbaCommerce.Comprar_Ofertar
             paginar(tablaTemporal);
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void buttonSiguiente_Click(object sender, EventArgs e)
         {
             if (offset <= QtyRegistros - LIMITE)
                 offset += LIMITE;
             paginar(tablaTemporal);
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void buttonFin_Click(object sender, EventArgs e)
         {
             offset = QtyRegistros - LIMITE + 1;
             paginar(tablaTemporal);

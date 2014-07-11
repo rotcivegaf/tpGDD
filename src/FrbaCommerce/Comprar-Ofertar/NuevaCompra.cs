@@ -15,20 +15,21 @@ namespace FrbaCommerce.Comprar_Ofertar
         {
             InitializeComponent();
         }
-        public void sendData(int clienteID, int publicacionID, int stock, int visibilidad, int precio, int vendedor)
+
+        public void sendData(int clienteID, int publicacionCodigo, int stock, int visibilidad, decimal precio, int vendedor)
         {
             this.UserID = clienteID;
-            this.publicacionID = publicacionID;
+            this.publicacionCodigo = publicacionCodigo;
             this.stock = stock;
             this.visibilidad = visibilidad; ;
             this.precio = precio;
             this.vendedor = vendedor;
         }
         private int UserID;
-        private int publicacionID;
+        private int publicacionCodigo;
         private int stock;
         private int visibilidad;
-        private int precio;
+        private decimal precio;
         private decimal comision;
         private int vendedor;
 
@@ -52,7 +53,7 @@ namespace FrbaCommerce.Comprar_Ofertar
             this.tl_ClientesyEmpresasTableAdapter.FillByID(tablaTemporal,vendedor);
             this.tl_ClientesyEmpresasDataGridView.DataSource = tablaTemporal;
             comision = (decimal)this.tl_VisibilidadesTableAdapter1.PorcentajePorCodigo(visibilidad) * stock * precio;
-            this.tl_ComprasTableAdapter1.sp_crearCompra(publicacionID,
+            this.tl_ComprasTableAdapter1.sp_crearCompra(publicacionCodigo,
                 UserID,
                 commons.getDate(),
                Convert.ToInt32(this.numericUpDownStock.Value),

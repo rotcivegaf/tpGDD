@@ -52,9 +52,9 @@ namespace FrbaCommerce.Generar_Publicacion
             {
                 //cargo los datos en el formulario
                 cargarDatos();
-                switch (publicacionAEditar.Rows[0]["Estado"].ToString())
+                switch (Convert.ToInt32(publicacionAEditar.Rows[0]["Estado_ID"]))
                 {
-                    case "Publicada":
+                    case 1: //Publicada
                         //Deshabilito los campos que no se pueden editar según los requerimientos
                         this.dateTimePickerFechaInicio.Enabled = false;
                         this.dateTimePickerFechaVencimiento.Enabled = false;
@@ -65,7 +65,7 @@ namespace FrbaCommerce.Generar_Publicacion
                         this.checkBoxAceptaPreguntas.Enabled = false;
                         this.numericUpDownStock.Minimum = Convert.ToInt32(publicacionAEditar.Rows[0]["Stock"]);
                         break;
-                    case "Pausada":
+                    case 2: //Pausada
                         //Deshabilito los campos que no se pueden editar según los requerimientos
                         this.inputDescripcion.Enabled = false;
                         this.numericUpDownStock.Enabled = false;
@@ -77,7 +77,7 @@ namespace FrbaCommerce.Generar_Publicacion
                         this.comboBoxTipoDePublicacion.Enabled = false;
                         this.checkBoxAceptaPreguntas.Enabled = false;
                         break;
-                    case "Finalizada":
+                    case 4: //Finalizada
                         //Deshabilito los campos que no se pueden editar según los requerimientos
                         this.inputDescripcion.Enabled = false;
                         this.numericUpDownStock.Enabled = false;
@@ -94,7 +94,7 @@ namespace FrbaCommerce.Generar_Publicacion
                         break;
                 }
                 //Si la publicación es de tipo subasta no se permite modificación de stock alguna
-                if (publicacionAEditar.Rows[0]["Tipo"].ToString().Equals("Subasta") && !esBorrador())
+                if (Convert.ToInt32(publicacionAEditar.Rows[0]["Tipo_ID"]) == 2 && !esBorrador())
                 {
                     this.numericUpDownStock.Enabled = false;
                 }
@@ -196,24 +196,25 @@ namespace FrbaCommerce.Generar_Publicacion
                     //SP para modificar la publicación
                 }
         }
-        private bool esBorrador()
-        {
-            return publicacionAEditar.Rows[0]["Estado"].ToString().Equals("Borrador");
-        }
-
+        
         private bool esPublicada()
         {
-            return publicacionAEditar.Rows[0]["Estado"].ToString().Equals("Publicada");
+            return Convert.ToInt32(publicacionAEditar.Rows[0]["Estado_ID"]) == 1;
         }
 
         private bool esPausada()
         {
-            return publicacionAEditar.Rows[0]["Estado"].ToString().Equals("Pausada");
+            return Convert.ToInt32(publicacionAEditar.Rows[0]["Estado_ID"]) == 2;
         }
 
+        private bool esBorrador()
+        {
+            return Convert.ToInt32(publicacionAEditar.Rows[0]["Estado_ID"]) == 3;
+        }
+        
         private bool esFinalizada()
         {
-            return publicacionAEditar.Rows[0]["Estado"].ToString().Equals("Finalizada");
+            return Convert.ToInt32(publicacionAEditar.Rows[0]["Estado_ID"]) == 4;
         }
 
         private void nuevaPublicacion()

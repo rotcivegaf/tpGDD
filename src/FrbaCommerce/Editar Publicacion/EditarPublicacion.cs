@@ -47,13 +47,13 @@ namespace FrbaCommerce.Editar_Publicacion
             this.tl_PublicacionesDataGridView.DataSource = this.tl_PublicacionesTableAdapter.GetDataByPaginador(offset, LIMITE, unaTabla);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonPrincipio_Click(object sender, EventArgs e)
         {
             offset = 1;
             paginar(tablaTemporal);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void buttonAnterior_Click(object sender, EventArgs e)
         {
             if (offset > LIMITE)
                 offset -= LIMITE;
@@ -62,19 +62,19 @@ namespace FrbaCommerce.Editar_Publicacion
             paginar(tablaTemporal);
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void buttonSiguiente_Click(object sender, EventArgs e)
         {
             if (offset <= QtyRegistros - LIMITE)
                 offset += LIMITE;
             paginar(tablaTemporal);
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void buttonFin_Click(object sender, EventArgs e)
         {
             offset = QtyRegistros - LIMITE +1;
             paginar(tablaTemporal);
         }
-
+        /*
         private void tl_PublicacionesBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             this.Validate();
@@ -82,15 +82,17 @@ namespace FrbaCommerce.Editar_Publicacion
             this.tableAdapterManager.UpdateAll(this.gD1C2014DataSet);
 
         }
-
+        */
         private void tl_PublicacionesDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //Evento para editar
-            if (e.ColumnIndex == 8)
+            if (e.ColumnIndex == Editar.Index)
             {
+                DataGridViewRow fila = this.tl_PublicacionesDataGridView.Rows[e.RowIndex];
+                
                 Generar_Publicacion.Generar_Publicacion_form frame = new Generar_Publicacion.Generar_Publicacion_form();
                 frame.setIDs(userID,rolID);
-                frame.editPublicidad(Convert.ToInt32(this.tl_PublicacionesDataGridView.Rows[e.RowIndex].Cells[0].Value));
+                frame.editPublicidad(Convert.ToInt32(fila.Cells[Codigo.Index].Value));
                 frame.ShowDialog();
             }
         }

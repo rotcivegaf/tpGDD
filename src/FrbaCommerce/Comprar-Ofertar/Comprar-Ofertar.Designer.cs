@@ -35,43 +35,39 @@
             this.dataGridViewPublicaciones = new System.Windows.Forms.DataGridView();
             this.publicacionesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
-            this.tl_PublicacionesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxRubros = new System.Windows.Forms.ComboBox();
             this.tlRubrosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.buttonPrincipio = new System.Windows.Forms.Button();
+            this.buttonAnterior = new System.Windows.Forms.Button();
+            this.buttonSiguiente = new System.Windows.Forms.Button();
+            this.buttonFin = new System.Windows.Forms.Button();
+            this.tl_PublicacionesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tl_PublicacionesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_PublicacionesTableAdapter();
             this.tableAdapterManager = new FrbaCommerce.GD1C2014DataSetTableAdapters.TableAdapterManager();
             this.tl_RubrosTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RubrosTableAdapter();
             this.tlRubrosBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.tl_Publicaciones_RubrosTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Publicaciones_RubrosTableAdapter();
-            this.tl_ComprasTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ComprasTableAdapter();
             this.publicacionesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.PublicacionesTableAdapter();
-            this.Cliente_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Empresa_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Visibilidad_Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.codigoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.usuarioIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Usuario_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stockDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaVencimientoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.visibilidadCodigoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Visibilidad_Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.visibilidadDescripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.permitePreguntasDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Permite_Preguntas = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Preguntar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Comprar = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPublicaciones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.publicacionesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tl_PublicacionesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlRubrosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tl_PublicacionesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlRubrosBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -108,21 +104,18 @@
             this.dataGridViewPublicaciones.AutoGenerateColumns = false;
             this.dataGridViewPublicaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPublicaciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Cliente_ID,
-            this.Empresa_ID,
-            this.Visibilidad_Codigo,
-            this.codigoDataGridViewTextBoxColumn,
-            this.usuarioIDDataGridViewTextBoxColumn,
+            this.Codigo,
+            this.Usuario_ID,
             this.descripcionDataGridViewTextBoxColumn,
             this.fechaDataGridViewTextBoxColumn,
-            this.stockDataGridViewTextBoxColumn,
+            this.Stock,
             this.fechaVencimientoDataGridViewTextBoxColumn,
-            this.precioDataGridViewTextBoxColumn,
-            this.dataGridViewTextBoxColumn1,
-            this.visibilidadCodigoDataGridViewTextBoxColumn,
+            this.Precio,
+            this.Tipo,
+            this.Visibilidad_Codigo,
             this.visibilidadDescripcionDataGridViewTextBoxColumn,
             this.dataGridViewTextBoxColumn2,
-            this.permitePreguntasDataGridViewCheckBoxColumn,
+            this.Permite_Preguntas,
             this.Preguntar,
             this.Comprar});
             this.dataGridViewPublicaciones.DataSource = this.publicacionesBindingSource;
@@ -142,11 +135,6 @@
             // 
             this.gD1C2014DataSet.DataSetName = "GD1C2014DataSet";
             this.gD1C2014DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tl_PublicacionesBindingSource
-            // 
-            this.tl_PublicacionesBindingSource.DataMember = "tl_Publicaciones";
-            this.tl_PublicacionesBindingSource.DataSource = this.gD1C2014DataSet;
             // 
             // label1
             // 
@@ -173,45 +161,50 @@
             this.tlRubrosBindingSource.DataMember = "tl_Rubros";
             this.tlRubrosBindingSource.DataSource = this.gD1C2014DataSet;
             // 
-            // button1
+            // buttonPrincipio
             // 
-            this.button1.Location = new System.Drawing.Point(13, 424);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "<<";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonPrincipio.Location = new System.Drawing.Point(13, 424);
+            this.buttonPrincipio.Name = "buttonPrincipio";
+            this.buttonPrincipio.Size = new System.Drawing.Size(75, 23);
+            this.buttonPrincipio.TabIndex = 7;
+            this.buttonPrincipio.Text = "<<";
+            this.buttonPrincipio.UseVisualStyleBackColor = true;
+            this.buttonPrincipio.Click += new System.EventHandler(this.buttonPrincipio_Click);
             // 
-            // button2
+            // buttonAnterior
             // 
-            this.button2.Location = new System.Drawing.Point(94, 424);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "<";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.buttonAnterior.Location = new System.Drawing.Point(94, 424);
+            this.buttonAnterior.Name = "buttonAnterior";
+            this.buttonAnterior.Size = new System.Drawing.Size(75, 23);
+            this.buttonAnterior.TabIndex = 8;
+            this.buttonAnterior.Text = "<";
+            this.buttonAnterior.UseVisualStyleBackColor = true;
+            this.buttonAnterior.Click += new System.EventHandler(this.buttonAnterior_Click);
             // 
-            // button3
+            // buttonSiguiente
             // 
-            this.button3.Location = new System.Drawing.Point(175, 424);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 9;
-            this.button3.Text = ">";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.buttonSiguiente.Location = new System.Drawing.Point(175, 424);
+            this.buttonSiguiente.Name = "buttonSiguiente";
+            this.buttonSiguiente.Size = new System.Drawing.Size(75, 23);
+            this.buttonSiguiente.TabIndex = 9;
+            this.buttonSiguiente.Text = ">";
+            this.buttonSiguiente.UseVisualStyleBackColor = true;
+            this.buttonSiguiente.Click += new System.EventHandler(this.buttonSiguiente_Click);
             // 
-            // button4
+            // buttonFin
             // 
-            this.button4.Location = new System.Drawing.Point(256, 424);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 10;
-            this.button4.Text = ">>";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.buttonFin.Location = new System.Drawing.Point(256, 424);
+            this.buttonFin.Name = "buttonFin";
+            this.buttonFin.Size = new System.Drawing.Size(75, 23);
+            this.buttonFin.TabIndex = 10;
+            this.buttonFin.Text = ">>";
+            this.buttonFin.UseVisualStyleBackColor = true;
+            this.buttonFin.Click += new System.EventHandler(this.buttonFin_Click);
+            // 
+            // tl_PublicacionesBindingSource
+            // 
+            this.tl_PublicacionesBindingSource.DataMember = "tl_Publicaciones";
+            this.tl_PublicacionesBindingSource.DataSource = this.gD1C2014DataSet;
             // 
             // tl_PublicacionesTableAdapter
             // 
@@ -255,61 +248,28 @@
             // 
             this.tl_Publicaciones_RubrosTableAdapter.ClearBeforeFill = true;
             // 
-            // tl_ComprasTableAdapter1
-            // 
-            this.tl_ComprasTableAdapter1.ClearBeforeFill = true;
-            // 
             // publicacionesTableAdapter
             // 
             this.publicacionesTableAdapter.ClearBeforeFill = true;
             // 
-            // Cliente_ID
+            // Codigo
             // 
-            this.Cliente_ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Cliente_ID.DataPropertyName = "Cliente_ID";
-            this.Cliente_ID.HeaderText = "Cliente_ID";
-            this.Cliente_ID.Name = "Cliente_ID";
-            this.Cliente_ID.ReadOnly = true;
-            this.Cliente_ID.Visible = false;
-            this.Cliente_ID.Width = 81;
+            this.Codigo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Codigo.DataPropertyName = "Codigo";
+            this.Codigo.HeaderText = "Codigo";
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            this.Codigo.Width = 65;
             // 
-            // Empresa_ID
+            // Usuario_ID
             // 
-            this.Empresa_ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Empresa_ID.DataPropertyName = "Empresa_ID";
-            this.Empresa_ID.HeaderText = "Empresa_ID";
-            this.Empresa_ID.Name = "Empresa_ID";
-            this.Empresa_ID.ReadOnly = true;
-            this.Empresa_ID.Visible = false;
-            this.Empresa_ID.Width = 90;
-            // 
-            // Visibilidad_Codigo
-            // 
-            this.Visibilidad_Codigo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Visibilidad_Codigo.DataPropertyName = "Visibilidad_Codigo";
-            this.Visibilidad_Codigo.HeaderText = "Visibilidad_Codigo";
-            this.Visibilidad_Codigo.Name = "Visibilidad_Codigo";
-            this.Visibilidad_Codigo.ReadOnly = true;
-            this.Visibilidad_Codigo.Visible = false;
-            this.Visibilidad_Codigo.Width = 117;
-            // 
-            // codigoDataGridViewTextBoxColumn
-            // 
-            this.codigoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.codigoDataGridViewTextBoxColumn.DataPropertyName = "Codigo";
-            this.codigoDataGridViewTextBoxColumn.HeaderText = "Codigo";
-            this.codigoDataGridViewTextBoxColumn.Name = "codigoDataGridViewTextBoxColumn";
-            this.codigoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.codigoDataGridViewTextBoxColumn.Width = 65;
-            // 
-            // usuarioIDDataGridViewTextBoxColumn
-            // 
-            this.usuarioIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.usuarioIDDataGridViewTextBoxColumn.DataPropertyName = "Usuario_ID";
-            this.usuarioIDDataGridViewTextBoxColumn.HeaderText = "Usuario_ID";
-            this.usuarioIDDataGridViewTextBoxColumn.Name = "usuarioIDDataGridViewTextBoxColumn";
-            this.usuarioIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.usuarioIDDataGridViewTextBoxColumn.Width = 85;
+            this.Usuario_ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Usuario_ID.DataPropertyName = "Usuario_ID";
+            this.Usuario_ID.HeaderText = "Usuario_ID";
+            this.Usuario_ID.Name = "Usuario_ID";
+            this.Usuario_ID.ReadOnly = true;
+            this.Usuario_ID.Visible = false;
+            this.Usuario_ID.Width = 85;
             // 
             // descripcionDataGridViewTextBoxColumn
             // 
@@ -329,14 +289,14 @@
             this.fechaDataGridViewTextBoxColumn.ReadOnly = true;
             this.fechaDataGridViewTextBoxColumn.Width = 62;
             // 
-            // stockDataGridViewTextBoxColumn
+            // Stock
             // 
-            this.stockDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.stockDataGridViewTextBoxColumn.DataPropertyName = "Stock";
-            this.stockDataGridViewTextBoxColumn.HeaderText = "Stock";
-            this.stockDataGridViewTextBoxColumn.Name = "stockDataGridViewTextBoxColumn";
-            this.stockDataGridViewTextBoxColumn.ReadOnly = true;
-            this.stockDataGridViewTextBoxColumn.Width = 60;
+            this.Stock.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Stock.DataPropertyName = "Stock";
+            this.Stock.HeaderText = "Stock";
+            this.Stock.Name = "Stock";
+            this.Stock.ReadOnly = true;
+            this.Stock.Width = 60;
             // 
             // fechaVencimientoDataGridViewTextBoxColumn
             // 
@@ -347,32 +307,33 @@
             this.fechaVencimientoDataGridViewTextBoxColumn.ReadOnly = true;
             this.fechaVencimientoDataGridViewTextBoxColumn.Width = 126;
             // 
-            // precioDataGridViewTextBoxColumn
+            // Precio
             // 
-            this.precioDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.precioDataGridViewTextBoxColumn.DataPropertyName = "Precio";
-            this.precioDataGridViewTextBoxColumn.HeaderText = "Precio";
-            this.precioDataGridViewTextBoxColumn.Name = "precioDataGridViewTextBoxColumn";
-            this.precioDataGridViewTextBoxColumn.ReadOnly = true;
-            this.precioDataGridViewTextBoxColumn.Width = 62;
+            this.Precio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Precio.DataPropertyName = "Precio";
+            this.Precio.HeaderText = "Precio";
+            this.Precio.Name = "Precio";
+            this.Precio.ReadOnly = true;
+            this.Precio.Width = 62;
             // 
-            // dataGridViewTextBoxColumn1
+            // Tipo
             // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Tipo";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Tipo";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 53;
+            this.Tipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Tipo.DataPropertyName = "Tipo";
+            this.Tipo.HeaderText = "Tipo";
+            this.Tipo.Name = "Tipo";
+            this.Tipo.ReadOnly = true;
+            this.Tipo.Width = 53;
             // 
-            // visibilidadCodigoDataGridViewTextBoxColumn
+            // Visibilidad_Codigo
             // 
-            this.visibilidadCodigoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.visibilidadCodigoDataGridViewTextBoxColumn.DataPropertyName = "Visibilidad_Codigo";
-            this.visibilidadCodigoDataGridViewTextBoxColumn.HeaderText = "Visibilidad_Codigo";
-            this.visibilidadCodigoDataGridViewTextBoxColumn.Name = "visibilidadCodigoDataGridViewTextBoxColumn";
-            this.visibilidadCodigoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.visibilidadCodigoDataGridViewTextBoxColumn.Width = 117;
+            this.Visibilidad_Codigo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Visibilidad_Codigo.DataPropertyName = "Visibilidad_Codigo";
+            this.Visibilidad_Codigo.HeaderText = "Visibilidad_Codigo";
+            this.Visibilidad_Codigo.Name = "Visibilidad_Codigo";
+            this.Visibilidad_Codigo.ReadOnly = true;
+            this.Visibilidad_Codigo.Visible = false;
+            this.Visibilidad_Codigo.Width = 117;
             // 
             // visibilidadDescripcionDataGridViewTextBoxColumn
             // 
@@ -381,6 +342,7 @@
             this.visibilidadDescripcionDataGridViewTextBoxColumn.HeaderText = "Visibilidad_Descripcion";
             this.visibilidadDescripcionDataGridViewTextBoxColumn.Name = "visibilidadDescripcionDataGridViewTextBoxColumn";
             this.visibilidadDescripcionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.visibilidadDescripcionDataGridViewTextBoxColumn.Visible = false;
             this.visibilidadDescripcionDataGridViewTextBoxColumn.Width = 140;
             // 
             // dataGridViewTextBoxColumn2
@@ -390,16 +352,17 @@
             this.dataGridViewTextBoxColumn2.HeaderText = "Estado";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Visible = false;
             this.dataGridViewTextBoxColumn2.Width = 65;
             // 
-            // permitePreguntasDataGridViewCheckBoxColumn
+            // Permite_Preguntas
             // 
-            this.permitePreguntasDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.permitePreguntasDataGridViewCheckBoxColumn.DataPropertyName = "Permite_Preguntas";
-            this.permitePreguntasDataGridViewCheckBoxColumn.HeaderText = "Permite_Preguntas";
-            this.permitePreguntasDataGridViewCheckBoxColumn.Name = "permitePreguntasDataGridViewCheckBoxColumn";
-            this.permitePreguntasDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.permitePreguntasDataGridViewCheckBoxColumn.Width = 102;
+            this.Permite_Preguntas.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Permite_Preguntas.DataPropertyName = "Permite_Preguntas";
+            this.Permite_Preguntas.HeaderText = "Permite_Preguntas";
+            this.Permite_Preguntas.Name = "Permite_Preguntas";
+            this.Permite_Preguntas.ReadOnly = true;
+            this.Permite_Preguntas.Width = 102;
             // 
             // Preguntar
             // 
@@ -423,10 +386,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(973, 459);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonFin);
+            this.Controls.Add(this.buttonSiguiente);
+            this.Controls.Add(this.buttonAnterior);
+            this.Controls.Add(this.buttonPrincipio);
             this.Controls.Add(this.comboBoxRubros);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridViewPublicaciones);
@@ -440,8 +403,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPublicaciones)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.publicacionesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tl_PublicacionesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlRubrosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tl_PublicacionesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlRubrosBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -464,30 +427,26 @@
         private System.Windows.Forms.ComboBox comboBoxRubros;
         private System.Windows.Forms.BindingSource tlRubrosBindingSource1;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Publicaciones_RubrosTableAdapter tl_Publicaciones_RubrosTableAdapter;
-        private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ComprasTableAdapter tl_ComprasTableAdapter1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button buttonPrincipio;
+        private System.Windows.Forms.Button buttonAnterior;
+        private System.Windows.Forms.Button buttonSiguiente;
+        private System.Windows.Forms.Button buttonFin;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn estadoDataGridViewTextBoxColumn;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.PublicacionesTableAdapter publicacionesTableAdapter;
         private System.Windows.Forms.BindingSource publicacionesBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cliente_ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Empresa_ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Visibilidad_Codigo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codigoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn usuarioIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Usuario_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn descripcionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stockDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Stock;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaVencimientoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn precioDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn visibilidadCodigoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Visibilidad_Codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn visibilidadDescripcionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn permitePreguntasDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Permite_Preguntas;
         private System.Windows.Forms.DataGridViewButtonColumn Preguntar;
         private System.Windows.Forms.DataGridViewButtonColumn Comprar;
     }

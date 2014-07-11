@@ -121,11 +121,11 @@
     <Compile Include="Comprar-Ofertar\NuevaCompra.Designer.cs">
       <DependentUpon>NuevaCompra.cs</DependentUpon>
     </Compile>
-    <Compile Include="Comprar-Ofertar\NuevaSubasta.cs">
+    <Compile Include="Comprar-Ofertar\NuevaOferta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comprar-Ofertar\NuevaSubasta.Designer.cs">
-      <DependentUpon>NuevaSubasta.cs</DependentUpon>
+    <Compile Include="Comprar-Ofertar\NuevaOferta.Designer.cs">
+      <DependentUpon>NuevaOferta.cs</DependentUpon>
     </Compile>
     <Compile Include="Editar Publicacion\EditarPublicacion.cs">
       <SubType>Form</SubType>
@@ -228,8 +228,8 @@
     <EmbeddedResource Include="Comprar-Ofertar\NuevaCompra.resx">
       <DependentUpon>NuevaCompra.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Comprar-Ofertar\NuevaSubasta.resx">
-      <DependentUpon>NuevaSubasta.cs</DependentUpon>
+    <EmbeddedResource Include="Comprar-Ofertar\NuevaOferta.resx">
+      <DependentUpon>NuevaOferta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editar Publicacion\EditarPublicacion.resx">
       <DependentUpon>EditarPublicacion.cs</DependentUpon>
