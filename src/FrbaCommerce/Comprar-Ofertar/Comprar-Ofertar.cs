@@ -24,10 +24,18 @@ namespace FrbaCommerce.Comprar_Ofertar
             InitializeComponent();
         }
 
+        public void abrir(int user_ID)
+        {
+            UserID = user_ID;
+            //llenarPublicaciones();
+            this.ShowDialog();
+        }
+        /*
         public void setID(int user_ID)
         {
             UserID = user_ID;
         }
+        */
 
         private void tl_PublicacionesBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
@@ -42,6 +50,7 @@ namespace FrbaCommerce.Comprar_Ofertar
             //Cargo las tablas necesarias en los dataTable correspondientes, por motivos de performance
             //la tabla de publicaciones solo se cargará al momento de buscar una publicación
             this.tl_RubrosTableAdapter.Fill(this.gD1C2014DataSet.tl_Rubros);
+            llenarPublicaciones();
             //this.tl_Publicaciones_RubrosTableAdapter.Fill(this.gD1C2014DataSet.tl_Publicaciones_Rubros);
         }
 
@@ -64,13 +73,15 @@ namespace FrbaCommerce.Comprar_Ofertar
 
         private void llenarPublicaciones()
         {
+            this.publicacionesBindingSource.DataSource = 
+                this.publicacionesTableAdapter.GetDataByDistinctID(UserID,textBoxDescripcion.Text,(decimal)comboBoxRubros.SelectedValue,commons.getDate());
             //Aplica los filtros de descripción, rubro.
             //No muestra las publicaciones en estado borrador y finalizada
             //Aplica el criterio de visibilidad
-            this.tl_PublicacionesTableAdapter.FillByFilter(tablaTemporal, armarLike(textBoxDescripcion.Text), Convert.ToInt32(comboBoxRubros.SelectedValue));
-            QtyRegistros = Convert.ToInt32(tablaTemporal.Rows.Count);
+            //this.tl_PublicacionesTableAdapter.FillByFilter(tablaTemporal, armarLike(textBoxDescripcion.Text), Convert.ToInt32(comboBoxRubros.SelectedValue));
+            //QtyRegistros = Convert.ToInt32(tablaTemporal.Rows.Count);
             //Una vez que tengo la tabla filtrada llamo al método paginar
-            paginar(tablaTemporal);
+            //paginar(tablaTemporal);
         }
 
         private void paginar(GD1C2014DataSet.tl_PublicacionesDataTable unaTabla )
@@ -88,6 +99,7 @@ namespace FrbaCommerce.Comprar_Ofertar
         private void dataGridViewPublicaciones_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //Si quiero hacer una pregunta
+            
             if (e.ColumnIndex == 8)
             {
                 //Cargo en una fila (DataGridViewRow) el registro deseado

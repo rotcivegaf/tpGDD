@@ -34,10 +34,11 @@ namespace FrbaCommerce.Editar_Publicacion
 
         private void EditarPublicacion_Load(object sender, EventArgs e)
         {
-            this.tl_PublicacionesTableAdapter.FillByIDAndVisibilidad(tablaTemporal, userID);
-            QtyRegistros = Convert.ToInt32(tablaTemporal.Count);
+            this.publicacionesBindingSource.DataSource = this.publicacionesTableAdapter.GetDataByID(userID);
+            //this.tl_PublicacionesTableAdapter.FillByIDAndVisibilidad(tablaTemporal, userID);
+            //QtyRegistros = Convert.ToInt32(tablaTemporal.Count);
             //Paginamos esa tabla utilizando el paginador
-            paginar(tablaTemporal);
+            //paginar(tablaTemporal);
         }
 
         private void paginar(GD1C2014DataSet.tl_PublicacionesDataTable unaTabla)

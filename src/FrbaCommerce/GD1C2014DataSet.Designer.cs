@@ -83,6 +83,8 @@ namespace FrbaCommerce {
         
         private tl_Publicacion_TiposDataTable tabletl_Publicacion_Tipos;
         
+        private PublicacionesDataTable tablePublicaciones;
+        
         private global::System.Data.DataRelation relationfk_Compras_Publicacion;
         
         private global::System.Data.DataRelation relationfk_Facturas_Items_Compra;
@@ -241,6 +243,9 @@ namespace FrbaCommerce {
                 }
                 if ((ds.Tables["tl_Publicacion_Tipos"] != null)) {
                     base.Tables.Add(new tl_Publicacion_TiposDataTable(ds.Tables["tl_Publicacion_Tipos"]));
+                }
+                if ((ds.Tables["Publicaciones"] != null)) {
+                    base.Tables.Add(new PublicacionesDataTable(ds.Tables["Publicaciones"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -522,6 +527,15 @@ namespace FrbaCommerce {
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public PublicacionesDataTable Publicaciones {
+            get {
+                return this.tablePublicaciones;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -666,6 +680,9 @@ namespace FrbaCommerce {
                 }
                 if ((ds.Tables["tl_Publicacion_Tipos"] != null)) {
                     base.Tables.Add(new tl_Publicacion_TiposDataTable(ds.Tables["tl_Publicacion_Tipos"]));
+                }
+                if ((ds.Tables["Publicaciones"] != null)) {
+                    base.Tables.Add(new PublicacionesDataTable(ds.Tables["Publicaciones"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -871,6 +888,12 @@ namespace FrbaCommerce {
                     this.tabletl_Publicacion_Tipos.InitVars();
                 }
             }
+            this.tablePublicaciones = ((PublicacionesDataTable)(base.Tables["Publicaciones"]));
+            if ((initTable == true)) {
+                if ((this.tablePublicaciones != null)) {
+                    this.tablePublicaciones.InitVars();
+                }
+            }
             this.relationfk_Compras_Publicacion = this.Relations["fk_Compras_Publicacion"];
             this.relationfk_Facturas_Items_Compra = this.Relations["fk_Facturas_Items_Compra"];
             this.relationfk_Facturas_Items_Factura = this.Relations["fk_Facturas_Items_Factura"];
@@ -961,6 +984,8 @@ namespace FrbaCommerce {
             base.Tables.Add(this.tabletl_Publicacion_Estados);
             this.tabletl_Publicacion_Tipos = new tl_Publicacion_TiposDataTable();
             base.Tables.Add(this.tabletl_Publicacion_Tipos);
+            this.tablePublicaciones = new PublicacionesDataTable();
+            base.Tables.Add(this.tablePublicaciones);
             this.relationfk_Compras_Publicacion = new global::System.Data.DataRelation("fk_Compras_Publicacion", new global::System.Data.DataColumn[] {
                         this.tabletl_Publicaciones.CodigoColumn}, new global::System.Data.DataColumn[] {
                         this.tabletl_Compras.Publicacion_CodigoColumn}, false);
@@ -1201,6 +1226,11 @@ namespace FrbaCommerce {
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private bool ShouldSerializePublicaciones() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void SchemaChanged(object sender, global::System.ComponentModel.CollectionChangeEventArgs e) {
             if ((e.Action == global::System.ComponentModel.CollectionChangeAction.Remove)) {
                 this.InitVars();
@@ -1310,6 +1340,8 @@ namespace FrbaCommerce {
         public delegate void tl_Publicacion_EstadosRowChangeEventHandler(object sender, tl_Publicacion_EstadosRowChangeEvent e);
         
         public delegate void tl_Publicacion_TiposRowChangeEventHandler(object sender, tl_Publicacion_TiposRowChangeEvent e);
+        
+        public delegate void PublicacionesRowChangeEventHandler(object sender, PublicacionesRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -9842,6 +9874,392 @@ namespace FrbaCommerce {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class PublicacionesDataTable : global::System.Data.TypedTableBase<PublicacionesRow> {
+            
+            private global::System.Data.DataColumn columnCodigo;
+            
+            private global::System.Data.DataColumn columnUsuario_ID;
+            
+            private global::System.Data.DataColumn columnDescripcion;
+            
+            private global::System.Data.DataColumn columnFecha;
+            
+            private global::System.Data.DataColumn columnStock;
+            
+            private global::System.Data.DataColumn columnFecha_Vencimiento;
+            
+            private global::System.Data.DataColumn columnPrecio;
+            
+            private global::System.Data.DataColumn columnTipo;
+            
+            private global::System.Data.DataColumn columnVisibilidad_Codigo;
+            
+            private global::System.Data.DataColumn columnVisibilidad_Descripcion;
+            
+            private global::System.Data.DataColumn columnEstado;
+            
+            private global::System.Data.DataColumn columnPermite_Preguntas;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public PublicacionesDataTable() {
+                this.TableName = "Publicaciones";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal PublicacionesDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected PublicacionesDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn CodigoColumn {
+                get {
+                    return this.columnCodigo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Usuario_IDColumn {
+                get {
+                    return this.columnUsuario_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn DescripcionColumn {
+                get {
+                    return this.columnDescripcion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn FechaColumn {
+                get {
+                    return this.columnFecha;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn StockColumn {
+                get {
+                    return this.columnStock;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Fecha_VencimientoColumn {
+                get {
+                    return this.columnFecha_Vencimiento;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn PrecioColumn {
+                get {
+                    return this.columnPrecio;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn TipoColumn {
+                get {
+                    return this.columnTipo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Visibilidad_CodigoColumn {
+                get {
+                    return this.columnVisibilidad_Codigo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Visibilidad_DescripcionColumn {
+                get {
+                    return this.columnVisibilidad_Descripcion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn EstadoColumn {
+                get {
+                    return this.columnEstado;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Permite_PreguntasColumn {
+                get {
+                    return this.columnPermite_Preguntas;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public PublicacionesRow this[int index] {
+                get {
+                    return ((PublicacionesRow)(this.Rows[index]));
+                }
+            }
+            
+            public event PublicacionesRowChangeEventHandler PublicacionesRowChanging;
+            
+            public event PublicacionesRowChangeEventHandler PublicacionesRowChanged;
+            
+            public event PublicacionesRowChangeEventHandler PublicacionesRowDeleting;
+            
+            public event PublicacionesRowChangeEventHandler PublicacionesRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void AddPublicacionesRow(PublicacionesRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public PublicacionesRow AddPublicacionesRow(decimal Usuario_ID, string Descripcion, System.DateTime Fecha, decimal Stock, System.DateTime Fecha_Vencimiento, decimal Precio, string Tipo, decimal Visibilidad_Codigo, string Visibilidad_Descripcion, string Estado, bool Permite_Preguntas) {
+                PublicacionesRow rowPublicacionesRow = ((PublicacionesRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        Usuario_ID,
+                        Descripcion,
+                        Fecha,
+                        Stock,
+                        Fecha_Vencimiento,
+                        Precio,
+                        Tipo,
+                        Visibilidad_Codigo,
+                        Visibilidad_Descripcion,
+                        Estado,
+                        Permite_Preguntas};
+                rowPublicacionesRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowPublicacionesRow);
+                return rowPublicacionesRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public override global::System.Data.DataTable Clone() {
+                PublicacionesDataTable cln = ((PublicacionesDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new PublicacionesDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal void InitVars() {
+                this.columnCodigo = base.Columns["Codigo"];
+                this.columnUsuario_ID = base.Columns["Usuario_ID"];
+                this.columnDescripcion = base.Columns["Descripcion"];
+                this.columnFecha = base.Columns["Fecha"];
+                this.columnStock = base.Columns["Stock"];
+                this.columnFecha_Vencimiento = base.Columns["Fecha_Vencimiento"];
+                this.columnPrecio = base.Columns["Precio"];
+                this.columnTipo = base.Columns["Tipo"];
+                this.columnVisibilidad_Codigo = base.Columns["Visibilidad_Codigo"];
+                this.columnVisibilidad_Descripcion = base.Columns["Visibilidad_Descripcion"];
+                this.columnEstado = base.Columns["Estado"];
+                this.columnPermite_Preguntas = base.Columns["Permite_Preguntas"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            private void InitClass() {
+                this.columnCodigo = new global::System.Data.DataColumn("Codigo", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCodigo);
+                this.columnUsuario_ID = new global::System.Data.DataColumn("Usuario_ID", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUsuario_ID);
+                this.columnDescripcion = new global::System.Data.DataColumn("Descripcion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDescripcion);
+                this.columnFecha = new global::System.Data.DataColumn("Fecha", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFecha);
+                this.columnStock = new global::System.Data.DataColumn("Stock", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStock);
+                this.columnFecha_Vencimiento = new global::System.Data.DataColumn("Fecha_Vencimiento", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFecha_Vencimiento);
+                this.columnPrecio = new global::System.Data.DataColumn("Precio", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPrecio);
+                this.columnTipo = new global::System.Data.DataColumn("Tipo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTipo);
+                this.columnVisibilidad_Codigo = new global::System.Data.DataColumn("Visibilidad_Codigo", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVisibilidad_Codigo);
+                this.columnVisibilidad_Descripcion = new global::System.Data.DataColumn("Visibilidad_Descripcion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVisibilidad_Descripcion);
+                this.columnEstado = new global::System.Data.DataColumn("Estado", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEstado);
+                this.columnPermite_Preguntas = new global::System.Data.DataColumn("Permite_Preguntas", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPermite_Preguntas);
+                this.columnCodigo.AutoIncrement = true;
+                this.columnCodigo.AutoIncrementSeed = -1;
+                this.columnCodigo.AutoIncrementStep = -1;
+                this.columnCodigo.AllowDBNull = false;
+                this.columnCodigo.ReadOnly = true;
+                this.columnUsuario_ID.AllowDBNull = false;
+                this.columnDescripcion.AllowDBNull = false;
+                this.columnDescripcion.MaxLength = 255;
+                this.columnFecha.AllowDBNull = false;
+                this.columnStock.AllowDBNull = false;
+                this.columnFecha_Vencimiento.AllowDBNull = false;
+                this.columnPrecio.AllowDBNull = false;
+                this.columnTipo.AllowDBNull = false;
+                this.columnTipo.MaxLength = 50;
+                this.columnVisibilidad_Codigo.AllowDBNull = false;
+                this.columnVisibilidad_Descripcion.AllowDBNull = false;
+                this.columnVisibilidad_Descripcion.MaxLength = 255;
+                this.columnEstado.AllowDBNull = false;
+                this.columnEstado.MaxLength = 50;
+                this.columnPermite_Preguntas.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public PublicacionesRow NewPublicacionesRow() {
+                return ((PublicacionesRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new PublicacionesRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Type GetRowType() {
+                return typeof(PublicacionesRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.PublicacionesRowChanged != null)) {
+                    this.PublicacionesRowChanged(this, new PublicacionesRowChangeEvent(((PublicacionesRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.PublicacionesRowChanging != null)) {
+                    this.PublicacionesRowChanging(this, new PublicacionesRowChangeEvent(((PublicacionesRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.PublicacionesRowDeleted != null)) {
+                    this.PublicacionesRowDeleted(this, new PublicacionesRowChangeEvent(((PublicacionesRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.PublicacionesRowDeleting != null)) {
+                    this.PublicacionesRowDeleting(this, new PublicacionesRowChangeEvent(((PublicacionesRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void RemovePublicacionesRow(PublicacionesRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                GD1C2014DataSet ds = new GD1C2014DataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "PublicacionesDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
@@ -12696,6 +13114,141 @@ namespace FrbaCommerce {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public partial class PublicacionesRow : global::System.Data.DataRow {
+            
+            private PublicacionesDataTable tablePublicaciones;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal PublicacionesRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablePublicaciones = ((PublicacionesDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public decimal Codigo {
+                get {
+                    return ((decimal)(this[this.tablePublicaciones.CodigoColumn]));
+                }
+                set {
+                    this[this.tablePublicaciones.CodigoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public decimal Usuario_ID {
+                get {
+                    return ((decimal)(this[this.tablePublicaciones.Usuario_IDColumn]));
+                }
+                set {
+                    this[this.tablePublicaciones.Usuario_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Descripcion {
+                get {
+                    return ((string)(this[this.tablePublicaciones.DescripcionColumn]));
+                }
+                set {
+                    this[this.tablePublicaciones.DescripcionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public System.DateTime Fecha {
+                get {
+                    return ((global::System.DateTime)(this[this.tablePublicaciones.FechaColumn]));
+                }
+                set {
+                    this[this.tablePublicaciones.FechaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public decimal Stock {
+                get {
+                    return ((decimal)(this[this.tablePublicaciones.StockColumn]));
+                }
+                set {
+                    this[this.tablePublicaciones.StockColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public System.DateTime Fecha_Vencimiento {
+                get {
+                    return ((global::System.DateTime)(this[this.tablePublicaciones.Fecha_VencimientoColumn]));
+                }
+                set {
+                    this[this.tablePublicaciones.Fecha_VencimientoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public decimal Precio {
+                get {
+                    return ((decimal)(this[this.tablePublicaciones.PrecioColumn]));
+                }
+                set {
+                    this[this.tablePublicaciones.PrecioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Tipo {
+                get {
+                    return ((string)(this[this.tablePublicaciones.TipoColumn]));
+                }
+                set {
+                    this[this.tablePublicaciones.TipoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public decimal Visibilidad_Codigo {
+                get {
+                    return ((decimal)(this[this.tablePublicaciones.Visibilidad_CodigoColumn]));
+                }
+                set {
+                    this[this.tablePublicaciones.Visibilidad_CodigoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Visibilidad_Descripcion {
+                get {
+                    return ((string)(this[this.tablePublicaciones.Visibilidad_DescripcionColumn]));
+                }
+                set {
+                    this[this.tablePublicaciones.Visibilidad_DescripcionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Estado {
+                get {
+                    return ((string)(this[this.tablePublicaciones.EstadoColumn]));
+                }
+                set {
+                    this[this.tablePublicaciones.EstadoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool Permite_Preguntas {
+                get {
+                    return ((bool)(this[this.tablePublicaciones.Permite_PreguntasColumn]));
+                }
+                set {
+                    this[this.tablePublicaciones.Permite_PreguntasColumn] = value;
+                }
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
@@ -13581,6 +14134,37 @@ namespace FrbaCommerce {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public tl_Publicacion_TiposRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class PublicacionesRowChangeEvent : global::System.EventArgs {
+            
+            private PublicacionesRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public PublicacionesRowChangeEvent(PublicacionesRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public PublicacionesRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -24281,6 +24865,227 @@ SELECT ID, Tipo, Habilitado FROM LOL.tl_Publicacion_Tipos WHERE (ID = @ID)";
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class PublicacionesTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public PublicacionesTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "Publicaciones";
+            tableMapping.ColumnMappings.Add("Codigo", "Codigo");
+            tableMapping.ColumnMappings.Add("Usuario_ID", "Usuario_ID");
+            tableMapping.ColumnMappings.Add("Descripcion", "Descripcion");
+            tableMapping.ColumnMappings.Add("Fecha", "Fecha");
+            tableMapping.ColumnMappings.Add("Stock", "Stock");
+            tableMapping.ColumnMappings.Add("Fecha_Vencimiento", "Fecha_Vencimiento");
+            tableMapping.ColumnMappings.Add("Precio", "Precio");
+            tableMapping.ColumnMappings.Add("Tipo", "Tipo");
+            tableMapping.ColumnMappings.Add("Visibilidad_Codigo", "Visibilidad_Codigo");
+            tableMapping.ColumnMappings.Add("Visibilidad_Descripcion", "Visibilidad_Descripcion");
+            tableMapping.ColumnMappings.Add("Estado", "Estado");
+            tableMapping.ColumnMappings.Add("Permite_Preguntas", "Permite_Preguntas");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::FrbaCommerce.Properties.Settings.Default.GD1C2014ConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = @"SELECT     LOL.tl_Publicaciones.Codigo, LOL.tl_Publicaciones.Usuario_ID, LOL.tl_Publicaciones.Descripcion, LOL.tl_Publicaciones.Fecha, 
+                      LOL.tl_Publicaciones.Stock, LOL.tl_Publicaciones.Fecha_Vencimiento, LOL.tl_Publicaciones.Precio, LOL.tl_Publicacion_Tipos.Tipo, 
+                      LOL.tl_Visibilidades.Codigo AS Visibilidad_Codigo, LOL.tl_Visibilidades.Descripcion AS Visibilidad_Descripcion, LOL.tl_Publicacion_Estados.Estado, 
+                      LOL.tl_Publicaciones.Permite_Preguntas
+FROM         LOL.tl_Publicaciones INNER JOIN
+                      LOL.tl_Publicacion_Tipos ON LOL.tl_Publicaciones.Tipo_ID = LOL.tl_Publicacion_Tipos.ID INNER JOIN
+                      LOL.tl_Publicacion_Estados ON LOL.tl_Publicaciones.Estado_ID = LOL.tl_Publicacion_Estados.ID INNER JOIN
+                      LOL.tl_Visibilidades ON LOL.tl_Publicaciones.Visibilidad_Codigo = LOL.tl_Visibilidades.Codigo";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"SELECT     P.Codigo, P.Usuario_ID, P.Descripcion, P.Fecha, P.Stock, P.Fecha_Vencimiento, P.Precio, T.Tipo, V.Codigo AS Visibilidad_Codigo, 
+                      V.Descripcion AS Visibilidad_Descripcion, E.Estado, P.Permite_Preguntas
+FROM         LOL.tl_Publicaciones AS P INNER JOIN
+                      LOL.tl_Publicacion_Tipos AS T ON P.Tipo_ID = T.ID INNER JOIN
+                      LOL.tl_Publicacion_Estados AS E ON P.Estado_ID = E.ID INNER JOIN
+                      LOL.tl_Visibilidades AS V ON P.Visibilidad_Codigo = V.Codigo INNER JOIN
+                      LOL.tl_Publicaciones_Rubros AS PR ON P.Codigo = PR.Publicacion_Codigo
+WHERE     (P.Usuario_ID <> @Usuario_ID) AND (P.Descripcion LIKE '%' + @Descripcion + '%') AND (PR.Rubro_ID = @Rubro_ID) AND (E.Estado = 'Publicada') AND 
+                      (P.Fecha_Vencimiento <= @FechaActual)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Usuario_ID", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, "Usuario_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Descripcion", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "Descripcion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Rubro_ID", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, "Rubro_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaActual", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "Fecha_Vencimiento", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = @"SELECT     P.Codigo, P.Usuario_ID, P.Descripcion, P.Fecha, P.Stock, P.Fecha_Vencimiento, P.Precio, T.Tipo, V.Codigo AS Visibilidad_Codigo, 
+                      V.Descripcion AS Visibilidad_Descripcion, E.Estado, P.Permite_Preguntas
+FROM         LOL.tl_Publicaciones AS P INNER JOIN
+                      LOL.tl_Publicacion_Tipos AS T ON P.Tipo_ID = T.ID INNER JOIN
+                      LOL.tl_Publicacion_Estados AS E ON P.Estado_ID = E.ID INNER JOIN
+                      LOL.tl_Visibilidades AS V ON P.Visibilidad_Codigo = V.Codigo INNER JOIN
+                      LOL.tl_Publicaciones_Rubros AS PR ON P.Codigo = PR.Publicacion_Codigo
+WHERE     (P.Usuario_ID = @Usuario_ID)";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Usuario_ID", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, "Usuario_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual GD1C2014DataSet.PublicacionesDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            GD1C2014DataSet.PublicacionesDataTable dataTable = new GD1C2014DataSet.PublicacionesDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual GD1C2014DataSet.PublicacionesDataTable GetDataByDistinctID(decimal Usuario_ID, string Descripcion, decimal Rubro_ID, System.DateTime FechaActual) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(Usuario_ID));
+            if ((Descripcion == null)) {
+                throw new global::System.ArgumentNullException("Descripcion");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(Descripcion));
+            }
+            this.Adapter.SelectCommand.Parameters[2].Value = ((decimal)(Rubro_ID));
+            this.Adapter.SelectCommand.Parameters[3].Value = ((System.DateTime)(FechaActual));
+            GD1C2014DataSet.PublicacionesDataTable dataTable = new GD1C2014DataSet.PublicacionesDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual GD1C2014DataSet.PublicacionesDataTable GetDataByID(decimal Usuario_ID) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(Usuario_ID));
+            GD1C2014DataSet.PublicacionesDataTable dataTable = new GD1C2014DataSet.PublicacionesDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
     public partial class QueriesTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.IDbCommand[] _commandCollection;
@@ -25095,15 +25900,6 @@ SELECT ID, Tipo, Habilitado FROM LOL.tl_Publicacion_Tipos WHERE (ID = @ID)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._tl_VisibilidadesTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.tl_Visibilidades.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tl_VisibilidadesTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._tl_Publicacion_EstadosTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.tl_Publicacion_Estados.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -25122,21 +25918,21 @@ SELECT ID, Tipo, Habilitado FROM LOL.tl_Publicacion_Tipos WHERE (ID = @ID)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._tl_VisibilidadesTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.tl_Visibilidades.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._tl_VisibilidadesTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._tl_PublicacionesTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.tl_Publicaciones.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._tl_PublicacionesTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._tl_ComprasTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.tl_Compras.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tl_ComprasTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -25155,6 +25951,15 @@ SELECT ID, Tipo, Habilitado FROM LOL.tl_Publicacion_Tipos WHERE (ID = @ID)";
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._tl_RubrosTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._tl_ComprasTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.tl_Compras.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._tl_ComprasTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -25185,12 +25990,12 @@ SELECT ID, Tipo, Habilitado FROM LOL.tl_Publicacion_Tipos WHERE (ID = @ID)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._tl_ClientesTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.tl_Clientes.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._tl_PendientesTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.tl_Pendientes.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._tl_ClientesTableAdapter.Update(updatedRows));
+                    result = (result + this._tl_PendientesTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -25203,21 +26008,21 @@ SELECT ID, Tipo, Habilitado FROM LOL.tl_Publicacion_Tipos WHERE (ID = @ID)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._tl_Publicaciones_RubrosTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.tl_Publicaciones_Rubros.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._tl_OfertasTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.tl_Ofertas.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._tl_Publicaciones_RubrosTableAdapter.Update(updatedRows));
+                    result = (result + this._tl_OfertasTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._tl_PendientesTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.tl_Pendientes.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._tl_EmpresasTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.tl_Empresas.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._tl_PendientesTableAdapter.Update(updatedRows));
+                    result = (result + this._tl_EmpresasTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -25230,12 +26035,12 @@ SELECT ID, Tipo, Habilitado FROM LOL.tl_Publicacion_Tipos WHERE (ID = @ID)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._tl_OfertasTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.tl_Ofertas.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._tl_Publicaciones_RubrosTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.tl_Publicaciones_Rubros.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._tl_OfertasTableAdapter.Update(updatedRows));
+                    result = (result + this._tl_Publicaciones_RubrosTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -25257,12 +26062,12 @@ SELECT ID, Tipo, Habilitado FROM LOL.tl_Publicacion_Tipos WHERE (ID = @ID)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._tl_EmpresasTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.tl_Empresas.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._tl_ClientesTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.tl_Clientes.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._tl_EmpresasTableAdapter.Update(updatedRows));
+                    result = (result + this._tl_ClientesTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -25283,14 +26088,6 @@ SELECT ID, Tipo, Habilitado FROM LOL.tl_Publicacion_Tipos WHERE (ID = @ID)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._tl_VisibilidadesTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.tl_Visibilidades.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tl_VisibilidadesTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._tl_Publicacion_EstadosTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.tl_Publicacion_Estados.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -25307,19 +26104,19 @@ SELECT ID, Tipo, Habilitado FROM LOL.tl_Publicacion_Tipos WHERE (ID = @ID)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._tl_VisibilidadesTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.tl_Visibilidades.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._tl_VisibilidadesTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._tl_PublicacionesTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.tl_Publicaciones.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._tl_PublicacionesTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._tl_ComprasTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.tl_Compras.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tl_ComprasTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -25336,6 +26133,14 @@ SELECT ID, Tipo, Habilitado FROM LOL.tl_Publicacion_Tipos WHERE (ID = @ID)";
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._tl_RubrosTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._tl_ComprasTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.tl_Compras.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._tl_ComprasTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -25363,11 +26168,11 @@ SELECT ID, Tipo, Habilitado FROM LOL.tl_Publicacion_Tipos WHERE (ID = @ID)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._tl_ClientesTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.tl_Clientes.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._tl_PendientesTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.tl_Pendientes.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._tl_ClientesTableAdapter.Update(addedRows));
+                    result = (result + this._tl_PendientesTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -25379,19 +26184,19 @@ SELECT ID, Tipo, Habilitado FROM LOL.tl_Publicacion_Tipos WHERE (ID = @ID)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._tl_Publicaciones_RubrosTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.tl_Publicaciones_Rubros.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._tl_OfertasTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.tl_Ofertas.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._tl_Publicaciones_RubrosTableAdapter.Update(addedRows));
+                    result = (result + this._tl_OfertasTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._tl_PendientesTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.tl_Pendientes.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._tl_EmpresasTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.tl_Empresas.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._tl_PendientesTableAdapter.Update(addedRows));
+                    result = (result + this._tl_EmpresasTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -25403,11 +26208,11 @@ SELECT ID, Tipo, Habilitado FROM LOL.tl_Publicacion_Tipos WHERE (ID = @ID)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._tl_OfertasTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.tl_Ofertas.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._tl_Publicaciones_RubrosTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.tl_Publicaciones_Rubros.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._tl_OfertasTableAdapter.Update(addedRows));
+                    result = (result + this._tl_Publicaciones_RubrosTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -25427,11 +26232,11 @@ SELECT ID, Tipo, Habilitado FROM LOL.tl_Publicacion_Tipos WHERE (ID = @ID)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._tl_EmpresasTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.tl_Empresas.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._tl_ClientesTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.tl_Clientes.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._tl_EmpresasTableAdapter.Update(addedRows));
+                    result = (result + this._tl_ClientesTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -25444,11 +26249,11 @@ SELECT ID, Tipo, Habilitado FROM LOL.tl_Publicacion_Tipos WHERE (ID = @ID)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private int UpdateDeletedRows(GD1C2014DataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._tl_EmpresasTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.tl_Empresas.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._tl_ClientesTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.tl_Clientes.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._tl_EmpresasTableAdapter.Update(deletedRows));
+                    result = (result + this._tl_ClientesTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -25468,11 +26273,11 @@ SELECT ID, Tipo, Habilitado FROM LOL.tl_Publicacion_Tipos WHERE (ID = @ID)";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._tl_OfertasTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.tl_Ofertas.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._tl_Publicaciones_RubrosTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.tl_Publicaciones_Rubros.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._tl_OfertasTableAdapter.Update(deletedRows));
+                    result = (result + this._tl_Publicaciones_RubrosTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -25484,19 +26289,19 @@ SELECT ID, Tipo, Habilitado FROM LOL.tl_Publicacion_Tipos WHERE (ID = @ID)";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._tl_PendientesTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.tl_Pendientes.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._tl_EmpresasTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.tl_Empresas.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._tl_PendientesTableAdapter.Update(deletedRows));
+                    result = (result + this._tl_EmpresasTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._tl_Publicaciones_RubrosTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.tl_Publicaciones_Rubros.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._tl_OfertasTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.tl_Ofertas.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._tl_Publicaciones_RubrosTableAdapter.Update(deletedRows));
+                    result = (result + this._tl_OfertasTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -25508,11 +26313,11 @@ SELECT ID, Tipo, Habilitado FROM LOL.tl_Publicacion_Tipos WHERE (ID = @ID)";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._tl_ClientesTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.tl_Clientes.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._tl_PendientesTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.tl_Pendientes.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._tl_ClientesTableAdapter.Update(deletedRows));
+                    result = (result + this._tl_PendientesTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -25540,6 +26345,14 @@ SELECT ID, Tipo, Habilitado FROM LOL.tl_Publicacion_Tipos WHERE (ID = @ID)";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
+            if ((this._tl_ComprasTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.tl_Compras.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._tl_ComprasTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._tl_RubrosTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.tl_Rubros.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -25556,19 +26369,19 @@ SELECT ID, Tipo, Habilitado FROM LOL.tl_Publicacion_Tipos WHERE (ID = @ID)";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._tl_ComprasTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.tl_Compras.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._tl_ComprasTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._tl_PublicacionesTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.tl_Publicaciones.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._tl_PublicacionesTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._tl_VisibilidadesTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.tl_Visibilidades.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._tl_VisibilidadesTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -25585,14 +26398,6 @@ SELECT ID, Tipo, Habilitado FROM LOL.tl_Publicacion_Tipos WHERE (ID = @ID)";
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._tl_Publicacion_EstadosTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._tl_VisibilidadesTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.tl_Visibilidades.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._tl_VisibilidadesTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }

@@ -84,7 +84,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numericUpDownOferta);
             this.Name = "NuevaSubasta";
-            this.Text = "NuevaOferta";
+            this.Text = "Nueva Oferta";
             this.Load += new System.EventHandler(this.NuevaSubasta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOferta)).EndInit();
             this.ResumeLayout(false);

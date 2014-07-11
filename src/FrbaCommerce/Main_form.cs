@@ -133,8 +133,9 @@ namespace FrbaCommerce
         private void button3_Click_1(object sender, EventArgs e)
         {
             Comprar_Ofertar.Comprar_Ofertar frame = new Comprar_Ofertar.Comprar_Ofertar();
-            frame.setID(usuario_ID);
-            frame.ShowDialog();
+            //frame.setID(usuario_ID);
+            //frame.ShowDialog();
+            frame.abrir(usuario_ID);
         }
 
         private void btnListadoEstadistico_Click(object sender, EventArgs e)

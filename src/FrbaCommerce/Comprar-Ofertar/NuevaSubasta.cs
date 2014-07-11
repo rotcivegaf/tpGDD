@@ -44,7 +44,7 @@ namespace FrbaCommerce.Comprar_Ofertar
             this.buttonOfertar.Enabled = false;
             this.numericUpDownOferta.Enabled = false;
             MessageBox.Show ("Oferta creada");
-            
+            this.Close();
         }
 
     }
