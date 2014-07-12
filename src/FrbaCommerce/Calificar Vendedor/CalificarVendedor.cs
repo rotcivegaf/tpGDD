@@ -13,19 +13,28 @@ namespace FrbaCommerce.Calificar_Vendedor
     {
         int usuario_ID;
         int compra_ID;
+        bool debeCalificarTodo;
 
         public CalificarVendedor()
         {
             InitializeComponent();
         }
         
-        public void abrir(int user_ID)
+        public void abrir(int user_ID,bool debe_Calificar_Todo)
         {
             usuario_ID = user_ID;
+            debeCalificarTodo = debe_Calificar_Todo;
+
             this.ShowDialog();
         }
 
         private void CalificarVendedor_Load(object sender, EventArgs e) { llenarGrid(); }
+
+        void CalificarVendedor_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        {
+            if (debeCalificarTodo && dgvCompras.Rows.Count > 0)
+                e.Cancel = true;
+        }
 
         private void llenarGrid()
         {

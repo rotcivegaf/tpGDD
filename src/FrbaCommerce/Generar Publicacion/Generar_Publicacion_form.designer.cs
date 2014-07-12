@@ -129,7 +129,7 @@
             this.dateTimePickerFechaInicio.Location = new System.Drawing.Point(136, 96);
             this.dateTimePickerFechaInicio.Name = "dateTimePickerFechaInicio";
             this.dateTimePickerFechaInicio.Size = new System.Drawing.Size(195, 20);
-            this.dateTimePickerFechaInicio.TabIndex = 8;
+            this.dateTimePickerFechaInicio.TabIndex = 2;
             this.dateTimePickerFechaInicio.ValueChanged += new System.EventHandler(this.dateTimePickerFechaInicio_ValueChanged);
             // 
             // label5
@@ -166,7 +166,7 @@
             0});
             this.numericUpDownPrecio.Name = "numericUpDownPrecio";
             this.numericUpDownPrecio.Size = new System.Drawing.Size(123, 20);
-            this.numericUpDownPrecio.TabIndex = 13;
+            this.numericUpDownPrecio.TabIndex = 4;
             // 
             // label7
             // 
@@ -187,7 +187,7 @@
             this.comboBoxVisiblidad.Location = new System.Drawing.Point(140, 308);
             this.comboBoxVisiblidad.Name = "comboBoxVisiblidad";
             this.comboBoxVisiblidad.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxVisiblidad.TabIndex = 15;
+            this.comboBoxVisiblidad.TabIndex = 6;
             this.comboBoxVisiblidad.ValueMember = "Codigo";
             this.comboBoxVisiblidad.SelectedIndexChanged += new System.EventHandler(this.comboBoxVisiblidad_SelectedIndexChanged);
             // 
@@ -210,7 +210,7 @@
             this.comboBoxTipoDePublicacion.Location = new System.Drawing.Point(140, 345);
             this.comboBoxTipoDePublicacion.Name = "comboBoxTipoDePublicacion";
             this.comboBoxTipoDePublicacion.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxTipoDePublicacion.TabIndex = 17;
+            this.comboBoxTipoDePublicacion.TabIndex = 7;
             this.comboBoxTipoDePublicacion.ValueMember = "ID";
             // 
             // tlPublicacionTiposBindingSource
@@ -238,10 +238,10 @@
             // 
             // Guardar
             // 
-            this.Guardar.Location = new System.Drawing.Point(634, 422);
+            this.Guardar.Location = new System.Drawing.Point(418, 430);
             this.Guardar.Name = "Guardar";
             this.Guardar.Size = new System.Drawing.Size(70, 28);
-            this.Guardar.TabIndex = 20;
+            this.Guardar.TabIndex = 10;
             this.Guardar.Text = "Guardar";
             this.Guardar.UseVisualStyleBackColor = true;
             this.Guardar.Click += new System.EventHandler(this.Guardar_Click);
@@ -269,7 +269,7 @@
             this.numericUpDownStock.Location = new System.Drawing.Point(136, 63);
             this.numericUpDownStock.Name = "numericUpDownStock";
             this.numericUpDownStock.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDownStock.TabIndex = 22;
+            this.numericUpDownStock.TabIndex = 1;
             this.numericUpDownStock.Value = new decimal(new int[] {
             1,
             0,
@@ -285,7 +285,7 @@
             this.comboBoxEstadoDeLaPublicacion.Location = new System.Drawing.Point(138, 383);
             this.comboBoxEstadoDeLaPublicacion.Name = "comboBoxEstadoDeLaPublicacion";
             this.comboBoxEstadoDeLaPublicacion.Size = new System.Drawing.Size(123, 21);
-            this.comboBoxEstadoDeLaPublicacion.TabIndex = 24;
+            this.comboBoxEstadoDeLaPublicacion.TabIndex = 8;
             this.comboBoxEstadoDeLaPublicacion.ValueMember = "ID";
             // 
             // tlPublicacionEstadosBindingSource
@@ -308,7 +308,7 @@
             this.checkBoxAceptaPreguntas.Location = new System.Drawing.Point(141, 422);
             this.checkBoxAceptaPreguntas.Name = "checkBoxAceptaPreguntas";
             this.checkBoxAceptaPreguntas.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxAceptaPreguntas.TabIndex = 25;
+            this.checkBoxAceptaPreguntas.TabIndex = 9;
             this.checkBoxAceptaPreguntas.UseVisualStyleBackColor = true;
             // 
             // dateTimePickerFechaVencimiento
@@ -317,7 +317,8 @@
             this.dateTimePickerFechaVencimiento.Location = new System.Drawing.Point(136, 130);
             this.dateTimePickerFechaVencimiento.Name = "dateTimePickerFechaVencimiento";
             this.dateTimePickerFechaVencimiento.Size = new System.Drawing.Size(195, 20);
-            this.dateTimePickerFechaVencimiento.TabIndex = 26;
+            this.dateTimePickerFechaVencimiento.TabIndex = 3;
+            this.dateTimePickerFechaVencimiento.TabStop = false;
             // 
             // listBoxRubro
             // 
@@ -328,7 +329,7 @@
             this.listBoxRubro.Name = "listBoxRubro";
             this.listBoxRubro.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.listBoxRubro.Size = new System.Drawing.Size(123, 95);
-            this.listBoxRubro.TabIndex = 27;
+            this.listBoxRubro.TabIndex = 5;
             this.listBoxRubro.ValueMember = "ID";
             // 
             // tlRubrosBindingSource
@@ -398,7 +399,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(738, 470);
+            this.ClientSize = new System.Drawing.Size(500, 470);
             this.Controls.Add(this.listBoxRubro);
             this.Controls.Add(this.dateTimePickerFechaVencimiento);
             this.Controls.Add(this.checkBoxAceptaPreguntas);

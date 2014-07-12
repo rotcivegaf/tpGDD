@@ -34,12 +34,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.tl_ClientesyEmpresasDataGridView = new System.Windows.Forms.DataGridView();
-            this.tl_ClientesyEmpresasBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
-            this.tl_ClientesyEmpresasTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ClientesyEmpresasTableAdapter();
-            this.tableAdapterManager = new FrbaCommerce.GD1C2014DataSetTableAdapters.TableAdapterManager();
-            this.tl_ComprasTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ComprasTableAdapter();
-            this.tl_VisibilidadesTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_VisibilidadesTableAdapter();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.apellidoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,6 +44,12 @@
             this.deptoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codPostalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.telefonoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tl_ClientesyEmpresasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
+            this.tl_ClientesyEmpresasTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ClientesyEmpresasTableAdapter();
+            this.tableAdapterManager = new FrbaCommerce.GD1C2014DataSetTableAdapters.TableAdapterManager();
+            this.tl_ComprasTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ComprasTableAdapter();
+            this.tl_VisibilidadesTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_VisibilidadesTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownStock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tl_ClientesyEmpresasDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tl_ClientesyEmpresasBindingSource)).BeginInit();
@@ -59,6 +59,11 @@
             // numericUpDownStock
             // 
             this.numericUpDownStock.Location = new System.Drawing.Point(181, 22);
+            this.numericUpDownStock.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDownStock.Name = "numericUpDownStock";
             this.numericUpDownStock.Size = new System.Drawing.Size(120, 20);
             this.numericUpDownStock.TabIndex = 0;
@@ -119,54 +124,6 @@
             this.tl_ClientesyEmpresasDataGridView.ReadOnly = true;
             this.tl_ClientesyEmpresasDataGridView.Size = new System.Drawing.Size(1035, 94);
             this.tl_ClientesyEmpresasDataGridView.TabIndex = 4;
-            // 
-            // tl_ClientesyEmpresasBindingSource
-            // 
-            this.tl_ClientesyEmpresasBindingSource.DataMember = "tl_ClientesyEmpresas";
-            this.tl_ClientesyEmpresasBindingSource.DataSource = this.gD1C2014DataSet;
-            // 
-            // gD1C2014DataSet
-            // 
-            this.gD1C2014DataSet.DataSetName = "GD1C2014DataSet";
-            this.gD1C2014DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tl_ClientesyEmpresasTableAdapter
-            // 
-            this.tl_ClientesyEmpresasTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.Connection = null;
-            this.tableAdapterManager.tl_CalificacionesTableAdapter = null;
-            this.tableAdapterManager.tl_ClientesTableAdapter = null;
-            this.tableAdapterManager.tl_ComprasTableAdapter = null;
-            this.tableAdapterManager.tl_EmpresasTableAdapter = null;
-            this.tableAdapterManager.tl_Facturas_ItemsTableAdapter = null;
-            this.tableAdapterManager.tl_FacturasTableAdapter = null;
-            this.tableAdapterManager.tl_FuncionalidadesTableAdapter = null;
-            this.tableAdapterManager.tl_OfertasTableAdapter = null;
-            this.tableAdapterManager.tl_PendientesTableAdapter = null;
-            this.tableAdapterManager.tl_PreguntasTableAdapter = null;
-            this.tableAdapterManager.tl_Publicacion_EstadosTableAdapter = null;
-            this.tableAdapterManager.tl_Publicacion_TiposTableAdapter = null;
-            this.tableAdapterManager.tl_Publicaciones_RubrosTableAdapter = null;
-            this.tableAdapterManager.tl_PublicacionesTableAdapter = null;
-            this.tableAdapterManager.tl_Roles_FuncionalidadesTableAdapter = null;
-            this.tableAdapterManager.tl_RolesTableAdapter = null;
-            this.tableAdapterManager.tl_RubrosTableAdapter = null;
-            this.tableAdapterManager.tl_Usuarios_RolesTableAdapter = null;
-            this.tableAdapterManager.tl_UsuariosTableAdapter = null;
-            this.tableAdapterManager.tl_VisibilidadesTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = FrbaCommerce.GD1C2014DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // tl_ComprasTableAdapter1
-            // 
-            this.tl_ComprasTableAdapter1.ClearBeforeFill = true;
-            // 
-            // tl_VisibilidadesTableAdapter1
-            // 
-            this.tl_VisibilidadesTableAdapter1.ClearBeforeFill = true;
             // 
             // iDDataGridViewTextBoxColumn
             // 
@@ -237,6 +194,54 @@
             this.telefonoDataGridViewTextBoxColumn.HeaderText = "Telefono";
             this.telefonoDataGridViewTextBoxColumn.Name = "telefonoDataGridViewTextBoxColumn";
             this.telefonoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // tl_ClientesyEmpresasBindingSource
+            // 
+            this.tl_ClientesyEmpresasBindingSource.DataMember = "tl_ClientesyEmpresas";
+            this.tl_ClientesyEmpresasBindingSource.DataSource = this.gD1C2014DataSet;
+            // 
+            // gD1C2014DataSet
+            // 
+            this.gD1C2014DataSet.DataSetName = "GD1C2014DataSet";
+            this.gD1C2014DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tl_ClientesyEmpresasTableAdapter
+            // 
+            this.tl_ClientesyEmpresasTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.Connection = null;
+            this.tableAdapterManager.tl_CalificacionesTableAdapter = null;
+            this.tableAdapterManager.tl_ClientesTableAdapter = null;
+            this.tableAdapterManager.tl_ComprasTableAdapter = null;
+            this.tableAdapterManager.tl_EmpresasTableAdapter = null;
+            this.tableAdapterManager.tl_Facturas_ItemsTableAdapter = null;
+            this.tableAdapterManager.tl_FacturasTableAdapter = null;
+            this.tableAdapterManager.tl_FuncionalidadesTableAdapter = null;
+            this.tableAdapterManager.tl_OfertasTableAdapter = null;
+            this.tableAdapterManager.tl_PendientesTableAdapter = null;
+            this.tableAdapterManager.tl_PreguntasTableAdapter = null;
+            this.tableAdapterManager.tl_Publicacion_EstadosTableAdapter = null;
+            this.tableAdapterManager.tl_Publicacion_TiposTableAdapter = null;
+            this.tableAdapterManager.tl_Publicaciones_RubrosTableAdapter = null;
+            this.tableAdapterManager.tl_PublicacionesTableAdapter = null;
+            this.tableAdapterManager.tl_Roles_FuncionalidadesTableAdapter = null;
+            this.tableAdapterManager.tl_RolesTableAdapter = null;
+            this.tableAdapterManager.tl_RubrosTableAdapter = null;
+            this.tableAdapterManager.tl_Usuarios_RolesTableAdapter = null;
+            this.tableAdapterManager.tl_UsuariosTableAdapter = null;
+            this.tableAdapterManager.tl_VisibilidadesTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = FrbaCommerce.GD1C2014DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // tl_ComprasTableAdapter1
+            // 
+            this.tl_ComprasTableAdapter1.ClearBeforeFill = true;
+            // 
+            // tl_VisibilidadesTableAdapter1
+            // 
+            this.tl_VisibilidadesTableAdapter1.ClearBeforeFill = true;
             // 
             // NuevaCompra
             // 

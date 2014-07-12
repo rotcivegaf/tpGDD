@@ -31,16 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.tl_PublicacionesDataGridView = new System.Windows.Forms.DataGridView();
-            this.publicacionesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
-            this.tl_PublicacionesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.buttonPrincipio = new System.Windows.Forms.Button();
-            this.buttonAnterior = new System.Windows.Forms.Button();
-            this.buttonSiguiente = new System.Windows.Forms.Button();
-            this.buttonFin = new System.Windows.Forms.Button();
-            this.tl_PublicacionesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_PublicacionesTableAdapter();
-            this.tableAdapterManager = new FrbaCommerce.GD1C2014DataSetTableAdapters.TableAdapterManager();
-            this.publicacionesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.PublicacionesTableAdapter();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.usuarioIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,6 +44,16 @@
             this.estadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.permitePreguntasDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Editar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.publicacionesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
+            this.buttonPrincipio = new System.Windows.Forms.Button();
+            this.buttonAnterior = new System.Windows.Forms.Button();
+            this.buttonSiguiente = new System.Windows.Forms.Button();
+            this.buttonFin = new System.Windows.Forms.Button();
+            this.tl_PublicacionesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tl_PublicacionesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_PublicacionesTableAdapter();
+            this.tableAdapterManager = new FrbaCommerce.GD1C2014DataSetTableAdapters.TableAdapterManager();
+            this.publicacionesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.PublicacionesTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.tl_PublicacionesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.publicacionesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
@@ -94,96 +94,8 @@
             this.tl_PublicacionesDataGridView.Name = "tl_PublicacionesDataGridView";
             this.tl_PublicacionesDataGridView.ReadOnly = true;
             this.tl_PublicacionesDataGridView.Size = new System.Drawing.Size(945, 336);
-            this.tl_PublicacionesDataGridView.TabIndex = 2;
+            this.tl_PublicacionesDataGridView.TabIndex = 0;
             this.tl_PublicacionesDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tl_PublicacionesDataGridView_CellContentClick);
-            // 
-            // publicacionesBindingSource
-            // 
-            this.publicacionesBindingSource.DataMember = "Publicaciones";
-            this.publicacionesBindingSource.DataSource = this.gD1C2014DataSet;
-            // 
-            // gD1C2014DataSet
-            // 
-            this.gD1C2014DataSet.DataSetName = "GD1C2014DataSet";
-            this.gD1C2014DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tl_PublicacionesBindingSource
-            // 
-            this.tl_PublicacionesBindingSource.DataMember = "tl_Publicaciones";
-            this.tl_PublicacionesBindingSource.DataSource = this.gD1C2014DataSet;
-            // 
-            // buttonPrincipio
-            // 
-            this.buttonPrincipio.Location = new System.Drawing.Point(15, 375);
-            this.buttonPrincipio.Name = "buttonPrincipio";
-            this.buttonPrincipio.Size = new System.Drawing.Size(75, 23);
-            this.buttonPrincipio.TabIndex = 3;
-            this.buttonPrincipio.Text = "<<";
-            this.buttonPrincipio.UseVisualStyleBackColor = true;
-            this.buttonPrincipio.Click += new System.EventHandler(this.buttonPrincipio_Click);
-            // 
-            // buttonAnterior
-            // 
-            this.buttonAnterior.Location = new System.Drawing.Point(107, 375);
-            this.buttonAnterior.Name = "buttonAnterior";
-            this.buttonAnterior.Size = new System.Drawing.Size(75, 23);
-            this.buttonAnterior.TabIndex = 4;
-            this.buttonAnterior.Text = "<";
-            this.buttonAnterior.UseVisualStyleBackColor = true;
-            this.buttonAnterior.Click += new System.EventHandler(this.buttonAnterior_Click);
-            // 
-            // buttonSiguiente
-            // 
-            this.buttonSiguiente.Location = new System.Drawing.Point(207, 375);
-            this.buttonSiguiente.Name = "buttonSiguiente";
-            this.buttonSiguiente.Size = new System.Drawing.Size(75, 23);
-            this.buttonSiguiente.TabIndex = 5;
-            this.buttonSiguiente.Text = ">";
-            this.buttonSiguiente.UseVisualStyleBackColor = true;
-            this.buttonSiguiente.Click += new System.EventHandler(this.buttonSiguiente_Click);
-            // 
-            // buttonFin
-            // 
-            this.buttonFin.Location = new System.Drawing.Point(300, 375);
-            this.buttonFin.Name = "buttonFin";
-            this.buttonFin.Size = new System.Drawing.Size(75, 23);
-            this.buttonFin.TabIndex = 6;
-            this.buttonFin.Text = ">>";
-            this.buttonFin.UseVisualStyleBackColor = true;
-            this.buttonFin.Click += new System.EventHandler(this.buttonFin_Click);
-            // 
-            // tl_PublicacionesTableAdapter
-            // 
-            this.tl_PublicacionesTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.tl_CalificacionesTableAdapter = null;
-            this.tableAdapterManager.tl_ClientesTableAdapter = null;
-            this.tableAdapterManager.tl_ComprasTableAdapter = null;
-            this.tableAdapterManager.tl_EmpresasTableAdapter = null;
-            this.tableAdapterManager.tl_Facturas_ItemsTableAdapter = null;
-            this.tableAdapterManager.tl_FacturasTableAdapter = null;
-            this.tableAdapterManager.tl_FuncionalidadesTableAdapter = null;
-            this.tableAdapterManager.tl_OfertasTableAdapter = null;
-            this.tableAdapterManager.tl_PendientesTableAdapter = null;
-            this.tableAdapterManager.tl_PreguntasTableAdapter = null;
-            this.tableAdapterManager.tl_Publicacion_EstadosTableAdapter = null;
-            this.tableAdapterManager.tl_Publicacion_TiposTableAdapter = null;
-            this.tableAdapterManager.tl_Publicaciones_RubrosTableAdapter = null;
-            this.tableAdapterManager.tl_PublicacionesTableAdapter = this.tl_PublicacionesTableAdapter;
-            this.tableAdapterManager.tl_Roles_FuncionalidadesTableAdapter = null;
-            this.tableAdapterManager.tl_RolesTableAdapter = null;
-            this.tableAdapterManager.tl_RubrosTableAdapter = null;
-            this.tableAdapterManager.tl_Usuarios_RolesTableAdapter = null;
-            this.tableAdapterManager.tl_UsuariosTableAdapter = null;
-            this.tableAdapterManager.tl_VisibilidadesTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = FrbaCommerce.GD1C2014DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // publicacionesTableAdapter
-            // 
-            this.publicacionesTableAdapter.ClearBeforeFill = true;
             // 
             // Codigo
             // 
@@ -301,6 +213,94 @@
             this.Editar.ReadOnly = true;
             this.Editar.Width = 40;
             // 
+            // publicacionesBindingSource
+            // 
+            this.publicacionesBindingSource.DataMember = "Publicaciones";
+            this.publicacionesBindingSource.DataSource = this.gD1C2014DataSet;
+            // 
+            // gD1C2014DataSet
+            // 
+            this.gD1C2014DataSet.DataSetName = "GD1C2014DataSet";
+            this.gD1C2014DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // buttonPrincipio
+            // 
+            this.buttonPrincipio.Location = new System.Drawing.Point(15, 375);
+            this.buttonPrincipio.Name = "buttonPrincipio";
+            this.buttonPrincipio.Size = new System.Drawing.Size(75, 23);
+            this.buttonPrincipio.TabIndex = 1;
+            this.buttonPrincipio.Text = "<<";
+            this.buttonPrincipio.UseVisualStyleBackColor = true;
+            this.buttonPrincipio.Click += new System.EventHandler(this.buttonPrincipio_Click);
+            // 
+            // buttonAnterior
+            // 
+            this.buttonAnterior.Location = new System.Drawing.Point(107, 375);
+            this.buttonAnterior.Name = "buttonAnterior";
+            this.buttonAnterior.Size = new System.Drawing.Size(75, 23);
+            this.buttonAnterior.TabIndex = 2;
+            this.buttonAnterior.Text = "<";
+            this.buttonAnterior.UseVisualStyleBackColor = true;
+            this.buttonAnterior.Click += new System.EventHandler(this.buttonAnterior_Click);
+            // 
+            // buttonSiguiente
+            // 
+            this.buttonSiguiente.Location = new System.Drawing.Point(207, 375);
+            this.buttonSiguiente.Name = "buttonSiguiente";
+            this.buttonSiguiente.Size = new System.Drawing.Size(75, 23);
+            this.buttonSiguiente.TabIndex = 3;
+            this.buttonSiguiente.Text = ">";
+            this.buttonSiguiente.UseVisualStyleBackColor = true;
+            this.buttonSiguiente.Click += new System.EventHandler(this.buttonSiguiente_Click);
+            // 
+            // buttonFin
+            // 
+            this.buttonFin.Location = new System.Drawing.Point(300, 375);
+            this.buttonFin.Name = "buttonFin";
+            this.buttonFin.Size = new System.Drawing.Size(75, 23);
+            this.buttonFin.TabIndex = 4;
+            this.buttonFin.Text = ">>";
+            this.buttonFin.UseVisualStyleBackColor = true;
+            this.buttonFin.Click += new System.EventHandler(this.buttonFin_Click);
+            // 
+            // tl_PublicacionesBindingSource
+            // 
+            this.tl_PublicacionesBindingSource.DataMember = "tl_Publicaciones";
+            this.tl_PublicacionesBindingSource.DataSource = this.gD1C2014DataSet;
+            // 
+            // tl_PublicacionesTableAdapter
+            // 
+            this.tl_PublicacionesTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.tl_CalificacionesTableAdapter = null;
+            this.tableAdapterManager.tl_ClientesTableAdapter = null;
+            this.tableAdapterManager.tl_ComprasTableAdapter = null;
+            this.tableAdapterManager.tl_EmpresasTableAdapter = null;
+            this.tableAdapterManager.tl_Facturas_ItemsTableAdapter = null;
+            this.tableAdapterManager.tl_FacturasTableAdapter = null;
+            this.tableAdapterManager.tl_FuncionalidadesTableAdapter = null;
+            this.tableAdapterManager.tl_OfertasTableAdapter = null;
+            this.tableAdapterManager.tl_PendientesTableAdapter = null;
+            this.tableAdapterManager.tl_PreguntasTableAdapter = null;
+            this.tableAdapterManager.tl_Publicacion_EstadosTableAdapter = null;
+            this.tableAdapterManager.tl_Publicacion_TiposTableAdapter = null;
+            this.tableAdapterManager.tl_Publicaciones_RubrosTableAdapter = null;
+            this.tableAdapterManager.tl_PublicacionesTableAdapter = this.tl_PublicacionesTableAdapter;
+            this.tableAdapterManager.tl_Roles_FuncionalidadesTableAdapter = null;
+            this.tableAdapterManager.tl_RolesTableAdapter = null;
+            this.tableAdapterManager.tl_RubrosTableAdapter = null;
+            this.tableAdapterManager.tl_Usuarios_RolesTableAdapter = null;
+            this.tableAdapterManager.tl_UsuariosTableAdapter = null;
+            this.tableAdapterManager.tl_VisibilidadesTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = FrbaCommerce.GD1C2014DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // publicacionesTableAdapter
+            // 
+            this.publicacionesTableAdapter.ClearBeforeFill = true;
+            // 
             // EditarPublicacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -336,8 +336,8 @@
         private System.Windows.Forms.Button buttonAnterior;
         private System.Windows.Forms.Button buttonSiguiente;
         private System.Windows.Forms.Button buttonFin;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        //private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        //private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private System.Windows.Forms.BindingSource publicacionesBindingSource;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.PublicacionesTableAdapter publicacionesTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;

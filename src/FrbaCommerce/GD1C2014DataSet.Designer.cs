@@ -5772,6 +5772,8 @@ namespace FrbaCommerce {
             
             private global::System.Data.DataColumn columnChange_Password;
             
+            private global::System.Data.DataColumn columnCalificaciones_Pendientes;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public tl_UsuariosDataTable() {
                 this.TableName = "tl_Usuarios";
@@ -5852,6 +5854,13 @@ namespace FrbaCommerce {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Calificaciones_PendientesColumn {
+                get {
+                    return this.columnCalificaciones_Pendientes;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -5880,7 +5889,7 @@ namespace FrbaCommerce {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public tl_UsuariosRow Addtl_UsuariosRow(string Username, string Password, byte Logins_Fallidos, bool Habilitado, bool Activo, bool Change_Password) {
+            public tl_UsuariosRow Addtl_UsuariosRow(string Username, string Password, byte Logins_Fallidos, bool Habilitado, bool Activo, bool Change_Password, int Calificaciones_Pendientes) {
                 tl_UsuariosRow rowtl_UsuariosRow = ((tl_UsuariosRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -5889,7 +5898,8 @@ namespace FrbaCommerce {
                         Logins_Fallidos,
                         Habilitado,
                         Activo,
-                        Change_Password};
+                        Change_Password,
+                        Calificaciones_Pendientes};
                 rowtl_UsuariosRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtl_UsuariosRow);
                 return rowtl_UsuariosRow;
@@ -5922,6 +5932,7 @@ namespace FrbaCommerce {
                 this.columnHabilitado = base.Columns["Habilitado"];
                 this.columnActivo = base.Columns["Activo"];
                 this.columnChange_Password = base.Columns["Change_Password"];
+                this.columnCalificaciones_Pendientes = base.Columns["Calificaciones_Pendientes"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5940,6 +5951,8 @@ namespace FrbaCommerce {
                 base.Columns.Add(this.columnActivo);
                 this.columnChange_Password = new global::System.Data.DataColumn("Change_Password", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnChange_Password);
+                this.columnCalificaciones_Pendientes = new global::System.Data.DataColumn("Calificaciones_Pendientes", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCalificaciones_Pendientes);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -5956,6 +5969,7 @@ namespace FrbaCommerce {
                 this.columnHabilitado.AllowDBNull = false;
                 this.columnActivo.AllowDBNull = false;
                 this.columnChange_Password.AllowDBNull = false;
+                this.columnCalificaciones_Pendientes.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12045,6 +12059,16 @@ namespace FrbaCommerce {
                 }
                 set {
                     this[this.tabletl_Usuarios.Change_PasswordColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int Calificaciones_Pendientes {
+                get {
+                    return ((int)(this[this.tabletl_Usuarios.Calificaciones_PendientesColumn]));
+                }
+                set {
+                    this[this.tabletl_Usuarios.Calificaciones_PendientesColumn] = value;
                 }
             }
             
@@ -18569,12 +18593,35 @@ SELECT ID, Publicacion_Codigo, Usuario_ID, Pregunta, Fecha_Respuesta, Respuesta 
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT     ID, Publicacion_Codigo, Usuario_ID, Pregunta, Fecha_Respuesta, Respues" +
                 "ta\r\nFROM         LOL.tl_Preguntas";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"SELECT     ID, Pr.Publicacion_Codigo, Pr.Usuario_ID, Pregunta, Fecha_Respuesta, Respuesta
+FROM         LOL.tl_Preguntas Pr INNER JOIN LOL.tl_Publicaciones Pu ON (Pr.Publicacion_Codigo = Pu.Codigo)
+WHERE
+                 Fecha_Respuesta IS NULL AND Pu.Usuario_ID = @Usuario_ID";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Usuario_ID", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, "Usuario_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = @"SELECT     ID, Pr.Publicacion_Codigo, Pr.Usuario_ID, Pregunta, Fecha_Respuesta, Respuesta
+FROM         LOL.tl_Preguntas Pr INNER JOIN LOL.tl_Publicaciones Pu ON (Pr.Publicacion_Codigo = Pu.Codigo)
+WHERE  Pr.Fecha_Respuesta IS NOT NULL AND Pu.Usuario_ID = @Usuario_ID";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Usuario_ID", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, "Usuario_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = "UPDATE    LOL.tl_Preguntas\r\nSET              Fecha_Respuesta = @Fecha_Respuesta, " +
+                "Respuesta = @Respuesta\r\nWHERE     (ID = @ID)";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Fecha_Respuesta", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "Fecha_Respuesta", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Respuesta", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "Respuesta", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -18594,6 +18641,28 @@ SELECT ID, Publicacion_Codigo, Usuario_ID, Pregunta, Fecha_Respuesta, Respuesta 
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual GD1C2014DataSet.tl_PreguntasDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            GD1C2014DataSet.tl_PreguntasDataTable dataTable = new GD1C2014DataSet.tl_PreguntasDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual GD1C2014DataSet.tl_PreguntasDataTable GetParaResponder(decimal Usuario_ID) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(Usuario_ID));
+            GD1C2014DataSet.tl_PreguntasDataTable dataTable = new GD1C2014DataSet.tl_PreguntasDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual GD1C2014DataSet.tl_PreguntasDataTable GetPreguntasWhitRespuesta(decimal Usuario_ID) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(Usuario_ID));
             GD1C2014DataSet.tl_PreguntasDataTable dataTable = new GD1C2014DataSet.tl_PreguntasDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -18780,6 +18849,41 @@ SELECT ID, Publicacion_Codigo, Usuario_ID, Pregunta, Fecha_Respuesta, Respuesta 
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(decimal Publicacion_Codigo, decimal Usuario_ID, string Pregunta, global::System.Nullable<global::System.DateTime> Fecha_Respuesta, string Respuesta, decimal Original_ID, decimal Original_Publicacion_Codigo, decimal Original_Usuario_ID, string Original_Pregunta, global::System.Nullable<global::System.DateTime> Original_Fecha_Respuesta, string Original_Respuesta) {
             return this.Update(Publicacion_Codigo, Usuario_ID, Pregunta, Fecha_Respuesta, Respuesta, Original_ID, Original_Publicacion_Codigo, Original_Usuario_ID, Original_Pregunta, Original_Fecha_Respuesta, Original_Respuesta, Original_ID);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
+        public virtual int guardarRespuesta(string Fecha_Respuesta, string Respuesta, decimal ID) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
+            if ((Fecha_Respuesta == null)) {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[0].Value = ((string)(Fecha_Respuesta));
+            }
+            if ((Respuesta == null)) {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[1].Value = ((string)(Respuesta));
+            }
+            command.Parameters[2].Value = ((decimal)(ID));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
         }
     }
     
@@ -21136,10 +21240,11 @@ SELECT ID, Descripcion, Habilitado FROM LOL.tl_Rubros WHERE (ID = @ID)";
             tableMapping.ColumnMappings.Add("Habilitado", "Habilitado");
             tableMapping.ColumnMappings.Add("Activo", "Activo");
             tableMapping.ColumnMappings.Add("Change_Password", "Change_Password");
+            tableMapping.ColumnMappings.Add("Calificaciones_Pendientes", "Calificaciones_Pendientes");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [LOL].[tl_Usuarios] WHERE (([ID] = @Original_ID) AND ([Username] = @Original_Username) AND ([Password] = @Original_Password) AND ([Logins_Fallidos] = @Original_Logins_Fallidos) AND ([Habilitado] = @Original_Habilitado) AND ([Activo] = @Original_Activo) AND ([Change_Password] = @Original_Change_Password))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [LOL].[tl_Usuarios] WHERE (([ID] = @Original_ID) AND ([Username] = @Original_Username) AND ([Password] = @Original_Password) AND ([Logins_Fallidos] = @Original_Logins_Fallidos) AND ([Habilitado] = @Original_Habilitado) AND ([Activo] = @Original_Activo) AND ([Change_Password] = @Original_Change_Password) AND ([Calificaciones_Pendientes] = @Original_Calificaciones_Pendientes))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Username", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Username", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -21148,10 +21253,11 @@ SELECT ID, Descripcion, Habilitado FROM LOL.tl_Rubros WHERE (ID = @ID)";
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Habilitado", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Habilitado", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Activo", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Activo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Change_Password", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Change_Password", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Calificaciones_Pendientes", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Calificaciones_Pendientes", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [LOL].[tl_Usuarios] ([Username], [Password], [Logins_Fallidos], [Habilitado], [Activo], [Change_Password]) VALUES (@Username, @Password, @Logins_Fallidos, @Habilitado, @Activo, @Change_Password);
-SELECT ID, Username, Password, Logins_Fallidos, Habilitado, Activo, Change_Password FROM LOL.tl_Usuarios WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [LOL].[tl_Usuarios] ([Username], [Password], [Logins_Fallidos], [Habilitado], [Activo], [Change_Password], [Calificaciones_Pendientes]) VALUES (@Username, @Password, @Logins_Fallidos, @Habilitado, @Activo, @Change_Password, @Calificaciones_Pendientes);
+SELECT ID, Username, Password, Logins_Fallidos, Habilitado, Activo, Change_Password, Calificaciones_Pendientes FROM LOL.tl_Usuarios WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Username", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Username", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Password", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -21159,10 +21265,11 @@ SELECT ID, Username, Password, Logins_Fallidos, Habilitado, Activo, Change_Passw
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Habilitado", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Habilitado", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Activo", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Activo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Change_Password", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Change_Password", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Calificaciones_Pendientes", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Calificaciones_Pendientes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [LOL].[tl_Usuarios] SET [Username] = @Username, [Password] = @Password, [Logins_Fallidos] = @Logins_Fallidos, [Habilitado] = @Habilitado, [Activo] = @Activo, [Change_Password] = @Change_Password WHERE (([ID] = @Original_ID) AND ([Username] = @Original_Username) AND ([Password] = @Original_Password) AND ([Logins_Fallidos] = @Original_Logins_Fallidos) AND ([Habilitado] = @Original_Habilitado) AND ([Activo] = @Original_Activo) AND ([Change_Password] = @Original_Change_Password));
-SELECT ID, Username, Password, Logins_Fallidos, Habilitado, Activo, Change_Password FROM LOL.tl_Usuarios WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [LOL].[tl_Usuarios] SET [Username] = @Username, [Password] = @Password, [Logins_Fallidos] = @Logins_Fallidos, [Habilitado] = @Habilitado, [Activo] = @Activo, [Change_Password] = @Change_Password, [Calificaciones_Pendientes] = @Calificaciones_Pendientes WHERE (([ID] = @Original_ID) AND ([Username] = @Original_Username) AND ([Password] = @Original_Password) AND ([Logins_Fallidos] = @Original_Logins_Fallidos) AND ([Habilitado] = @Original_Habilitado) AND ([Activo] = @Original_Activo) AND ([Change_Password] = @Original_Change_Password) AND ([Calificaciones_Pendientes] = @Original_Calificaciones_Pendientes));
+SELECT ID, Username, Password, Logins_Fallidos, Habilitado, Activo, Change_Password, Calificaciones_Pendientes FROM LOL.tl_Usuarios WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Username", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Username", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Password", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -21170,6 +21277,7 @@ SELECT ID, Username, Password, Logins_Fallidos, Habilitado, Activo, Change_Passw
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Habilitado", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Habilitado", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Activo", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Activo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Change_Password", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Change_Password", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Calificaciones_Pendientes", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Calificaciones_Pendientes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Username", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Username", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Password", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -21177,6 +21285,7 @@ SELECT ID, Username, Password, Logins_Fallidos, Habilitado, Activo, Change_Passw
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Habilitado", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Habilitado", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Activo", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Activo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Change_Password", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Change_Password", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Calificaciones_Pendientes", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Calificaciones_Pendientes", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -21192,7 +21301,7 @@ SELECT ID, Username, Password, Logins_Fallidos, Habilitado, Activo, Change_Passw
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT     ID, Username, Password, Logins_Fallidos, Habilitado, Activo, Change_Pa" +
-                "ssword\r\nFROM         LOL.tl_Usuarios";
+                "ssword, Calificaciones_Pendientes\r\nFROM         LOL.tl_Usuarios";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -21203,8 +21312,8 @@ SELECT ID, Username, Password, Logins_Fallidos, Habilitado, Activo, Change_Passw
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT     Activo, Change_Password, Habilitado, ID, Logins_Fallidos, Password, Us" +
-                "ername\r\nFROM         LOL.tl_Usuarios\r\nWHERE     (ID = @ID)";
+            this._commandCollection[2].CommandText = "SELECT Activo, Calificaciones_Pendientes, Change_Password, Habilitado, ID, Logins" +
+                "_Fallidos, Password, Username FROM LOL.tl_Usuarios WHERE (ID = @ID)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
@@ -21287,7 +21396,7 @@ SELECT ID, Username, Password, Logins_Fallidos, Habilitado, Activo, Change_Passw
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(decimal Original_ID, string Original_Username, string Original_Password, byte Original_Logins_Fallidos, bool Original_Habilitado, bool Original_Activo, bool Original_Change_Password) {
+        public virtual int Delete(decimal Original_ID, string Original_Username, string Original_Password, byte Original_Logins_Fallidos, bool Original_Habilitado, bool Original_Activo, bool Original_Change_Password, int Original_Calificaciones_Pendientes) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((decimal)(Original_ID));
             if ((Original_Username == null)) {
                 throw new global::System.ArgumentNullException("Original_Username");
@@ -21305,6 +21414,7 @@ SELECT ID, Username, Password, Logins_Fallidos, Habilitado, Activo, Change_Passw
             this.Adapter.DeleteCommand.Parameters[4].Value = ((bool)(Original_Habilitado));
             this.Adapter.DeleteCommand.Parameters[5].Value = ((bool)(Original_Activo));
             this.Adapter.DeleteCommand.Parameters[6].Value = ((bool)(Original_Change_Password));
+            this.Adapter.DeleteCommand.Parameters[7].Value = ((int)(Original_Calificaciones_Pendientes));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -21324,7 +21434,7 @@ SELECT ID, Username, Password, Logins_Fallidos, Habilitado, Activo, Change_Passw
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Username, string Password, byte Logins_Fallidos, bool Habilitado, bool Activo, bool Change_Password) {
+        public virtual int Insert(string Username, string Password, byte Logins_Fallidos, bool Habilitado, bool Activo, bool Change_Password, int Calificaciones_Pendientes) {
             if ((Username == null)) {
                 throw new global::System.ArgumentNullException("Username");
             }
@@ -21341,6 +21451,7 @@ SELECT ID, Username, Password, Logins_Fallidos, Habilitado, Activo, Change_Passw
             this.Adapter.InsertCommand.Parameters[3].Value = ((bool)(Habilitado));
             this.Adapter.InsertCommand.Parameters[4].Value = ((bool)(Activo));
             this.Adapter.InsertCommand.Parameters[5].Value = ((bool)(Change_Password));
+            this.Adapter.InsertCommand.Parameters[6].Value = ((int)(Calificaciones_Pendientes));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -21360,7 +21471,23 @@ SELECT ID, Username, Password, Logins_Fallidos, Habilitado, Activo, Change_Passw
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Username, string Password, byte Logins_Fallidos, bool Habilitado, bool Activo, bool Change_Password, decimal Original_ID, string Original_Username, string Original_Password, byte Original_Logins_Fallidos, bool Original_Habilitado, bool Original_Activo, bool Original_Change_Password, decimal ID) {
+        public virtual int Update(
+                    string Username, 
+                    string Password, 
+                    byte Logins_Fallidos, 
+                    bool Habilitado, 
+                    bool Activo, 
+                    bool Change_Password, 
+                    int Calificaciones_Pendientes, 
+                    decimal Original_ID, 
+                    string Original_Username, 
+                    string Original_Password, 
+                    byte Original_Logins_Fallidos, 
+                    bool Original_Habilitado, 
+                    bool Original_Activo, 
+                    bool Original_Change_Password, 
+                    int Original_Calificaciones_Pendientes, 
+                    decimal ID) {
             if ((Username == null)) {
                 throw new global::System.ArgumentNullException("Username");
             }
@@ -21377,24 +21504,26 @@ SELECT ID, Username, Password, Logins_Fallidos, Habilitado, Activo, Change_Passw
             this.Adapter.UpdateCommand.Parameters[3].Value = ((bool)(Habilitado));
             this.Adapter.UpdateCommand.Parameters[4].Value = ((bool)(Activo));
             this.Adapter.UpdateCommand.Parameters[5].Value = ((bool)(Change_Password));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((decimal)(Original_ID));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Calificaciones_Pendientes));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((decimal)(Original_ID));
             if ((Original_Username == null)) {
                 throw new global::System.ArgumentNullException("Original_Username");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_Username));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_Username));
             }
             if ((Original_Password == null)) {
                 throw new global::System.ArgumentNullException("Original_Password");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_Password));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_Password));
             }
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((byte)(Original_Logins_Fallidos));
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((bool)(Original_Habilitado));
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((bool)(Original_Activo));
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((bool)(Original_Change_Password));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((decimal)(ID));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((byte)(Original_Logins_Fallidos));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((bool)(Original_Habilitado));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((bool)(Original_Activo));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((bool)(Original_Change_Password));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_Calificaciones_Pendientes));
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((decimal)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -21414,8 +21543,8 @@ SELECT ID, Username, Password, Logins_Fallidos, Habilitado, Activo, Change_Passw
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Username, string Password, byte Logins_Fallidos, bool Habilitado, bool Activo, bool Change_Password, decimal Original_ID, string Original_Username, string Original_Password, byte Original_Logins_Fallidos, bool Original_Habilitado, bool Original_Activo, bool Original_Change_Password) {
-            return this.Update(Username, Password, Logins_Fallidos, Habilitado, Activo, Change_Password, Original_ID, Original_Username, Original_Password, Original_Logins_Fallidos, Original_Habilitado, Original_Activo, Original_Change_Password, Original_ID);
+        public virtual int Update(string Username, string Password, byte Logins_Fallidos, bool Habilitado, bool Activo, bool Change_Password, int Calificaciones_Pendientes, decimal Original_ID, string Original_Username, string Original_Password, byte Original_Logins_Fallidos, bool Original_Habilitado, bool Original_Activo, bool Original_Change_Password, int Original_Calificaciones_Pendientes) {
+            return this.Update(Username, Password, Logins_Fallidos, Habilitado, Activo, Change_Password, Calificaciones_Pendientes, Original_ID, Original_Username, Original_Password, Original_Logins_Fallidos, Original_Habilitado, Original_Activo, Original_Change_Password, Original_Calificaciones_Pendientes, Original_ID);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -25027,7 +25156,7 @@ SELECT ID, Tipo, Habilitado FROM LOL.tl_Publicacion_Tipos WHERE (ID = @ID)";
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[5];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT     LOL.tl_Publicaciones.Codigo, LOL.tl_Publicaciones.Usuario_ID, LOL.tl_Publicaciones.Descripcion, LOL.tl_Publicaciones.Fecha, 
@@ -25067,6 +25196,27 @@ FROM         LOL.tl_Publicaciones AS P INNER JOIN
 WHERE     (P.Usuario_ID = @Usuario_ID)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Usuario_ID", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, "Usuario_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = "LOL.sp_PaginadorParaComprar";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Usuario_ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Descripcion", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Rubro_ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaActual", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Inicio", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@QtyRegistros", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TotalRegistros", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.InputOutput, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[4].Connection = this.Connection;
+            this._commandCollection[4].CommandText = "LOL.sp_PaginadorParaEditar";
+            this._commandCollection[4].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UsuarioID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Inicio", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@QtyRegistros", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TotalRegistros", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.InputOutput, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -25106,6 +25256,106 @@ WHERE     (P.Usuario_ID = @Usuario_ID)";
             this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(Usuario_ID));
             GD1C2014DataSet.PublicacionesDataTable dataTable = new GD1C2014DataSet.PublicacionesDataTable();
             this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual GD1C2014DataSet.PublicacionesDataTable GetParaComprar(global::System.Nullable<int> Usuario_ID, string Descripcion, global::System.Nullable<int> Rubro_ID, global::System.Nullable<global::System.DateTime> FechaActual, global::System.Nullable<int> Inicio, global::System.Nullable<int> QtyRegistros, ref global::System.Nullable<int> TotalRegistros) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            if ((Usuario_ID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(Usuario_ID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((Descripcion == null)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(Descripcion));
+            }
+            if ((Rubro_ID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(Rubro_ID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((FechaActual.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((System.DateTime)(FechaActual.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((Inicio.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((int)(Inicio.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((QtyRegistros.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((int)(QtyRegistros.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((TotalRegistros.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(TotalRegistros.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            GD1C2014DataSet.PublicacionesDataTable dataTable = new GD1C2014DataSet.PublicacionesDataTable();
+            this.Adapter.Fill(dataTable);
+            if (((this.Adapter.SelectCommand.Parameters[7].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[7].Value.GetType() == typeof(global::System.DBNull)))) {
+                TotalRegistros = new global::System.Nullable<int>();
+            }
+            else {
+                TotalRegistros = new global::System.Nullable<int>(((int)(this.Adapter.SelectCommand.Parameters[7].Value)));
+            }
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual GD1C2014DataSet.PublicacionesDataTable GetParaEditar(global::System.Nullable<int> UsuarioID, global::System.Nullable<int> Inicio, global::System.Nullable<int> QtyRegistros, ref global::System.Nullable<int> TotalRegistros) {
+            this.Adapter.SelectCommand = this.CommandCollection[4];
+            if ((UsuarioID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(UsuarioID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((Inicio.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(Inicio.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((QtyRegistros.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(QtyRegistros.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((TotalRegistros.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((int)(TotalRegistros.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            GD1C2014DataSet.PublicacionesDataTable dataTable = new GD1C2014DataSet.PublicacionesDataTable();
+            this.Adapter.Fill(dataTable);
+            if (((this.Adapter.SelectCommand.Parameters[4].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[4].Value.GetType() == typeof(global::System.DBNull)))) {
+                TotalRegistros = new global::System.Nullable<int>();
+            }
+            else {
+                TotalRegistros = new global::System.Nullable<int>(((int)(this.Adapter.SelectCommand.Parameters[4].Value)));
+            }
             return dataTable;
         }
     }

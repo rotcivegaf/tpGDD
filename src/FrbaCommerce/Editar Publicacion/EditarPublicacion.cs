@@ -14,17 +14,22 @@ namespace FrbaCommerce.Editar_Publicacion
         private int userID;
         private int rolID;
         int offset = 1;
-        int LIMITE = 20;
+        int LIMITE = 3;
         int QtyRegistros;
 
         GD1C2014DataSet.tl_PublicacionesDataTable tablaTemporal = new GD1C2014DataSet.tl_PublicacionesDataTable();
-        public EditarPublicacion(int usuario_ID,int rol_ID)
+        public EditarPublicacion()
         {
             InitializeComponent();
-            userID = usuario_ID;
-            rolID = rol_ID;
         }
 
+        public void abrir(int usuario_ID, int rol_ID)
+        {
+            userID = usuario_ID;
+            rolID = rol_ID;
+
+            this.ShowDialog();
+        }
         /*
         internal void setID(int usuario_ID)
         {
@@ -34,11 +39,21 @@ namespace FrbaCommerce.Editar_Publicacion
 
         private void EditarPublicacion_Load(object sender, EventArgs e)
         {
-            this.publicacionesBindingSource.DataSource = this.publicacionesTableAdapter.GetDataByID(userID);
+            llenarPublicaciones();
             //this.tl_PublicacionesTableAdapter.FillByIDAndVisibilidad(tablaTemporal, userID);
             //QtyRegistros = Convert.ToInt32(tablaTemporal.Count);
             //Paginamos esa tabla utilizando el paginador
             //paginar(tablaTemporal);
+        }
+
+        private void llenarPublicaciones()
+        {
+            int? TotalRegistros = 0;
+
+            this.publicacionesBindingSource.DataSource =
+                this.publicacionesTableAdapter.GetParaEditar(userID, offset, LIMITE, ref TotalRegistros);
+
+            QtyRegistros = (int)TotalRegistros;
         }
 
         private void paginar(GD1C2014DataSet.tl_PublicacionesDataTable unaTabla)
@@ -50,7 +65,8 @@ namespace FrbaCommerce.Editar_Publicacion
         private void buttonPrincipio_Click(object sender, EventArgs e)
         {
             offset = 1;
-            paginar(tablaTemporal);
+            llenarPublicaciones();
+            //paginar(tablaTemporal);
         }
 
         private void buttonAnterior_Click(object sender, EventArgs e)
@@ -59,20 +75,26 @@ namespace FrbaCommerce.Editar_Publicacion
                 offset -= LIMITE;
             else
                 offset = 1;
-            paginar(tablaTemporal);
+            llenarPublicaciones();
+            //paginar(tablaTemporal);
         }
 
         private void buttonSiguiente_Click(object sender, EventArgs e)
         {
             if (offset <= QtyRegistros - LIMITE)
+            {
                 offset += LIMITE;
-            paginar(tablaTemporal);
+                llenarPublicaciones();
+            }
+            //paginar(tablaTemporal);
         }
 
         private void buttonFin_Click(object sender, EventArgs e)
         {
+            
             offset = QtyRegistros - LIMITE +1;
-            paginar(tablaTemporal);
+            llenarPublicaciones();
+
         }
         /*
         private void tl_PublicacionesBindingNavigatorSaveItem_Click(object sender, EventArgs e)

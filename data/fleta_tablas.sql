@@ -50,10 +50,10 @@ DROP PROCEDURE LOL.sp_LoginFallido
 DROP PROCEDURE LOL.sp_LoginExitoso
 DROP PROCEDURE LOL.sp_CrearPublicacion
 DROP PROCEDURE LOL.sp_InsertPublicacionRubro 
---DROP PROCEDURE LOL.sp_InsertarCliente
 DROP PROCEDURE LOL.sp_GuardarCliente
 DROP PROCEDURE LOL.sp_GuardarEmpresa
-DROP PROCEDURE LOL.sp_Paginador
+DROP PROCEDURE LOL.sp_PaginadorParaComprar
+DROP PROCEDURE LOL.sp_PaginadorParaEditar
 DROP PROCEDURE LOL.sp_CalificarVendedor
 DROP PROCEDURE LOL.sp_VendedoresConMasStock
 DROP PROCEDURE LOL.sp_InsertarUsuario
@@ -63,9 +63,6 @@ DROP PROCEDURE LOL.sp_editarPublicacion
 DROP PROCEDURE LOL.sp_InsertarFactura
 DROP PROCEDURE LOL.sp_InsertarFacturaItem
 DROP PROCEDURE LOL.sp_RegistrarFinalizacionSubasta
-
---Eliminar Tipo de dato
-DROP TYPE LOL.dataTable
 
 --Eliminar esquema
 DROP SCHEMA LOL

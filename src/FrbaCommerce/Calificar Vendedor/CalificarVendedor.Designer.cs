@@ -179,7 +179,7 @@
             this.cmbDescripcion.Location = new System.Drawing.Point(103, 62);
             this.cmbDescripcion.Name = "cmbDescripcion";
             this.cmbDescripcion.Size = new System.Drawing.Size(543, 21);
-            this.cmbDescripcion.TabIndex = 4;
+            this.cmbDescripcion.TabIndex = 2;
             // 
             // lblDescripcion
             // 
@@ -195,7 +195,7 @@
             this.btnCalificar.Location = new System.Drawing.Point(571, 115);
             this.btnCalificar.Name = "btnCalificar";
             this.btnCalificar.Size = new System.Drawing.Size(75, 23);
-            this.btnCalificar.TabIndex = 2;
+            this.btnCalificar.TabIndex = 3;
             this.btnCalificar.Text = "Calificar";
             this.btnCalificar.UseVisualStyleBackColor = true;
             this.btnCalificar.Click += new System.EventHandler(this.btnCalificar_Click);
@@ -204,7 +204,7 @@
             // 
             this.numCantidadEstrellas.Location = new System.Drawing.Point(103, 24);
             this.numCantidadEstrellas.Maximum = new decimal(new int[] {
-            5,
+            10,
             0,
             0,
             0});
@@ -245,6 +245,7 @@
             this.Name = "CalificarVendedor";
             this.Text = "Calificar Vendedor";
             this.Load += new System.EventHandler(this.CalificarVendedor_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CalificarVendedor_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCompras)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlComprasBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).EndInit();
@@ -255,7 +256,6 @@
             this.ResumeLayout(false);
 
         }
-
         #endregion
 
         private System.Windows.Forms.DataGridView dgvCompras;

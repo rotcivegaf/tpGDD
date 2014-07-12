@@ -12,7 +12,6 @@ namespace FrbaCommerce.Comprar_Ofertar
     public partial class NuevaOferta : Form
     {
         private int userID;
-        private decimal precioPublicacion;
         private int publicacionCodigo;
 
         public NuevaOferta()
@@ -25,14 +24,13 @@ namespace FrbaCommerce.Comprar_Ofertar
             userID = user_ID;
         }
 
-        public void abrir (int user_ID,decimal precio_Publicacion, int publicacion_Codigo)
+        public void abrir (int user_ID,int publicacion_Codigo)
         {
             this.userID = user_ID;
-            this.precioPublicacion = precio_Publicacion;
             this.publicacionCodigo = publicacion_Codigo;
 
             decimal? MaxOferta = this.tl_OfertasTableAdapter.getOfertaMaximaByCodigo(publicacionCodigo);
-            this.numericUpDownOferta.Minimum = MaxOferta != null ? (decimal)MaxOferta + 1 : Math.Round(this.precioPublicacion);
+            this.numericUpDownOferta.Minimum = MaxOferta != null ? (int)MaxOferta + 1 : 1;
             this.numericUpDownOferta.Value = this.numericUpDownOferta.Minimum;
 
             this.ShowDialog();

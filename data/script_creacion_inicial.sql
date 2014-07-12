@@ -6,26 +6,6 @@ GO
 CREATE SCHEMA LOL AUTHORIZATION gd
 GO
 
---Creacion tipos de datos de usuario-------------------------------------------
-
-CREATE TYPE [LOL].dataTable AS TABLE 
-(
-    Codigo numeric(18,0),
-	Usuario_ID numeric (18,0),
-    --Cliente_ID numeric (18,0),
-    --Empresa_ID numeric (18,0),
-    Descripcion nvarchar (255),
-    Fecha datetime,
-    Stock numeric (18,0),
-    Fecha_Vencimiento datetime,
-    Precio money,
-    Tipo nvarchar (255),
-    Visibilidad_Codigo numeric (18,0),
-    Estado nvarchar (255),
-    Permite_Preguntas bit,
-	PrecioVisibilidad money
-)
-
 --Creacion de Tablas-----------------------------------------------------------
 
 --Tabla Clientes
@@ -195,6 +175,7 @@ CREATE TABLE LOL.tl_Usuarios (
 	Habilitado		BIT				DEFAULT(1)		NOT NULL,
 	Activo			BIT				DEFAULT(1)		NOT NULL,
 	Change_Password	BIT				DEFAULT(0)		NOT NULL,
+	Calificaciones_Pendientes	TINYINT DEFAULT(0) NOT NULL,
 
 	PRIMARY KEY(ID)
 )
@@ -1141,6 +1122,101 @@ BEGIN
 END
 GO
 
+/* Stored Procedure PaginadorParaEditar */
+CREATE PROCEDURE [LOL].[sp_PaginadorParaEditar]
+	@UsuarioID INT,
+	@Inicio INT,
+	@QtyRegistros INT,
+	@TotalRegistros INT OUT
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+    WITH Results AS
+	(
+		SELECT
+			ROW_NUMBER() OVER (ORDER BY V.Precio DESC) AS RowNum,
+			P.Codigo, P.Usuario_ID, P.Descripcion, P.Fecha,
+			P.Stock, P.Fecha_Vencimiento, P.Precio, T.Tipo, 
+			V.Codigo AS Visibilidad_Codigo, V.Descripcion AS Visibilidad_Descripcion, 
+			E.Estado, P.Permite_Preguntas
+		FROM
+			LOL.tl_Publicaciones P INNER JOIN
+			LOL.tl_Publicacion_Tipos T ON P.Tipo_ID = T.ID INNER JOIN
+			LOL.tl_Publicacion_Estados E ON P.Estado_ID = E.ID INNER JOIN
+			LOL.tl_Visibilidades V ON P.Visibilidad_Codigo = V.Codigo
+        WHERE
+			P.Usuario_ID = @UsuarioID
+	)
+
+	SELECT Codigo, Usuario_ID, Descripcion, Fecha,
+			Stock, Fecha_Vencimiento, Precio, Tipo, 
+			Visibilidad_Codigo, Visibilidad_Descripcion, 
+			Estado, Permite_Preguntas 
+	FROM Results
+	WHERE RowNum BETWEEN @Inicio AND @Inicio + @QtyRegistros -1;
+
+	SELECT @TotalRegistros = COUNT(0) 
+	FROM
+		LOL.tl_Publicaciones P INNER JOIN
+		LOL.tl_Publicacion_Tipos T ON P.Tipo_ID = T.ID INNER JOIN
+		LOL.tl_Publicacion_Estados E ON P.Estado_ID = E.ID INNER JOIN
+		LOL.tl_Visibilidades V ON P.Visibilidad_Codigo = V.Codigo
+    WHERE
+		P.Usuario_ID = @UsuarioID;
+END
+GO
+
+/* Stored Procedure PaginadorParaComprar */
+CREATE PROCEDURE [LOL].[sp_PaginadorParaComprar]
+	@Usuario_ID INT,
+	@Descripcion VARCHAR(50),
+	@Rubro_ID INT,
+	@FechaActual DATETIME,
+	@Inicio INT,
+	@QtyRegistros INT,
+	@TotalRegistros INT OUT
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	WITH Results AS 
+	(
+		SELECT     
+			ROW_NUMBER() OVER (ORDER BY V.Precio DESC) AS RowNum,
+			P.Codigo, P.Usuario_ID, P.Descripcion, P.Fecha, P.Stock, P.Fecha_Vencimiento, P.Precio, T.Tipo, V.Codigo AS Visibilidad_Codigo, 
+			V.Descripcion AS Visibilidad_Descripcion, E.Estado, P.Permite_Preguntas
+		FROM
+			LOL.tl_Publicaciones AS P INNER JOIN
+			LOL.tl_Publicacion_Tipos AS T ON P.Tipo_ID = T.ID INNER JOIN
+			LOL.tl_Publicacion_Estados AS E ON P.Estado_ID = E.ID INNER JOIN
+			LOL.tl_Visibilidades AS V ON P.Visibilidad_Codigo = V.Codigo INNER JOIN
+			LOL.tl_Publicaciones_Rubros AS PR ON P.Codigo = PR.Publicacion_Codigo
+		WHERE
+			(P.Usuario_ID <> @Usuario_ID) AND (P.Descripcion LIKE '%' + @Descripcion + '%') AND
+			(PR.Rubro_ID = @Rubro_ID) AND (E.Estado = 'Publicada') AND (P.Fecha_Vencimiento >= @FechaActual)
+	)
+
+	SELECT Codigo, Usuario_ID, Descripcion, Fecha,
+			Stock, Fecha_Vencimiento, Precio, Tipo, 
+			Visibilidad_Codigo, Visibilidad_Descripcion, 
+			Estado, Permite_Preguntas 
+	FROM Results
+	WHERE RowNum BETWEEN @Inicio AND @Inicio + @QtyRegistros -1
+	
+	SELECT @TotalRegistros = COUNT(0) 
+	FROM
+		LOL.tl_Publicaciones AS P INNER JOIN
+		LOL.tl_Publicacion_Tipos AS T ON P.Tipo_ID = T.ID INNER JOIN
+		LOL.tl_Publicacion_Estados AS E ON P.Estado_ID = E.ID INNER JOIN
+		LOL.tl_Visibilidades AS V ON P.Visibilidad_Codigo = V.Codigo INNER JOIN
+		LOL.tl_Publicaciones_Rubros AS PR ON P.Codigo = PR.Publicacion_Codigo
+	WHERE
+		(P.Usuario_ID <> @Usuario_ID) AND (P.Descripcion LIKE '%' + @Descripcion + '%') AND
+		(PR.Rubro_ID = @Rubro_ID) AND (E.Estado = 'Publicada') AND (P.Fecha_Vencimiento >= @FechaActual)
+END
+GO
+
 /* Stored Procedure EditarVisibilidad */
 CREATE PROCEDURE LOL.sp_EditarVisibilidad @codigo INT,
 									      @descripcion NVARCHAR(255),
@@ -1501,61 +1577,6 @@ BEGIN
 END
 GO
 
-/* Stored Procedure Paginador*/
-CREATE PROCEDURE [LOL].[sp_Paginador]
-
-	@Offset int,
-	@Limit int,
-	@Table dataTable READONLY
-AS
-
-
-BEGIN
-
-
-;WITH Results AS
-
-	(SELECT 
-		Codigo, 
-		--Cliente_ID, 
-		--Empresa_ID, 
-		Usuario_ID,
-		Descripcion, 
-		Fecha, 
-		Stock, 
-		Fecha_Vencimiento, 
-		Precio, 
-		Tipo, 
-		Visibilidad_Codigo, 
-		Estado, 
-		Permite_Preguntas,
-		PrecioVisibilidad,
-		ROW_NUMBER() OVER (ORDER BY PrecioVisibilidad desc) AS RowNum
-	FROM @Table
-	)
-
-SELECT 
-Results.Codigo, 
---Results.Cliente_ID, 
---Results.Empresa_ID, 
-Results.Usuario_ID,
-Results.Descripcion, 
-Results.Fecha, 
-Results.Stock, 
-Results.Fecha_Vencimiento, 
-Results.Precio, 
-Results.Tipo, 
-Results.Visibilidad_Codigo, 
-Results.Estado, 
-Results.Permite_Preguntas
-
-FROM Results
-WHERE RowNum >= @Offset
-AND RowNum < @Offset + @Limit
-
-END
-GO
-
 /* Stored Procedure CalificarVendedor*/
 CREATE PROCEDURE [LOL].[sp_CalificarVendedor]
 	@CompraID INT,
@@ -1565,7 +1586,8 @@ AS
 BEGIN
 	--DECLARE @ClienteID INT;
 	--DECLARE @EmpresaID INT;
-	DECLARE @UsuarioID				INT;
+	DECLARE @CompradorID	INT;
+	DECLARE @UsuarioID		INT;
 	--DECLARE @NewCalificacionCodigo	INT;
 
 	SET NOCOUNT ON;
@@ -1592,6 +1614,9 @@ BEGIN
 			UPDATE LOL.tl_Empresas
 			SET Suma_Calificaciones = Suma_Calificaciones + @CantidadEstrellas, Cantidad_Calificaciones = Cantidad_Calificaciones + 1
 			WHERE ID = @UsuarioID;
+
+		SELECT @CompradorID = Usuario_ID FROM LOL.tl_Compras WHERE ID = @CompraID
+		UPDATE LOL.tl_Usuarios SET Calificaciones_Pendientes = Calificaciones_Pendientes - 1 WHERE ID = @CompradorID
 
 	COMMIT
 END
@@ -1657,17 +1682,22 @@ AS
 BEGIN
 	DECLARE @ID INT;
 
-	INSERT INTO LOL.tl_Compras (Publicacion_Codigo, Usuario_ID, Cantidad, Fecha) VALUES
-	(@Publicacion_Codigo, @Usuario_ID, @Cantidad, @fecha)
-	SELECT @ID = @@IDENTITY
-	
-	INSERT INTO LOL.tl_Pendientes (Fecha, Monto, Publicacion_Codigo, Compra_ID)
-	VALUES (@fecha, @montoVisibilidad, @Publicacion_Codigo, @ID)
+	BEGIN TRAN
+		INSERT INTO LOL.tl_Compras (Publicacion_Codigo, Usuario_ID, Cantidad, Fecha) VALUES
+		(@Publicacion_Codigo, @Usuario_ID, @Cantidad, @fecha)
+		SELECT @ID = @@IDENTITY
+		
+		INSERT INTO LOL.tl_Pendientes (Fecha, Monto, Publicacion_Codigo, Compra_ID)
+		VALUES (@fecha, @montoVisibilidad, @Publicacion_Codigo, @ID)
 
-	IF EXISTS(SELECT * FROM LOL.tl_Publicaciones WHERE Codigo = @Publicacion_Codigo AND Stock = @Cantidad) --Se vendio todo el stock de la Publicacion
-		UPDATE LOL.tl_Publicaciones set Stock = 0, Estado_ID = 4 WHERE Codigo = @Publicacion_Codigo
-	ELSE
-		UPDATE LOL.tl_Publicaciones set Stock = Stock - @Cantidad where Codigo = @Publicacion_Codigo
+		IF EXISTS(SELECT * FROM LOL.tl_Publicaciones WHERE Codigo = @Publicacion_Codigo AND Stock = @Cantidad) --Se vendio todo el stock de la Publicacion
+			UPDATE LOL.tl_Publicaciones set Stock = 0, Estado_ID = 4 WHERE Codigo = @Publicacion_Codigo
+		ELSE
+			UPDATE LOL.tl_Publicaciones set Stock = Stock - @Cantidad where Codigo = @Publicacion_Codigo
+
+		UPDATE LOL.tl_Usuarios SET Calificaciones_Pendientes = Calificaciones_Pendientes + 1 WHERE ID = @Usuario_ID
+
+	COMMIT
 
 END
 GO
@@ -1778,6 +1808,8 @@ BEGIN
 	VALUES (@PublicacionCodigo,@UsuarioID,1,@Fecha)
 	--Obtengo el ID de la Compra
 	SELECT @CompraID = @@IDENTITY
+	--Sumo Calificaciones_Pendientes al Usuario
+	UPDATE LOL.tl_Usuarios SET Calificaciones_Pendientes = Calificaciones_Pendientes + 1 WHERE ID = @UsuarioID
 	--Obtengo el Porcentaje segun el Codigo de Visibilidad
 	SELECT @Porcentaje = Porcentaje FROM LOL.tl_Visibilidades WHERE Codigo = @VisibilidadCodigo
 	--Agrego un registro en la tabla de Pendientes

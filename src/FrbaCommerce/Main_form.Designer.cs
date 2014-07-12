@@ -102,7 +102,7 @@ namespace FrbaCommerce
             this.groupBox1.Controls.Add(this.btnABM_Visibilidades);
             this.groupBox1.Location = new System.Drawing.Point(12, 70);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(624, 184);
+            this.groupBox1.Size = new System.Drawing.Size(624, 170);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Funcionaliades";
@@ -233,7 +233,7 @@ namespace FrbaCommerce
             this.toolStripUsuario,
             this.toolStripRol,
             this.toolStripDate});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 301);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 244);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(648, 22);
             this.statusStrip1.SizingGrip = false;
@@ -245,7 +245,7 @@ namespace FrbaCommerce
             this.toolStripUsuario.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
             this.toolStripUsuario.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripUsuario.Name = "toolStripUsuario";
-            this.toolStripUsuario.Size = new System.Drawing.Size(200, 17);
+            this.toolStripUsuario.Size = new System.Drawing.Size(211, 17);
             this.toolStripUsuario.Spring = true;
             this.toolStripUsuario.Click += new System.EventHandler(this.toolStripUsuario_Click);
             // 
@@ -254,14 +254,14 @@ namespace FrbaCommerce
             this.toolStripRol.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
             this.toolStripRol.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripRol.Name = "toolStripRol";
-            this.toolStripRol.Size = new System.Drawing.Size(200, 17);
+            this.toolStripRol.Size = new System.Drawing.Size(211, 17);
             this.toolStripRol.Spring = true;
             // 
             // toolStripDate
             // 
             this.toolStripDate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripDate.Name = "toolStripDate";
-            this.toolStripDate.Size = new System.Drawing.Size(200, 17);
+            this.toolStripDate.Size = new System.Drawing.Size(211, 17);
             this.toolStripDate.Spring = true;
             // 
             // tl_UsuariosTableAdapter
@@ -280,7 +280,7 @@ namespace FrbaCommerce
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(648, 323);
+            this.ClientSize = new System.Drawing.Size(648, 266);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);

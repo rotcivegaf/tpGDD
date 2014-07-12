@@ -73,8 +73,17 @@ namespace FrbaCommerce.Comprar_Ofertar
 
         private void llenarPublicaciones()
         {
+            int? TotalRegistros = 0;
+
             this.publicacionesBindingSource.DataSource = 
-                this.publicacionesTableAdapter.GetDataByDistinctID(UserID,textBoxDescripcion.Text,(decimal)comboBoxRubros.SelectedValue,commons.getDate());
+                this.publicacionesTableAdapter.GetParaComprar(
+                    UserID,
+                    textBoxDescripcion.Text,
+                    Convert.ToInt32(comboBoxRubros.SelectedValue),
+                    commons.getDate(),
+                    offset,LIMITE,ref TotalRegistros);
+
+            QtyRegistros = (int)TotalRegistros;
             //Aplica los filtros de descripción, rubro.
             //No muestra las publicaciones en estado borrador y finalizada
             //Aplica el criterio de visibilidad
@@ -135,7 +144,6 @@ namespace FrbaCommerce.Comprar_Ofertar
                             NuevaOferta frmOferta = new NuevaOferta();
                             frmOferta.abrir(
                                 UserID,
-                                Convert.ToDecimal(fila.Cells[Precio.Index].Value),
                                 Convert.ToInt32(fila.Cells[Codigo.Index].Value));
                         }
                         else //Compra Inmediata
@@ -198,7 +206,8 @@ namespace FrbaCommerce.Comprar_Ofertar
         private void buttonPrincipio_Click(object sender, EventArgs e)
         {
             offset = 1;
-            paginar(tablaTemporal);
+            llenarPublicaciones();
+            //paginar(tablaTemporal);
         }
 
         private void buttonAnterior_Click(object sender, EventArgs e)
@@ -207,20 +216,25 @@ namespace FrbaCommerce.Comprar_Ofertar
                 offset -= LIMITE;
             else
                 offset = 1;
-            paginar(tablaTemporal);
+            llenarPublicaciones(); 
+            //paginar(tablaTemporal);
         }
 
         private void buttonSiguiente_Click(object sender, EventArgs e)
         {
             if (offset <= QtyRegistros - LIMITE)
+            {
                 offset += LIMITE;
-            paginar(tablaTemporal);
+                llenarPublicaciones();
+            }
+            //paginar(tablaTemporal);
         }
 
         private void buttonFin_Click(object sender, EventArgs e)
         {
             offset = QtyRegistros - LIMITE + 1;
-            paginar(tablaTemporal);
+            llenarPublicaciones();
+            //paginar(tablaTemporal);
         }
     }
 }

@@ -43,7 +43,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 107);
+            this.label1.Location = new System.Drawing.Point(5, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 13);
             this.label1.TabIndex = 0;
@@ -51,15 +51,15 @@
             // 
             // textBoxPregunta
             // 
-            this.textBoxPregunta.Location = new System.Drawing.Point(67, 104);
+            this.textBoxPregunta.Location = new System.Drawing.Point(64, 12);
             this.textBoxPregunta.MaxLength = 255;
             this.textBoxPregunta.Name = "textBoxPregunta";
-            this.textBoxPregunta.Size = new System.Drawing.Size(213, 20);
+            this.textBoxPregunta.Size = new System.Drawing.Size(354, 20);
             this.textBoxPregunta.TabIndex = 1;
             // 
             // buttonPreguntar
             // 
-            this.buttonPreguntar.Location = new System.Drawing.Point(97, 192);
+            this.buttonPreguntar.Location = new System.Drawing.Point(172, 62);
             this.buttonPreguntar.Name = "buttonPreguntar";
             this.buttonPreguntar.Size = new System.Drawing.Size(75, 23);
             this.buttonPreguntar.TabIndex = 2;
@@ -84,6 +84,7 @@
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.tl_CalificacionesTableAdapter = null;
             this.tableAdapterManager.tl_ClientesTableAdapter = null;
             this.tableAdapterManager.tl_ComprasTableAdapter = null;
             this.tableAdapterManager.tl_EmpresasTableAdapter = null;
@@ -93,6 +94,8 @@
             this.tableAdapterManager.tl_OfertasTableAdapter = null;
             this.tableAdapterManager.tl_PendientesTableAdapter = null;
             this.tableAdapterManager.tl_PreguntasTableAdapter = this.tl_PreguntasTableAdapter;
+            this.tableAdapterManager.tl_Publicacion_EstadosTableAdapter = null;
+            this.tableAdapterManager.tl_Publicacion_TiposTableAdapter = null;
             this.tableAdapterManager.tl_Publicaciones_RubrosTableAdapter = null;
             this.tableAdapterManager.tl_PublicacionesTableAdapter = null;
             this.tableAdapterManager.tl_Roles_FuncionalidadesTableAdapter = null;
@@ -107,7 +110,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(445, 291);
+            this.ClientSize = new System.Drawing.Size(428, 99);
             this.Controls.Add(this.buttonPreguntar);
             this.Controls.Add(this.textBoxPregunta);
             this.Controls.Add(this.label1);
