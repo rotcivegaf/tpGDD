@@ -63,6 +63,7 @@ DROP PROCEDURE LOL.sp_editarPublicacion
 DROP PROCEDURE LOL.sp_InsertarFactura
 DROP PROCEDURE LOL.sp_InsertarFacturaItem
 DROP PROCEDURE LOL.sp_RegistrarFinalizacionSubasta
+DROP FUNCTION LOL.calificacionesPendientesDeUsuario
 
 --Eliminar esquema
 DROP SCHEMA LOL

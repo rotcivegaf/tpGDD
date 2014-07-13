@@ -57,11 +57,10 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.usernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.facturacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Facturacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vendedoresMayorFacturacionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.vendedoresMayorFacturacionTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.vendedoresMayorFacturacionTableAdapter();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.iDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.usernameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.reputacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vendedoresMayorReputacionBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -69,9 +68,9 @@
             this.clientesMasPublicacionesSinCalificarBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.clientesMasPublicacionesSinCalificarTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.clientesMasPublicacionesSinCalificarTableAdapter();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.iDDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.usernameDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sinCalificarDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usernameDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tipoListadoGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tlVisibilidadesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
@@ -366,7 +365,7 @@
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDDataGridViewTextBoxColumn,
             this.usernameDataGridViewTextBoxColumn,
-            this.facturacionDataGridViewTextBoxColumn});
+            this.Facturacion});
             this.dataGridView2.DataSource = this.vendedoresMayorFacturacionBindingSource;
             this.dataGridView2.Location = new System.Drawing.Point(12, 226);
             this.dataGridView2.Name = "dataGridView2";
@@ -389,12 +388,12 @@
             this.usernameDataGridViewTextBoxColumn.Name = "usernameDataGridViewTextBoxColumn";
             this.usernameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // facturacionDataGridViewTextBoxColumn
+            // Facturacion
             // 
-            this.facturacionDataGridViewTextBoxColumn.DataPropertyName = "Facturacion";
-            this.facturacionDataGridViewTextBoxColumn.HeaderText = "Facturacion";
-            this.facturacionDataGridViewTextBoxColumn.Name = "facturacionDataGridViewTextBoxColumn";
-            this.facturacionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.Facturacion.DataPropertyName = "MontoTotal";
+            this.Facturacion.HeaderText = "MontoTotal";
+            this.Facturacion.Name = "Facturacion";
+            this.Facturacion.ReadOnly = true;
             // 
             // vendedoresMayorFacturacionBindingSource
             // 
@@ -412,7 +411,6 @@
             this.dataGridView3.AutoGenerateColumns = false;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.iDDataGridViewTextBoxColumn1,
             this.usernameDataGridViewTextBoxColumn1,
             this.reputacionDataGridViewTextBoxColumn});
             this.dataGridView3.DataSource = this.vendedoresMayorReputacionBindingSource;
@@ -422,13 +420,6 @@
             this.dataGridView3.Size = new System.Drawing.Size(584, 146);
             this.dataGridView3.TabIndex = 7;
             this.dataGridView3.Visible = false;
-            // 
-            // iDDataGridViewTextBoxColumn1
-            // 
-            this.iDDataGridViewTextBoxColumn1.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn1.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn1.Name = "iDDataGridViewTextBoxColumn1";
-            this.iDDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // usernameDataGridViewTextBoxColumn1
             // 
@@ -469,9 +460,8 @@
             this.dataGridView4.AutoGenerateColumns = false;
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.iDDataGridViewTextBoxColumn2,
-            this.usernameDataGridViewTextBoxColumn2,
-            this.sinCalificarDataGridViewTextBoxColumn});
+            this.usernameDataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn1});
             this.dataGridView4.DataSource = this.clientesMasPublicacionesSinCalificarBindingSource;
             this.dataGridView4.Location = new System.Drawing.Point(12, 226);
             this.dataGridView4.Name = "dataGridView4";
@@ -480,26 +470,25 @@
             this.dataGridView4.TabIndex = 8;
             this.dataGridView4.Visible = false;
             // 
-            // iDDataGridViewTextBoxColumn2
-            // 
-            this.iDDataGridViewTextBoxColumn2.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn2.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn2.Name = "iDDataGridViewTextBoxColumn2";
-            this.iDDataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
             // usernameDataGridViewTextBoxColumn2
             // 
             this.usernameDataGridViewTextBoxColumn2.DataPropertyName = "Username";
             this.usernameDataGridViewTextBoxColumn2.HeaderText = "Username";
             this.usernameDataGridViewTextBoxColumn2.Name = "usernameDataGridViewTextBoxColumn2";
-            this.usernameDataGridViewTextBoxColumn2.ReadOnly = true;
             // 
-            // sinCalificarDataGridViewTextBoxColumn
+            // usernameDataGridViewTextBoxColumn3
             // 
-            this.sinCalificarDataGridViewTextBoxColumn.DataPropertyName = "Sin calificar";
-            this.sinCalificarDataGridViewTextBoxColumn.HeaderText = "Sin calificar";
-            this.sinCalificarDataGridViewTextBoxColumn.Name = "sinCalificarDataGridViewTextBoxColumn";
-            this.sinCalificarDataGridViewTextBoxColumn.ReadOnly = true;
+            this.usernameDataGridViewTextBoxColumn3.DataPropertyName = "Username";
+            this.usernameDataGridViewTextBoxColumn3.HeaderText = "Username";
+            this.usernameDataGridViewTextBoxColumn3.Name = "usernameDataGridViewTextBoxColumn3";
+            this.usernameDataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Sin Calificar";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Sin Calificar";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // Listado_Estadistico_form
             // 
@@ -567,8 +556,6 @@
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.BindingSource vendedoresMayorFacturacionBindingSource;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.vendedoresMayorFacturacionTableAdapter vendedoresMayorFacturacionTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn facturacionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn1;
@@ -580,7 +567,12 @@
         private FrbaCommerce.GD1C2014DataSetTableAdapters.clientesMasPublicacionesSinCalificarTableAdapter clientesMasPublicacionesSinCalificarTableAdapter;
         private System.Windows.Forms.DataGridView dataGridView4;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn sinCalificarDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Facturacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn2;
     }
 }

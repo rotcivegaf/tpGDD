@@ -1818,3 +1818,29 @@ BEGIN
 
 END
 GO
+
+CREATE FUNCTION LOL.calificacionesPendientesDeUsuario (@usuarioID int)
+RETURNS int
+AS
+BEGIN
+	DECLARE @sinCalif int
+	SELECT
+		@sinCalif = COUNT(*)
+	FROM
+		(
+			SELECT
+				ID, Publicacion_Codigo, Usuario_ID, Cantidad, Fecha, Comision_Pagada
+			FROM
+				LOL.tl_Compras
+			WHERE
+				(ID NOT IN (
+					SELECT
+						Compra_ID
+                    FROM
+						LOL.tl_Calificaciones)
+				) AND
+				(Usuario_ID = 94)
+		) AS aux
+		RETURN @sinCalif
+END
+

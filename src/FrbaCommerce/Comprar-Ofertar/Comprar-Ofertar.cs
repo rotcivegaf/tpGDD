@@ -27,8 +27,16 @@ namespace FrbaCommerce.Comprar_Ofertar
         public void abrir(int user_ID)
         {
             UserID = user_ID;
-            //llenarPublicaciones();
-            this.ShowDialog();
+            int calificacionesPendientes = (int)queriesTableAdapter1.calificacionesPendientesDeUsuario(UserID);
+            if (calificacionesPendientes > 5)
+            {
+                MessageBox.Show("Debe calificar antes de seguir comprando");
+            }
+            else
+            {
+                //llenarPublicaciones();
+                this.ShowDialog();
+            }
         }
         /*
         public void setID(int user_ID)
@@ -132,57 +140,66 @@ namespace FrbaCommerce.Comprar_Ofertar
             //si quiero hacer una compra
             if (e.ColumnIndex == Comprar.Index)
             {
-                //Cargo en una fila (DataGridViewRow) el registro deseado
-                DataGridViewRow fila = dataGridViewPublicaciones.Rows[e.RowIndex];
-                //Verifico que no me quiera auto-comprar
-                //if (!mismoCliente(fila))
-                //{
+                int calificacionesPendientes = (int)queriesTableAdapter1.calificacionesPendientesDeUsuario(UserID);
+                if (calificacionesPendientes > 5)
+                {
+                    MessageBox.Show("Debe calificar antes de seguir comprando");
+                }
+                else
+                {
+
+                    //Cargo en una fila (DataGridViewRow) el registro deseado
+                    DataGridViewRow fila = dataGridViewPublicaciones.Rows[e.RowIndex];
+                    //Verifico que no me quiera auto-comprar
+                    //if (!mismoCliente(fila))
+                    //{
                     //if(!(fila.Cells[6].Value.ToString().Equals("Pausada")))
                     //{
-                        if (fila.Cells[Tipo.Index].Value.ToString().Equals("Subasta"))
+                    if (fila.Cells[Tipo.Index].Value.ToString().Equals("Subasta"))
+                    {
+                        NuevaOferta frmOferta = new NuevaOferta();
+                        frmOferta.abrir(
+                            UserID,
+                            Convert.ToInt32(fila.Cells[Codigo.Index].Value));
+                    }
+                    else //Compra Inmediata
+                    {
+                        NuevaCompra frame = new NuevaCompra();
+                        frame.sendData(
+                            UserID,
+                            Convert.ToInt32(fila.Cells[Codigo.Index].Value),
+                            Convert.ToInt32(fila.Cells[Stock.Index].Value),
+                            Convert.ToInt32(fila.Cells[Visibilidad_Codigo.Index].Value),
+                            Convert.ToDecimal(fila.Cells[Precio.Index].Value),
+                            Convert.ToInt32(fila.Cells[Usuario_ID.Index].Value));
+                        frame.ShowDialog();
+                        /*
+                        if (isPublicacionDeEmpresa(fila)) //es Empresa
                         {
-                            NuevaOferta frmOferta = new NuevaOferta();
-                            frmOferta.abrir(
-                                UserID,
-                                Convert.ToInt32(fila.Cells[Codigo.Index].Value));
-                        }
-                        else //Compra Inmediata
-                        {
-                            NuevaCompra frame = new NuevaCompra();
-                            frame.sendData(
-                                UserID,
-                                Convert.ToInt32(fila.Cells[Codigo.Index].Value),
-                                Convert.ToInt32(fila.Cells[Stock.Index].Value),
-                                Convert.ToInt32(fila.Cells[Visibilidad_Codigo.Index].Value),
-                                Convert.ToDecimal(fila.Cells[Precio.Index].Value),
-                                Convert.ToInt32(fila.Cells[Usuario_ID.Index].Value));
+                            frame.sendData(this.UserID,
+                            Convert.ToInt32(fila.Cells[0].Value),
+                            Convert.ToInt32(fila.Cells[2].Value),
+                            Convert.ToInt32(fila.Cells[12].Value),
+                            Convert.ToInt32(fila.Cells[4].Value),
+                            Convert.ToInt32(fila.Cells[11].Value));
                             frame.ShowDialog();
-                            /*
-                            if (isPublicacionDeEmpresa(fila)) //es Empresa
-                            {
-                                frame.sendData(this.UserID,
-                                Convert.ToInt32(fila.Cells[0].Value),
-                                Convert.ToInt32(fila.Cells[2].Value),
-                                Convert.ToInt32(fila.Cells[12].Value),
-                                Convert.ToInt32(fila.Cells[4].Value),
-                                Convert.ToInt32(fila.Cells[11].Value));
-                                frame.ShowDialog();
-                            }
-                            else //es Cliente
-                            {
-                                frame.sendData(this.UserID,
-                                Convert.ToInt32(fila.Cells[0].Value),
-                                Convert.ToInt32(fila.Cells[2].Value),
-                                Convert.ToInt32(fila.Cells[12].Value),
-                                Convert.ToInt32(fila.Cells[4].Value),
-                                Convert.ToInt32(fila.Cells[10].Value));
-                                frame.ShowDialog();
-                            }
-                            */
-                            llenarPublicaciones();
                         }
+                        else //es Cliente
+                        {
+                            frame.sendData(this.UserID,
+                            Convert.ToInt32(fila.Cells[0].Value),
+                            Convert.ToInt32(fila.Cells[2].Value),
+                            Convert.ToInt32(fila.Cells[12].Value),
+                            Convert.ToInt32(fila.Cells[4].Value),
+                            Convert.ToInt32(fila.Cells[10].Value));
+                            frame.ShowDialog();
+                        }
+                        */
+                        llenarPublicaciones();
+                    }
                     //}
-                //}
+                    //}
+                }
             }
         }
         /*

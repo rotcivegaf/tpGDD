@@ -63,6 +63,7 @@
             this.tlRubrosBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.tl_Publicaciones_RubrosTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Publicaciones_RubrosTableAdapter();
             this.publicacionesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.PublicacionesTableAdapter();
+            this.queriesTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.QueriesTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPublicaciones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.publicacionesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
@@ -445,5 +446,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn Permite_Preguntas;
         private System.Windows.Forms.DataGridViewButtonColumn Preguntar;
         private System.Windows.Forms.DataGridViewButtonColumn Comprar;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.QueriesTableAdapter queriesTableAdapter1;
     }
 }
