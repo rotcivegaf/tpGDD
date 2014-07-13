@@ -18,6 +18,7 @@ using FrbaCommerce.Calificar_Vendedor;
 using FrbaCommerce.Facturar_Publicaciones;
 using FrbaCommerce.Historial_Cliente;
 using FrbaCommerce.Editar_Publicacion;
+using FrbaCommerce.Gestion_de_Preguntas;
 
 namespace FrbaCommerce
 {
@@ -67,8 +68,6 @@ namespace FrbaCommerce
 
         private void acomodarFuncionalidades(int rolID)
         {
-            //btnLogin.Visible = false;
-            //hideGroupControls();
             DataTable funcionalidadesByRol = this.tl_FuncionalidadesTableAdapter.FuncionalidadesPorRol(rol_ID);
             foreach (DataRow fila in funcionalidadesByRol.Rows)
             {
@@ -90,16 +89,17 @@ namespace FrbaCommerce
                         btnABM_Visibilidades.Visible = true;
                         break;
                     case "Generar Publicacion":
-                        button1.Visible = true;
+                        btnGenerarPublicacion.Visible = true;
                         break;
                     case "Editar Publicacion":
-                        button2.Visible = true;
+                        btnEditarPublicaciones.Visible = true;
                         break;
                     case "Gestion de Preguntas":
-                        btnGestionarPreguntas.Visible = true;
+                        btnResponderPreguntas.Visible = true;
+                        btnVerRespuestas.Visible = true;
                         break;
                     case "Comprar/Ofertar":
-                        button3.Visible = true;
+                        btnComprarOfertar.Visible = true;
                         break;
                     case "Historial del Cliente":
                         btnHistorial.Visible = true;
@@ -129,18 +129,16 @@ namespace FrbaCommerce
             frame.ShowDialog();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnGenerarPublicacion_Click(object sender, EventArgs e)
         {
             Generar_Publicacion_form frame = new Generar_Publicacion_form();
             frame.setIDs(usuario_ID,rol_ID);
             frame.ShowDialog();
         }
 
-        private void button3_Click_1(object sender, EventArgs e)
+        private void btnComprarOfertar_Click(object sender, EventArgs e)
         {
             Comprar_Ofertar.Comprar_Ofertar frame = new Comprar_Ofertar.Comprar_Ofertar();
-            //frame.setID(usuario_ID);
-            //frame.ShowDialog();
             frame.abrir(usuario_ID);
         }
 
@@ -164,33 +162,14 @@ namespace FrbaCommerce
 
         private void btnCalificarVendedor_Click(object sender, EventArgs e)
         {
-            //if (logueado())
-            //{
-                CalificarVendedor frmCalificarVendedor = new CalificarVendedor();
-                frmCalificarVendedor.abrir(usuario_ID,false);
-            //}
+            CalificarVendedor frmCalificarVendedor = new CalificarVendedor();
+            frmCalificarVendedor.abrir(usuario_ID,false);
         }
-
-        /*
-        private bool logueado()
-        {
-            if (usuario_ID != 0)
-                return true;
-            else
-            {
-                MessageBox.Show("Debe Loguearse al Sistema");
-                return false;
-            }
-        }
-        */
 
         private void btnFacturarPublicaciones_Click(object sender, EventArgs e)
         {
-            //if (logueado())
-            //{
-                FacturarPublicaciones frmFacturarPublicaciones = new FacturarPublicaciones();
-                frmFacturarPublicaciones.abrir(usuario_ID, rol_ID);
-            //}
+            FacturarPublicaciones frmFacturarPublicaciones = new FacturarPublicaciones();
+            frmFacturarPublicaciones.abrir(usuario_ID, rol_ID);
         }
 
         private void btnHistorial_Click(object sender, EventArgs e)
@@ -199,7 +178,7 @@ namespace FrbaCommerce
             frmHistorial.abrir(usuario_ID, rol_ID);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnEditarPublicaciones_Click(object sender, EventArgs e)
         {
             EditarPublicacion frame = new FrbaCommerce.Editar_Publicacion.EditarPublicacion();
             frame.abrir(usuario_ID, rol_ID);
@@ -218,6 +197,18 @@ namespace FrbaCommerce
                     Empresa frmEmpresa = new Empresa();
                     frmEmpresa.ver(usuario_ID);
                 }
+        }
+
+        private void btnVerRespuestas_Click(object sender, EventArgs e)
+        {
+            VerRespuestas frmVerRespuestas = new VerRespuestas();
+            frmVerRespuestas.abrir(usuario_ID);
+        }
+
+        private void btnResponderPreguntas_Click(object sender, EventArgs e)
+        {
+            ResponderPreguntas frmResponderPreguntas = new ResponderPreguntas();
+            frmResponderPreguntas.abrir(usuario_ID);
         }
     }
 }

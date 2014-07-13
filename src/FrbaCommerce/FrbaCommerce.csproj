@@ -151,6 +151,12 @@
     <Compile Include="Gestion de Preguntas\Nueva_Pregunta.Designer.cs">
       <DependentUpon>Nueva_Pregunta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Gestion de Preguntas\VerRespuestas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gestion de Preguntas\VerRespuestas.Designer.cs">
+      <DependentUpon>VerRespuestas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Listado Estadistico\Listado_Estadistico_form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -245,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Gestion de Preguntas\Nueva_Pregunta.resx">
       <DependentUpon>Nueva_Pregunta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gestion de Preguntas\VerRespuestas.resx">
+      <DependentUpon>VerRespuestas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Historial Cliente\Historial.resx">
       <DependentUpon>Historial.cs</DependentUpon>

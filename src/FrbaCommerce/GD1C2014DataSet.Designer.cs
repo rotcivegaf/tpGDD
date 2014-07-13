@@ -18601,10 +18601,11 @@ SELECT ID, Publicacion_Codigo, Usuario_ID, Pregunta, Fecha_Respuesta, Respuesta 
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT     ID, Pr.Publicacion_Codigo, Pr.Usuario_ID, Pregunta, Fecha_Respuesta, Respuesta
-FROM         LOL.tl_Preguntas Pr INNER JOIN LOL.tl_Publicaciones Pu ON (Pr.Publicacion_Codigo = Pu.Codigo)
-WHERE
-                 Fecha_Respuesta IS NULL AND Pu.Usuario_ID = @Usuario_ID";
+            this._commandCollection[1].CommandText = @"SELECT     Pr.ID, Pr.Publicacion_Codigo, Pr.Usuario_ID, Pr.Pregunta, Pr.Fecha_Respuesta, Pr.Respuesta
+FROM         LOL.tl_Preguntas AS Pr INNER JOIN
+                      LOL.tl_Publicaciones AS Pu ON Pr.Publicacion_Codigo = Pu.Codigo
+WHERE     (Pr.Fecha_Respuesta IS NULL) AND (Pu.Usuario_ID = @Usuario_ID)
+ORDER BY Pr.Publicacion_Codigo, Pr.Fecha_Respuesta";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Usuario_ID", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, "Usuario_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();

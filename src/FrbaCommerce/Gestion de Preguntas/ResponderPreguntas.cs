@@ -34,7 +34,7 @@ namespace FrbaCommerce.Gestion_de_Preguntas
 
         private void llenarPreguntas()
         {
-            this.tl_PreguntasTableAdapter.Fill(this.gD1C2014DataSet.tl_Preguntas);
+            this.tlPreguntasBindingSource.DataSource = this.tl_PreguntasTableAdapter.GetParaResponder(UsuarioID);
         }
 
         private void btnResponder_Click(object sender, EventArgs e)
