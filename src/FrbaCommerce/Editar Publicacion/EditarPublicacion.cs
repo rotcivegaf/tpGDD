@@ -113,10 +113,16 @@ namespace FrbaCommerce.Editar_Publicacion
                 DataGridViewRow fila = this.tl_PublicacionesDataGridView.Rows[e.RowIndex];
                 
                 Generar_Publicacion.Generar_Publicacion_form frame = new Generar_Publicacion.Generar_Publicacion_form();
+                frame.FormClosed += new FormClosedEventHandler(reloadPublicaciones);    
                 frame.setIDs(userID,rolID);
                 frame.editPublicidad(Convert.ToInt32(fila.Cells[Codigo.Index].Value));
                 frame.ShowDialog();
             }
+        }
+
+        private void reloadPublicaciones(object sender, FormClosedEventArgs e)
+        {
+            this.llenarPublicaciones();
         }
         
     }

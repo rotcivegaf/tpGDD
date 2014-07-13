@@ -89,6 +89,7 @@ namespace FrbaCommerce.Generar_Publicacion
                         this.comboBoxTipoDePublicacion.Enabled = false;
                         this.checkBoxAceptaPreguntas.Enabled = false;
                         this.comboBoxEstadoDeLaPublicacion.Enabled = false;
+                        this.Guardar.Enabled = false;
                         break;
                     default:
                         break;
@@ -190,9 +191,9 @@ namespace FrbaCommerce.Generar_Publicacion
                         foreach (DataRowView item in listBoxRubro.SelectedItems)
                         {
                             this.tl_Publicaciones_RubrosTableAdapter.Insert(Convert.ToInt32(this.publicacionID), Convert.ToInt32(item["ID"].ToString()));
-                        }
-                        MessageBox.Show("Edición de publicación exitosa");
+                        }    
                     }
+                    MessageBox.Show("Edición de publicación exitosa");
                     //SP para modificar la publicación
                 }
         }
