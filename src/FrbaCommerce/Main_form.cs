@@ -49,7 +49,9 @@ namespace FrbaCommerce
                 toolStripUsuario.Text = "Username: " + usuario["Username"].ToString();
                 DataRow rol = this.tl_RolesTableAdapter.getByID(rol_ID).Rows[0];
                 toolStripRol.Text = "Rol: " + rol["Nombre"].ToString();
-                if (Convert.ToInt32(usuario["Calificaciones_Pendientes"]) > 5)
+
+                int calificacionesPendientes = (int)queriesTableAdapter1.calificacionesPendientesDeUsuario(usuario_ID);
+                if (calificacionesPendientes > 5)
                 {
                     CalificarVendedor frmCalificar = new CalificarVendedor();
                     frmCalificar.abrir(usuario_ID, true);
@@ -163,7 +165,11 @@ namespace FrbaCommerce
         private void btnCalificarVendedor_Click(object sender, EventArgs e)
         {
             CalificarVendedor frmCalificarVendedor = new CalificarVendedor();
-            frmCalificarVendedor.abrir(usuario_ID,false);
+            int calificacionesPendientes = (int)queriesTableAdapter1.calificacionesPendientesDeUsuario(usuario_ID);
+            if (calificacionesPendientes > 5)
+                frmCalificarVendedor.abrir(usuario_ID, true);
+            else
+                frmCalificarVendedor.abrir(usuario_ID, false);
         }
 
         private void btnFacturarPublicaciones_Click(object sender, EventArgs e)

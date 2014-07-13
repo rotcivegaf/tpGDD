@@ -41,7 +41,7 @@ namespace FrbaCommerce.Gestion_de_Preguntas
         {
             if (!commons.algunoVacio(txtRespuesta))
             {
-                this.tl_PreguntasTableAdapter.guardarRespuesta(txtRespuesta.Text, commons.getDate().ToString(), PreguntaID);
+                this.tl_PreguntasTableAdapter.guardarRespuesta(commons.getDate().ToString(),txtRespuesta.Text, PreguntaID);
                 txtRespuesta.Clear();
                 txtRespuesta.Enabled = false;
                 grpRespuesta.Enabled = false;

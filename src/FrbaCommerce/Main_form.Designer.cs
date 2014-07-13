@@ -52,6 +52,7 @@ namespace FrbaCommerce
             this.tl_UsuariosTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_UsuariosTableAdapter();
             this.tl_RolesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RolesTableAdapter();
             this.tl_FuncionalidadesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_FuncionalidadesTableAdapter();
+            this.queriesTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.QueriesTableAdapter();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -335,6 +336,7 @@ namespace FrbaCommerce
         private System.Windows.Forms.Button btnEditarPublicaciones;
         private System.Windows.Forms.Button btnVerRespuestas;
         private System.Windows.Forms.Button btnResponderPreguntas;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.QueriesTableAdapter queriesTableAdapter1;
     }
 }
 

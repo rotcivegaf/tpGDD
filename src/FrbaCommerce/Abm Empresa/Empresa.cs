@@ -69,7 +69,7 @@ namespace FrbaCommerce.Abm_Empresa
 
             txtRazonSocial.Text = empresa["Razon_Social"].ToString();
             txtCUIT.Text = empresa["CUIT"].ToString();
-            dateFechaCreacion.Value = Convert.ToDateTime(empresa["Fecha_Creacion"].ToString());//,new System.Globalization.CultureInfo("es-AR", true));
+            dateFechaCreacion.Value = Convert.ToDateTime(empresa["Fecha_Creacion"].ToString());
             txtMail.Text = empresa["Mail"].ToString();
             txtCalle.Text = empresa["Dom_Calle"].ToString();
             numNroCalle.Value = Convert.ToInt32(empresa["Nro_Calle"].ToString());

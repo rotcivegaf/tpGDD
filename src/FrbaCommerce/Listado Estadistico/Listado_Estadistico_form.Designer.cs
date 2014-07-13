@@ -556,9 +556,9 @@
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.BindingSource vendedoresMayorFacturacionBindingSource;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.vendedoresMayorFacturacionTableAdapter vendedoresMayorFacturacionTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn facturacionDataGridViewTextBoxColumn;
+        //private System.Windows.Forms.DataGridViewTextBoxColumn facturacionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridView dataGridView3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn1;
+        //private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn reputacionDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource vendedoresMayorReputacionBindingSource;
@@ -566,8 +566,8 @@
         private System.Windows.Forms.BindingSource clientesMasPublicacionesSinCalificarBindingSource;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.clientesMasPublicacionesSinCalificarTableAdapter clientesMasPublicacionesSinCalificarTableAdapter;
         private System.Windows.Forms.DataGridView dataGridView4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sinCalificarDataGridViewTextBoxColumn;
+        //private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn2;
+        //private System.Windows.Forms.DataGridViewTextBoxColumn sinCalificarDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Facturacion;
