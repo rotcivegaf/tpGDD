@@ -33,7 +33,10 @@ namespace FrbaCommerce.Calificar_Vendedor
         void CalificarVendedor_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
         {
             if (debeCalificarTodo && dgvCompras.Rows.Count > 0)
+            {
+                MessageBox.Show("Debe Calificar todas sus Compras");
                 e.Cancel = true;
+            }
         }
 
         private void llenarGrid()

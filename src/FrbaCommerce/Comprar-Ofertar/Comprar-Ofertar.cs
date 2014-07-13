@@ -28,7 +28,7 @@ namespace FrbaCommerce.Comprar_Ofertar
         {
             UserID = user_ID;
             int calificacionesPendientes = (int)queriesTableAdapter1.calificacionesPendientesDeUsuario(UserID);
-            if (calificacionesPendientes > 5)
+            if (calificacionesPendientes >= 5)
             {
                 MessageBox.Show("Debe calificar antes de seguir comprando");
             }
