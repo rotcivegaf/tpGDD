@@ -43,6 +43,7 @@ namespace FrbaCommerce.Gestion_de_Preguntas
             {
                 this.tl_PreguntasTableAdapter.guardarRespuesta(txtRespuesta.Text, commons.getDate().ToString(), PreguntaID);
                 txtRespuesta.Clear();
+                txtRespuesta.Enabled = false;
                 grpRespuesta.Enabled = false;
                 dgvPreguntas.Enabled = true;
                 llenarPreguntas();
@@ -54,9 +55,10 @@ namespace FrbaCommerce.Gestion_de_Preguntas
             if (e.ColumnIndex == Responder.Index)
             {
                 DataGridViewRow fila = dgvPreguntas.Rows[e.RowIndex];
-                PreguntaID = Convert.ToInt32(fila.Cells[ID.Index]);
+                PreguntaID = Convert.ToInt32(fila.Cells[ID.Index].Value);
                 dgvPreguntas.Enabled = false;
                 grpRespuesta.Enabled = true;
+                txtRespuesta.Enabled = true;
                 txtRespuesta.Focus();
             }
         }

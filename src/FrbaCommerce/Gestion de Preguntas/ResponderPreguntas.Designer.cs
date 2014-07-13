@@ -29,26 +29,26 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvPreguntas = new System.Windows.Forms.DataGridView();
-            this.Responder = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.grpRespuesta = new System.Windows.Forms.GroupBox();
-            this.txtRespuesta = new System.Windows.Forms.TextBox();
-            this.lblRespuesta = new System.Windows.Forms.Label();
-            this.btnResponder = new System.Windows.Forms.Button();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Publicacion_Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Pregunta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha_Respuesta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Respuesta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Usuario_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Responder = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tlPreguntasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
+            this.grpRespuesta = new System.Windows.Forms.GroupBox();
+            this.lblRespuesta = new System.Windows.Forms.Label();
+            this.btnResponder = new System.Windows.Forms.Button();
             this.tl_PreguntasTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_PreguntasTableAdapter();
+            this.txtRespuesta = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPreguntas)).BeginInit();
-            this.grpRespuesta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tlPreguntasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
+            this.grpRespuesta.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvPreguntas
@@ -73,57 +73,6 @@
             this.dgvPreguntas.TabIndex = 0;
             this.dgvPreguntas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPreguntas_CellContentClick);
             // 
-            // Responder
-            // 
-            this.Responder.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.NullValue = "Responder";
-            this.Responder.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Responder.HeaderText = "Responder";
-            this.Responder.Name = "Responder";
-            this.Responder.ReadOnly = true;
-            this.Responder.Width = 65;
-            // 
-            // grpRespuesta
-            // 
-            this.grpRespuesta.Controls.Add(this.txtRespuesta);
-            this.grpRespuesta.Controls.Add(this.lblRespuesta);
-            this.grpRespuesta.Controls.Add(this.btnResponder);
-            this.grpRespuesta.Enabled = false;
-            this.grpRespuesta.Location = new System.Drawing.Point(12, 271);
-            this.grpRespuesta.Name = "grpRespuesta";
-            this.grpRespuesta.Size = new System.Drawing.Size(581, 81);
-            this.grpRespuesta.TabIndex = 2;
-            this.grpRespuesta.TabStop = false;
-            this.grpRespuesta.Text = "Respuesta";
-            // 
-            // txtRespuesta
-            // 
-            this.txtRespuesta.Enabled = false;
-            this.txtRespuesta.Location = new System.Drawing.Point(70, 20);
-            this.txtRespuesta.Name = "txtRespuesta";
-            this.txtRespuesta.Size = new System.Drawing.Size(494, 20);
-            this.txtRespuesta.TabIndex = 4;
-            // 
-            // lblRespuesta
-            // 
-            this.lblRespuesta.AutoSize = true;
-            this.lblRespuesta.Location = new System.Drawing.Point(6, 23);
-            this.lblRespuesta.Name = "lblRespuesta";
-            this.lblRespuesta.Size = new System.Drawing.Size(58, 13);
-            this.lblRespuesta.TabIndex = 3;
-            this.lblRespuesta.Text = "Respuesta";
-            // 
-            // btnResponder
-            // 
-            this.btnResponder.Location = new System.Drawing.Point(500, 52);
-            this.btnResponder.Name = "btnResponder";
-            this.btnResponder.Size = new System.Drawing.Size(75, 23);
-            this.btnResponder.TabIndex = 2;
-            this.btnResponder.Text = "Responder";
-            this.btnResponder.UseVisualStyleBackColor = true;
-            this.btnResponder.Click += new System.EventHandler(this.btnResponder_Click);
-            // 
             // ID
             // 
             this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -132,7 +81,6 @@
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
             this.ID.Visible = false;
-            this.ID.Width = 43;
             // 
             // Publicacion_Codigo
             // 
@@ -160,7 +108,6 @@
             this.Fecha_Respuesta.Name = "Fecha_Respuesta";
             this.Fecha_Respuesta.ReadOnly = true;
             this.Fecha_Respuesta.Visible = false;
-            this.Fecha_Respuesta.Width = 119;
             // 
             // Respuesta
             // 
@@ -170,7 +117,6 @@
             this.Respuesta.Name = "Respuesta";
             this.Respuesta.ReadOnly = true;
             this.Respuesta.Visible = false;
-            this.Respuesta.Width = 83;
             // 
             // Usuario_ID
             // 
@@ -180,7 +126,17 @@
             this.Usuario_ID.Name = "Usuario_ID";
             this.Usuario_ID.ReadOnly = true;
             this.Usuario_ID.Visible = false;
-            this.Usuario_ID.Width = 85;
+            // 
+            // Responder
+            // 
+            this.Responder.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.NullValue = "Responder";
+            this.Responder.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Responder.HeaderText = "Responder";
+            this.Responder.Name = "Responder";
+            this.Responder.ReadOnly = true;
+            this.Responder.Width = 65;
             // 
             // tlPreguntasBindingSource
             // 
@@ -192,9 +148,49 @@
             this.gD1C2014DataSet.DataSetName = "GD1C2014DataSet";
             this.gD1C2014DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // grpRespuesta
+            // 
+            this.grpRespuesta.Controls.Add(this.txtRespuesta);
+            this.grpRespuesta.Controls.Add(this.lblRespuesta);
+            this.grpRespuesta.Controls.Add(this.btnResponder);
+            this.grpRespuesta.Enabled = false;
+            this.grpRespuesta.Location = new System.Drawing.Point(12, 271);
+            this.grpRespuesta.Name = "grpRespuesta";
+            this.grpRespuesta.Size = new System.Drawing.Size(581, 81);
+            this.grpRespuesta.TabIndex = 2;
+            this.grpRespuesta.TabStop = false;
+            this.grpRespuesta.Text = "Respuesta";
+            // 
+            // lblRespuesta
+            // 
+            this.lblRespuesta.AutoSize = true;
+            this.lblRespuesta.Location = new System.Drawing.Point(6, 23);
+            this.lblRespuesta.Name = "lblRespuesta";
+            this.lblRespuesta.Size = new System.Drawing.Size(58, 13);
+            this.lblRespuesta.TabIndex = 3;
+            this.lblRespuesta.Text = "Respuesta";
+            // 
+            // btnResponder
+            // 
+            this.btnResponder.Location = new System.Drawing.Point(500, 52);
+            this.btnResponder.Name = "btnResponder";
+            this.btnResponder.Size = new System.Drawing.Size(75, 23);
+            this.btnResponder.TabIndex = 2;
+            this.btnResponder.Text = "Responder";
+            this.btnResponder.UseVisualStyleBackColor = true;
+            this.btnResponder.Click += new System.EventHandler(this.btnResponder_Click);
+            // 
             // tl_PreguntasTableAdapter
             // 
             this.tl_PreguntasTableAdapter.ClearBeforeFill = true;
+            // 
+            // txtRespuesta
+            // 
+            this.txtRespuesta.Enabled = false;
+            this.txtRespuesta.Location = new System.Drawing.Point(70, 20);
+            this.txtRespuesta.Name = "txtRespuesta";
+            this.txtRespuesta.Size = new System.Drawing.Size(494, 20);
+            this.txtRespuesta.TabIndex = 5;
             // 
             // ResponderPreguntas
             // 
@@ -207,10 +203,10 @@
             this.Text = "Responder Preguntas";
             this.Load += new System.EventHandler(this.Preguntas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPreguntas)).EndInit();
-            this.grpRespuesta.ResumeLayout(false);
-            this.grpRespuesta.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tlPreguntasBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).EndInit();
+            this.grpRespuesta.ResumeLayout(false);
+            this.grpRespuesta.PerformLayout();
             this.ResumeLayout(false);
 
         }
