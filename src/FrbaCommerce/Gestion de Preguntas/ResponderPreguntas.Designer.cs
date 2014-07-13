@@ -71,7 +71,7 @@
             this.dgvPreguntas.ReadOnly = true;
             this.dgvPreguntas.Size = new System.Drawing.Size(581, 252);
             this.dgvPreguntas.TabIndex = 0;
-            this.dgvPreguntas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dgvPreguntas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPreguntas_CellContentClick);
             // 
             // Responder
             // 

@@ -90,7 +90,7 @@ namespace FrbaCommerce.Abm_Cliente
 
             return algunoVacio;
         }
-
+        
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (faltanCampos()) return;
@@ -102,9 +102,9 @@ namespace FrbaCommerce.Abm_Cliente
                    ID,
                    cmbTipoDocumento.Text,
                    (int)numNroDocumento.Value,
+                   txtCUIL.Text,
                    txtApellido.Text,
                    txtNombre.Text,
-                   txtCUIL.Text,
                    dateFechaNacimiento.Value,
                    txtMail.Text,
                    txtCalle.Text,

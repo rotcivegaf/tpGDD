@@ -48,7 +48,7 @@ namespace FrbaCommerce
                 toolStripUsuario.Text = "Username: " + usuario["Username"].ToString();
                 DataRow rol = this.tl_RolesTableAdapter.getByID(rol_ID).Rows[0];
                 toolStripRol.Text = "Rol: " + rol["Nombre"].ToString();
-                if (Convert.ToInt32(usuario["Calificaciones_Pendientes"]) >= 5)
+                if (Convert.ToInt32(usuario["Calificaciones_Pendientes"]) > 5)
                 {
                     CalificarVendedor frmCalificar = new CalificarVendedor();
                     frmCalificar.abrir(usuario_ID, true);

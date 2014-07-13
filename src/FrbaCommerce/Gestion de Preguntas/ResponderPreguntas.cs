@@ -28,7 +28,6 @@ namespace FrbaCommerce.Gestion_de_Preguntas
 
         private void Preguntas_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'gD1C2014DataSet.tl_Preguntas' table. You can move, or remove it, as needed.
             llenarPreguntas();
 
         }
@@ -47,21 +46,10 @@ namespace FrbaCommerce.Gestion_de_Preguntas
                 grpRespuesta.Enabled = false;
                 dgvPreguntas.Enabled = true;
                 llenarPreguntas();
-
-
-
-                /*
-                this.tl_ComprasTableAdapter.sp_CalificarVendedor(compra_ID, (byte)numCantidadEstrellas.Value, cmbDescripcion.Text);
-                numCantidadEstrellas.Value = 0;
-                cmbDescripcion.Text = "";
-                grpCompras.Enabled = true;
-                grpCalificacion.Enabled = false;
-                llenarGrid();
-                */
             }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvPreguntas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == Responder.Index)
             {
