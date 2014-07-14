@@ -30,20 +30,10 @@ namespace FrbaCommerce.Editar_Publicacion
 
             this.ShowDialog();
         }
-        /*
-        internal void setID(int usuario_ID)
-        {
-            this.userID = usuario_ID;
-        }
-        */
 
         private void EditarPublicacion_Load(object sender, EventArgs e)
         {
             llenarPublicaciones();
-            //this.tl_PublicacionesTableAdapter.FillByIDAndVisibilidad(tablaTemporal, userID);
-            //QtyRegistros = Convert.ToInt32(tablaTemporal.Count);
-            //Paginamos esa tabla utilizando el paginador
-            //paginar(tablaTemporal);
         }
 
         private void llenarPublicaciones()
@@ -56,17 +46,10 @@ namespace FrbaCommerce.Editar_Publicacion
             QtyRegistros = (int)TotalRegistros;
         }
 
-        private void paginar(GD1C2014DataSet.tl_PublicacionesDataTable unaTabla)
-        {
-            //Pagino la tabla
-            this.tl_PublicacionesDataGridView.DataSource = this.tl_PublicacionesTableAdapter.GetDataByPaginador(offset, LIMITE, unaTabla);
-        }
-
         private void buttonPrincipio_Click(object sender, EventArgs e)
         {
             offset = 1;
             llenarPublicaciones();
-            //paginar(tablaTemporal);
         }
 
         private void buttonAnterior_Click(object sender, EventArgs e)
@@ -76,7 +59,6 @@ namespace FrbaCommerce.Editar_Publicacion
             else
                 offset = 1;
             llenarPublicaciones();
-            //paginar(tablaTemporal);
         }
 
         private void buttonSiguiente_Click(object sender, EventArgs e)
@@ -86,7 +68,6 @@ namespace FrbaCommerce.Editar_Publicacion
                 offset += LIMITE;
                 llenarPublicaciones();
             }
-            //paginar(tablaTemporal);
         }
 
         private void buttonFin_Click(object sender, EventArgs e)
@@ -96,15 +77,7 @@ namespace FrbaCommerce.Editar_Publicacion
             llenarPublicaciones();
 
         }
-        /*
-        private void tl_PublicacionesBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.tl_PublicacionesBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.gD1C2014DataSet);
 
-        }
-        */
         private void tl_PublicacionesDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //Evento para editar

@@ -36,8 +36,7 @@ namespace FrbaCommerce
         }
 
         public static DateTime getDate()
-        {
-            //System.Windows.Forms.MessageBox.Show(FrbaCommerce.Properties.Settings.Default.fecha.ToString());            
+        {         
             return FrbaCommerce.Properties.Settings.Default.fecha;
         }
 

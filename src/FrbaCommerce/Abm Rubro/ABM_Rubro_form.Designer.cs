@@ -1,6 +1,6 @@
 ﻿namespace FrbaCommerce.Abm_Rubro
 {
-    partial class Form1
+    partial class ABM_Rubro_form
     {
         /// <summary>
         /// Required designer variable.

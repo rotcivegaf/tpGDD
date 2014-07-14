@@ -84,11 +84,11 @@
     <Compile Include="ABM Rol\Edit_Rol_form.Designer.cs">
       <DependentUpon>Edit_Rol_form.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm Rubro\Form1.cs">
+    <Compile Include="Abm Rubro\ABM_Rubro_form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abm Rubro\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Abm Rubro\ABM_Rubro_form.Designer.cs">
+      <DependentUpon>ABM_Rubro_form.cs</DependentUpon>
     </Compile>
     <Compile Include="Abm Visibilidad\ABM_Visibilidad_form.cs">
       <SubType>Form</SubType>
@@ -216,8 +216,8 @@
     <EmbeddedResource Include="ABM Rol\Edit_Rol_form.resx">
       <DependentUpon>Edit_Rol_form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Abm Rubro\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Abm Rubro\ABM_Rubro_form.resx">
+      <DependentUpon>ABM_Rubro_form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Visibilidad\ABM_Visibilidad_form.resx">
       <DependentUpon>ABM_Visibilidad_form.cs</DependentUpon>

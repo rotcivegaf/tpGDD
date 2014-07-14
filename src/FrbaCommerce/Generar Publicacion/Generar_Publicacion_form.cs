@@ -222,44 +222,6 @@ namespace FrbaCommerce.Generar_Publicacion
         {
             if (!(comboBoxEstadoDeLaPublicacion.Text.Equals("Finalizada")))
             {
-                /*
-                if (esEmpresa(this.userID))
-                {
-                    //En este stored procedure hago un INSERT para las publicaciones
-                    //Insertando el ID de el cliente particular
-                    this.tl_PublicacionesTableAdapter.sp_CrearPublicacion(null, this.userID, inputDescripcion.Text,
-                    dateTimePickerFechaInicio.Value,
-                    Convert.ToDecimal(numericUpDownStock.Value),
-                    dateTimePickerFechaVencimiento.Value,
-                    Convert.ToDecimal(numericUpDownPrecio.Value),
-                    comboBoxTipoDePublicacion.SelectedItem.ToString(),
-                    Convert.ToDecimal(comboBoxVisiblidad.SelectedValue),
-                    comboBoxEstadoDeLaPublicacion.SelectedItem.ToString(),
-                    checkBoxAceptaPreguntas.Checked, ref nuevaPublicacionID, commons.getDate()
-                    , Convert.ToInt32(this.tl_VisibilidadesTableAdapter1.PrecioVisibilidadQuery(Convert.ToInt32(comboBoxVisiblidad.SelectedValue))));
-                    //Con el ref tengo el parámetro que me devuelve el SP, en este caso el ID de publicación que voy a usar
-                    //en la tabla rubros_publicaciones
-                    //Recorro el listBox y por cada item de tipo DataRowView hago un insert
-                }
-                else
-                {
-                    //En este stored procedure hago un INSERT para las publicaciones
-                    //Insertando el ID de la empresa
-                    this.tl_PublicacionesTableAdapter.sp_CrearPublicacion(this.userID, null, inputDescripcion.Text,
-                    dateTimePickerFechaInicio.Value,
-                    Convert.ToDecimal(numericUpDownStock.Value),
-                    dateTimePickerFechaVencimiento.Value,
-                    Convert.ToDecimal(numericUpDownPrecio.Value),
-                    comboBoxTipoDePublicacion.SelectedItem.ToString(),
-                    Convert.ToDecimal(comboBoxVisiblidad.SelectedValue),
-                    comboBoxEstadoDeLaPublicacion.SelectedItem.ToString(),
-                    checkBoxAceptaPreguntas.Checked, ref nuevaPublicacionID, commons.getDate()
-                    , Convert.ToInt32(this.tl_VisibilidadesTableAdapter1.PrecioVisibilidadQuery(Convert.ToInt32(comboBoxVisiblidad.SelectedValue))));
-                    //Con el ref tengo el parámetro que me devuelve el SP, en este caso el ID de publicación que voy a usar
-                    //en la tabla rubros_publicaciones
-                    //Recorro el listBox y por cada item de tipo DataRowView hago un insert
-                }
-                */
                 this.tl_PublicacionesTableAdapter.sp_CrearPublicacion(this.userID, inputDescripcion.Text,
                     dateTimePickerFechaInicio.Value,
                     Convert.ToDecimal(numericUpDownStock.Value),
