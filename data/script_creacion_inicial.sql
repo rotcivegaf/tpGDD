@@ -263,6 +263,16 @@ CREATE TABLE LOL.tl_Pendientes(
 )
 GO
 
+--Tabla Usuarios_Visibilidades_Ventas
+CREATE TABLE LOL.tl_Usuarios_Visibilidades_Ventas(
+	Usuario_ID			NUMERIC(18, 0)	NOT NULL,
+	Visibilidad_Codigo	NUMERIC(18, 0)	NOT NULL,
+	Cantidad_Ventas		INT				DEFAULT(0)	NOT NULL,
+	
+	PRIMARY KEY(Usuario_ID,Visibilidad_Codigo)
+)
+GO
+
 --Creacion de Foreign Keys-----------------------------------------------------
 
 --Calificaciones.Compra_ID -> Compras.ID
@@ -393,7 +403,19 @@ ALTER TABLE LOL.tl_Pendientes WITH CHECK ADD
 
 GO
 
+--UsuariosVisibilidadesVentas.Usuario_ID -> Usuarios.ID
+ALTER TABLE LOL.tl_Usuarios_Visibilidades_Ventas WITH CHECK ADD
+	CONSTRAINT fk_Usuarios_Visibilidades_Ventas_Usuario_ID
+	FOREIGN KEY (Usuario_ID)
+	REFERENCES LOL.tl_Usuarios (ID)
+GO
 
+--UsuariosVisibilidadesVentas.Visibilidad_Codigo -> Visibilidades.Codigo
+ALTER TABLE LOL.tl_Usuarios_Visibilidades_Ventas WITH CHECK ADD
+	CONSTRAINT fk_Usuarios_Visibilidades_Ventas_Visibilidad_Codigo
+	FOREIGN KEY (Visibilidad_Codigo)
+	REFERENCES LOL.tl_Visibilidades (Codigo)
+GO
 
 --Creacion de Stored Procedures------------------------------------------------
 
@@ -936,6 +958,17 @@ BEGIN
 END
 GO
 
+/* Stored Procedure InicializarUsuariosVisibilidadesVentas */
+CREATE PROCEDURE LOL.sp_InicializarUsuariosVisibilidadesVentas
+AS
+BEGIN
+
+	INSERT INTO LOL.tl_Usuarios_Visibilidades_Ventas(Usuario_ID,Visibilidad_Codigo)
+		SELECT U.ID,V.Codigo FROM LOL.tl_Usuarios U, LOL.tl_Visibilidades V
+
+END
+GO
+
 --Ejecucion de Stored Procedures-----------------------------------------------
 
 EXEC LOL.sp_InicializarFuncionalidades
@@ -953,7 +986,7 @@ EXEC LOL.sp_InicializarCalificacionesClientes
 EXEC LOL.sp_InicializarCalificacionesEmpresas
 EXEC LOL.sp_ImportarFacturas
 EXEC LOL.sp_ImportarOfertas
-
+EXEC LOL.sp_InicializarUsuariosVisibilidadesVentas
 GO
 
 --FIN MIGRACION----------------------------------------------------------------
@@ -962,7 +995,7 @@ GO
 
 --Creación de Triggers----------------------------------------
 
-CREATE TRIGGER LOL.PendientesAfterInsert
+CREATE TRIGGER LOL.tr_PendientesAfterInsert
    ON  LOL.tl_Pendientes
    AFTER INSERT
 AS 
@@ -986,7 +1019,7 @@ BEGIN
 END
 GO
 
-CREATE TRIGGER LOL.PendientesAfterDelete
+CREATE TRIGGER LOL.tr_PendientesAfterDelete
    ON  LOL.tl_Pendientes
    AFTER DELETE
 AS 
@@ -1054,6 +1087,40 @@ BEGIN
 			UPDATE LOL.tl_Usuarios_Roles SET Habilitado = 0 WHERE Usuario_ID = @ID AND Rol_ID = 3
 			UPDATE LOL.tl_Publicaciones SET Estado_ID = @EstadoPausadaID WHERE Usuario_ID = @ID
 		END
+
+END
+GO
+
+CREATE TRIGGER LOL.tr_VisibilidadesAfterInsert
+   ON  LOL.tl_Visibilidades
+   AFTER INSERT
+AS 
+BEGIN
+	DECLARE @Codigo INT
+	
+	SET NOCOUNT ON;
+
+    SELECT @Codigo = Codigo FROM INSERTED;
+	
+    INSERT INTO LOL.tl_Usuarios_Visibilidades_Ventas(Usuario_ID,Visibilidad_Codigo)
+		SELECT ID,@Codigo FROM LOL.tl_Usuarios
+
+END
+GO
+
+CREATE TRIGGER LOL.tr_UsuariosAfterInsert
+   ON  LOL.tl_Usuarios
+   AFTER INSERT
+AS 
+BEGIN
+	DECLARE @ID INT;
+
+	SET NOCOUNT ON;
+
+	SELECT @ID = ID FROM INSERTED;
+	
+    INSERT INTO LOL.tl_Usuarios_Visibilidades_Ventas(Usuario_ID,Visibilidad_Codigo)
+		SELECT @ID,Codigo FROM LOL.tl_Visibilidades
 
 END
 GO
@@ -1340,6 +1407,50 @@ BEGIN
 END
 GO
 
+/* Stored Procedure InsertarPendientes */
+CREATE PROCEDURE LOL.sp_InsertarPendiente
+	@Fecha DATETIME,
+	@Publicacion_Codigo INT,
+	@Compra_ID INT = NULL
+AS
+BEGIN
+	DECLARE @Visibilidad_Codigo INT;
+	DECLARE @Vendedor_ID INT;
+	DECLARE @Monto_Publicacion MONEY;
+	DECLARE @Monto MONEY;
+	DECLARE @QtyVentas INT;
+	DECLARE @Porcentaje_Visibilidad NUMERIC(18,2);
+	DECLARE @QtyVendida INT;
+	
+	SET NOCOUNT ON;
+
+	SELECT 
+		@Visibilidad_Codigo = Visibilidad_Codigo, @Vendedor_ID = Usuario_ID, @Monto_Publicacion = Precio
+	FROM LOL.tl_Publicaciones WHERE Codigo = @Publicacion_Codigo;
+
+    IF (@Compra_ID IS NULL) -- Pendiente por Publicar
+		BEGIN
+			SELECT @Monto = Precio FROM LOL.tl_Visibilidades WHERE Codigo = @Visibilidad_Codigo;
+			INSERT INTO LOL.tl_Pendientes(Fecha,Monto,Publicacion_Codigo) VALUES (@Fecha,@Monto,@Publicacion_Codigo);
+		END
+	ELSE -- Pendiente Por Compra
+		BEGIN
+			SELECT @QtyVentas = Cantidad_Ventas FROM LOL.tl_Usuarios_Visibilidades_Ventas WHERE Usuario_ID = @Vendedor_ID AND Visibilidad_Codigo = @Visibilidad_Codigo
+			IF (@QtyVentas = 9) -- La venta es bonificada
+				UPDATE LOL.tl_Usuarios_Visibilidades_Ventas SET Cantidad_Ventas = 0 WHERE Usuario_ID = @Vendedor_ID AND Visibilidad_Codigo = @Visibilidad_Codigo;
+			ELSE
+				BEGIN
+					SELECT @QtyVendida = Cantidad FROM LOL.tl_Compras WHERE ID = @Compra_ID;
+					SELECT @Porcentaje_Visibilidad = Porcentaje FROM LOL.tl_Visibilidades WHERE Codigo = @Visibilidad_Codigo;
+					SET @Monto = @QtyVendida * @Porcentaje_Visibilidad * @Monto_Publicacion;
+					INSERT INTO LOL.tl_Pendientes(Fecha,Monto,Publicacion_Codigo,Compra_ID) VALUES
+						(@Fecha,@Monto,@Publicacion_Codigo,@Compra_ID);
+					UPDATE LOL.tl_Usuarios_Visibilidades_Ventas SET Cantidad_Ventas = Cantidad_Ventas + 1 WHERE Usuario_ID = @Vendedor_ID AND Visibilidad_Codigo = @Visibilidad_Codigo;
+				END
+		END
+END
+GO
+
 /* Stored Procedure CrearPublicacion*/
 CREATE PROCEDURE LOL.sp_CrearPublicacion 
 	--@Cliente_ID INT = NULL,
@@ -1366,12 +1477,6 @@ BEGIN
 		BEGIN
 			
 			SELECT @QtyPublicacionGratuitasActivas = COUNT(0) FROM LOL.tl_Publicaciones WHERE Usuario_ID = @Usuario_ID AND Visibilidad_Codigo = 10006 AND Estado_ID IN (1,2)--Publicada,Pausada
-			/*
-			IF (@Cliente_ID IS NOT NULL)
-				SELECT @QtyPublicacionGratuitasActivas = COUNT(0) FROM LOL.tl_Publicaciones WHERE Cliente_ID = @Cliente_ID AND Visibilidad_Codigo = 10006 AND Estado IN ('Pausada','Publicada')
-			ELSE
-				SELECT @QtyPublicacionGratuitasActivas = COUNT(0) FROM LOL.tl_Publicaciones WHERE Empresa_ID = @Empresa_ID AND Visibilidad_Codigo = 10006 AND Estado IN ('Pausada','Publicada')
-			*/
 			IF (@QtyPublicacionGratuitasActivas >= 3)
 				BEGIN
 					SET @error = 'Tiene 3 o mas Publicaciones Gratuitas Activas';
@@ -1390,11 +1495,9 @@ BEGIN
 	 -- Esto devuelve el valor de ID de publicación creado en este caso
 	SELECT @ID = @@IDENTITY
 
-	INSERT INTO LOL.tl_Pendientes
-	(Fecha, Monto, Publicacion_Codigo)
-	VALUES
-	(@fechaPendiente,@monto,@ID)
-    
+	--INSERT INTO LOL.tl_Pendientes (Fecha, Monto, Publicacion_Codigo) VALUES (@fechaPendiente,@monto,@ID)
+    EXEC LOL.sp_InsertarPendiente @fechaPendiente,@ID,NULL;
+
 END
 GO
 
@@ -1687,8 +1790,8 @@ BEGIN
 		(@Publicacion_Codigo, @Usuario_ID, @Cantidad, @fecha)
 		SELECT @ID = @@IDENTITY
 		
-		INSERT INTO LOL.tl_Pendientes (Fecha, Monto, Publicacion_Codigo, Compra_ID)
-		VALUES (@fecha, @montoVisibilidad, @Publicacion_Codigo, @ID)
+		--INSERT INTO LOL.tl_Pendientes (Fecha, Monto, Publicacion_Codigo, Compra_ID) VALUES (@fecha, @montoVisibilidad, @Publicacion_Codigo, @ID)
+		EXEC LOL.sp_InsertarPendiente @fecha,@Publicacion_Codigo,@ID;
 
 		IF EXISTS(SELECT * FROM LOL.tl_Publicaciones WHERE Codigo = @Publicacion_Codigo AND Stock = @Cantidad) --Se vendio todo el stock de la Publicacion
 			UPDATE LOL.tl_Publicaciones set Stock = 0, Estado_ID = 4 WHERE Codigo = @Publicacion_Codigo
@@ -1813,8 +1916,8 @@ BEGIN
 	--Obtengo el Porcentaje segun el Codigo de Visibilidad
 	SELECT @Porcentaje = Porcentaje FROM LOL.tl_Visibilidades WHERE Codigo = @VisibilidadCodigo
 	--Agrego un registro en la tabla de Pendientes
-	INSERT INTO LOL.tl_Pendientes (Fecha,Monto,Publicacion_Codigo,Compra_ID)
-	VALUES (@Fecha,@Precio * @Porcentaje,@PublicacionCodigo,@CompraID)
+	--INSERT INTO LOL.tl_Pendientes (Fecha,Monto,Publicacion_Codigo,Compra_ID) VALUES (@Fecha,@Precio * @Porcentaje,@PublicacionCodigo,@CompraID)
+	EXEC LOL.sp_InsertarPendiente @Fecha,@PublicacionCodigo,@CompraID;
 
 END
 GO

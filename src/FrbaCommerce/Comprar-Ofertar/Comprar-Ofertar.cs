@@ -27,7 +27,7 @@ namespace FrbaCommerce.Comprar_Ofertar
         public void abrir(int user_ID)
         {
             UserID = user_ID;
-            int calificacionesPendientes = (int)queriesTableAdapter1.calificacionesPendientesDeUsuario(UserID);
+            int calificacionesPendientes = Convert.ToInt32(queriesTableAdapter1.calificacionesPendientesDeUsuario(UserID));
             if (calificacionesPendientes > 5)
             {
                 MessageBox.Show("Debe calificar antes de seguir comprando");
@@ -140,7 +140,7 @@ namespace FrbaCommerce.Comprar_Ofertar
             //si quiero hacer una compra
             if (e.ColumnIndex == Comprar.Index)
             {
-                int calificacionesPendientes = (int)queriesTableAdapter1.calificacionesPendientesDeUsuario(UserID);
+                int calificacionesPendientes = Convert.ToInt32(queriesTableAdapter1.calificacionesPendientesDeUsuario(UserID));
                 if (calificacionesPendientes > 5)
                 {
                     MessageBox.Show("Debe calificar antes de seguir comprando");

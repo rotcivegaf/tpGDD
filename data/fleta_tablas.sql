@@ -20,6 +20,7 @@ DROP TABLE LOL.tl_rubros
 DROP TABLE LOL.tl_publicaciones
 DROP TABLE LOL.tl_Publicacion_Tipos
 DROP TABLE LOL.tl_Publicacion_Estados
+DROP TABLE LOL.tl_Usuarios_Visibilidades_Ventas
 DROP TABLE LOL.tl_visibilidades
 DROP TABLE LOL.tl_usuarios
 
@@ -39,7 +40,7 @@ DROP PROCEDURE LOL.sp_ImportarCompras
 DROP PROCEDURE LOL.sp_InicializarCalificacionesClientes
 DROP PROCEDURE LOL.sp_InicializarCalificacionesEmpresas
 DROP PROCEDURE LOL.sp_ImportarOfertas
-
+DROP PROCEDURE LOL.sp_InicializarUsuariosVisibilidadesVentas
 
 --Eliminar Procedimientos de aplicacion
 DROP PROCEDURE LOL.sp_NuevaVisibilidad
@@ -63,6 +64,7 @@ DROP PROCEDURE LOL.sp_editarPublicacion
 DROP PROCEDURE LOL.sp_InsertarFactura
 DROP PROCEDURE LOL.sp_InsertarFacturaItem
 DROP PROCEDURE LOL.sp_RegistrarFinalizacionSubasta
+DROP PROCEDURE LOL.sp_InsertarPendiente
 DROP FUNCTION LOL.calificacionesPendientesDeUsuario
 
 --Eliminar esquema
