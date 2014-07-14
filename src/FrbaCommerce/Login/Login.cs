@@ -103,18 +103,14 @@ namespace FrbaCommerce.Login
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            if (!commons.algunoVacio(txtUsername,txtPassword))
+            RegistroUsuario frame = new RegistroUsuario();  
+            usuario_ID = frame.nuevo(txtUsername.Text, txtPassword.Text);
+            if (usuario_ID != 0)
             {
-                RegistroUsuario frame = new RegistroUsuario();  
-                usuario_ID = frame.nuevo(txtUsername.Text, txtPassword.Text);
-                if (usuario_ID != 0)
-                {
-                    splitContainer.Panel1Collapsed = true;
-                    splitContainer.Panel2Collapsed = false;
-                    cmbRoles.Focus();
-                    llenarComboRoles();
-                }
-
+                splitContainer.Panel1Collapsed = true;
+                splitContainer.Panel2Collapsed = false;
+                cmbRoles.Focus();
+                llenarComboRoles();
             }
         }
 
