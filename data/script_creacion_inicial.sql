@@ -275,6 +275,18 @@ GO
 
 --Creacion de Foreign Keys-----------------------------------------------------
 
+--Cliente.ID -> Usuario.ID
+ALTER TABLE LOL.tl_Clientes WITH CHECK ADD
+	CONSTRAINT fk_Cliente_Usuario
+	FOREIGN KEY (ID)
+	REFERENCES LOL.tl_Usuarios (ID)
+	
+--Empresa.ID -> Usuario.ID
+ALTER TABLE LOL.tl_Empresas WITH CHECK ADD
+	CONSTRAINT fk_Empresa_Usuario
+	FOREIGN KEY (ID)
+	REFERENCES LOL.tl_Usuarios (ID)
+
 --Calificaciones.Compra_ID -> Compras.ID
 ALTER TABLE LOL.tl_Calificaciones WITH CHECK ADD
 	CONSTRAINT fk_Calificaciones_Compra
