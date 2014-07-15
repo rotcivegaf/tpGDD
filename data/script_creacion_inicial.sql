@@ -1954,7 +1954,7 @@ BEGIN
                     FROM
 						LOL.tl_Calificaciones)
 				) AND
-				(Usuario_ID = 94)
+				(Usuario_ID = @usuarioID)
 		) AS aux
 		RETURN @sinCalif
 END
