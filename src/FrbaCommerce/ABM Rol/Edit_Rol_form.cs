@@ -76,7 +76,7 @@ namespace FrbaCommerce.ABM_Rol
                     /* Insertamos el rol y en la misma consulta devolvemos el ID de
                      * este nuevo registro. */
                     int newRolId;
-                    newRolId = Convert.ToInt32(this.tl_RolesTableAdapter.InsertAndGetId(inputNombre.Text, Habilitado.Checked).ToString());
+                    newRolId = Convert.ToInt32(this.tl_RolesTableAdapter.InsertAndGetId(inputNombre.Text, Habilitado.Checked));
                     
                     /* Iteramos sobre todas las funcionalidades que se marcaron como
                      * activas y, junto con el ID conseguido antes, insertamos los registros
@@ -84,7 +84,7 @@ namespace FrbaCommerce.ABM_Rol
                      * many to many. */
                     foreach (DataRowView li in listFuncionalidades.SelectedItems)
                     {
-                        this.tl_Roles_FuncionalidadesTableAdapter1.Insert(newRolId, Convert.ToInt32(li["ID"].ToString()));
+                        this.tl_Roles_FuncionalidadesTableAdapter.Insert(newRolId, Convert.ToInt32(li["ID"].ToString()));
                     }
 
                     this.msg = "Alta exitosa.";
@@ -97,7 +97,7 @@ namespace FrbaCommerce.ABM_Rol
                     //Si se deshabilito el rol, se lo quitamos a los usuarios que lo tenian. Baja lógica.
                     if (!Habilitado.Checked)
                     {
-                        this.tl_Usuarios_RolesTableAdapter1.BorrarPorRol(this.selectedRol);
+                        this.tl_Usuarios_RolesTableAdapter.borrarPorRol(this.selectedRol);
                     }
 
                     //Actualizamos el registro mediante el table adapter Roles.
@@ -105,10 +105,10 @@ namespace FrbaCommerce.ABM_Rol
                     
                     /* Borramos todos los registros que existian en Roles_Funcionalidades
                      * y los volvemos a crear con la nueva informacion */
-                    this.tl_Roles_FuncionalidadesTableAdapter1.BorrarPorRol(this.selectedRol);
+                    this.tl_Roles_FuncionalidadesTableAdapter.BorrarPorRol(this.selectedRol);
                     foreach (DataRowView li in listFuncionalidades.SelectedItems)
                     {
-                        this.tl_Roles_FuncionalidadesTableAdapter1.Insert(this.selectedRol, Convert.ToInt32(li["ID"].ToString()));
+                        this.tl_Roles_FuncionalidadesTableAdapter.Insert(this.selectedRol, Convert.ToInt32(li["ID"].ToString()));
                     }
 
                     this.msg = "Edicion exitosa.";

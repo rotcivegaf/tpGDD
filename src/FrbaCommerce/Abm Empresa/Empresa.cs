@@ -16,6 +16,7 @@ namespace FrbaCommerce.Abm_Empresa
         bool crearUsuario;
         int ID;
         bool guardada = false;
+        bool allowClosing = true;
 
         public Empresa()
         {
@@ -27,6 +28,7 @@ namespace FrbaCommerce.Abm_Empresa
             nuevaEmpresa = true;
             crearUsuario = false;
             ID = empresa_ID;
+            allowClosing = false;
 
             this.ShowDialog();
         }
@@ -47,6 +49,18 @@ namespace FrbaCommerce.Abm_Empresa
             nuevaEmpresa = true;
             crearUsuario = true;
             ID = 0;
+            this.ShowDialog();
+
+            return guardada;
+        }
+
+        public bool editarByAdmin(int empresa_ID)
+        {
+            nuevaEmpresa = false;
+            crearUsuario = false;
+            ID = empresa_ID;
+            chkHabilitada.Visible = true;
+            cargarDatos();
             this.ShowDialog();
 
             return guardada;
@@ -76,6 +90,12 @@ namespace FrbaCommerce.Abm_Empresa
             numPiso.Value = Convert.ToInt32(empresa["Piso"].ToString());
             txtDepto.Text = empresa["Depto"].ToString();
             txtCodigoPostal.Text = empresa["Cod_Postal"].ToString();
+
+            GD1C2014DataSet.tl_Usuarios_RolesDataTable usuarioRolDataTable = new GD1C2014DataSet.tl_Usuarios_RolesDataTable();
+            usuarioRolDataTable = this.tl_Usuarios_RolesTableAdapter.getByUsuarioRolIDs(ID, 3);
+            DataRow usuarioRol = usuarioRolDataTable.Rows[0];
+
+            chkHabilitada.Checked = Convert.ToBoolean(usuarioRol["Habilitado"]);
         }
 
         private bool faltanCampos()
@@ -99,12 +119,13 @@ namespace FrbaCommerce.Abm_Empresa
                    txtCUIT.Text,
                    dateFechaCreacion.Value,
                    txtMail.Text,
+                   txtNombreContacto.Text,
                    txtCalle.Text,
                    Convert.ToInt32(numNroCalle.Value),
                    Convert.ToInt32(numPiso.Value),
                    txtDepto.Text,
                    txtCodigoPostal.Text,
-                   true
+                   chkHabilitada.Checked
                    );
             }
             catch (SqlException error)
@@ -115,6 +136,15 @@ namespace FrbaCommerce.Abm_Empresa
             MessageBox.Show("Empresa Guardada");
             guardada = true;
             this.Close();
+        }
+
+        void Empresa_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!allowClosing && !guardada)
+            {
+                MessageBox.Show("Debe crear una Empresa");
+                e.Cancel = true;
+            }
         }
     }
 }

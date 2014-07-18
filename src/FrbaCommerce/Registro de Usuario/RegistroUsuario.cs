@@ -22,6 +22,17 @@ namespace FrbaCommerce.Registro_de_Usuario
             txtUsername.Text = username;
             txtPassword.Text = password;
 
+            GD1C2014DataSet.tl_RolesDataTable rolDataTable = new GD1C2014DataSet.tl_RolesDataTable();
+            DataRow rol;
+            rolDataTable = tl_RolesTableAdapter.getByNombre("Cliente");
+            rol = rolDataTable.Rows[0];
+            optCliente.Enabled = Convert.ToBoolean(rol["Habilitado"]);
+
+
+            rolDataTable = tl_RolesTableAdapter.getByNombre("Empresa");
+            rol = rolDataTable.Rows[0];
+            optEmpresa.Enabled = Convert.ToBoolean(rol["Habilitado"]);
+
             this.ShowDialog();
 
             return usuario_ID;
@@ -34,14 +45,12 @@ namespace FrbaCommerce.Registro_de_Usuario
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
-            int rol_ID;
-
             if (!faltanCampos())
             {
                 try
                 {
                     int? userID = 0;
-                    this.tl_UsuariosTableAdapter.sp_InsertarUsuario(txtUsername.Text, commons.hash(txtPassword.Text), ref userID);
+                    this.tl_UsuariosTableAdapter.sp_InsertarUsuario(txtUsername.Text, commons.hash(txtPassword.Text), false, ref userID);
                     usuario_ID = (int)userID;
                 }
                 catch (SqlException sqlE)
@@ -53,15 +62,12 @@ namespace FrbaCommerce.Registro_de_Usuario
                 {
                     Cliente frame = new Cliente();
                     frame.nuevo(usuario_ID);
-                    rol_ID = 2;
                 }
                 else
                 {
                     Empresa frame = new Empresa();
                     frame.nueva(usuario_ID);
-                    rol_ID = 3;
                 }
-                this.tl_Usuarios_RolesTableAdapter.Insert(usuario_ID,rol_ID,true);
                 this.Close();
             }
         }

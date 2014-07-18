@@ -52,13 +52,11 @@ namespace FrbaCommerce.Comprar_Ofertar
             this.label2.Visible = true;
             this.tl_ClientesyEmpresasTableAdapter.FillByID(tablaTemporal,vendedor);
             this.tl_ClientesyEmpresasDataGridView.DataSource = tablaTemporal;
-            comision = (decimal)this.tl_VisibilidadesTableAdapter1.PorcentajePorCodigo(visibilidad) * stock * precio;
-            this.tl_ComprasTableAdapter1.sp_crearCompra(publicacionCodigo,
+            comision = (decimal)this.tl_VisibilidadesTableAdapter.PorcentajePorCodigo(visibilidad) * stock * precio;
+            this.tl_ComprasTableAdapter.sp_crearCompra(publicacionCodigo,
                 UserID,
                 commons.getDate(),
-               Convert.ToInt32(this.numericUpDownStock.Value),
-                commons.getDate(),
-                comision);
+               Convert.ToInt32(this.numericUpDownStock.Value));
             this.numericUpDownStock.Enabled = false;
             this.button1.Enabled = false;
         }

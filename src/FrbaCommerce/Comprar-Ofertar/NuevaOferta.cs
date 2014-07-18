@@ -24,13 +24,13 @@ namespace FrbaCommerce.Comprar_Ofertar
             userID = user_ID;
         }
 
-        public void abrir (int user_ID,int publicacion_Codigo)
+        public void abrir (int user_ID,int publicacion_Codigo,decimal montoPublicacion)
         {
             this.userID = user_ID;
             this.publicacionCodigo = publicacion_Codigo;
 
-            decimal? MaxOferta = this.tl_OfertasTableAdapter.getOfertaMaximaByCodigo(publicacionCodigo);
-            this.numericUpDownOferta.Minimum = MaxOferta != null ? (int)MaxOferta + 1 : 1;
+            decimal ? MaxOferta = Convert.ToDecimal(this.tl_OfertasTableAdapter.getOfertaMaximaByCodigo(publicacionCodigo));
+            this.numericUpDownOferta.Minimum = MaxOferta != 0 ? (int)MaxOferta + 1 : Math.Round(montoPublicacion);
             this.numericUpDownOferta.Value = this.numericUpDownOferta.Minimum;
 
             this.ShowDialog();

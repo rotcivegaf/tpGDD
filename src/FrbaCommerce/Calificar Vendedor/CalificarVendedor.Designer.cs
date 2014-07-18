@@ -35,7 +35,6 @@
             this.publicacionCodigoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantidadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comisionPagadaDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.usuarioIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Calificar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tlComprasBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -67,7 +66,6 @@
             this.publicacionCodigoDataGridViewTextBoxColumn,
             this.cantidadDataGridViewTextBoxColumn,
             this.fechaDataGridViewTextBoxColumn,
-            this.comisionPagadaDataGridViewCheckBoxColumn,
             this.usuarioIDDataGridViewTextBoxColumn,
             this.Calificar});
             this.dgvCompras.DataSource = this.tlComprasBindingSource;
@@ -110,14 +108,6 @@
             this.fechaDataGridViewTextBoxColumn.Name = "fechaDataGridViewTextBoxColumn";
             this.fechaDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // comisionPagadaDataGridViewCheckBoxColumn
-            // 
-            this.comisionPagadaDataGridViewCheckBoxColumn.DataPropertyName = "Comision_Pagada";
-            this.comisionPagadaDataGridViewCheckBoxColumn.HeaderText = "Comision_Pagada";
-            this.comisionPagadaDataGridViewCheckBoxColumn.Name = "comisionPagadaDataGridViewCheckBoxColumn";
-            this.comisionPagadaDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.comisionPagadaDataGridViewCheckBoxColumn.Visible = false;
-            // 
             // usuarioIDDataGridViewTextBoxColumn
             // 
             this.usuarioIDDataGridViewTextBoxColumn.DataPropertyName = "Usuario_ID";
@@ -156,6 +146,7 @@
             // 
             // grpCalificacion
             // 
+            this.grpCalificacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.grpCalificacion.Controls.Add(this.cmbDescripcion);
             this.grpCalificacion.Controls.Add(this.lblDescripcion);
             this.grpCalificacion.Controls.Add(this.btnCalificar);
@@ -239,6 +230,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ClientSize = new System.Drawing.Size(676, 433);
             this.Controls.Add(this.grpCompras);
             this.Controls.Add(this.grpCalificacion);
@@ -273,7 +265,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn publicacionCodigoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidadDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn comisionPagadaDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn usuarioIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn Calificar;
     }

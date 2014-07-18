@@ -34,17 +34,16 @@
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Publicacion_Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Pregunta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fecha_Respuesta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Respuesta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Usuario_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Responder = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tlPreguntasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
             this.grpRespuesta = new System.Windows.Forms.GroupBox();
+            this.txtRespuesta = new System.Windows.Forms.TextBox();
             this.lblRespuesta = new System.Windows.Forms.Label();
             this.btnResponder = new System.Windows.Forms.Button();
             this.tl_PreguntasTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_PreguntasTableAdapter();
-            this.txtRespuesta = new System.Windows.Forms.TextBox();
+            this.tl_RespuestasTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RespuestasTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPreguntas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tlPreguntasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
@@ -61,8 +60,6 @@
             this.ID,
             this.Publicacion_Codigo,
             this.Pregunta,
-            this.Fecha_Respuesta,
-            this.Respuesta,
             this.Usuario_ID,
             this.Responder});
             this.dgvPreguntas.DataSource = this.tlPreguntasBindingSource;
@@ -100,24 +97,6 @@
             this.Pregunta.ReadOnly = true;
             this.Pregunta.Width = 75;
             // 
-            // Fecha_Respuesta
-            // 
-            this.Fecha_Respuesta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Fecha_Respuesta.DataPropertyName = "Fecha_Respuesta";
-            this.Fecha_Respuesta.HeaderText = "Fecha_Respuesta";
-            this.Fecha_Respuesta.Name = "Fecha_Respuesta";
-            this.Fecha_Respuesta.ReadOnly = true;
-            this.Fecha_Respuesta.Visible = false;
-            // 
-            // Respuesta
-            // 
-            this.Respuesta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Respuesta.DataPropertyName = "Respuesta";
-            this.Respuesta.HeaderText = "Respuesta";
-            this.Respuesta.Name = "Respuesta";
-            this.Respuesta.ReadOnly = true;
-            this.Respuesta.Visible = false;
-            // 
             // Usuario_ID
             // 
             this.Usuario_ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -150,6 +129,7 @@
             // 
             // grpRespuesta
             // 
+            this.grpRespuesta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.grpRespuesta.Controls.Add(this.txtRespuesta);
             this.grpRespuesta.Controls.Add(this.lblRespuesta);
             this.grpRespuesta.Controls.Add(this.btnResponder);
@@ -160,6 +140,14 @@
             this.grpRespuesta.TabIndex = 2;
             this.grpRespuesta.TabStop = false;
             this.grpRespuesta.Text = "Respuesta";
+            // 
+            // txtRespuesta
+            // 
+            this.txtRespuesta.Enabled = false;
+            this.txtRespuesta.Location = new System.Drawing.Point(70, 20);
+            this.txtRespuesta.Name = "txtRespuesta";
+            this.txtRespuesta.Size = new System.Drawing.Size(494, 20);
+            this.txtRespuesta.TabIndex = 5;
             // 
             // lblRespuesta
             // 
@@ -184,18 +172,15 @@
             // 
             this.tl_PreguntasTableAdapter.ClearBeforeFill = true;
             // 
-            // txtRespuesta
+            // tl_RespuestasTableAdapter
             // 
-            this.txtRespuesta.Enabled = false;
-            this.txtRespuesta.Location = new System.Drawing.Point(70, 20);
-            this.txtRespuesta.Name = "txtRespuesta";
-            this.txtRespuesta.Size = new System.Drawing.Size(494, 20);
-            this.txtRespuesta.TabIndex = 5;
+            this.tl_RespuestasTableAdapter.ClearBeforeFill = true;
             // 
             // ResponderPreguntas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ClientSize = new System.Drawing.Size(605, 365);
             this.Controls.Add(this.grpRespuesta);
             this.Controls.Add(this.dgvPreguntas);
@@ -220,13 +205,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Publicacion_Codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Pregunta;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Fecha_Respuesta;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Respuesta;
+        //private System.Windows.Forms.DataGridViewTextBoxColumn Fecha_Respuesta;
+        //private System.Windows.Forms.DataGridViewTextBoxColumn Respuesta;
         private System.Windows.Forms.DataGridViewTextBoxColumn Usuario_ID;
         private System.Windows.Forms.DataGridViewButtonColumn Responder;
         private System.Windows.Forms.GroupBox grpRespuesta;
         private System.Windows.Forms.Label lblRespuesta;
         private System.Windows.Forms.Button btnResponder;
         private System.Windows.Forms.TextBox txtRespuesta;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RespuestasTableAdapter tl_RespuestasTableAdapter;
     }
 }

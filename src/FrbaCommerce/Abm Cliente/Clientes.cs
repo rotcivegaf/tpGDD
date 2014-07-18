@@ -42,16 +42,14 @@ namespace FrbaCommerce.Abm_Cliente
 
         private void llenarGrid()
         {
-            this.tlClientesBindingSource.DataSource = this.tl_ClientesTableAdapter.GetData().Select(crearCondicion());
+            this.clientesBindingSource.DataSource = this.clientesTableAdapter.GetData().Select(crearCondicion());
         }
 
         private String crearCondicion()
         {
             String condicion;
 
-            condicion = "Habilitado = 1";
-            if (txtNombre.Text != "")
-                condicion += " AND Nombre LIKE '%" + txtNombre.Text + "%'";
+            condicion = "Nombre LIKE '%" + txtNombre.Text + "%'";
             if (txtApellido.Text != "")
                 condicion += " AND Apellido LIKE '%" + txtApellido.Text + "%'";
             if (cmbTipoDocumento.Text != "*")
@@ -71,21 +69,21 @@ namespace FrbaCommerce.Abm_Cliente
 
         private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == dgvClientes.Columns.Count - 1)
-            {
-                int ID = getClienteID(e.RowIndex);
-                this.tl_ClientesTableAdapter.deshabilitar(ID);
-                MessageBox.Show("Cliente 'Eliminado'");
-                llenarGrid();
-            }
-        }
-
-        private void dgvClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int ID = getClienteID(e.RowIndex);
-            Cliente cliente = new Cliente();
-            if (cliente.editar(ID))
-                llenarGrid();
+            if (e.RowIndex >= 0)
+                if (e.ColumnIndex == Deshabilitar.Index)
+                {
+                    int ID = getClienteID(e.RowIndex);
+                    this.tl_ClientesTableAdapter.deshabilitar(ID);
+                    MessageBox.Show("Cliente Deshabilitado");
+                    llenarGrid();
+                }
+                else if (e.ColumnIndex == Seleccionar.Index)
+                {
+                    int ID = getClienteID(e.RowIndex);
+                    Cliente cliente = new Cliente();
+                    if (cliente.editarByAdmin(ID))
+                        llenarGrid();
+                }
         }
 
         private int getClienteID(int rowIndex)

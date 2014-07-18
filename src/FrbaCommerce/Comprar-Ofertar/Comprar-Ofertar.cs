@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using FrbaCommerce.Gestion_de_Preguntas;
 
 namespace FrbaCommerce.Comprar_Ofertar
 {
@@ -15,7 +16,7 @@ namespace FrbaCommerce.Comprar_Ofertar
         private int UserID;
 
         int offset = 1;
-        int LIMITE = 20;
+        int LIMITE;
         int QtyRegistros;
         GD1C2014DataSet.tl_PublicacionesDataTable tablaTemporal = new GD1C2014DataSet.tl_PublicacionesDataTable();
 
@@ -27,7 +28,7 @@ namespace FrbaCommerce.Comprar_Ofertar
         public void abrir(int user_ID)
         {
             UserID = user_ID;
-            int calificacionesPendientes = Convert.ToInt32(queriesTableAdapter1.calificacionesPendientesDeUsuario(UserID));
+            int calificacionesPendientes = Convert.ToInt32(tl_UsuariosTableAdapter.getCalificacionesPendientes(UserID));
             if (calificacionesPendientes > 5)
             {
                 MessageBox.Show("Debe calificar antes de seguir comprando");
@@ -37,23 +38,17 @@ namespace FrbaCommerce.Comprar_Ofertar
                 this.ShowDialog();
             }
         }
-        
-        private void Comprar_Ofertar_Load(object sender, EventArgs e)
-        {
-            this.tl_RubrosTableAdapter.Fill(this.gD1C2014DataSet.tl_Rubros);
-            llenarPublicaciones();
-        }
 
         private bool validar()
         {
 
-            return (!(commons.algunoVacio(textBoxDescripcion) ));
+            return (!(commons.algunoVacio(textBoxRubro) ));
 
         }
 
         private void buttonBuscarPublicacion_Click(object sender, EventArgs e)
         {
-            //Si pasa la validación, es decir si el campo descripción no está vacio
+            //Si pasa la validación, es decir si el campo rubro no está vacios
             if (this.validar())
             {
                 offset = 1;
@@ -66,10 +61,10 @@ namespace FrbaCommerce.Comprar_Ofertar
             int? TotalRegistros = 0;
 
             this.publicacionesBindingSource.DataSource = 
-                this.publicacionesTableAdapter.GetParaComprar(
+                this.publicacionesTableAdapter.getParaComprar(
                     UserID,
                     textBoxDescripcion.Text,
-                    Convert.ToInt32(comboBoxRubros.SelectedValue),
+                    Convert.ToInt32(textBoxRubro.Tag),
                     commons.getDate(),
                     offset,LIMITE,ref TotalRegistros);
 
@@ -78,55 +73,52 @@ namespace FrbaCommerce.Comprar_Ofertar
 
         private void dataGridViewPublicaciones_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //Si quiero hacer una pregunta
-            if (e.ColumnIndex == Preguntar.Index)// PreguntarColumnIndex)
-            {
-                //Cargo en una fila (DataGridViewRow) el registro deseado
-                DataGridViewRow fila = dataGridViewPublicaciones.Rows[e.RowIndex];
-                //Si la publicación acepta preguntas
-                if (Convert.ToBoolean(fila.Cells[Permite_Preguntas.Index].Value))
+            if (e.RowIndex >= 0)
+                if (e.ColumnIndex == Preguntar.Index)//Si quiero hacer una pregunta
                 {
-                    //Creo un formulario de nueva pregunta y le mando el ID de la publicación para cargarlo en la tabla
-                    Gestion_de_Preguntas.Nueva_Pregunta frame = new Gestion_de_Preguntas.Nueva_Pregunta();
-                    frame.setIDPublicacion(Convert.ToInt32(fila.Cells[Codigo.Index].Value));
-                    frame.ShowDialog();
-                }
-            }
-            //si quiero hacer una compra
-            if (e.ColumnIndex == Comprar.Index)
-            {
-                int calificacionesPendientes = Convert.ToInt32(queriesTableAdapter1.calificacionesPendientesDeUsuario(UserID));
-                if (calificacionesPendientes > 5)
-                {
-                    MessageBox.Show("Debe calificar antes de seguir comprando");
-                }
-                else
-                {
-
                     //Cargo en una fila (DataGridViewRow) el registro deseado
                     DataGridViewRow fila = dataGridViewPublicaciones.Rows[e.RowIndex];
-                    if (fila.Cells[Tipo.Index].Value.ToString().Equals("Subasta"))
+                    //Si la publicación acepta preguntas
+                    if (Convert.ToBoolean(fila.Cells[Permite_Preguntas.Index].Value))
                     {
-                        NuevaOferta frmOferta = new NuevaOferta();
-                        frmOferta.abrir(
-                            UserID,
-                            Convert.ToInt32(fila.Cells[Codigo.Index].Value));
+                        //Creo un formulario de nueva pregunta y le mando el ID de Usuario y Codigo de la Publicación
+                        Nueva_Pregunta frame = new Nueva_Pregunta();
+                        frame.abrir(UserID,Convert.ToInt32(fila.Cells[Codigo.Index].Value));
                     }
-                    else //Compra Inmediata
+                }else if (e.ColumnIndex == Comprar.Index)//si quiero hacer una compra
+                {
+                    int calificacionesPendientes = Convert.ToInt32(tl_UsuariosTableAdapter.getCalificacionesPendientes(UserID));
+                    if (calificacionesPendientes > 5)
                     {
-                        NuevaCompra frame = new NuevaCompra();
-                        frame.sendData(
-                            UserID,
-                            Convert.ToInt32(fila.Cells[Codigo.Index].Value),
-                            Convert.ToInt32(fila.Cells[Stock.Index].Value),
-                            Convert.ToInt32(fila.Cells[Visibilidad_Codigo.Index].Value),
-                            Convert.ToDecimal(fila.Cells[Precio.Index].Value),
-                            Convert.ToInt32(fila.Cells[Usuario_ID.Index].Value));
-                        frame.ShowDialog();
-                        llenarPublicaciones();
+                        MessageBox.Show("Debe calificar antes de seguir comprando");
+                    }
+                    else
+                    {
+                        //Cargo en una fila (DataGridViewRow) el registro deseado
+                        DataGridViewRow fila = dataGridViewPublicaciones.Rows[e.RowIndex];
+                        if (fila.Cells[Tipo.Index].Value.ToString().Equals("Subasta"))
+                        {
+                            NuevaOferta frmOferta = new NuevaOferta();
+                            frmOferta.abrir(
+                                UserID,
+                                Convert.ToInt32(fila.Cells[Codigo.Index].Value),
+                                Convert.ToDecimal(fila.Cells[Precio.Index].Value));
+                        }
+                        else //Compra Inmediata
+                        {
+                            NuevaCompra frame = new NuevaCompra();
+                            frame.sendData(
+                                UserID,
+                                Convert.ToInt32(fila.Cells[Codigo.Index].Value),
+                                Convert.ToInt32(fila.Cells[Stock.Index].Value),
+                                Convert.ToInt32(fila.Cells[Visibilidad_Codigo.Index].Value),
+                                Convert.ToDecimal(fila.Cells[Precio.Index].Value),
+                                Convert.ToInt32(fila.Cells[Usuario_ID.Index].Value));
+                            frame.ShowDialog();
+                            llenarPublicaciones();
+                        }
                     }
                 }
-            }
         }
         
         private void buttonPrincipio_Click(object sender, EventArgs e)
@@ -157,6 +149,34 @@ namespace FrbaCommerce.Comprar_Ofertar
         {
             offset = QtyRegistros - LIMITE + 1;
             llenarPublicaciones();
+        }
+
+        private void buttonLimpiar_Click(object sender, EventArgs e)
+        {
+            textBoxDescripcion.Clear();
+            textBoxRubro.Clear();
+            textBoxRubro.Tag = 0;
+            llenarPublicaciones();
+        }
+
+        private void btnSeleccionarRubro_Click(object sender, EventArgs e)
+        {
+            SeleccionarRubro frame = new SeleccionarRubro();
+            if (frame.seleccionar())
+            {
+                textBoxRubro.Text = frame.rubroDescripcion;
+                textBoxRubro.Tag = frame.rubroID;
+            }
+        }
+
+        private void Comprar_Ofertar_Load(object sender, EventArgs e)
+        {
+            cmbCantidadRegistros.SelectedIndex = 0;
+        }
+
+        private void cmbCantidadRegistros_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LIMITE = Convert.ToInt32(cmbCantidadRegistros.Text);
         }
     }
 }

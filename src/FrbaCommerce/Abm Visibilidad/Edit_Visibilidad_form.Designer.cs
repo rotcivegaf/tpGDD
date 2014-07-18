@@ -30,7 +30,7 @@
         {
             this.inputCodigo = new System.Windows.Forms.TextBox();
             this.Guardar = new System.Windows.Forms.Button();
-            this.tl_VisibilidadesTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_VisibilidadesTableAdapter();
+            this.tl_VisibilidadesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_VisibilidadesTableAdapter();
             this.inputDescripcion = new System.Windows.Forms.TextBox();
             this.inputPrecio = new System.Windows.Forms.TextBox();
             this.inputPorcentaje = new System.Windows.Forms.TextBox();
@@ -41,6 +41,7 @@
             this.Limpiar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.inputDuracion = new System.Windows.Forms.NumericUpDown();
+            this.chkHabilitada = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.inputDuracion)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,31 +54,31 @@
             // 
             // Guardar
             // 
-            this.Guardar.Location = new System.Drawing.Point(136, 284);
+            this.Guardar.Location = new System.Drawing.Point(136, 325);
             this.Guardar.Name = "Guardar";
             this.Guardar.Size = new System.Drawing.Size(104, 23);
-            this.Guardar.TabIndex = 1;
+            this.Guardar.TabIndex = 7;
             this.Guardar.Text = "Guardar";
             this.Guardar.UseVisualStyleBackColor = true;
             this.Guardar.Click += new System.EventHandler(this.Guardar_Click);
             // 
-            // tl_VisibilidadesTableAdapter1
+            // tl_VisibilidadesTableAdapter
             // 
-            this.tl_VisibilidadesTableAdapter1.ClearBeforeFill = true;
+            this.tl_VisibilidadesTableAdapter.ClearBeforeFill = true;
             // 
             // inputDescripcion
             // 
             this.inputDescripcion.Location = new System.Drawing.Point(12, 87);
             this.inputDescripcion.Name = "inputDescripcion";
             this.inputDescripcion.Size = new System.Drawing.Size(230, 20);
-            this.inputDescripcion.TabIndex = 2;
+            this.inputDescripcion.TabIndex = 1;
             // 
             // inputPrecio
             // 
             this.inputPrecio.Location = new System.Drawing.Point(12, 140);
             this.inputPrecio.Name = "inputPrecio";
             this.inputPrecio.Size = new System.Drawing.Size(228, 20);
-            this.inputPrecio.TabIndex = 4;
+            this.inputPrecio.TabIndex = 2;
             // 
             // inputPorcentaje
             // 
@@ -85,7 +86,7 @@
             this.inputPorcentaje.Location = new System.Drawing.Point(12, 191);
             this.inputPorcentaje.Name = "inputPorcentaje";
             this.inputPorcentaje.Size = new System.Drawing.Size(228, 20);
-            this.inputPorcentaje.TabIndex = 5;
+            this.inputPorcentaje.TabIndex = 3;
             // 
             // lbCodigo
             // 
@@ -125,10 +126,10 @@
             // 
             // Limpiar
             // 
-            this.Limpiar.Location = new System.Drawing.Point(12, 284);
+            this.Limpiar.Location = new System.Drawing.Point(12, 325);
             this.Limpiar.Name = "Limpiar";
             this.Limpiar.Size = new System.Drawing.Size(104, 23);
-            this.Limpiar.TabIndex = 10;
+            this.Limpiar.TabIndex = 6;
             this.Limpiar.Text = "Limpiar";
             this.Limpiar.UseVisualStyleBackColor = true;
             this.Limpiar.Click += new System.EventHandler(this.Limpiar_Click);
@@ -157,18 +158,31 @@
             0});
             this.inputDuracion.Name = "inputDuracion";
             this.inputDuracion.Size = new System.Drawing.Size(228, 20);
-            this.inputDuracion.TabIndex = 13;
+            this.inputDuracion.TabIndex = 4;
             this.inputDuracion.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
             // 
+            // chkHabilitada
+            // 
+            this.chkHabilitada.AutoSize = true;
+            this.chkHabilitada.Checked = true;
+            this.chkHabilitada.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkHabilitada.Location = new System.Drawing.Point(12, 285);
+            this.chkHabilitada.Name = "chkHabilitada";
+            this.chkHabilitada.Size = new System.Drawing.Size(73, 17);
+            this.chkHabilitada.TabIndex = 5;
+            this.chkHabilitada.Text = "Habilitada";
+            this.chkHabilitada.UseVisualStyleBackColor = true;
+            // 
             // Edit_Visibilidad_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(252, 324);
+            this.ClientSize = new System.Drawing.Size(252, 360);
+            this.Controls.Add(this.chkHabilitada);
             this.Controls.Add(this.inputDuracion);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Limpiar);
@@ -195,7 +209,7 @@
 
         private System.Windows.Forms.TextBox inputCodigo;
         private System.Windows.Forms.Button Guardar;
-        private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_VisibilidadesTableAdapter tl_VisibilidadesTableAdapter1;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_VisibilidadesTableAdapter tl_VisibilidadesTableAdapter;
         private System.Windows.Forms.TextBox inputDescripcion;
         private System.Windows.Forms.TextBox inputPrecio;
         private System.Windows.Forms.TextBox inputPorcentaje;
@@ -206,5 +220,6 @@
         private System.Windows.Forms.Button Limpiar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown inputDuracion;
+        private System.Windows.Forms.CheckBox chkHabilitada;
     }
 }

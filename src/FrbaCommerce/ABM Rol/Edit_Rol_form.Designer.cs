@@ -39,9 +39,9 @@
             this.GuardarRol = new System.Windows.Forms.Button();
             this.tlRolesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tl_RolesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RolesTableAdapter();
-            this.tl_Roles_FuncionalidadesTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Roles_FuncionalidadesTableAdapter();
+            this.tl_Roles_FuncionalidadesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Roles_FuncionalidadesTableAdapter();
             this.Habilitado = new System.Windows.Forms.CheckBox();
-            this.tl_Usuarios_RolesTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Usuarios_RolesTableAdapter();
+            this.tl_Usuarios_RolesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Usuarios_RolesTableAdapter();
             this.btnLimpiar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tlFuncionalidadesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
@@ -119,9 +119,9 @@
             // 
             this.tl_RolesTableAdapter.ClearBeforeFill = true;
             // 
-            // tl_Roles_FuncionalidadesTableAdapter1
+            // tl_Roles_FuncionalidadesTableAdapter
             // 
-            this.tl_Roles_FuncionalidadesTableAdapter1.ClearBeforeFill = true;
+            this.tl_Roles_FuncionalidadesTableAdapter.ClearBeforeFill = true;
             // 
             // Habilitado
             // 
@@ -129,20 +129,20 @@
             this.Habilitado.Location = new System.Drawing.Point(38, 321);
             this.Habilitado.Name = "Habilitado";
             this.Habilitado.Size = new System.Drawing.Size(73, 17);
-            this.Habilitado.TabIndex = 5;
+            this.Habilitado.TabIndex = 2;
             this.Habilitado.Text = "Habilitado";
             this.Habilitado.UseVisualStyleBackColor = true;
             // 
-            // tl_Usuarios_RolesTableAdapter1
+            // tl_Usuarios_RolesTableAdapter
             // 
-            this.tl_Usuarios_RolesTableAdapter1.ClearBeforeFill = true;
+            this.tl_Usuarios_RolesTableAdapter.ClearBeforeFill = true;
             // 
             // btnLimpiar
             // 
             this.btnLimpiar.Location = new System.Drawing.Point(38, 359);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(81, 23);
-            this.btnLimpiar.TabIndex = 6;
+            this.btnLimpiar.TabIndex = 3;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
@@ -183,9 +183,9 @@
         private System.Windows.Forms.Button GuardarRol;
         private System.Windows.Forms.BindingSource tlRolesBindingSource;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RolesTableAdapter tl_RolesTableAdapter;
-        private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Roles_FuncionalidadesTableAdapter tl_Roles_FuncionalidadesTableAdapter1;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Roles_FuncionalidadesTableAdapter tl_Roles_FuncionalidadesTableAdapter;
         private System.Windows.Forms.CheckBox Habilitado;
-        private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Usuarios_RolesTableAdapter tl_Usuarios_RolesTableAdapter1;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Usuarios_RolesTableAdapter tl_Usuarios_RolesTableAdapter;
         private System.Windows.Forms.Button btnLimpiar;
     }
 }

@@ -127,9 +127,11 @@
             // dateTimePickerFechaInicio
             // 
             this.dateTimePickerFechaInicio.Location = new System.Drawing.Point(136, 96);
+            this.dateTimePickerFechaInicio.MinDate = new System.DateTime(2014, 1, 1, 0, 0, 0, 0);
             this.dateTimePickerFechaInicio.Name = "dateTimePickerFechaInicio";
-            this.dateTimePickerFechaInicio.Size = new System.Drawing.Size(195, 20);
+            this.dateTimePickerFechaInicio.Size = new System.Drawing.Size(213, 20);
             this.dateTimePickerFechaInicio.TabIndex = 2;
+            this.dateTimePickerFechaInicio.Value = this.dateTimePickerFechaInicio.MinDate;
             this.dateTimePickerFechaInicio.ValueChanged += new System.EventHandler(this.dateTimePickerFechaInicio_ValueChanged);
             // 
             // label5
@@ -146,9 +148,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(92, 199);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(39, 13);
+            this.label6.Size = new System.Drawing.Size(44, 13);
             this.label6.TabIndex = 11;
-            this.label6.Text = "Rubro:";
+            this.label6.Text = "Rubros:";
             // 
             // numericUpDownPrecio
             // 
@@ -212,6 +214,7 @@
             this.comboBoxTipoDePublicacion.Size = new System.Drawing.Size(121, 21);
             this.comboBoxTipoDePublicacion.TabIndex = 7;
             this.comboBoxTipoDePublicacion.ValueMember = "ID";
+            this.comboBoxTipoDePublicacion.SelectedIndexChanged += new System.EventHandler(this.comboBoxTipoDePublicacion_SelectedIndexChanged);
             // 
             // tlPublicacionTiposBindingSource
             // 
@@ -267,6 +270,11 @@
             // numericUpDownStock
             // 
             this.numericUpDownStock.Location = new System.Drawing.Point(136, 63);
+            this.numericUpDownStock.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDownStock.Name = "numericUpDownStock";
             this.numericUpDownStock.Size = new System.Drawing.Size(120, 20);
             this.numericUpDownStock.TabIndex = 1;
@@ -316,7 +324,7 @@
             this.dateTimePickerFechaVencimiento.Enabled = false;
             this.dateTimePickerFechaVencimiento.Location = new System.Drawing.Point(136, 130);
             this.dateTimePickerFechaVencimiento.Name = "dateTimePickerFechaVencimiento";
-            this.dateTimePickerFechaVencimiento.Size = new System.Drawing.Size(195, 20);
+            this.dateTimePickerFechaVencimiento.Size = new System.Drawing.Size(213, 20);
             this.dateTimePickerFechaVencimiento.TabIndex = 3;
             this.dateTimePickerFechaVencimiento.TabStop = false;
             // 
@@ -328,7 +336,7 @@
             this.listBoxRubro.Location = new System.Drawing.Point(138, 199);
             this.listBoxRubro.Name = "listBoxRubro";
             this.listBoxRubro.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBoxRubro.Size = new System.Drawing.Size(123, 95);
+            this.listBoxRubro.Size = new System.Drawing.Size(211, 95);
             this.listBoxRubro.TabIndex = 5;
             this.listBoxRubro.ValueMember = "ID";
             // 
@@ -367,6 +375,7 @@
             this.tableAdapterManager.tl_Publicacion_TiposTableAdapter = null;
             this.tableAdapterManager.tl_Publicaciones_RubrosTableAdapter = this.tl_Publicaciones_RubrosTableAdapter;
             this.tableAdapterManager.tl_PublicacionesTableAdapter = this.tl_PublicacionesTableAdapter;
+            this.tableAdapterManager.tl_RespuestasTableAdapter = null;
             this.tableAdapterManager.tl_Roles_FuncionalidadesTableAdapter = null;
             this.tableAdapterManager.tl_RolesTableAdapter = null;
             this.tableAdapterManager.tl_RubrosTableAdapter = this.tl_RubrosTableAdapter;

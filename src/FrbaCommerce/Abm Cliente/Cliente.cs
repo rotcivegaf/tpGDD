@@ -16,6 +16,7 @@ namespace FrbaCommerce.Abm_Cliente
         bool crearUsuario;
         int ID;
         bool guardado = false;
+        bool allowClosing = true;
 
         public Cliente()
         {
@@ -27,6 +28,7 @@ namespace FrbaCommerce.Abm_Cliente
             nuevoCliente = true;
             crearUsuario = false;
             ID = cliente_ID;
+            allowClosing = false;
 
             this.ShowDialog();
         }
@@ -52,6 +54,18 @@ namespace FrbaCommerce.Abm_Cliente
             return guardado;
         }
 
+        public bool editarByAdmin(int cliente_ID)
+        {
+            nuevoCliente = false;
+            crearUsuario = false;
+            ID = cliente_ID;
+            chkHabilitado.Visible = true;
+            cargarDatos();
+            this.ShowDialog();
+
+            return guardado;
+        }
+
         public void ver(int cliente_ID)
         {
             ID = cliente_ID;
@@ -72,7 +86,7 @@ namespace FrbaCommerce.Abm_Cliente
             txtApellido.Text = cliente["Apellido"].ToString();
             txtNombre.Text = cliente["Nombre"].ToString();
             txtCUIL.Text = cliente["CUIL"].ToString();
-            dateFechaNacimiento.Value = Convert.ToDateTime(cliente["Fecha_Nac"].ToString());//,new System.Globalization.CultureInfo("es-AR", true));
+            dateFechaNacimiento.Value = Convert.ToDateTime(cliente["Fecha_Nac"].ToString());
             txtMail.Text = cliente["Mail"].ToString();
             txtCalle.Text = cliente["Dom_Calle"].ToString();
             numNroCalle.Value = Convert.ToInt32(cliente["Nro_Calle"].ToString());
@@ -80,6 +94,12 @@ namespace FrbaCommerce.Abm_Cliente
             txtDepto.Text = cliente["Depto"].ToString();
             txtCodigoPostal.Text = cliente["Cod_Postal"].ToString();
             txtTelefono.Text = cliente["Telefono"].ToString();
+
+            GD1C2014DataSet.tl_Usuarios_RolesDataTable usuarioRolDataTable = new GD1C2014DataSet.tl_Usuarios_RolesDataTable();
+            usuarioRolDataTable = this.tl_Usuarios_RolesTableAdapter.getByUsuarioRolIDs(ID,2);
+            DataRow usuarioRol = usuarioRolDataTable.Rows[0];
+
+            chkHabilitado.Checked = Convert.ToBoolean(usuarioRol["Habilitado"]);
         }
 
         private bool faltanCampos()
@@ -113,7 +133,7 @@ namespace FrbaCommerce.Abm_Cliente
                    txtDepto.Text,
                    txtCodigoPostal.Text,
                    (txtTelefono.Text == "") ? (int?)null : Convert.ToInt32(txtTelefono.Text),
-                   true
+                   chkHabilitado.Checked
                    );
             }
             catch (SqlException error)
@@ -126,5 +146,13 @@ namespace FrbaCommerce.Abm_Cliente
             this.Close();
         }
 
+        void Cliente_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!allowClosing && !guardado)
+            {
+                MessageBox.Show("Debe crear un Cliente");
+                e.Cancel = true;
+            }
+        }
     }
 }

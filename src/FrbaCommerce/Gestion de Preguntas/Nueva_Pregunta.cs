@@ -11,20 +11,23 @@ namespace FrbaCommerce.Gestion_de_Preguntas
 {
     public partial class Nueva_Pregunta : Form
     {
-        private int idPublicacion;
+        private int usuarioID;
+        private int publicacionCodigo;
 
         public Nueva_Pregunta()
         {
             InitializeComponent();
         }
 
-        public void setIDPublicacion (int ID)
+        public void abrir(int Usuario_ID, int Publicacion_Codigo)
         {
-            this.idPublicacion = ID;
+            usuarioID = Usuario_ID;
+            publicacionCodigo = Publicacion_Codigo;
+
+            this.ShowDialog();
         }
 
         private bool validar()
-
         {
             return (!(commons.algunoVacio(textBoxPregunta)));
         }
@@ -33,24 +36,15 @@ namespace FrbaCommerce.Gestion_de_Preguntas
         {
             if (this.validar())
             {
-                this.tl_PreguntasTableAdapter.Insert(idPublicacion, 0, textBoxPregunta.Text, null, null);
+                this.tl_PreguntasTableAdapter.guardarPregunta(publicacionCodigo, textBoxPregunta.Text,usuarioID );
                 MessageBox.Show("Pregunta cargada con éxito");
+                this.Close();
             }
 
          }
 
-        private void tl_PreguntasBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.tl_PreguntasBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.gD1C2014DataSet);
-
-        }
-
         private void Nueva_Pregunta_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'gD1C2014DataSet.tl_Preguntas' table. You can move, or remove it, as needed.
-            this.tl_PreguntasTableAdapter.Fill(this.gD1C2014DataSet.tl_Preguntas);
 
         }
     }

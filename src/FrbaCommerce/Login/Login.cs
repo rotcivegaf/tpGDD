@@ -72,12 +72,21 @@ namespace FrbaCommerce.Login
         private void llenarComboRoles()
         {
             GD1C2014DataSet.tl_RolesDataTable roles = new GD1C2014DataSet.tl_RolesDataTable();
-            tl_RolesTableAdapter.getRolesPorUsuarioID(roles, (decimal)usuario_ID);
+            tl_RolesTableAdapter.fillRolesHabilitadosByUsuarioID(roles, (decimal)usuario_ID);
             cmbRoles.DataSource = new BindingSource(roles, null);
             cmbRoles.DisplayMember = "Nombre";
             cmbRoles.ValueMember = "ID";
-            if (cmbRoles.Items.Count == 1)
-                getRubroIDAndClose();
+            switch (cmbRoles.Items.Count)
+            {
+                case 0:
+                    cmbRoles.Enabled = false;
+                    btnContinuar.Enabled = false;
+                    MessageBox.Show("No posee ningun Rol Habilitado");
+                    break;
+                case 1:
+                    getRubroIDAndClose();
+                    break;
+            }
         }
 
         private void btnContinuar_Click(object sender, EventArgs e)

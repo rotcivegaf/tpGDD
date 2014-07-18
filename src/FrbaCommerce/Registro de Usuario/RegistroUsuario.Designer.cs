@@ -38,6 +38,7 @@
             this.grpRol = new System.Windows.Forms.GroupBox();
             this.tl_UsuariosTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_UsuariosTableAdapter();
             this.tl_Usuarios_RolesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Usuarios_RolesTableAdapter();
+            this.tl_RolesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RolesTableAdapter();
             this.grpRol.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -108,6 +109,7 @@
             // 
             // grpRol
             // 
+            this.grpRol.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.grpRol.Controls.Add(this.optEmpresa);
             this.grpRol.Controls.Add(this.optCliente);
             this.grpRol.Location = new System.Drawing.Point(16, 69);
@@ -125,10 +127,15 @@
             // 
             this.tl_Usuarios_RolesTableAdapter.ClearBeforeFill = true;
             // 
+            // tl_RolesTableAdapter
+            // 
+            this.tl_RolesTableAdapter.ClearBeforeFill = true;
+            // 
             // RegistroUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ClientSize = new System.Drawing.Size(185, 192);
             this.Controls.Add(this.grpRol);
             this.Controls.Add(this.btnCrear);
@@ -157,5 +164,6 @@
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_UsuariosTableAdapter tl_UsuariosTableAdapter;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Usuarios_RolesTableAdapter tl_Usuarios_RolesTableAdapter;
         private System.Windows.Forms.GroupBox grpRol;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RolesTableAdapter tl_RolesTableAdapter;
     }
 }

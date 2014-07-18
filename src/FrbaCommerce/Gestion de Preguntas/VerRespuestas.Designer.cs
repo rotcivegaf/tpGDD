@@ -30,17 +30,18 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgvPreguntas = new System.Windows.Forms.DataGridView();
-            this.tlPreguntasBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
-            this.tl_PreguntasTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_PreguntasTableAdapter();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.publicacionCodigoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.preguntaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaRespuestaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.respuestaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.usuarioIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.preguntaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.respuestaIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.preguntasRespuestasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
+            this.preguntas_RespuestasTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.Preguntas_RespuestasTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPreguntas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tlPreguntasBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.preguntasRespuestasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,39 +49,29 @@
             // 
             this.dgvPreguntas.AllowUserToAddRows = false;
             this.dgvPreguntas.AllowUserToDeleteRows = false;
+            this.dgvPreguntas.AllowUserToResizeColumns = false;
+            this.dgvPreguntas.AllowUserToResizeRows = false;
             this.dgvPreguntas.AutoGenerateColumns = false;
+            this.dgvPreguntas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvPreguntas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPreguntas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDDataGridViewTextBoxColumn,
             this.publicacionCodigoDataGridViewTextBoxColumn,
+            this.usuarioIDDataGridViewTextBoxColumn,
             this.preguntaDataGridViewTextBoxColumn,
-            this.fechaRespuestaDataGridViewTextBoxColumn,
-            this.respuestaDataGridViewTextBoxColumn,
-            this.usuarioIDDataGridViewTextBoxColumn});
-            this.dgvPreguntas.DataSource = this.tlPreguntasBindingSource;
+            this.fechaDataGridViewTextBoxColumn,
+            this.dataGridViewTextBoxColumn1,
+            this.respuestaIDDataGridViewTextBoxColumn});
+            this.dgvPreguntas.DataSource = this.preguntasRespuestasBindingSource;
             this.dgvPreguntas.Location = new System.Drawing.Point(13, 13);
             this.dgvPreguntas.Name = "dgvPreguntas";
             this.dgvPreguntas.ReadOnly = true;
+            this.dgvPreguntas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPreguntas.Size = new System.Drawing.Size(1047, 507);
             this.dgvPreguntas.TabIndex = 0;
             // 
-            // tlPreguntasBindingSource
-            // 
-            this.tlPreguntasBindingSource.DataMember = "tl_Preguntas";
-            this.tlPreguntasBindingSource.DataSource = this.gD1C2014DataSet;
-            // 
-            // gD1C2014DataSet
-            // 
-            this.gD1C2014DataSet.DataSetName = "GD1C2014DataSet";
-            this.gD1C2014DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tl_PreguntasTableAdapter
-            // 
-            this.tl_PreguntasTableAdapter.ClearBeforeFill = true;
-            // 
             // iDDataGridViewTextBoxColumn
             // 
-            this.iDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
             this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
             this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
@@ -90,49 +81,66 @@
             // 
             // publicacionCodigoDataGridViewTextBoxColumn
             // 
-            this.publicacionCodigoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.publicacionCodigoDataGridViewTextBoxColumn.DataPropertyName = "Publicacion_Codigo";
             this.publicacionCodigoDataGridViewTextBoxColumn.HeaderText = "Publicacion_Codigo";
             this.publicacionCodigoDataGridViewTextBoxColumn.Name = "publicacionCodigoDataGridViewTextBoxColumn";
             this.publicacionCodigoDataGridViewTextBoxColumn.ReadOnly = true;
             this.publicacionCodigoDataGridViewTextBoxColumn.Width = 126;
             // 
-            // preguntaDataGridViewTextBoxColumn
-            // 
-            this.preguntaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.preguntaDataGridViewTextBoxColumn.DataPropertyName = "Pregunta";
-            this.preguntaDataGridViewTextBoxColumn.HeaderText = "Pregunta";
-            this.preguntaDataGridViewTextBoxColumn.Name = "preguntaDataGridViewTextBoxColumn";
-            this.preguntaDataGridViewTextBoxColumn.ReadOnly = true;
-            this.preguntaDataGridViewTextBoxColumn.Width = 75;
-            // 
-            // fechaRespuestaDataGridViewTextBoxColumn
-            // 
-            this.fechaRespuestaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.fechaRespuestaDataGridViewTextBoxColumn.DataPropertyName = "Fecha_Respuesta";
-            this.fechaRespuestaDataGridViewTextBoxColumn.HeaderText = "Fecha_Respuesta";
-            this.fechaRespuestaDataGridViewTextBoxColumn.Name = "fechaRespuestaDataGridViewTextBoxColumn";
-            this.fechaRespuestaDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fechaRespuestaDataGridViewTextBoxColumn.Width = 119;
-            // 
-            // respuestaDataGridViewTextBoxColumn
-            // 
-            this.respuestaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.respuestaDataGridViewTextBoxColumn.DataPropertyName = "Respuesta";
-            this.respuestaDataGridViewTextBoxColumn.HeaderText = "Respuesta";
-            this.respuestaDataGridViewTextBoxColumn.Name = "respuestaDataGridViewTextBoxColumn";
-            this.respuestaDataGridViewTextBoxColumn.ReadOnly = true;
-            this.respuestaDataGridViewTextBoxColumn.Width = 83;
-            // 
             // usuarioIDDataGridViewTextBoxColumn
             // 
-            this.usuarioIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.usuarioIDDataGridViewTextBoxColumn.DataPropertyName = "Usuario_ID";
             this.usuarioIDDataGridViewTextBoxColumn.HeaderText = "Usuario_ID";
             this.usuarioIDDataGridViewTextBoxColumn.Name = "usuarioIDDataGridViewTextBoxColumn";
             this.usuarioIDDataGridViewTextBoxColumn.ReadOnly = true;
             this.usuarioIDDataGridViewTextBoxColumn.Visible = false;
             this.usuarioIDDataGridViewTextBoxColumn.Width = 85;
+            // 
+            // preguntaDataGridViewTextBoxColumn
+            // 
+            this.preguntaDataGridViewTextBoxColumn.DataPropertyName = "Pregunta";
+            this.preguntaDataGridViewTextBoxColumn.HeaderText = "Pregunta";
+            this.preguntaDataGridViewTextBoxColumn.Name = "preguntaDataGridViewTextBoxColumn";
+            this.preguntaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.preguntaDataGridViewTextBoxColumn.Width = 75;
+            // 
+            // fechaDataGridViewTextBoxColumn
+            // 
+            this.fechaDataGridViewTextBoxColumn.DataPropertyName = "Fecha";
+            this.fechaDataGridViewTextBoxColumn.HeaderText = "Fecha Respuesta";
+            this.fechaDataGridViewTextBoxColumn.Name = "fechaDataGridViewTextBoxColumn";
+            this.fechaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fechaDataGridViewTextBoxColumn.Width = 106;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Respuesta";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Respuesta";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 83;
+            // 
+            // respuestaIDDataGridViewTextBoxColumn
+            // 
+            this.respuestaIDDataGridViewTextBoxColumn.DataPropertyName = "Respuesta_ID";
+            this.respuestaIDDataGridViewTextBoxColumn.HeaderText = "Respuesta_ID";
+            this.respuestaIDDataGridViewTextBoxColumn.Name = "respuestaIDDataGridViewTextBoxColumn";
+            this.respuestaIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.respuestaIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // preguntasRespuestasBindingSource
+            // 
+            this.preguntasRespuestasBindingSource.DataMember = "Preguntas_Respuestas";
+            this.preguntasRespuestasBindingSource.DataSource = this.gD1C2014DataSet;
+            // 
+            // gD1C2014DataSet
+            // 
+            this.gD1C2014DataSet.DataSetName = "GD1C2014DataSet";
+            this.gD1C2014DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // preguntas_RespuestasTableAdapter
+            // 
+            this.preguntas_RespuestasTableAdapter.ClearBeforeFill = true;
             // 
             // VerRespuestas
             // 
@@ -144,7 +152,7 @@
             this.Text = "Ver Respuestas";
             this.Load += new System.EventHandler(this.VerRespuestas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPreguntas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tlPreguntasBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.preguntasRespuestasBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).EndInit();
             this.ResumeLayout(false);
 
@@ -154,13 +162,16 @@
 
         private System.Windows.Forms.DataGridView dgvPreguntas;
         private GD1C2014DataSet gD1C2014DataSet;
-        private System.Windows.Forms.BindingSource tlPreguntasBindingSource;
-        private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_PreguntasTableAdapter tl_PreguntasTableAdapter;
+        //private System.Windows.Forms.DataGridViewTextBoxColumn fechaRespuestaDataGridViewTextBoxColumn;
+        //private System.Windows.Forms.DataGridViewTextBoxColumn respuestaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource preguntasRespuestasBindingSource;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.Preguntas_RespuestasTableAdapter preguntas_RespuestasTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn publicacionCodigoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn preguntaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fechaRespuestaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn respuestaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn usuarioIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn preguntaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn respuestaIDDataGridViewTextBoxColumn;
     }
 }

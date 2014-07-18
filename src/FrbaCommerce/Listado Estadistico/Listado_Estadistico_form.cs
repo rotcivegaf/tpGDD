@@ -19,8 +19,7 @@ namespace FrbaCommerce.Listado_Estadistico
         private void Listado_Estadistico_form_Load(object sender, EventArgs e)
         {
             this.tl_VisibilidadesTableAdapter.Fill(this.gD1C2014DataSet.tl_Visibilidades);
-            this.inputMes.ResetText();
-            this.inputVisibilidad.ResetText();
+            this.inputVisibilidad.SelectedIndex = -1;
         }
 
         private void inputTrimestre_SelectedIndexChanged(object sender, EventArgs e)
@@ -142,13 +141,13 @@ namespace FrbaCommerce.Listado_Estadistico
             if (this.radioButton2.Checked) this.radioButton2.Checked = false;
             if (this.radioButton3.Checked) this.radioButton3.Checked = false;
             if (this.radioButton4.Checked) this.radioButton4.Checked = false;
-            this.inputTrimestre.ResetText();
+            inputTrimestre.SelectedIndex = -1;
             if (this.tipoListadoGroup.Enabled) this.tipoListadoGroup.Enabled = false;
             if (this.btnGenerar.Enabled) this.btnGenerar.Enabled = false;
             if (!this.inputTrimestre.Enabled) this.inputTrimestre.Enabled = true;
             if (!this.inputAnio.Enabled) this.inputAnio.Enabled = true;
-            inputMes.Text = "";
-            inputVisibilidad.Text = "";
+            inputMes.SelectedIndex = -1;
+            inputVisibilidad.SelectedIndex = -1;
             if (dataGridView1.Visible) dataGridView1.Visible = false;
             if (dataGridView2.Visible) dataGridView2.Visible = false;
             if (dataGridView3.Visible) dataGridView3.Visible = false;

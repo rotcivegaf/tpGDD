@@ -23,30 +23,35 @@ namespace FrbaCommerce.Generar_Publicacion
         {
             InitializeComponent();
         }
-        public void setIDs(int user_ID,int rol_ID)
+
+        public void generarPublicacion(int user_ID, int rol_ID)
         {
             this.userID = user_ID;
             this.rolID = rol_ID;
+
+            this.ShowDialog();
         }
-        public void editPublicidad (int publicacionID)
+
+        public void editarPublicacion (int user_ID, int rol_ID, int publicacionID)
         {
+            this.userID = user_ID;
+            this.rolID = rol_ID; 
             this.publicacionID = publicacionID;
             edicion = 1;
+
+            this.ShowDialog();
         }
+
         private void Publicacion_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'gD1C2014DataSet.tl_Publicacion_Estados' table. You can move, or remove it, as needed.
-            this.tl_Publicacion_EstadosTableAdapter.Fill(this.gD1C2014DataSet.tl_Publicacion_Estados);
-            // TODO: This line of code loads data into the 'gD1C2014DataSet.tl_Publicacion_Tipos' table. You can move, or remove it, as needed.
-            this.tl_Publicacion_TiposTableAdapter.Fill(this.gD1C2014DataSet.tl_Publicacion_Tipos);
-            
-            //Cargo rubros y visibilidades
-            this.tl_RubrosTableAdapter.Fill(this.gD1C2014DataSet.tl_Rubros);
-            this.tl_VisibilidadesTableAdapter.Fill(this.gD1C2014DataSet.tl_Visibilidades);
+            //Cargo Rubros, Visibilidades, Tipos y Estados
+            this.tl_RubrosTableAdapter.FillWithHabilitados(this.gD1C2014DataSet.tl_Rubros);
+            this.tl_VisibilidadesTableAdapter.FillWithHabilitadas(this.gD1C2014DataSet.tl_Visibilidades);
+            this.tl_Publicacion_TiposTableAdapter.FillWithHabilitados(this.gD1C2014DataSet.tl_Publicacion_Tipos);
+            this.tl_Publicacion_EstadosTableAdapter.FillWithHabilitados(this.gD1C2014DataSet.tl_Publicacion_Estados);
             //Selecciono por default
-            comboBoxEstadoDeLaPublicacion.SelectedIndex = 0;
-            comboBoxTipoDePublicacion.SelectedIndex = 0;
-            setFechaVencimiento();
+            dateTimePickerFechaInicio.MinDate = commons.getDate();
+            dateTimePickerFechaInicio.Value = commons.getDate();
             //Si voy a editar una publicación ya existente
             if (edicion == 1)
             {
@@ -105,7 +110,7 @@ namespace FrbaCommerce.Generar_Publicacion
         private void cargarDatos()
         {
             //Cargo el data table con los datos de la publicación a editar
-            publicacionAEditar = this.tl_PublicacionesTableAdapter.GetDataByCode(publicacionID);
+            publicacionAEditar = this.tl_PublicacionesTableAdapter.getByCodigo(publicacionID);
             //Completo el form con los valores de la publicación
             this.inputDescripcion.Text = publicacionAEditar.Rows[0]["Descripcion"].ToString();
             this.numericUpDownStock.Value = Convert.ToInt32(publicacionAEditar.Rows[0]["Stock"]);
@@ -131,12 +136,6 @@ namespace FrbaCommerce.Generar_Publicacion
             
             return (!(commons.algunoVacio(inputDescripcion) || commons.algunoVacio(listBoxRubro)));
             
-        }
-        //Me fijo si el ID de usuario pertenece a una empresa o a un cliente
-        private bool esEmpresa(int ID)
-        {
-            int cantidad = Convert.ToInt32(this.tl_ClientesTableAdapter1.CountPorID(ID));
-            return cantidad == 0;
         }
 
         private void Guardar_Click(object sender, EventArgs e)
@@ -172,7 +171,7 @@ namespace FrbaCommerce.Generar_Publicacion
             else
                 {
                     //Edición en la tabla de publicaciones
-                    this.tl_PublicacionesTableAdapter.sp_editarPublicacion(publicacionID,
+                    this.tl_PublicacionesTableAdapter.sp_EditarPublicacion(publicacionID,
                         inputDescripcion.Text,
                         dateTimePickerFechaInicio.Value,
                         Convert.ToDecimal(numericUpDownStock.Value),
@@ -230,12 +229,11 @@ namespace FrbaCommerce.Generar_Publicacion
                     Convert.ToInt32(comboBoxTipoDePublicacion.SelectedValue),
                     Convert.ToDecimal(comboBoxVisiblidad.SelectedValue),
                     Convert.ToInt32(comboBoxEstadoDeLaPublicacion.SelectedValue),
-                    checkBoxAceptaPreguntas.Checked, ref nuevaPublicacionID, commons.getDate()
-                    , Convert.ToInt32(this.tl_VisibilidadesTableAdapter1.PrecioVisibilidadQuery(Convert.ToInt32(comboBoxVisiblidad.SelectedValue))));
+                    checkBoxAceptaPreguntas.Checked, commons.getDate(), ref nuevaPublicacionID);
                 //Con el ref tengo el parámetro que me devuelve el SP, en este caso el ID de publicación que voy a usar
                 //en la tabla rubros_publicaciones
 
-                //HAgo las entradas correspondientes en la tabla de relaciones entre publicaciones y rubros
+                //Hago las entradas correspondientes en la tabla de relaciones entre publicaciones y rubros
                 foreach (DataRowView item in listBoxRubro.SelectedItems)
                 {
                     this.tl_Publicaciones_RubrosTableAdapter.Insert(Convert.ToInt32(nuevaPublicacionID), Convert.ToInt32(item["ID"].ToString()));
@@ -267,6 +265,20 @@ namespace FrbaCommerce.Generar_Publicacion
         private void dateTimePickerFechaInicio_ValueChanged(object sender, EventArgs e)
         {
             setFechaVencimiento();
+        }
+
+        private void comboBoxTipoDePublicacion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBoxTipoDePublicacion.Text)
+            {
+                case "Compra Inmediata":
+                    numericUpDownStock.Enabled = true;
+                    break;
+                case "Subasta":
+                    numericUpDownStock.Value = 1;
+                    numericUpDownStock.Enabled = false;
+                    break;
+            }
         }
     }
 }

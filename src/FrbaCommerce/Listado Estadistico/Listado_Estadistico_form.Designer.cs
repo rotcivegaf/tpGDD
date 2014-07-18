@@ -68,9 +68,9 @@
             this.clientesMasPublicacionesSinCalificarBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.clientesMasPublicacionesSinCalificarTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.clientesMasPublicacionesSinCalificarTableAdapter();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.usernameDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.usernameDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usernameDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tipoListadoGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tlVisibilidadesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
@@ -88,6 +88,7 @@
             // 
             // tipoListadoGroup
             // 
+            this.tipoListadoGroup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.tipoListadoGroup.Controls.Add(this.activarFiltroMes);
             this.tipoListadoGroup.Controls.Add(this.activarFiltroVisibilidad);
             this.tipoListadoGroup.Controls.Add(this.inputVisibilidad);
@@ -112,7 +113,7 @@
             this.activarFiltroMes.Location = new System.Drawing.Point(186, 79);
             this.activarFiltroMes.Name = "activarFiltroMes";
             this.activarFiltroMes.Size = new System.Drawing.Size(46, 17);
-            this.activarFiltroMes.TabIndex = 11;
+            this.activarFiltroMes.TabIndex = 5;
             this.activarFiltroMes.Text = "Mes";
             this.activarFiltroMes.UseVisualStyleBackColor = true;
             this.activarFiltroMes.CheckedChanged += new System.EventHandler(this.activarFiltroMes_CheckedChanged);
@@ -124,7 +125,7 @@
             this.activarFiltroVisibilidad.Location = new System.Drawing.Point(9, 79);
             this.activarFiltroVisibilidad.Name = "activarFiltroVisibilidad";
             this.activarFiltroVisibilidad.Size = new System.Drawing.Size(72, 17);
-            this.activarFiltroVisibilidad.TabIndex = 10;
+            this.activarFiltroVisibilidad.TabIndex = 3;
             this.activarFiltroVisibilidad.Text = "Visibilidad";
             this.activarFiltroVisibilidad.UseVisualStyleBackColor = true;
             this.activarFiltroVisibilidad.CheckedChanged += new System.EventHandler(this.activarFiltroVisibilidad_CheckedChanged);
@@ -133,12 +134,13 @@
             // 
             this.inputVisibilidad.DataSource = this.tlVisibilidadesBindingSource;
             this.inputVisibilidad.DisplayMember = "Descripcion";
+            this.inputVisibilidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.inputVisibilidad.Enabled = false;
             this.inputVisibilidad.FormattingEnabled = true;
             this.inputVisibilidad.Location = new System.Drawing.Point(81, 77);
             this.inputVisibilidad.Name = "inputVisibilidad";
             this.inputVisibilidad.Size = new System.Drawing.Size(99, 21);
-            this.inputVisibilidad.TabIndex = 8;
+            this.inputVisibilidad.TabIndex = 4;
             this.inputVisibilidad.ValueMember = "Codigo";
             this.inputVisibilidad.EnabledChanged += new System.EventHandler(this.inputVisibilidad_EnabledChanged);
             // 
@@ -154,8 +156,10 @@
             // 
             // inputMes
             // 
+            this.inputMes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.inputMes.Enabled = false;
             this.inputMes.FormattingEnabled = true;
+            this.inputMes.ItemHeight = 13;
             this.inputMes.Items.AddRange(new object[] {
             "Primero",
             "Segundo",
@@ -181,7 +185,7 @@
             this.radioButton4.Location = new System.Drawing.Point(6, 153);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(299, 17);
-            this.radioButton4.TabIndex = 3;
+            this.radioButton4.TabIndex = 9;
             this.radioButton4.TabStop = true;
             this.radioButton4.Text = "Clientes con mayor cantidad de publicaciones sin calificar.";
             this.radioButton4.UseVisualStyleBackColor = true;
@@ -193,7 +197,7 @@
             this.radioButton3.Location = new System.Drawing.Point(6, 130);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(215, 17);
-            this.radioButton3.TabIndex = 2;
+            this.radioButton3.TabIndex = 8;
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "Vendedores con mayores calificaciones.";
             this.radioButton3.UseVisualStyleBackColor = true;
@@ -205,7 +209,7 @@
             this.radioButton2.Location = new System.Drawing.Point(6, 107);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(193, 17);
-            this.radioButton2.TabIndex = 1;
+            this.radioButton2.TabIndex = 7;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Vendedores con mayor facturacion.";
             this.radioButton2.UseVisualStyleBackColor = true;
@@ -217,7 +221,7 @@
             this.radioButton1.Location = new System.Drawing.Point(6, 51);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(307, 17);
-            this.radioButton1.TabIndex = 0;
+            this.radioButton1.TabIndex = 2;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Vendedores con mayor cantidad de productos no vendidos.";
             this.radioButton1.UseVisualStyleBackColor = true;
@@ -225,6 +229,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.inputAnio);
             this.groupBox2.Controls.Add(this.label2);
@@ -260,8 +265,7 @@
             0});
             this.inputAnio.Name = "inputAnio";
             this.inputAnio.Size = new System.Drawing.Size(202, 20);
-            this.inputAnio.TabIndex = 2;
-            this.inputAnio.TabStop = false;
+            this.inputAnio.TabIndex = 0;
             this.inputAnio.Value = new decimal(new int[] {
             2013,
             0,
@@ -279,6 +283,7 @@
             // 
             // inputTrimestre
             // 
+            this.inputTrimestre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.inputTrimestre.FormattingEnabled = true;
             this.inputTrimestre.Items.AddRange(new object[] {
             "Primero",
@@ -288,7 +293,7 @@
             this.inputTrimestre.Location = new System.Drawing.Point(12, 126);
             this.inputTrimestre.Name = "inputTrimestre";
             this.inputTrimestre.Size = new System.Drawing.Size(199, 21);
-            this.inputTrimestre.TabIndex = 0;
+            this.inputTrimestre.TabIndex = 1;
             this.inputTrimestre.SelectedIndexChanged += new System.EventHandler(this.inputTrimestre_SelectedIndexChanged);
             // 
             // btnGenerar
@@ -297,7 +302,7 @@
             this.btnGenerar.Location = new System.Drawing.Point(12, 197);
             this.btnGenerar.Name = "btnGenerar";
             this.btnGenerar.Size = new System.Drawing.Size(290, 23);
-            this.btnGenerar.TabIndex = 3;
+            this.btnGenerar.TabIndex = 10;
             this.btnGenerar.Text = "Generar Top 5";
             this.btnGenerar.UseVisualStyleBackColor = true;
             this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
@@ -311,7 +316,7 @@
             this.btnLimpiar.Location = new System.Drawing.Point(306, 197);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(290, 23);
-            this.btnLimpiar.TabIndex = 4;
+            this.btnLimpiar.TabIndex = 11;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
@@ -470,12 +475,6 @@
             this.dataGridView4.TabIndex = 8;
             this.dataGridView4.Visible = false;
             // 
-            // usernameDataGridViewTextBoxColumn2
-            // 
-            this.usernameDataGridViewTextBoxColumn2.DataPropertyName = "Username";
-            this.usernameDataGridViewTextBoxColumn2.HeaderText = "Username";
-            this.usernameDataGridViewTextBoxColumn2.Name = "usernameDataGridViewTextBoxColumn2";
-            // 
             // usernameDataGridViewTextBoxColumn3
             // 
             this.usernameDataGridViewTextBoxColumn3.DataPropertyName = "Username";
@@ -490,10 +489,17 @@
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
+            // usernameDataGridViewTextBoxColumn2
+            // 
+            this.usernameDataGridViewTextBoxColumn2.DataPropertyName = "Username";
+            this.usernameDataGridViewTextBoxColumn2.HeaderText = "Username";
+            this.usernameDataGridViewTextBoxColumn2.Name = "usernameDataGridViewTextBoxColumn2";
+            // 
             // Listado_Estadistico_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ClientSize = new System.Drawing.Size(608, 384);
             this.Controls.Add(this.dataGridView4);
             this.Controls.Add(this.dataGridView3);

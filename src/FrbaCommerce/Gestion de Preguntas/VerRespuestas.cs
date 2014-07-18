@@ -28,12 +28,11 @@ namespace FrbaCommerce.Gestion_de_Preguntas
         private void VerRespuestas_Load(object sender, EventArgs e)
         {
             llenarPreguntas();
-
         }
 
         private void llenarPreguntas()
         {
-            this.tlPreguntasBindingSource.DataSource = this.tl_PreguntasTableAdapter.GetPreguntasWhitRespuesta(userID);
+            this.preguntasRespuestasBindingSource.DataSource = this.preguntas_RespuestasTableAdapter.getByUsuario(userID);
         }
     }
 }

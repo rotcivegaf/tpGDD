@@ -32,7 +32,7 @@ namespace FrbaCommerce.ABM_Visibilidad
             if (this.Codigo != -1)
             {
                 //Cargamos datos de visibilidad a editar
-                this.visibilidadAEditar = this.tl_VisibilidadesTableAdapter1.GetPorCodigo(this.Codigo);
+                this.visibilidadAEditar = this.tl_VisibilidadesTableAdapter.GetPorCodigo(this.Codigo);
                 //Deshabilitamos campo codigo, no se puede editar la PK.
                 this.inputCodigo.Enabled = false;
                 //Completamos los campos con los datos actuales.
@@ -41,6 +41,9 @@ namespace FrbaCommerce.ABM_Visibilidad
                 this.inputPrecio.Text = this.visibilidadAEditar.Rows[0]["Precio"].ToString();
                 this.inputPorcentaje.Text = this.visibilidadAEditar.Rows[0]["Porcentaje"].ToString();
                 this.inputDuracion.Text = this.visibilidadAEditar.Rows[0]["Duracion"].ToString();
+                this.chkHabilitada.Checked = Convert.ToBoolean(this.visibilidadAEditar.Rows[0]["Habilitada"]);
+
+                this.inputCodigo.Enabled = false;
             }
         }
 
@@ -103,12 +106,32 @@ namespace FrbaCommerce.ABM_Visibilidad
                 //Si el input codigo esta habilitado significa que el form se esta uando para altas.
                 if (this.inputCodigo.Enabled) 
                 {
-                    this.tl_VisibilidadesTableAdapter1.sp_NuevaVisibilidad(this.Codigo, this.Descripcion, this.Precio, this.Porcentaje, this.Duracion);
+                    this.tl_VisibilidadesTableAdapter.sp_NuevaVisibilidad(this.Codigo, this.Descripcion, this.Precio, this.Porcentaje, this.Duracion, this.chkHabilitada.Checked);
                     MessageBox.Show("Creacion exitosa");
                 }
                 else 
                 {
-                    this.tl_VisibilidadesTableAdapter1.sp_EditarVisibilidad(this.Codigo, this.Descripcion, Convert.ToDecimal(inputPrecio.Text), this.Porcentaje, this.Duracion);
+                    if (chkHabilitada.Checked == false)
+                    {
+                        try
+                        {
+                            this.tl_VisibilidadesTableAdapter.sp_BorrarVisibilidad(this.Codigo);
+                        }
+                        catch (SqlException sqEx)
+                        {
+                            MessageBox.Show(sqEx.Message);
+                            return;
+                        }
+                    }
+                    try
+                    {
+                        this.tl_VisibilidadesTableAdapter.sp_EditarVisibilidad(this.Codigo, this.Descripcion, Convert.ToDecimal(inputPrecio.Text), this.Porcentaje, this.Duracion, this.chkHabilitada.Checked);
+                    }
+                    catch (SqlException sqEx)
+                    {
+                        MessageBox.Show(sqEx.Message);
+                        return;
+                    }
                     MessageBox.Show("Modificacion exitosa");
                 }
             }

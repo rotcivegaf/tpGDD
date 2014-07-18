@@ -59,9 +59,7 @@ namespace FrbaCommerce.Abm_Empresa
         {
             String condicion;
 
-            condicion = "Habilitada = 1";
-            if (txtRazonSocial.Text !="")
-                condicion += " AND Razon_Social LIKE '%" + txtRazonSocial.Text + "%'";
+            condicion = "Razon_Social LIKE '%" + txtRazonSocial.Text + "%'";
             if (txtCUIT.Text != "")
                 condicion += " AND CUIT = '" + txtCUIT.Text + "'";
             if (txtMail.Text != "")
@@ -72,23 +70,12 @@ namespace FrbaCommerce.Abm_Empresa
 
         private void llenarGrid()
         {
-            this.tlEmpresasBindingSource.DataSource = this.tl_EmpresasTableAdapter.GetData().Select(crearCondicion());
+            this.empresasBindingSource.DataSource = this.empresasTableAdapter.GetData().Select(crearCondicion());
         }
 
         private void Empresas_Load(object sender, EventArgs e)
         {
             llenarGrid();
-        }
-        
-        void dgvEmpresas_CellMouseDoubleClick(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                int ID = getEmpresaID(e.RowIndex);
-                Empresa frmEmpresa = new Empresa();
-                if (frmEmpresa.editar(ID))
-                    llenarGrid();
-            } 
         }
         
         private int getEmpresaID(int rowIndex)
@@ -103,13 +90,21 @@ namespace FrbaCommerce.Abm_Empresa
 
         private void dgvEmpresas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == dgvEmpresas.ColumnCount - 1 && e.RowIndex >= 0)
-            {
-                int ID = getEmpresaID(e.RowIndex);
-                this.tl_EmpresasTableAdapter.deshabilitar(ID);
-                MessageBox.Show("Empresa 'Eliminada'");
-                llenarGrid();
-            }
+            if (e.RowIndex >= 0)
+                if (e.ColumnIndex == Deshabilitar.Index)
+                {
+                    int ID = getEmpresaID(e.RowIndex);
+                    this.tl_EmpresasTableAdapter.deshabilitar(ID);
+                    MessageBox.Show("Empresa Deshabilitada");
+                    llenarGrid();
+                }
+                else if (e.ColumnIndex == Seleccionar.Index)
+                {
+                    int ID = getEmpresaID(e.RowIndex);
+                    Empresa frmEmpresa = new Empresa();
+                    if (frmEmpresa.editarByAdmin(ID))
+                        llenarGrid();
+                }
         }
     }
 }

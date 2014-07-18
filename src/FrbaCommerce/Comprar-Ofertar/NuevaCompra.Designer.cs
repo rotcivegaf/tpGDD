@@ -48,8 +48,8 @@
             this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
             this.tl_ClientesyEmpresasTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ClientesyEmpresasTableAdapter();
             this.tableAdapterManager = new FrbaCommerce.GD1C2014DataSetTableAdapters.TableAdapterManager();
-            this.tl_ComprasTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ComprasTableAdapter();
-            this.tl_VisibilidadesTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_VisibilidadesTableAdapter();
+            this.tl_ComprasTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ComprasTableAdapter();
+            this.tl_VisibilidadesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_VisibilidadesTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownStock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tl_ClientesyEmpresasDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tl_ClientesyEmpresasBindingSource)).BeginInit();
@@ -227,6 +227,7 @@
             this.tableAdapterManager.tl_Publicacion_TiposTableAdapter = null;
             this.tableAdapterManager.tl_Publicaciones_RubrosTableAdapter = null;
             this.tableAdapterManager.tl_PublicacionesTableAdapter = null;
+            this.tableAdapterManager.tl_RespuestasTableAdapter = null;
             this.tableAdapterManager.tl_Roles_FuncionalidadesTableAdapter = null;
             this.tableAdapterManager.tl_RolesTableAdapter = null;
             this.tableAdapterManager.tl_RubrosTableAdapter = null;
@@ -235,13 +236,13 @@
             this.tableAdapterManager.tl_VisibilidadesTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = FrbaCommerce.GD1C2014DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // tl_ComprasTableAdapter1
+            // tl_ComprasTableAdapter
             // 
-            this.tl_ComprasTableAdapter1.ClearBeforeFill = true;
+            this.tl_ComprasTableAdapter.ClearBeforeFill = true;
             // 
-            // tl_VisibilidadesTableAdapter1
+            // tl_VisibilidadesTableAdapter
             // 
-            this.tl_VisibilidadesTableAdapter1.ClearBeforeFill = true;
+            this.tl_VisibilidadesTableAdapter.ClearBeforeFill = true;
             // 
             // NuevaCompra
             // 
@@ -276,8 +277,8 @@
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ClientesyEmpresasTableAdapter tl_ClientesyEmpresasTableAdapter;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.DataGridView tl_ClientesyEmpresasDataGridView;
-        private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ComprasTableAdapter tl_ComprasTableAdapter1;
-        private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_VisibilidadesTableAdapter tl_VisibilidadesTableAdapter1;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ComprasTableAdapter tl_ComprasTableAdapter;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_VisibilidadesTableAdapter tl_VisibilidadesTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn apellidoDataGridViewTextBoxColumn;

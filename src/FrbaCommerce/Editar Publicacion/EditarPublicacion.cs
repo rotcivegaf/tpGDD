@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using FrbaCommerce.Generar_Publicacion;
 
 namespace FrbaCommerce.Editar_Publicacion
 {
@@ -14,7 +15,7 @@ namespace FrbaCommerce.Editar_Publicacion
         private int userID;
         private int rolID;
         int offset = 1;
-        int LIMITE = 3;
+        int LIMITE;
         int QtyRegistros;
 
         GD1C2014DataSet.tl_PublicacionesDataTable tablaTemporal = new GD1C2014DataSet.tl_PublicacionesDataTable();
@@ -33,6 +34,7 @@ namespace FrbaCommerce.Editar_Publicacion
 
         private void EditarPublicacion_Load(object sender, EventArgs e)
         {
+            cmbCantidadRegistros.SelectedIndex = 0;
             llenarPublicaciones();
         }
 
@@ -41,7 +43,7 @@ namespace FrbaCommerce.Editar_Publicacion
             int? TotalRegistros = 0;
 
             this.publicacionesBindingSource.DataSource =
-                this.publicacionesTableAdapter.GetParaEditar(userID, offset, LIMITE, ref TotalRegistros);
+                this.publicacionesTableAdapter.getParaEditar(userID, offset, LIMITE, ref TotalRegistros);
 
             QtyRegistros = (int)TotalRegistros;
         }
@@ -81,22 +83,18 @@ namespace FrbaCommerce.Editar_Publicacion
         private void tl_PublicacionesDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //Evento para editar
-            if (e.ColumnIndex == Editar.Index)
+            if (e.ColumnIndex == Editar.Index && e.RowIndex >= 0)
             {
                 DataGridViewRow fila = this.tl_PublicacionesDataGridView.Rows[e.RowIndex];
-                
-                Generar_Publicacion.Generar_Publicacion_form frame = new Generar_Publicacion.Generar_Publicacion_form();
-                frame.FormClosed += new FormClosedEventHandler(reloadPublicaciones);    
-                frame.setIDs(userID,rolID);
-                frame.editPublicidad(Convert.ToInt32(fila.Cells[Codigo.Index].Value));
-                frame.ShowDialog();
+                Generar_Publicacion_form frame = new Generar_Publicacion_form();
+                frame.editarPublicacion(userID,rolID,Convert.ToInt32(fila.Cells[Codigo.Index].Value));
+                llenarPublicaciones();
             }
         }
 
-        private void reloadPublicaciones(object sender, FormClosedEventArgs e)
+        private void cmbCantidadRegistros_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.llenarPublicaciones();
+            LIMITE = Convert.ToInt32(cmbCantidadRegistros.Text);
         }
-        
     }
 }

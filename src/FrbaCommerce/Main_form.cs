@@ -50,19 +50,20 @@ namespace FrbaCommerce
                 DataRow rol = this.tl_RolesTableAdapter.getByID(rol_ID).Rows[0];
                 toolStripRol.Text = "Rol: " + rol["Nombre"].ToString();
 
-                int calificacionesPendientes = Convert.ToInt32(queriesTableAdapter1.calificacionesPendientesDeUsuario(usuario_ID));
+                int calificacionesPendientes = Convert.ToInt32(tl_UsuariosTableAdapter.getCalificacionesPendientes(usuario_ID));
                 if (calificacionesPendientes > 5)
                 {
                     CalificarVendedor frmCalificar = new CalificarVendedor();
                     frmCalificar.abrir(usuario_ID, true);
                 }
+                hideGroupControls();
                 acomodarFuncionalidades(rol_ID);
             }
         }
 
         private void hideGroupControls()
         {
-            foreach (Control insideControl in groupBox1.Controls)
+            foreach (Control insideControl in grpFuncionalidades.Controls)
             {
                 insideControl.Visible = false;
             }
@@ -134,8 +135,7 @@ namespace FrbaCommerce
         private void btnGenerarPublicacion_Click(object sender, EventArgs e)
         {
             Generar_Publicacion_form frame = new Generar_Publicacion_form();
-            frame.setIDs(usuario_ID,rol_ID);
-            frame.ShowDialog();
+            frame.generarPublicacion(usuario_ID,rol_ID);
         }
 
         private void btnComprarOfertar_Click(object sender, EventArgs e)
@@ -165,7 +165,7 @@ namespace FrbaCommerce
         private void btnCalificarVendedor_Click(object sender, EventArgs e)
         {
             CalificarVendedor frmCalificarVendedor = new CalificarVendedor();
-            int calificacionesPendientes = Convert.ToInt32(queriesTableAdapter1.calificacionesPendientesDeUsuario(usuario_ID));
+            int calificacionesPendientes = Convert.ToInt32(tl_UsuariosTableAdapter.getCalificacionesPendientes(usuario_ID));
             if (calificacionesPendientes > 5)
                 frmCalificarVendedor.abrir(usuario_ID, true);
             else
@@ -198,7 +198,7 @@ namespace FrbaCommerce
                     Cliente frmCliente = new Cliente();
                     frmCliente.ver(usuario_ID);
                 }
-                else
+                else if (rol_ID == commons.Rol_Empresa_ID)
                 {
                     Empresa frmEmpresa = new Empresa();
                     frmEmpresa.ver(usuario_ID);

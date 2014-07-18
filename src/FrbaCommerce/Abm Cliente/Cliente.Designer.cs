@@ -56,7 +56,9 @@
             this.lblCUIL = new System.Windows.Forms.Label();
             this.numNroDocumento = new System.Windows.Forms.NumericUpDown();
             this.cmbTipoDocumento = new System.Windows.Forms.ComboBox();
+            this.chkHabilitado = new System.Windows.Forms.CheckBox();
             this.tl_ClientesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ClientesTableAdapter();
+            this.tl_Usuarios_RolesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Usuarios_RolesTableAdapter();
             this.grpDireccion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPiso)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNroCalle)).BeginInit();
@@ -132,6 +134,7 @@
             this.dateFechaNacimiento.Name = "dateFechaNacimiento";
             this.dateFechaNacimiento.Size = new System.Drawing.Size(200, 20);
             this.dateFechaNacimiento.TabIndex = 5;
+            this.dateFechaNacimiento.Value = new System.DateTime(2014, 6, 18, 1, 16, 22, 79);
             // 
             // lblFechaNacimiento
             // 
@@ -144,6 +147,7 @@
             // 
             // grpDireccion
             // 
+            this.grpDireccion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.grpDireccion.Controls.Add(this.numPiso);
             this.grpDireccion.Controls.Add(this.txtCodigoPostal);
             this.grpDireccion.Controls.Add(this.txtDepto);
@@ -319,15 +323,34 @@
             this.cmbTipoDocumento.Size = new System.Drawing.Size(201, 21);
             this.cmbTipoDocumento.TabIndex = 0;
             // 
+            // chkHabilitado
+            // 
+            this.chkHabilitado.AutoSize = true;
+            this.chkHabilitado.Checked = true;
+            this.chkHabilitado.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkHabilitado.Location = new System.Drawing.Point(8, 440);
+            this.chkHabilitado.Name = "chkHabilitado";
+            this.chkHabilitado.Size = new System.Drawing.Size(73, 17);
+            this.chkHabilitado.TabIndex = 17;
+            this.chkHabilitado.Text = "Habilitado";
+            this.chkHabilitado.UseVisualStyleBackColor = true;
+            this.chkHabilitado.Visible = false;
+            // 
             // tl_ClientesTableAdapter
             // 
             this.tl_ClientesTableAdapter.ClearBeforeFill = true;
+            // 
+            // tl_Usuarios_RolesTableAdapter
+            // 
+            this.tl_Usuarios_RolesTableAdapter.ClearBeforeFill = true;
             // 
             // Cliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ClientSize = new System.Drawing.Size(347, 475);
+            this.Controls.Add(this.chkHabilitado);
             this.Controls.Add(this.cmbTipoDocumento);
             this.Controls.Add(this.numNroDocumento);
             this.Controls.Add(this.txtCUIL);
@@ -346,8 +369,10 @@
             this.Controls.Add(this.lblNroDocumento);
             this.Controls.Add(this.lblTipoDocumento);
             this.Controls.Add(this.btnGuardar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Cliente";
             this.Text = "Cliente";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Cliente_FormClosing);
             this.grpDireccion.ResumeLayout(false);
             this.grpDireccion.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPiso)).EndInit();
@@ -389,5 +414,7 @@
         private System.Windows.Forms.Label lblCUIL;
         private System.Windows.Forms.NumericUpDown numNroDocumento;
         private System.Windows.Forms.ComboBox cmbTipoDocumento;
+        private System.Windows.Forms.CheckBox chkHabilitado;
+        private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Usuarios_RolesTableAdapter tl_Usuarios_RolesTableAdapter;
     }
 }

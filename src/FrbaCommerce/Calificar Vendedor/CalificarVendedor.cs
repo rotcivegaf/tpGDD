@@ -46,7 +46,7 @@ namespace FrbaCommerce.Calificar_Vendedor
 
         private void dgvCompras_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex == dgvCompras.ColumnCount - 1)
+            if (e.RowIndex >= 0 && e.ColumnIndex == Calificar.Index)
             {
                 compra_ID = getCompraID(e.RowIndex);
                 grpCompras.Enabled = false;

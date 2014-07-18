@@ -31,7 +31,7 @@ namespace FrbaCommerce
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnABM_Rol = new System.Windows.Forms.Button();
             this.btnABM_Visibilidades = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grpFuncionalidades = new System.Windows.Forms.GroupBox();
             this.btnResponderPreguntas = new System.Windows.Forms.Button();
             this.btnVerRespuestas = new System.Windows.Forms.Button();
             this.btnEditarPublicaciones = new System.Windows.Forms.Button();
@@ -52,8 +52,7 @@ namespace FrbaCommerce
             this.tl_UsuariosTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_UsuariosTableAdapter();
             this.tl_RolesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_RolesTableAdapter();
             this.tl_FuncionalidadesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_FuncionalidadesTableAdapter();
-            this.queriesTableAdapter1 = new FrbaCommerce.GD1C2014DataSetTableAdapters.QueriesTableAdapter();
-            this.groupBox1.SuspendLayout();
+            this.grpFuncionalidades.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -87,28 +86,29 @@ namespace FrbaCommerce
             this.btnABM_Visibilidades.UseVisualStyleBackColor = true;
             this.btnABM_Visibilidades.Click += new System.EventHandler(this.btnABM_Visibilidades_Click);
             // 
-            // groupBox1
+            // grpFuncionalidades
             // 
-            this.groupBox1.Controls.Add(this.btnResponderPreguntas);
-            this.groupBox1.Controls.Add(this.btnVerRespuestas);
-            this.groupBox1.Controls.Add(this.btnEditarPublicaciones);
-            this.groupBox1.Controls.Add(this.btnHistorial);
-            this.groupBox1.Controls.Add(this.btnABMRubro);
-            this.groupBox1.Controls.Add(this.btnFacturarPublicaciones);
-            this.groupBox1.Controls.Add(this.btnCalificarVendedor);
-            this.groupBox1.Controls.Add(this.btnABMEmpresa);
-            this.groupBox1.Controls.Add(this.btnABMCliente);
-            this.groupBox1.Controls.Add(this.btnComprarOfertar);
-            this.groupBox1.Controls.Add(this.btnListadoEstadistico);
-            this.groupBox1.Controls.Add(this.btnGenerarPublicacion);
-            this.groupBox1.Controls.Add(this.btnABM_Rol);
-            this.groupBox1.Controls.Add(this.btnABM_Visibilidades);
-            this.groupBox1.Location = new System.Drawing.Point(12, 70);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(624, 170);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Funcionaliades";
+            this.grpFuncionalidades.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.grpFuncionalidades.Controls.Add(this.btnResponderPreguntas);
+            this.grpFuncionalidades.Controls.Add(this.btnVerRespuestas);
+            this.grpFuncionalidades.Controls.Add(this.btnEditarPublicaciones);
+            this.grpFuncionalidades.Controls.Add(this.btnHistorial);
+            this.grpFuncionalidades.Controls.Add(this.btnABMRubro);
+            this.grpFuncionalidades.Controls.Add(this.btnFacturarPublicaciones);
+            this.grpFuncionalidades.Controls.Add(this.btnCalificarVendedor);
+            this.grpFuncionalidades.Controls.Add(this.btnABMEmpresa);
+            this.grpFuncionalidades.Controls.Add(this.btnABMCliente);
+            this.grpFuncionalidades.Controls.Add(this.btnComprarOfertar);
+            this.grpFuncionalidades.Controls.Add(this.btnListadoEstadistico);
+            this.grpFuncionalidades.Controls.Add(this.btnGenerarPublicacion);
+            this.grpFuncionalidades.Controls.Add(this.btnABM_Rol);
+            this.grpFuncionalidades.Controls.Add(this.btnABM_Visibilidades);
+            this.grpFuncionalidades.Location = new System.Drawing.Point(12, 70);
+            this.grpFuncionalidades.Name = "grpFuncionalidades";
+            this.grpFuncionalidades.Size = new System.Drawing.Size(624, 170);
+            this.grpFuncionalidades.TabIndex = 4;
+            this.grpFuncionalidades.TabStop = false;
+            this.grpFuncionalidades.Text = "Funcionaliades";
             // 
             // btnResponderPreguntas
             // 
@@ -236,9 +236,9 @@ namespace FrbaCommerce
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(35, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 20);
+            this.label1.Size = new System.Drawing.Size(261, 20);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Bienvenido!";
+            this.label1.Text = "Bienvenido! a FRBA-Commerce";
             // 
             // statusStrip1
             // 
@@ -258,7 +258,7 @@ namespace FrbaCommerce
             this.toolStripUsuario.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
             this.toolStripUsuario.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripUsuario.Name = "toolStripUsuario";
-            this.toolStripUsuario.Size = new System.Drawing.Size(211, 17);
+            this.toolStripUsuario.Size = new System.Drawing.Size(200, 17);
             this.toolStripUsuario.Spring = true;
             this.toolStripUsuario.Click += new System.EventHandler(this.toolStripUsuario_Click);
             // 
@@ -267,14 +267,14 @@ namespace FrbaCommerce
             this.toolStripRol.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
             this.toolStripRol.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripRol.Name = "toolStripRol";
-            this.toolStripRol.Size = new System.Drawing.Size(211, 17);
+            this.toolStripRol.Size = new System.Drawing.Size(200, 17);
             this.toolStripRol.Spring = true;
             // 
             // toolStripDate
             // 
             this.toolStripDate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripDate.Name = "toolStripDate";
-            this.toolStripDate.Size = new System.Drawing.Size(211, 17);
+            this.toolStripDate.Size = new System.Drawing.Size(200, 17);
             this.toolStripDate.Spring = true;
             // 
             // tl_UsuariosTableAdapter
@@ -293,16 +293,17 @@ namespace FrbaCommerce
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ClientSize = new System.Drawing.Size(648, 266);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.grpFuncionalidades);
             this.Controls.Add(this.btnLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Main_form";
             this.Text = "TP GDD";
             this.Load += new System.EventHandler(this.Main_form_Load);
-            this.groupBox1.ResumeLayout(false);
+            this.grpFuncionalidades.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -315,7 +316,7 @@ namespace FrbaCommerce
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnABM_Rol;
         private System.Windows.Forms.Button btnABM_Visibilidades;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grpFuncionalidades;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnGenerarPublicacion;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_UsuariosTableAdapter tl_UsuariosTableAdapter;
@@ -336,7 +337,6 @@ namespace FrbaCommerce
         private System.Windows.Forms.Button btnEditarPublicaciones;
         private System.Windows.Forms.Button btnVerRespuestas;
         private System.Windows.Forms.Button btnResponderPreguntas;
-        private FrbaCommerce.GD1C2014DataSetTableAdapters.QueriesTableAdapter queriesTableAdapter1;
     }
 }
 

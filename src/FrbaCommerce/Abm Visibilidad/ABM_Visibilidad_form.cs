@@ -19,56 +19,53 @@ namespace FrbaCommerce.ABM_Visibilidad
 
         private void ABM_Visibilidad_Form_Load(object sender, EventArgs e)
         {
-            this.tl_VisibilidadesTableAdapter.Fill(this.gD1C2014DataSet.tl_Visibilidades);
-
+            llenarVisibilidades();
         }
 
-        private void btnNueva_Click(object sender, EventArgs e)
-        {
-            //Pasamos como parametro -1 porque estamos creando una visibilidad.
-            Edit_Visibilidad_Form editForm = new Edit_Visibilidad_Form(-1);
-            editForm.FormClosed += new FormClosedEventHandler(editForm_FormClosed);
-            
-            //Mostramos el formulario.
-            editForm.ShowDialog(); 
-        }
-
-        private void editForm_FormClosed(object sender, FormClosedEventArgs e)
+        private void llenarVisibilidades()
         {
             this.tl_VisibilidadesTableAdapter.Fill(this.gD1C2014DataSet.tl_Visibilidades);
         }
 
         private void Visibilidades_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //Se presiono el boton eliminar
-            if (e.ColumnIndex == 6)
-            {
-                //Intentamos borrarla.
-                try
+            if (e.RowIndex >= 0)
+                if (e.ColumnIndex == Deshabilitar.Index)//Se presiono el boton Deshabilitar
                 {
-                    this.tl_VisibilidadesTableAdapter.sp_BorrarVisibilidad(Convert.ToInt32(Visibilidades.Rows[e.RowIndex].Cells[0].Value));
-                }
-                catch (SqlException sqEx)
+                    //Intentamos borrarla.
+                    try
+                    {
+                        this.tl_VisibilidadesTableAdapter.sp_BorrarVisibilidad(Convert.ToInt32(Visibilidades.Rows[e.RowIndex].Cells[0].Value));
+                    }
+                    catch (SqlException sqEx)
+                    {
+                        MessageBox.Show(sqEx.Message);
+                        return;
+                    }
+                    MessageBox.Show("Visibilidad Deshabilitada");
+                    //Si se pudo Deshabilitar, refrescamos el grid.
+                    llenarVisibilidades();
+                } else if (e.ColumnIndex == seleccionar.Index) //Se presiono el boton seleccionar
                 {
-                    MessageBox.Show(sqEx.Message);
-                    return;
+                    //Pasamos como parametro el codigo de visibiiad a editar.
+                    Edit_Visibilidad_Form editForm = new Edit_Visibilidad_Form(Convert.ToInt32(Visibilidades.Rows[e.RowIndex].Cells[0].Value));
+                    //Mostramos el formulario.
+                    editForm.ShowDialog();
+                    llenarVisibilidades();
                 }
-                
-                //Si se pudo eliminar, refrescamos el grid.
-                this.tl_VisibilidadesTableAdapter.Fill(this.gD1C2014DataSet.tl_Visibilidades);
-            }
-            
-            //Se presiono el boton seleccionar
-            if (e.ColumnIndex == 5)
-            {
-                //Pasamos como parametro el codigo de visibiiad a editar.
-                Edit_Visibilidad_Form editForm = new Edit_Visibilidad_Form(Convert.ToInt32(Visibilidades.Rows[e.RowIndex].Cells[0].Value));
-                editForm.FormClosed += new FormClosedEventHandler(editForm_FormClosed);
+        }
 
-                //Mostramos el formulario.
-                editForm.ShowDialog(); 
-               
-            }
+        private void optSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void optNueva_Click(object sender, EventArgs e)
+        {
+            //Pasamos como parametro -1 porque estamos creando una visibilidad.
+            Edit_Visibilidad_Form editForm = new Edit_Visibilidad_Form(-1);
+            editForm.ShowDialog();
+            llenarVisibilidades();
         }
 
     }
