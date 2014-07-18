@@ -82,7 +82,7 @@ GO
 --Tabla Rubros
 CREATE TABLE LOL.tl_Rubros (
 	ID			NUMERIC(18, 0)	NOT NULL	IDENTITY(1,1),
-	Descripcion	NVARCHAR(50)	NOT NULL,
+	Descripcion	NVARCHAR(50)	NOT NULL	UNIQUE,
 	Habilitado 	BIT				NOT NULL	DEFAULT(1),
 
 	PRIMARY KEY(ID)
@@ -1101,7 +1101,7 @@ BEGIN
 			UPDATE LOL.tl_Usuarios_Roles SET Habilitado = 0 WHERE Usuario_ID = @ID AND Rol_ID IN (2,3)
 			--Pauso sus Publicaciones
 			SELECT @EstadoPausadaID = ID FROM LOL.tl_Publicacion_Estados WHERE Estado = 'Pausada'
-			UPDATE LOL.tl_Publicaciones SET Estado_ID = @EstadoPausadaID WHERE Usuario_ID = @ID
+			UPDATE LOL.tl_Publicaciones SET Estado_ID = @EstadoPausadaID WHERE Usuario_ID = @ID AND Estado_ID <> 4
 		END
 
 END
@@ -1288,7 +1288,7 @@ BEGIN
 			LOL.tl_Publicaciones_Rubros AS PR ON P.Codigo = PR.Publicacion_Codigo
 		WHERE
 			(P.Usuario_ID <> @Usuario_ID) AND (P.Descripcion LIKE '%' + @Descripcion + '%') AND
-			(PR.Rubro_ID = @Rubro_ID) AND (E.Estado = 'Publicada') AND (P.Fecha_Vencimiento >= @FechaActual)
+			(PR.Rubro_ID = @Rubro_ID) AND (E.Estado IN ('Publicada','Pausada')) AND (P.Fecha_Vencimiento >= @FechaActual)
 	)
 
 	SELECT Codigo, Usuario_ID, Descripcion, Fecha,

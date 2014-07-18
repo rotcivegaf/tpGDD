@@ -35,20 +35,6 @@
             this.textBoxDescripcion = new System.Windows.Forms.TextBox();
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.dataGridViewPublicaciones = new System.Windows.Forms.DataGridView();
-            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Usuario_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaVencimientoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Visibilidad_Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.visibilidadDescripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Permite_Preguntas = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Preguntar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Comprar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.publicacionesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gD1C2014DataSet = new FrbaCommerce.GD1C2014DataSet();
             this.lblRubro = new System.Windows.Forms.Label();
@@ -68,6 +54,20 @@
             this.buttonLimpiar = new System.Windows.Forms.Button();
             this.lblCantidadRegistros = new System.Windows.Forms.Label();
             this.cmbCantidadRegistros = new System.Windows.Forms.ComboBox();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Usuario_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaVencimientoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Visibilidad_Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.visibilidadDescripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Permite_Preguntas = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Preguntar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Comprar = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPublicaciones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.publicacionesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2014DataSet)).BeginInit();
@@ -121,7 +121,7 @@
             this.Tipo,
             this.Visibilidad_Codigo,
             this.visibilidadDescripcionDataGridViewTextBoxColumn,
-            this.dataGridViewTextBoxColumn2,
+            this.Estado,
             this.Permite_Preguntas,
             this.Preguntar,
             this.Comprar});
@@ -136,136 +136,6 @@
             this.dataGridViewPublicaciones.Size = new System.Drawing.Size(949, 284);
             this.dataGridViewPublicaciones.TabIndex = 4;
             this.dataGridViewPublicaciones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPublicaciones_CellContentClick);
-            // 
-            // Codigo
-            // 
-            this.Codigo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Codigo.DataPropertyName = "Codigo";
-            this.Codigo.HeaderText = "Codigo";
-            this.Codigo.Name = "Codigo";
-            this.Codigo.ReadOnly = true;
-            this.Codigo.Width = 65;
-            // 
-            // Usuario_ID
-            // 
-            this.Usuario_ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Usuario_ID.DataPropertyName = "Usuario_ID";
-            this.Usuario_ID.HeaderText = "Usuario_ID";
-            this.Usuario_ID.Name = "Usuario_ID";
-            this.Usuario_ID.ReadOnly = true;
-            this.Usuario_ID.Visible = false;
-            // 
-            // descripcionDataGridViewTextBoxColumn
-            // 
-            this.descripcionDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.descripcionDataGridViewTextBoxColumn.DataPropertyName = "Descripcion";
-            this.descripcionDataGridViewTextBoxColumn.HeaderText = "Descripcion";
-            this.descripcionDataGridViewTextBoxColumn.Name = "descripcionDataGridViewTextBoxColumn";
-            this.descripcionDataGridViewTextBoxColumn.ReadOnly = true;
-            this.descripcionDataGridViewTextBoxColumn.Width = 88;
-            // 
-            // fechaDataGridViewTextBoxColumn
-            // 
-            this.fechaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.fechaDataGridViewTextBoxColumn.DataPropertyName = "Fecha";
-            this.fechaDataGridViewTextBoxColumn.HeaderText = "Fecha";
-            this.fechaDataGridViewTextBoxColumn.Name = "fechaDataGridViewTextBoxColumn";
-            this.fechaDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fechaDataGridViewTextBoxColumn.Width = 62;
-            // 
-            // Stock
-            // 
-            this.Stock.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Stock.DataPropertyName = "Stock";
-            this.Stock.HeaderText = "Stock";
-            this.Stock.Name = "Stock";
-            this.Stock.ReadOnly = true;
-            this.Stock.Width = 60;
-            // 
-            // fechaVencimientoDataGridViewTextBoxColumn
-            // 
-            this.fechaVencimientoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.fechaVencimientoDataGridViewTextBoxColumn.DataPropertyName = "Fecha_Vencimiento";
-            this.fechaVencimientoDataGridViewTextBoxColumn.HeaderText = "Fecha_Vencimiento";
-            this.fechaVencimientoDataGridViewTextBoxColumn.Name = "fechaVencimientoDataGridViewTextBoxColumn";
-            this.fechaVencimientoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fechaVencimientoDataGridViewTextBoxColumn.Width = 126;
-            // 
-            // Precio
-            // 
-            this.Precio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Precio.DataPropertyName = "Precio";
-            this.Precio.HeaderText = "Precio";
-            this.Precio.Name = "Precio";
-            this.Precio.ReadOnly = true;
-            this.Precio.Width = 62;
-            // 
-            // Tipo
-            // 
-            this.Tipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Tipo.DataPropertyName = "Tipo";
-            this.Tipo.HeaderText = "Tipo";
-            this.Tipo.Name = "Tipo";
-            this.Tipo.ReadOnly = true;
-            this.Tipo.Width = 53;
-            // 
-            // Visibilidad_Codigo
-            // 
-            this.Visibilidad_Codigo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Visibilidad_Codigo.DataPropertyName = "Visibilidad_Codigo";
-            this.Visibilidad_Codigo.HeaderText = "Visibilidad_Codigo";
-            this.Visibilidad_Codigo.Name = "Visibilidad_Codigo";
-            this.Visibilidad_Codigo.ReadOnly = true;
-            this.Visibilidad_Codigo.Visible = false;
-            // 
-            // visibilidadDescripcionDataGridViewTextBoxColumn
-            // 
-            this.visibilidadDescripcionDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.visibilidadDescripcionDataGridViewTextBoxColumn.DataPropertyName = "Visibilidad_Descripcion";
-            this.visibilidadDescripcionDataGridViewTextBoxColumn.HeaderText = "Visibilidad_Descripcion";
-            this.visibilidadDescripcionDataGridViewTextBoxColumn.Name = "visibilidadDescripcionDataGridViewTextBoxColumn";
-            this.visibilidadDescripcionDataGridViewTextBoxColumn.ReadOnly = true;
-            this.visibilidadDescripcionDataGridViewTextBoxColumn.Width = 140;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Estado";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Estado";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Visible = false;
-            // 
-            // Permite_Preguntas
-            // 
-            this.Permite_Preguntas.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Permite_Preguntas.DataPropertyName = "Permite_Preguntas";
-            this.Permite_Preguntas.HeaderText = "Permite_Preguntas";
-            this.Permite_Preguntas.Name = "Permite_Preguntas";
-            this.Permite_Preguntas.ReadOnly = true;
-            this.Permite_Preguntas.Width = 102;
-            // 
-            // Preguntar
-            // 
-            this.Preguntar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.NullValue = "Preguntar";
-            this.Preguntar.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Preguntar.HeaderText = "Preguntar";
-            this.Preguntar.Name = "Preguntar";
-            this.Preguntar.ReadOnly = true;
-            this.Preguntar.Width = 59;
-            // 
-            // Comprar
-            // 
-            this.Comprar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.NullValue = "Comprar/Ofertar";
-            this.Comprar.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Comprar.HeaderText = "Comprar/Ofertar";
-            this.Comprar.Name = "Comprar";
-            this.Comprar.ReadOnly = true;
-            this.Comprar.Width = 89;
             // 
             // publicacionesBindingSource
             // 
@@ -444,6 +314,138 @@
             this.cmbCantidadRegistros.TabIndex = 15;
             this.cmbCantidadRegistros.SelectedIndexChanged += new System.EventHandler(this.cmbCantidadRegistros_SelectedIndexChanged);
             // 
+            // Codigo
+            // 
+            this.Codigo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Codigo.DataPropertyName = "Codigo";
+            this.Codigo.HeaderText = "Codigo";
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            this.Codigo.Width = 65;
+            // 
+            // Usuario_ID
+            // 
+            this.Usuario_ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Usuario_ID.DataPropertyName = "Usuario_ID";
+            this.Usuario_ID.HeaderText = "Usuario_ID";
+            this.Usuario_ID.Name = "Usuario_ID";
+            this.Usuario_ID.ReadOnly = true;
+            this.Usuario_ID.Visible = false;
+            this.Usuario_ID.Width = 85;
+            // 
+            // descripcionDataGridViewTextBoxColumn
+            // 
+            this.descripcionDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.descripcionDataGridViewTextBoxColumn.DataPropertyName = "Descripcion";
+            this.descripcionDataGridViewTextBoxColumn.HeaderText = "Descripcion";
+            this.descripcionDataGridViewTextBoxColumn.Name = "descripcionDataGridViewTextBoxColumn";
+            this.descripcionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.descripcionDataGridViewTextBoxColumn.Width = 88;
+            // 
+            // fechaDataGridViewTextBoxColumn
+            // 
+            this.fechaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.fechaDataGridViewTextBoxColumn.DataPropertyName = "Fecha";
+            this.fechaDataGridViewTextBoxColumn.HeaderText = "Fecha";
+            this.fechaDataGridViewTextBoxColumn.Name = "fechaDataGridViewTextBoxColumn";
+            this.fechaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fechaDataGridViewTextBoxColumn.Width = 62;
+            // 
+            // Stock
+            // 
+            this.Stock.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Stock.DataPropertyName = "Stock";
+            this.Stock.HeaderText = "Stock";
+            this.Stock.Name = "Stock";
+            this.Stock.ReadOnly = true;
+            this.Stock.Width = 60;
+            // 
+            // fechaVencimientoDataGridViewTextBoxColumn
+            // 
+            this.fechaVencimientoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.fechaVencimientoDataGridViewTextBoxColumn.DataPropertyName = "Fecha_Vencimiento";
+            this.fechaVencimientoDataGridViewTextBoxColumn.HeaderText = "Fecha_Vencimiento";
+            this.fechaVencimientoDataGridViewTextBoxColumn.Name = "fechaVencimientoDataGridViewTextBoxColumn";
+            this.fechaVencimientoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fechaVencimientoDataGridViewTextBoxColumn.Width = 126;
+            // 
+            // Precio
+            // 
+            this.Precio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Precio.DataPropertyName = "Precio";
+            this.Precio.HeaderText = "Precio";
+            this.Precio.Name = "Precio";
+            this.Precio.ReadOnly = true;
+            this.Precio.Width = 62;
+            // 
+            // Tipo
+            // 
+            this.Tipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Tipo.DataPropertyName = "Tipo";
+            this.Tipo.HeaderText = "Tipo";
+            this.Tipo.Name = "Tipo";
+            this.Tipo.ReadOnly = true;
+            this.Tipo.Width = 53;
+            // 
+            // Visibilidad_Codigo
+            // 
+            this.Visibilidad_Codigo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Visibilidad_Codigo.DataPropertyName = "Visibilidad_Codigo";
+            this.Visibilidad_Codigo.HeaderText = "Visibilidad_Codigo";
+            this.Visibilidad_Codigo.Name = "Visibilidad_Codigo";
+            this.Visibilidad_Codigo.ReadOnly = true;
+            this.Visibilidad_Codigo.Visible = false;
+            this.Visibilidad_Codigo.Width = 117;
+            // 
+            // visibilidadDescripcionDataGridViewTextBoxColumn
+            // 
+            this.visibilidadDescripcionDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.visibilidadDescripcionDataGridViewTextBoxColumn.DataPropertyName = "Visibilidad_Descripcion";
+            this.visibilidadDescripcionDataGridViewTextBoxColumn.HeaderText = "Visibilidad_Descripcion";
+            this.visibilidadDescripcionDataGridViewTextBoxColumn.Name = "visibilidadDescripcionDataGridViewTextBoxColumn";
+            this.visibilidadDescripcionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.visibilidadDescripcionDataGridViewTextBoxColumn.Width = 140;
+            // 
+            // Estado
+            // 
+            this.Estado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Estado.DataPropertyName = "Estado";
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
+            this.Estado.Width = 65;
+            // 
+            // Permite_Preguntas
+            // 
+            this.Permite_Preguntas.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Permite_Preguntas.DataPropertyName = "Permite_Preguntas";
+            this.Permite_Preguntas.HeaderText = "Permite_Preguntas";
+            this.Permite_Preguntas.Name = "Permite_Preguntas";
+            this.Permite_Preguntas.ReadOnly = true;
+            this.Permite_Preguntas.Width = 102;
+            // 
+            // Preguntar
+            // 
+            this.Preguntar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.NullValue = "Preguntar";
+            this.Preguntar.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Preguntar.HeaderText = "Preguntar";
+            this.Preguntar.Name = "Preguntar";
+            this.Preguntar.ReadOnly = true;
+            this.Preguntar.Width = 59;
+            // 
+            // Comprar
+            // 
+            this.Comprar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.NullValue = "Comprar/Ofertar";
+            this.Comprar.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Comprar.HeaderText = "Comprar/Ofertar";
+            this.Comprar.Name = "Comprar";
+            this.Comprar.ReadOnly = true;
+            this.Comprar.Width = 89;
+            // 
             // Comprar_Ofertar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -511,7 +513,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Visibilidad_Codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn visibilidadDescripcionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Permite_Preguntas;
         private System.Windows.Forms.DataGridViewButtonColumn Preguntar;
         private System.Windows.Forms.DataGridViewButtonColumn Comprar;

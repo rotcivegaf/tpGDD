@@ -93,7 +93,7 @@ namespace FrbaCommerce.Abm_Cliente
             numPiso.Value = Convert.ToInt32(cliente["Piso"].ToString());
             txtDepto.Text = cliente["Depto"].ToString();
             txtCodigoPostal.Text = cliente["Cod_Postal"].ToString();
-            txtTelefono.Text = cliente["Telefono"].ToString();
+            numTelefono.Value = Convert.ToInt32(cliente["Telefono"].ToString());
 
             GD1C2014DataSet.tl_Usuarios_RolesDataTable usuarioRolDataTable = new GD1C2014DataSet.tl_Usuarios_RolesDataTable();
             usuarioRolDataTable = this.tl_Usuarios_RolesTableAdapter.getByUsuarioRolIDs(ID,2);
@@ -132,7 +132,7 @@ namespace FrbaCommerce.Abm_Cliente
                    Convert.ToInt32(numPiso.Value),
                    txtDepto.Text,
                    txtCodigoPostal.Text,
-                   (txtTelefono.Text == "") ? (int?)null : Convert.ToInt32(txtTelefono.Text),
+                   (numTelefono.Value == 0) ? (int?)null : (int)numTelefono.Value,
                    chkHabilitado.Checked
                    );
             }

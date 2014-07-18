@@ -49,9 +49,6 @@ namespace FrbaCommerce.Generar_Publicacion
             this.tl_VisibilidadesTableAdapter.FillWithHabilitadas(this.gD1C2014DataSet.tl_Visibilidades);
             this.tl_Publicacion_TiposTableAdapter.FillWithHabilitados(this.gD1C2014DataSet.tl_Publicacion_Tipos);
             this.tl_Publicacion_EstadosTableAdapter.FillWithHabilitados(this.gD1C2014DataSet.tl_Publicacion_Estados);
-            //Selecciono por default
-            dateTimePickerFechaInicio.MinDate = commons.getDate();
-            dateTimePickerFechaInicio.Value = commons.getDate();
             //Si voy a editar una publicación ya existente
             if (edicion == 1)
             {
@@ -82,6 +79,15 @@ namespace FrbaCommerce.Generar_Publicacion
                         this.comboBoxTipoDePublicacion.Enabled = false;
                         this.checkBoxAceptaPreguntas.Enabled = false;
                         break;
+                    case 3: //Borrador
+                        if (DateTime.Compare(dateTimePickerFechaInicio.Value, commons.getDate()) < 0)
+                        {
+                            dateTimePickerFechaInicio.Value = commons.getDate();            
+                        }
+                        dateTimePickerFechaInicio.MinDate = commons.getDate();
+                        comboBoxVisiblidad.Enabled = false;
+                        break;
+
                     case 4: //Finalizada
                         //Deshabilito los campos que no se pueden editar según los requerimientos
                         this.inputDescripcion.Enabled = false;
@@ -105,6 +111,12 @@ namespace FrbaCommerce.Generar_Publicacion
                     this.numericUpDownStock.Enabled = false;
                 }
             }
+            else //Nueva Publicacion
+            { 
+                //Selecciono por default
+                dateTimePickerFechaInicio.MinDate = commons.getDate();
+                dateTimePickerFechaInicio.Value = commons.getDate();
+            }
         }
 
         private void cargarDatos()
@@ -113,6 +125,10 @@ namespace FrbaCommerce.Generar_Publicacion
             publicacionAEditar = this.tl_PublicacionesTableAdapter.getByCodigo(publicacionID);
             //Completo el form con los valores de la publicación
             this.inputDescripcion.Text = publicacionAEditar.Rows[0]["Descripcion"].ToString();
+            if (Convert.ToInt32(publicacionAEditar.Rows[0]["Stock"]) == 0)
+            {
+                numericUpDownStock.Minimum = 0;
+            }
             this.numericUpDownStock.Value = Convert.ToInt32(publicacionAEditar.Rows[0]["Stock"]);
             this.dateTimePickerFechaInicio.Value = Convert.ToDateTime(publicacionAEditar.Rows[0]["Fecha"]);
             this.dateTimePickerFechaVencimiento.Value = Convert.ToDateTime(publicacionAEditar.Rows[0]["Fecha_Vencimiento"]);
@@ -144,8 +160,7 @@ namespace FrbaCommerce.Generar_Publicacion
             //Si pasa la validación
             if (this.validar())
             {
-                //Y si no es un registro nuevo entonces ejecuto el método nuevaPublicación
-                if (edicion == 0)
+                if (edicion == 0) //Es una Nueva Publicacion
                 {
                     try
                     {

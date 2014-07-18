@@ -51,7 +51,6 @@
             this.lblMail = new System.Windows.Forms.Label();
             this.txtMail = new System.Windows.Forms.TextBox();
             this.lblTelefono = new System.Windows.Forms.Label();
-            this.txtTelefono = new System.Windows.Forms.TextBox();
             this.txtCUIL = new System.Windows.Forms.TextBox();
             this.lblCUIL = new System.Windows.Forms.Label();
             this.numNroDocumento = new System.Windows.Forms.NumericUpDown();
@@ -59,10 +58,12 @@
             this.chkHabilitado = new System.Windows.Forms.CheckBox();
             this.tl_ClientesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_ClientesTableAdapter();
             this.tl_Usuarios_RolesTableAdapter = new FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Usuarios_RolesTableAdapter();
+            this.numTelefono = new System.Windows.Forms.NumericUpDown();
             this.grpDireccion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPiso)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNroCalle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNroDocumento)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numTelefono)).BeginInit();
             this.SuspendLayout();
             // 
             // btnGuardar
@@ -275,13 +276,6 @@
             this.lblTelefono.TabIndex = 14;
             this.lblTelefono.Text = "Telefono";
             // 
-            // txtTelefono
-            // 
-            this.txtTelefono.Location = new System.Drawing.Point(104, 410);
-            this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(201, 20);
-            this.txtTelefono.TabIndex = 12;
-            // 
             // txtCUIL
             // 
             this.txtCUIL.Location = new System.Drawing.Point(104, 137);
@@ -344,18 +338,30 @@
             // 
             this.tl_Usuarios_RolesTableAdapter.ClearBeforeFill = true;
             // 
+            // numTelefono
+            // 
+            this.numTelefono.Location = new System.Drawing.Point(104, 408);
+            this.numTelefono.Maximum = new decimal(new int[] {
+            1410065407,
+            2,
+            0,
+            0});
+            this.numTelefono.Name = "numTelefono";
+            this.numTelefono.Size = new System.Drawing.Size(201, 20);
+            this.numTelefono.TabIndex = 12;
+            // 
             // Cliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ClientSize = new System.Drawing.Size(347, 475);
+            this.Controls.Add(this.numTelefono);
             this.Controls.Add(this.chkHabilitado);
             this.Controls.Add(this.cmbTipoDocumento);
             this.Controls.Add(this.numNroDocumento);
             this.Controls.Add(this.txtCUIL);
             this.Controls.Add(this.lblCUIL);
-            this.Controls.Add(this.txtTelefono);
             this.Controls.Add(this.lblTelefono);
             this.Controls.Add(this.txtMail);
             this.Controls.Add(this.lblMail);
@@ -378,6 +384,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numPiso)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNroCalle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNroDocumento)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numTelefono)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -409,12 +416,12 @@
         private System.Windows.Forms.Label lblCalle;
         private System.Windows.Forms.Label lblTelefono;
         private System.Windows.Forms.NumericUpDown numPiso;
-        private System.Windows.Forms.TextBox txtTelefono;
         private System.Windows.Forms.TextBox txtCUIL;
         private System.Windows.Forms.Label lblCUIL;
         private System.Windows.Forms.NumericUpDown numNroDocumento;
         private System.Windows.Forms.ComboBox cmbTipoDocumento;
         private System.Windows.Forms.CheckBox chkHabilitado;
         private FrbaCommerce.GD1C2014DataSetTableAdapters.tl_Usuarios_RolesTableAdapter tl_Usuarios_RolesTableAdapter;
+        private System.Windows.Forms.NumericUpDown numTelefono;
     }
 }

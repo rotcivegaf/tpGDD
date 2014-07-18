@@ -83,7 +83,11 @@ namespace FrbaCommerce.Comprar_Ofertar
                     {
                         //Creo un formulario de nueva pregunta y le mando el ID de Usuario y Codigo de la Publicación
                         Nueva_Pregunta frame = new Nueva_Pregunta();
-                        frame.abrir(UserID,Convert.ToInt32(fila.Cells[Codigo.Index].Value));
+                        frame.abrir(UserID, Convert.ToInt32(fila.Cells[Codigo.Index].Value));
+                    }
+                    else
+                    {
+                        MessageBox.Show("La publicacion no permite preguntas");
                     }
                 }else if (e.ColumnIndex == Comprar.Index)//si quiero hacer una compra
                 {
@@ -106,16 +110,24 @@ namespace FrbaCommerce.Comprar_Ofertar
                         }
                         else //Compra Inmediata
                         {
-                            NuevaCompra frame = new NuevaCompra();
-                            frame.sendData(
-                                UserID,
-                                Convert.ToInt32(fila.Cells[Codigo.Index].Value),
-                                Convert.ToInt32(fila.Cells[Stock.Index].Value),
-                                Convert.ToInt32(fila.Cells[Visibilidad_Codigo.Index].Value),
-                                Convert.ToDecimal(fila.Cells[Precio.Index].Value),
-                                Convert.ToInt32(fila.Cells[Usuario_ID.Index].Value));
-                            frame.ShowDialog();
-                            llenarPublicaciones();
+                            if (fila.Cells[Estado.Index].Value.ToString().Equals("Pausada"))
+                            {
+                                MessageBox.Show("No puede comprar porque la publicacion esta pausada");
+                            }
+                            else
+                            {
+
+                                NuevaCompra frame = new NuevaCompra();
+                                frame.sendData(
+                                    UserID,
+                                    Convert.ToInt32(fila.Cells[Codigo.Index].Value),
+                                    Convert.ToInt32(fila.Cells[Stock.Index].Value),
+                                    Convert.ToInt32(fila.Cells[Visibilidad_Codigo.Index].Value),
+                                    Convert.ToDecimal(fila.Cells[Precio.Index].Value),
+                                    Convert.ToInt32(fila.Cells[Usuario_ID.Index].Value));
+                                frame.ShowDialog();
+                                llenarPublicaciones();
+                            }
                         }
                     }
                 }

@@ -127,7 +127,6 @@
             // dateTimePickerFechaInicio
             // 
             this.dateTimePickerFechaInicio.Location = new System.Drawing.Point(136, 96);
-            this.dateTimePickerFechaInicio.MinDate = new System.DateTime(2014, 1, 1, 0, 0, 0, 0);
             this.dateTimePickerFechaInicio.Name = "dateTimePickerFechaInicio";
             this.dateTimePickerFechaInicio.Size = new System.Drawing.Size(213, 20);
             this.dateTimePickerFechaInicio.TabIndex = 2;
@@ -270,6 +269,11 @@
             // numericUpDownStock
             // 
             this.numericUpDownStock.Location = new System.Drawing.Point(136, 63);
+            this.numericUpDownStock.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
             this.numericUpDownStock.Minimum = new decimal(new int[] {
             1,
             0,
