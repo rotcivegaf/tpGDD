@@ -2,27 +2,28 @@
  *siempre este listo para usarse para resetear toda la db */
 
 --Eliminar Tablas
-DROP TABLE LOL.tl_roles_funcionalidades
-DROP TABLE LOL.tl_usuarios_roles
-DROP TABLE LOL.tl_roles
-DROP TABLE LOL.tl_preguntas
-DROP TABLE LOL.tl_pendientes
-DROP TABLE LOL.tl_facturas_items
-DROP TABLE LOL.tl_facturas
-DROP TABLE LOL.tl_funcionalidades
-DROP TABLE LOL.tl_ofertas
+DROP TABLE LOL.tl_Roles_Funcionalidades
+DROP TABLE LOL.tl_Usuarios_Roles
+DROP TABLE LOL.tl_Roles
+DROP TABLE LOL.tl_Respuestas
+DROP TABLE LOL.tl_Preguntas
+DROP TABLE LOL.tl_Pendientes
+DROP TABLE LOL.tl_Facturas_Items
+DROP TABLE LOL.tl_Facturas
+DROP TABLE LOL.tl_Funcionalidades
+DROP TABLE LOL.tl_Ofertas
 DROP TABLE LOL.tl_Calificaciones
-DROP TABLE LOL.tl_compras
-DROP TABLE LOL.tl_empresas
-DROP TABLE LOL.tl_clientes
-DROP TABLE LOL.tl_publicaciones_rubros
-DROP TABLE LOL.tl_rubros
-DROP TABLE LOL.tl_publicaciones
+DROP TABLE LOL.tl_Compras
+DROP TABLE LOL.tl_Empresas
+DROP TABLE LOL.tl_Clientes
+DROP TABLE LOL.tl_Publicaciones_Rubros
+DROP TABLE LOL.tl_Rubros
+DROP TABLE LOL.tl_Publicaciones
 DROP TABLE LOL.tl_Publicacion_Tipos
 DROP TABLE LOL.tl_Publicacion_Estados
 DROP TABLE LOL.tl_Usuarios_Visibilidades_Ventas
-DROP TABLE LOL.tl_visibilidades
-DROP TABLE LOL.tl_usuarios
+DROP TABLE LOL.tl_Visibilidades
+DROP TABLE LOL.tl_Usuarios
 
 --Eliminar Procedimientos de migracion
 DROP PROCEDURE LOL.sp_ImportarClientes
